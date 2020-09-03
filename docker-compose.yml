@@ -1,0 +1,12 @@
+version: '2'
+services:
+  jekyll:
+    build: .
+    environment:
+      JEKYLL_ENV: production
+      JEKYLL_VERSION: 4.0.0
+    ports:
+      - 80:4000
+    volumes:
+      - .:/srv/jekyll
+      - ./_site:/srv/jekyll/_site

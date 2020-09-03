@@ -1,0 +1,37 @@
+## Site information ##
+title: openhps-site
+description: A graph-based sensor fusion framework.
+baseurl: "/"
+url: "https://openhps.org"
+
+author:
+  name: Maxim Van de Wynckel
+  email: "maxim.van.de.wynckel@vub.be"
+
+collections:
+  guides:
+    permalink: /guides/:title/
+    output: true
+  docs:
+    permalink: /docs/:title/
+    output: true
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-redirect-from
+
+sass:
+  style: compressed
+
+include:
+  - "*.html"
+
+exclude:
+  - images/edit
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - openhps
