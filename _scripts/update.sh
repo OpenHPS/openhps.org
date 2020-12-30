@@ -12,7 +12,7 @@ function fetch {
     echo "Downloading $url ..."
     wget -O ./docs/$1/docs-$1.zip $url
     echo "Unzipping ./docs/$1/docs-$1.zip ..."
-    unzip ./docs/$1/docs-$1.zip -d ./docs/$1/ -o
+    unzip ./docs/$1/docs-$1.zip -d ./docs/$1/
     mv ./docs/$1/Documentation/* ./docs/$1/
     rm -rf ./docs/$1/Documentation
 }
