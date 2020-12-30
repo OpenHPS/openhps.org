@@ -3,7 +3,7 @@ wget=/usr/bin/wget
 unzip=/usr/bin/unzip
 
 # Componentent documentations to download
-components=("core" "csv")
+components=("core" "csv" "mongodb" "socket" "rest" "opencv", "sphero")
 
 function fetch {
     url="https://ci.mvdw-software.com/job/openhps-$1/job/dev/Documentation/*zip*/Documentation.zip"

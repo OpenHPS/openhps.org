@@ -1,8 +1,8 @@
 ## Site information ##
 title: openhps-site
-description: A graph-based sensor fusion framework.
+description: An Open Source Hybrid Positioning System.
 baseurl: "/"
-url: "https://openhps.org"
+url: "https://www.openhps.org"
 
 author:
   name: Maxim Van de Wynckel

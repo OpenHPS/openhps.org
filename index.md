@@ -3,7 +3,7 @@ layout: home
 title: 'Home'
 ---
 <p class="lead">
-OpenHPS is an open source graph-based data processing framework to help developers fuse various positioning technologies and algorithms.
+OpenHPS is an open source data processing framework to help developers fuse various positioning technologies and algorithms.
 </p>
 
 ## Quick Start
