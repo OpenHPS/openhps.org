@@ -36,6 +36,16 @@
     font-family: "Source Sans Pro", sans-serif;
 }
 
+@media screen and (max-width: $on-medium) {
+    .jumbotron {
+        display: none
+    }
+
+    .container.home {
+        padding-top: 100px !important;
+    }
+}
+
 .lead {
     font-size: 24px;
     font-weight: 300;

@@ -15,3 +15,9 @@
 .toc-container a:hover {
     color: var(--color-link);
 }
+
+@media screen and (max-width: $on-medium) {
+    .toc-container {
+        display: none
+    }
+}

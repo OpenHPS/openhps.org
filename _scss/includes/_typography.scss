@@ -91,3 +91,21 @@ body {
     font-size: 100%;
     background-color: transparent;
 }
+
+.typography img {
+    max-width: 100%;
+}
+
+@media screen and (max-width: $on-medium) {
+    .typography h1 {
+        font-size: 42px;
+    }
+    
+    .typography h2 {
+        font-size: 32px;
+    }
+    
+    .typography h3 {
+        font-size: 28px;
+    }    
+}

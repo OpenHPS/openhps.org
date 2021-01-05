@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+$on-palm:          600px !default;
+$on-laptop:        800px !default;
+
+$on-medium:        $on-palm !default;
+$on-large:         $on-laptop !default;
+
 @import "includes/normalize";
 @import "includes/constants";
 @import "includes/grid";
@@ -11,12 +17,6 @@
 @import "components/navigation";
 @import "components/toc";
 @import "components/posts";
-
-$on-palm:          600px !default;
-$on-laptop:        800px !default;
-
-$on-medium:        $on-palm !default;
-$on-large:         $on-laptop !default;
 
 .site-header {
     border-top: 5px solid #9c0000;
@@ -30,7 +30,7 @@ $on-large:         $on-laptop !default;
     text-align: right;
   
     .nav-trigger {
-        display: none;
+      display: none;
     }
   
     .menu-icon {
@@ -56,13 +56,17 @@ $on-large:         $on-laptop !default;
     }
   
     input ~ .trigger {
-        clear: both;
-        display: none;
+      clear: both;
+      display: none;
     }
   
     input:checked ~ .trigger {
-        display: block;
-        padding-bottom: 5px;
+      display: block;
+      padding-bottom: 5px;
+      background: white;
+      margin-right: -15px;
+      padding-right: 15px;
+      z-index: -1;
     }
   
     .page-link {
@@ -107,6 +111,12 @@ $on-large:         $on-laptop !default;
         margin-left: auto;
       }
     }
+}
+
+.html5-video-player {
+  max-width: 100%;
+  width: 600px;
+  margin: auto;
 }
 
 .main {

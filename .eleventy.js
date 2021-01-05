@@ -1,6 +1,9 @@
 const markdownIt = require("markdown-it");
 const shiki = require('markdown-it-shiki').default;
 const markdownItAnchor = require("markdown-it-anchor");
+const markdownItVideo = require("markdown-it-video");
+const { html5Media } = require('markdown-it-html5-media');
+
 const pluginSass = require("eleventy-plugin-sass");
 const { DateTime } = require("luxon");
 const fs = require('fs');
@@ -25,6 +28,13 @@ module.exports = function (el) {
   const md = markdownIt({ html: true });
   md.use(markdownItAnchor);
   md.use(shiki, { theme: 'dark-plus' });
+  md.use(markdownItVideo, {
+    youtube: { width: 640, height: 390 },
+    vimeo: { width: 500, height: 281 },
+    vine: { width: 600, height: 600, embed: 'simple' },
+    prezi: { width: 550, height: 400 }
+  });
+  md.use(html5Media);
   el.setLibrary("md", md);
 
   el.addCollection("sorted_docs", function (collection) {
