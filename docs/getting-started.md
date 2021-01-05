@@ -39,7 +39,7 @@ Please consult the README of each individual component for in-depth installation
 ### Node.js
 If you have [npm installed](https://www.npmjs.com/get-npm), start using @openhps/core with the following command.
 ```bash
-npm install @openhps/core --save
+$ npm install @openhps/core --save
 ```
 
 ### Browser

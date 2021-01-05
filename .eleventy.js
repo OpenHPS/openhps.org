@@ -12,6 +12,7 @@ module.exports = function (el) {
   el.addPassthroughCopy("media");
   el.addPassthroughCopy("papers");
   el.addPassthroughCopy("scripts");
+  el.addPassthroughCopy("CNAME");
 
   el.setDataDeepMerge(true);
 
