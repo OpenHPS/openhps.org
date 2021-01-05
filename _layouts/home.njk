@@ -1,0 +1,25 @@
+---
+layout: default.njk
+---
+
+<div class="jumbotron">
+  <div class="visual">
+    <div class="container-wrap">
+      <div class="container">
+        <div class="body">
+          test
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container main typography home">
+  {{ content | safe }}
+  
+  {% set maxPosts = collections.posts.length | min(3) %}
+  <h2>Latest News</h2>
+  {% set postslist = collections.posts | head(-3) %}
+  {% set postslistCounter = collections.posts | length %}
+  {% include "postslist.njk" %}
+</div>

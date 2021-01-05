@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: home.njk
 title: 'Home'
 ---
 <p class="lead">

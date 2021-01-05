@@ -1,0 +1,35 @@
+{
+  "name": "@openhps/site",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/OpenHPS/openhps-site.git",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "chalk": "^4.1.0",
+    "eleventy-plugin-sass": "^1.1.1",
+    "fs-extra": "^9.0.1",
+    "luxon": "^1.25.0",
+    "markdown-it": "^12.0.4",
+    "markdown-it-anchor": "^6.0.1",
+    "markdown-it-shiki": "0.0.2",
+    "rimraf": "^3.0.2",
+    "unzip-stream": "^0.3.1"
+  },
+  "scripts": {
+    "serve": "serve ./_site",
+    "clean": "rimraf ./_site",
+    "build": "npm run clean && eleventy",
+    "build:api": "node ./_scripts/api.js",
+    "build:css": "npm-run-all --parallel build:scss:*",
+    "build:css:main": "sass ./_sass/main.scss ./css/main.css",
+    "build:css:syntax": "sass ./_sass/syntax.scss ./css/syntax.css",
+    "deploy": "gh-pages -d _site"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.32.0",
+    "shx": "^0.3.3"
+  }
+}

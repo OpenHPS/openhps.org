@@ -1,0 +1,17 @@
+.toc-container {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+.toc-container ol {
+    list-style: none;
+    padding-left: 20px;
+}
+.toc-container a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+.toc-container a:hover {
+    color: var(--color-link);
+}

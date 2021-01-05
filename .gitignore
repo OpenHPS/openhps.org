@@ -1,8 +1,2 @@
+node_modules
 _site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-openhps
-docs/*/**/**
-Gemfile.lock
-!docs/*/**/.gitkeep

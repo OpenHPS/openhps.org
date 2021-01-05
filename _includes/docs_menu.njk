@@ -1,0 +1,9 @@
+<nav class="navigation">
+  <ul>
+    {% for doc in collections.sorted_docs %}
+      <li {% if page.url == doc.url %}class="selected"{% endif %}>
+        <a href="{{ doc.url }}" {% if page.url == doc.url %}class="current"{% endif %}>{{ doc.data.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

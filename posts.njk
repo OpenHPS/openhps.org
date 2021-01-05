@@ -1,0 +1,17 @@
+---
+layout: default.njk
+permalink: /posts/
+eleventyNavigation:
+  key: Blog
+  order: 2
+---
+
+<div class="container main">
+  <div class="row">
+    <div class="col-sm-7 typography">
+        <h1>Blog Posts</h1>
+        {% set postslist = collections.posts %}
+        {% include "postslist.njk" %}
+    </div>
+  </div>
+</div>
