@@ -14,7 +14,11 @@
     "markdown-it-anchor": "^6.0.1",
     "markdown-it-shiki": "0.0.2",
     "rimraf": "^3.0.2",
-    "unzip-stream": "^0.3.1"
+    "unzip-stream": "^0.3.1",
+    "gh-pages": "^3.1.0",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.32.0",
+    "shx": "^0.3.3"
   },
   "scripts": {
     "serve": "serve ./_site",
@@ -25,11 +29,5 @@
     "build:css:main": "sass ./_sass/main.scss ./css/main.css",
     "build:css:syntax": "sass ./_sass/syntax.scss ./css/syntax.css",
     "deploy": "gh-pages -d _site"
-  },
-  "devDependencies": {
-    "gh-pages": "^3.1.0",
-    "npm-run-all": "^4.1.5",
-    "sass": "^1.32.0",
-    "shx": "^0.3.3"
   }
 }

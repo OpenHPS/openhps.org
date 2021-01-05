@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="2048px" height="512px" viewBox="0 0 2048 512" enable-background="new 0 0 2048 512" xml:space="preserve">
+<path fill="#FFFFFF" d="M267.928,8.448c102.537,0,185.66,83.121,185.66,185.664c0,102.542-83.123,185.663-185.66,185.663
+	c-102.542,0-185.663-83.121-185.663-185.663C82.265,91.569,165.387,8.448,267.928,8.448C131.212,8.448,20.377,119.284,20.377,256
+	c0,136.716,110.835,247.551,247.551,247.551c136.72,0,247.547-110.835,247.547-247.551C515.475,119.284,404.648,8.448,267.928,8.448
+	"/>
+<path fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" d="M267.928,256c51.275,0,92.829-41.561,92.829-92.832
+	c0-51.271-41.554-92.831-92.829-92.831c-51.271,0-92.831,41.561-92.831,92.831C175.097,214.439,216.658,256,267.928,256"/>
+<text transform="matrix(1 0 0 1 577.2383 363.6191)" fill="#FFFFFF" font-family="'Gotham-Bold'" font-size="304">OpenHPS</text>
+</svg>

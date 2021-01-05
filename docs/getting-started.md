@@ -10,7 +10,7 @@ redirect_from:
 # Getting Started
 This documentation provides a brief overview of OpenHPS, its creators and how to get started using the components in your projects.
 
-## About
+## Framework Architecture
 OpenHPS is a open source hybrid positioning system that allows developers to fuse multiple positioning techniques and algorithms together in a graph topology. It is being developed by PhD Student [Maxim Van de Wynckel](https://wise.vub.ac.be/member/maxim-van-de-wynckel) as part of his research towards *Hybrid Positioning and Implicit Human-Computer Interaction* under the supervision of [Prof. Dr. Beat Signer](https://wise.vub.ac.be/member/beat-signer).
 
 The core *Model* of OpenHPS is a data processing network aimed for sampling input sensory data to an output position.
