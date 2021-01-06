@@ -1,0 +1,12 @@
+{
+    "title": "OpenHPS",
+    "url": "https://openhps.org",
+    "description": "An Open Source Hybrid Positioning System",
+    "author": "Maxim Van de Wynckel",
+    "twitter": "OpenHPS",
+    "options": {
+      "titleDivider": "|",
+      "imageWithBaseUrl": true,
+      "twitterCardType": "summary_large_image"
+    }
+}

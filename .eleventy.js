@@ -3,8 +3,10 @@ const shiki = require('markdown-it-shiki').default;
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItVideo = require("markdown-it-video");
 const { html5Media } = require('markdown-it-html5-media');
+const pluginTOC = require('eleventy-plugin-toc');
+const pluginSEO = require("eleventy-plugin-seo");
+const pluginSASS = require("eleventy-plugin-sass");
 
-const pluginSass = require("eleventy-plugin-sass");
 const { DateTime } = require("luxon");
 const fs = require('fs');
 
@@ -19,9 +21,14 @@ module.exports = function (el) {
 
   el.setDataDeepMerge(true);
 
-  el.addPlugin(pluginSass, {
+  /* SEO */
+  el.addPlugin(pluginSEO, require("./_data/seo.json"));
+
+  /* Stylesheets */
+  el.addPlugin(pluginSASS, {
     watch: ["_scss/**/*.{scss,sass}"],
-    outputDir: "_site/css"
+    outputDir: "_site/css",
+    cleanCSS: true
   });
 
   /* Markdown */
@@ -36,6 +43,10 @@ module.exports = function (el) {
   });
   md.use(html5Media);
   el.setLibrary("md", md);
+  el.addPlugin(pluginTOC, {
+    tags: ['h2', 'h3'],
+    wrapper: 'div'
+  });
 
   el.addCollection("sorted_docs", function (collection) {
     const items = collection.getFilteredByTag("docs");
@@ -79,7 +90,6 @@ module.exports = function (el) {
     ui: false,
     ghostMode: false
   });
-
 
   downloadDocs();
 
