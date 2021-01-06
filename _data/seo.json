@@ -4,6 +4,7 @@
     "description": "An Open Source Hybrid Positioning System",
     "author": "Maxim Van de Wynckel",
     "twitter": "OpenHPS",
+    "image": "/images/social/summary-large.png",
     "options": {
       "titleDivider": "|",
       "imageWithBaseUrl": true,
