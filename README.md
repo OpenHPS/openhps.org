@@ -8,10 +8,12 @@
 This repository contains the site for OpenHPS (Open Source Hybrid Positioning System).
 
 ## Installation
+Start by installing all dependencies.
 ```bash
 $ npm install
 ```
 
+Build the eleventy site using the build script.
 ```bash
 $ npm run build
 ```

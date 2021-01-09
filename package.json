@@ -2,10 +2,16 @@
   "name": "@openhps/site",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/OpenHPS/openhps-site.git",
-  "license": "MIT",
+  "repository": "https://github.com/OpenHPS/openhps.org.git",
+  "author": {
+    "name": "Maxim Van de Wynckel",
+    "email": "maxim.van.de.wynckel@vub.be"
+  },
+  "contributors": ["Beat Signer"],
+  "license": "Apache-2.0",
   "dependencies": {
     "@11ty/eleventy": "^0.11.1",
+    "@quasibit/eleventy-plugin-sitemap": "^2.0.3",
     "chalk": "^4.1.0",
     "eleventy-plugin-sass": "^1.1.1",
     "eleventy-plugin-seo": "^0.5.1",
@@ -20,18 +26,13 @@
     "markdown-it-video": "^0.6.3",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
-    "sass": "^1.32.0",
     "shx": "^0.3.3",
     "unzip-stream": "^0.3.1"
   },
   "scripts": {
-    "serve": "serve ./_site",
     "clean": "rimraf ./_site",
+    "start": "eleventy --serve",
     "build": "npm run clean && eleventy",
-    "build:api": "node ./_scripts/api.js",
-    "build:css": "npm-run-all --parallel build:scss:*",
-    "build:css:main": "sass ./_sass/main.scss ./css/main.css",
-    "build:css:syntax": "sass ./_sass/syntax.scss ./css/syntax.css",
     "deploy": "gh-pages -d _site"
   }
 }

@@ -17,6 +17,7 @@ $on-large:         $on-laptop !default;
 @import "components/navigation";
 @import "components/toc";
 @import "components/posts";
+@import "components/button";
 
 .site-header {
     border-top: 5px solid #9c0000;

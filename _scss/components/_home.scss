@@ -53,7 +53,7 @@
 }
 
 .container.home {
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 .jumbotron-logo {
@@ -80,4 +80,8 @@
 
 #logo-openhps {
     background-image: url("/images/misc/openhps-logo-alpha.png");
+}
+
+.twitter-timeline {
+    margin-top: 30px !important;
 }

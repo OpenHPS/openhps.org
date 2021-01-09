@@ -6,7 +6,7 @@ const { html5Media } = require('markdown-it-html5-media');
 const pluginTOC = require('eleventy-plugin-toc');
 const pluginSEO = require("eleventy-plugin-seo");
 const pluginSASS = require("eleventy-plugin-sass");
-
+const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
 const { DateTime } = require("luxon");
 const fs = require('fs');
 
@@ -14,15 +14,20 @@ const downloadDocs = require("./_scripts/api");
 
 module.exports = function (el) {
   el.addPassthroughCopy("images");
-  el.addPassthroughCopy("media");
-  el.addPassthroughCopy("papers");
+  el.addPassthroughCopy("publications");
   el.addPassthroughCopy("scripts");
+  el.addPassthroughCopy("media");
   el.addPassthroughCopy("CNAME");
 
   el.setDataDeepMerge(true);
 
   /* SEO */
   el.addPlugin(pluginSEO, require("./_data/seo.json"));
+  el.addPlugin(pluginSitemap, {
+    sitemap: {
+      hostname: "https://openhps.org",
+    },
+  });
 
   /* Stylesheets */
   el.addPlugin(pluginSASS, {
@@ -100,7 +105,8 @@ module.exports = function (el) {
       "njk",
       "md",
       "html",
-      "liquid"
+      "liquid",
+      "mp4"
     ],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",
