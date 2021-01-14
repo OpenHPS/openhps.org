@@ -23,4 +23,4 @@ Get started with OpenHPS by taking a look at the [examples](/docs/examples) or t
 A press kit containing logos (*.SVG, *.PNG) can be found [here](/images/openhps-presskit.zip).
 Citing the OpenHPS framework should be done using the technical paper.
 
-*Van de Wynckel, M. and Signer, B.: "OpenHPS: An Open Source Hybrid Positioning System", Technical Report WISE Lab, WISE-2020-12, December 2020*
+*Van de Wynckel, M. and Signer, B.: "OpenHPS: An Open Source Hybrid Positioning System", Technical Report WISE Lab, WISE-2021-01, January 2021*
