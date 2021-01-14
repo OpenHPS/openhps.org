@@ -11,7 +11,8 @@ const modules = [
     "mongodb",
     "socket",
     "rest",
-    "sphero"
+    "sphero",
+    "localstorage"
 ];
 
 async function downloadDocs() {

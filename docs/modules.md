@@ -20,6 +20,9 @@ Used for prototyping, the csv component offers simple nodes for loading and savi
 ## [@openhps/mongodb](/docs/mongodb)
 The MongoDB component offers a persistent datastorage for serialised data objects or frames.
 
+## [@openhps/localstorage](/docs/localstorage)
+Browser implementations of OpenHPS can make use of the HTML5 localstorage using @openhps/localstorage.
+
 ## [@openhps/socket](/docs/socket)
 With the Socket API, remote nodes can be added using a websocket connection. This allows bidirectional pulling and pushing of data frames of the HTTP protocol.
 
