@@ -21,10 +21,10 @@ layout: default.njk
 
 <div class="container main typography home">
   <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-8">
       {{ content | safe }}
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       {% set maxPosts = collections.posts.length | min(3) %}
       <h2>Latest News</h2>
       {% set postslist = collections.posts | head(-3) %}

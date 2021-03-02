@@ -12,7 +12,10 @@ const modules = [
     "socket",
     "rest",
     "sphero",
-    "localstorage"
+    "localstorage",
+    "trigonometry",
+    "fingerprinting",
+    "react-native"
 ];
 
 async function downloadDocs() {
