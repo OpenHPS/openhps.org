@@ -13,7 +13,7 @@ const modules = [
     "rest",
     "sphero",
     "localstorage",
-    "trigonometry",
+    "imu",
     "fingerprinting",
     "react-native"
 ];
