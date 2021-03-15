@@ -12,6 +12,7 @@ const modules = [
     "socket",
     "rest",
     "sphero",
+    "spaces",
     "localstorage",
     "imu",
     "fingerprinting",
