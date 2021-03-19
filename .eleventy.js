@@ -14,7 +14,6 @@ const downloadDocs = require("./_scripts/api");
 
 module.exports = function (el) {
   el.addPassthroughCopy("images");
-  el.addPassthroughCopy("publications");
   el.addPassthroughCopy("scripts");
   el.addPassthroughCopy("media");
   el.addPassthroughCopy("CNAME");
