@@ -20,4 +20,5 @@ jobs:
           npm run build
       - name: Deploy
         run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/OpenHPS/openhps.org.git
           npm run deploy
