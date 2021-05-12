@@ -1,7 +1,7 @@
 const markdownIt = require("markdown-it");
-const shiki = require('markdown-it-shiki').default;
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItVideo = require("markdown-it-video");
+const markdownItShikiTwoslash = require("./_scripts/eleventy-twoslash");
 const { html5Media } = require('markdown-it-html5-media');
 const pluginTOC = require('eleventy-plugin-toc');
 const pluginSEO = require("eleventy-plugin-seo");
@@ -16,7 +16,7 @@ module.exports = function (el) {
   el.addPassthroughCopy("images");
   el.addPassthroughCopy("scripts");
   el.addPassthroughCopy("media");
-  el.addPassthroughCopy("presentations");
+  el.addPassthroughCopy("slides");
   el.addPassthroughCopy("CNAME");
   el.addPassthroughCopy({
     "node_modules/reveal.js/dist/reveal.css": "vendor/reveal.js/reveal.css",
@@ -44,7 +44,7 @@ module.exports = function (el) {
   /* Markdown */
   const md = markdownIt({ html: true });
   md.use(markdownItAnchor);
-  md.use(shiki, { theme: 'dark-plus' });
+  md.use(markdownItShikiTwoslash, { theme: 'dark-plus' });
   md.use(markdownItVideo, {
     youtube: { width: 640, height: 390 },
     vimeo: { width: 500, height: 281 },
@@ -108,6 +108,7 @@ module.exports = function (el) {
       "ico",
       "png",
       "njk",
+      "jpg",
       "md",
       "html",
       "liquid",

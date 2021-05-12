@@ -9,9 +9,9 @@ $backgroundColor: #9c0000;
 $mainColor: #fff;
 $headingColor: #fff;
 
-$mainFontSize: 42px;
-$mainFont: 'Gotham-Bold';
-$headingFont: 'Gotham-Bold';
+$mainFontSize: 36px;
+$mainFont: "Source Sans Pro";
+$headingFont: "Source Sans Pro";
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: uppercase;
@@ -28,7 +28,14 @@ $heading4Size: 1.0em;
 // Change text colors against light slide backgrounds
 @include light-bg-text-color(#222);
 
-
 // Theme template ------------------------------
 @import "../node_modules/reveal.js/css/theme/template/theme";
 // ---------------------------------------------
+
+.reveal small {
+    vertical-align: unset;
+}
+
+.reveal section.left {
+    text-align: left;
+}
