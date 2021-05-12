@@ -17,7 +17,13 @@ module.exports = function (el) {
   el.addPassthroughCopy("publications");
   el.addPassthroughCopy("scripts");
   el.addPassthroughCopy("media");
+  el.addPassthroughCopy("presentations");
   el.addPassthroughCopy("CNAME");
+  el.addPassthroughCopy({
+    "node_modules/reveal.js/dist/reveal.css": "vendor/reveal.js/reveal.css",
+    "node_modules/reveal.js/dist/reset.css": "vendor/reveal.js/reset.css",
+    "node_modules/reveal.js/dist/reveal.js": "vendor/reveal.js/reveal.js",
+  });
 
   el.setDataDeepMerge(true);
 

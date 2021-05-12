@@ -1,0 +1,70 @@
+---
+layout: presentation.njk
+---
+
+<section>
+    <img src="/images/logo_alpha_text.svg">
+    <h3>TUTORIAL 1: INTRODUCTION</h3>
+</section>
+<section>
+    <section data-markdown data-auto-animate>
+        <textarea data-template>
+            ## Positioning Model
+            ```typescript [1-8|2-3|4-6|7-8|11|12-15|16-21|22-24|25|26]
+            import { 
+                ModelBuilder, 
+                Model,
+                DataFrame,
+                DataObject,
+                Absolute2DPosition,
+                CallbackSourceNode,
+                CallbackSinkNode
+            } from '@openhps/core';
+
+            ModelBuilder.create()
+                .from(new CallbackSourceNode(() => {
+                    const object = new DataObject("mvdewync");
+                    return new DataFrame(object);
+                }))
+                .via(new CallbackNode(frame => {
+                    const object = frame.source;
+                    if (!object.position) {
+                        object.position = new Absolute2DPosition(0, 0);
+                    }
+                }))
+                .to(new CallbackSinkNode(frame => {
+                    console.log(frame.source);
+                }))
+                .build().then((model: Model) => {
+                    model.pull();
+                }).catch(ex => {
+                    console.error(ex);
+                });
+            ```
+        </textarea>
+    </section>
+</section>
+<section>
+    <section data-markdown data-auto-animate>
+        <textarea data-template>
+            ## ```DataObject```
+        </textarea>
+    </section>
+    <section data-markdown data-auto-animate>
+        <textarea data-template>
+            ## ```DataObject```
+            ```typescript []
+            import { DataObject } from '@openhps/core';
+
+            const object = new DataObject("mvdewync");
+            object.displayName = "Maxim Van de Wynckel";
+            ```
+        </textarea>
+    </section>
+</section>
+<section data-markdown>
+    <textarea data-template>
+        ## ```DataFrame```
+
+    </textarea>
+</section>
