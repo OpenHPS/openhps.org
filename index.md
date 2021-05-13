@@ -16,7 +16,7 @@ $ npm install @openhps/core --save
 
 Then you can start by importing the model builder to create your first positioning model.
 
-```typescript
+```ts twoslash
 import { ModelBuilder } from '@openhps/core';
 ModelBuilder.create()
     .from(/* ... */)

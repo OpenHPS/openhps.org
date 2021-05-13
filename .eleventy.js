@@ -1,7 +1,7 @@
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItVideo = require("markdown-it-video");
-const shiki = require("markdown-it-shiki").default;
+const shiki = require("./_scripts/highlighter");
 const { html5Media } = require('markdown-it-html5-media');
 const pluginTOC = require('eleventy-plugin-toc');
 const pluginSEO = require("eleventy-plugin-seo");
@@ -11,14 +11,28 @@ const { DateTime } = require("luxon");
 const fs = require('fs');
 const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
+const { createShikiHighlighter } = require("shiki-twoslash");
+const deasync = require('deasync');
 
 const downloadDocs = require("./_scripts/api");
+
+function getHighlighter() {
+  let highlighter = undefined;
+  createShikiHighlighter({ theme: "dark-plus" }).then(h => {
+    highlighter = h;
+  });
+  while (!highlighter) {
+    deasync.sleep(200);
+  }
+  return highlighter;
+}
 
 module.exports = function (el) {
   el.addPassthroughCopy("images");
   el.addPassthroughCopy("scripts");
   el.addPassthroughCopy("media");
   el.addPassthroughCopy("slides");
+  el.addPassthroughCopy("fonts");
   el.addPassthroughCopy("CNAME");
   el.addPassthroughCopy({
     "node_modules/reveal.js/dist/reveal.css": "vendor/reveal.js/reveal.css",
@@ -36,17 +50,11 @@ module.exports = function (el) {
     },
   });
 
-  /* Stylesheets */
-  el.addPlugin(pluginSASS, {
-    watch: ["_scss/**/*.{scss,sass}"],
-    outputDir: "_site/css",
-    cleanCSS: true
-  });
-
   /* Markdown */
+  const highlighter = getHighlighter();
   const md = markdownIt({ html: true });
   md.use(markdownItAnchor);
-  md.use(shiki, { theme: 'dark-plus' });
+  md.use(shiki, highlighter);
   md.use(markdownItVideo, {
     youtube: { width: 640, height: 390 },
     vimeo: { width: 500, height: 281 },
@@ -60,11 +68,18 @@ module.exports = function (el) {
     wrapper: 'div'
   });
 
+  /* Stylesheets */
+  el.addPlugin(pluginSASS, {
+    watch: ["_scss/**/*.{scss,sass}"],
+    outputDir: "_site/css",
+    cleanCSS: true
+  });
+
   /* Nunjucks */
   let nunjucksEnvironment = new nunjucks.Environment(
     new nunjucks.FileSystemLoader("_includes")
   );
-  markdown.register(nunjucksEnvironment, (src, env) => {
+  markdown.register(nunjucksEnvironment, (src, _) => {
     return md.render(src);
   });
   el.setLibrary("njk", nunjucksEnvironment);
