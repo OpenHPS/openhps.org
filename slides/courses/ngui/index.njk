@@ -8,69 +8,69 @@ layout: presentation.njk
     <small>Maxim Van de Wynckel</small>
 </section>
 <section data-markdown>
-    <textarea data-template>
+    {% markdown %}
         ## Indoor Positioning System
         
         "*An indoor positioning system (IPS) is a network of devices used to locate people or objects where GPS and other satellite technologies lack precision or fail entirely, such as inside multistory buildings, airports, alleys, parking garages, and underground locations.*"
         
         [<small>*- Wikipedia (2021)*</small>](https://en.wikipedia.org/wiki/Indoor_positioning_system)
-    </textarea>
+    {% endmarkdown %}
 </section>
 <section data-markdown>
-    <textarea data-template>
+    {% markdown %}
         ## Location Awareness
         
         "*Location awareness refers to devices that can passively or actively determine their location.*"
         
         [<small>*- Wikipedia (2021)*</small>](https://en.wikipedia.org/wiki/Location_awareness)
-    </textarea>
+    {% endmarkdown %}
 </section>
 <section>
     <section data-markdown data-auto-animate>
-        <textarea data-template>
+        {% markdown %}
             ## Use Cases
-        </textarea>
+        {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate class="left">
-        <textarea data-template>
+        {% markdown %}
             ### Indoor Navigation
             <img src="./images/indoor-navigation.png" width="40%"></br>
             [<small>*- Gatwick Airport Limited (2017)*</small>](http://www.mediacentre.gatwickairport.com/press-releases/2017/17_05_25_beacons.aspx)
-        </textarea>
+        {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate class="left">
-        <textarea data-template>
+        {% markdown %}
             ### Asset Tracking
             - Track the location of expensive items
             - Material resource planning
             - Personnel tracking
-        </textarea>
+        {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate class="left">
-        <textarea data-template>
+        {% markdown %}
             ### Implicit Interaction
             - Home automation
             - Resource assigning
-        </textarea>
+        {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate>
-        <textarea data-template>
+        {% markdown %}
             ### Autonomous Robots
-        </textarea>
+        {% endmarkdown %}
     </section>
 </section>
 <section data-markdown class="left">
-    <textarea data-template>
+    {% markdown %}
         ## Positioning Technologies
         - RF-based <small>(Wi-Fi, Bluetooth, UWB)</small>
         - Sound-based <small>(Ultrasound beacons, ambient noise)</small>
         - Camera-based <small>(VSLAM, MTMC, VLC)</small>
         - IMU-based <small>(acceleration, velocity, geomagnetic)</small>
         - *Many more ...*
-    </textarea>
+    {% endmarkdown %}
 </section>
 <section data-markdown class="left">
-    <textarea data-template>
+    {% markdown %}
         ## Positioning Algorithms
         - Fingerprinting <small>(k-NN, affinity propagation, clustering, ...)</small>
         - Mathematical <small>(triangulation, multilateration, ...)</small>
@@ -78,104 +78,104 @@ layout: presentation.njk
         - Sensor fusion <small>(complementary filters, probabilistic, ...)</small>
         - Cartographing
         - *Many more ...*
-    </textarea>
+    {% endmarkdown %}
 </section>
 <section data-markdown class="left">
-    <textarea data-template>
+    {% markdown %}
         ## Bluetooth beacons
         A small (battery powered) device that sends out a BLE advertisement in a fixed interval.
 
         **Algorithms:**
         - Fingerprinting
         - Multilateration, Cell-Identification
-    </textarea>
+    {% endmarkdown %}
 </section>
 <section data-markdown class="left">
-    <textarea data-template>
+    {% markdown %}
         ## Ultra wideband
         A small (battery powered) device that sends out an RF signal over a large band, allowing to achieve
         more predictable signal strength readings.
 
         **Algorithms:**
         - Multilateration
-    </textarea>
+    {% endmarkdown %}
 </section>
 <section data-markdown class="left">
-    <textarea data-template>
+    {% markdown %}
         ## Wi-Fi access points
         Existing Wi-Fi infrastructure to predict the position based on the signal strength or time of flight (on supported access points).
 
         **Algorithms:**
         - Fingerprinting
         - Multilateration
-    </textarea>
+    {% endmarkdown %}
 </section>
 <section data-markdown class="left">
-    <textarea data-template>
+    {% markdown %}
         ## Inertial Measurement Unit (IMU sensor)
         
 
         **Algorithms:**
         - Dead reckoning (raw, pedometer)
-    </textarea>
+    {% endmarkdown %}
 </section>
 <section>
     <section data-markdown data-auto-animate>
-        <textarea data-template>
+        {% markdown %}
             <img src="/images/logo_alpha_text.svg" width="40%"></br>
             *An Open Source Hybrid Positioning System*
-        </textarea>
+        {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate class="left">
-        <textarea data-template>
+        {% markdown %}
             #### About
             - Website: [https://openhps.org](https://openhps.org)
             - Twitter: [@OpenHPS](https://twitter.com/OpenHPS)
-        </textarea>
+        {% endmarkdown %}
     </section>
 </section>
 <section data-markdown>
-    <textarea data-template>
+    {% markdown %}
         ## Process network
-    </textarea>
+    {% endmarkdown %}
 </section>
 <section>
     <section data-markdown data-auto-animate>
-        <textarea data-template>
+        {% markdown %}
             ## ```DataObject```
-        </textarea>
+        {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate>
-        <textarea data-template>
+        {% markdown %}
             ## ```DataObject```
             #### Creation
             ```typescript
             import { DataObject } from '@openhps/core';
             const maxim = new DataObject("mvdewync@vub.be", "Maxim Van de Wynckel");
             ```
-        </textarea>
+        {% endmarkdown %}
     </section>
 </section>
 <section>
     <section data-markdown data-auto-animate>
-        <textarea data-template>
+        {% markdown %}
             ## Absolute and Relative Position
             - Physical 2D, 3D or geographic position: ```AbsolutePosition```
             - Relative position to another object: ```RelativePosition```
             - Each position contains an orientation and velocity
-        </textarea>
+        {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate>
-        <textarea data-template>
+        {% markdown %}
             ## ```AbsolutePosition```
             ### Default Types
             - ```Absolute2DPosition```
             - ```Absolute3DPosition```
             - ```GeographicalPosition```
-        </textarea>
+        {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate>
-        <textarea data-template>
+        {% markdown %}
             ### ```Absolute2DPosition```
             #### Creation
             ```typescript
@@ -193,11 +193,11 @@ layout: presentation.njk
             });
             pos.linearVelocity = new linearVelocity(1, 0, 0);
             ```
-        </textarea>
+        {% endmarkdown %}
     </section>
 </section>
 <section data-markdown>
-    <textarea data-template>
+    {% markdown %}
         ## ```DataFrame```
-    </textarea>
+    {% endmarkdown %}
 </section>

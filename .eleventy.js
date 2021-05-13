@@ -1,7 +1,7 @@
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItVideo = require("markdown-it-video");
-const markdownItShikiTwoslash = require("./_scripts/eleventy-twoslash");
+const shiki = require("markdown-it-shiki").default;
 const { html5Media } = require('markdown-it-html5-media');
 const pluginTOC = require('eleventy-plugin-toc');
 const pluginSEO = require("eleventy-plugin-seo");
@@ -9,6 +9,8 @@ const pluginSASS = require("eleventy-plugin-sass");
 const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
 const { DateTime } = require("luxon");
 const fs = require('fs');
+const nunjucks = require("nunjucks");
+const markdown = require('nunjucks-markdown');
 
 const downloadDocs = require("./_scripts/api");
 
@@ -44,7 +46,7 @@ module.exports = function (el) {
   /* Markdown */
   const md = markdownIt({ html: true });
   md.use(markdownItAnchor);
-  md.use(markdownItShikiTwoslash, { theme: 'dark-plus' });
+  md.use(shiki, { theme: 'dark-plus' });
   md.use(markdownItVideo, {
     youtube: { width: 640, height: 390 },
     vimeo: { width: 500, height: 281 },
@@ -57,6 +59,15 @@ module.exports = function (el) {
     tags: ['h2', 'h3'],
     wrapper: 'div'
   });
+
+  /* Nunjucks */
+  let nunjucksEnvironment = new nunjucks.Environment(
+    new nunjucks.FileSystemLoader("_includes")
+  );
+  markdown.register(nunjucksEnvironment, (src, env) => {
+    return md.render(src);
+  });
+  el.setLibrary("njk", nunjucksEnvironment);
 
   el.addCollection("sorted_docs", function (collection) {
     const items = collection.getFilteredByTag("docs");
@@ -106,7 +117,6 @@ module.exports = function (el) {
   return {
     templateFormats: [
       "ico",
-      "png",
       "njk",
       "jpg",
       "md",
