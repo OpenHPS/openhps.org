@@ -44,6 +44,8 @@ layout: presentation.njk
             - Track the location of expensive items
             - Material resource planning
             - Personnel tracking
+            <img src="./images/apple-airtag.jpg" width="40%"></br>
+            [<small>*- LetsGoDigital (2021)*</small>](https://nl.letsgodigital.org/accessoires/apple-airtag/)
         {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate class="left">
@@ -56,6 +58,8 @@ layout: presentation.njk
     <section data-markdown data-auto-animate>
         {% markdown %}
             ### Autonomous Robots
+            <img src="./images/roborock.jpg" width="40%"></br>
+            [<small>*- Jim Martin (2019)*</small>](https://www.techadvisor.com/review/roborock-s6-3696730/)
         {% endmarkdown %}
     </section>
 </section>
@@ -178,7 +182,7 @@ layout: presentation.njk
         {% markdown %}
             ### ```Absolute2DPosition```
             #### Creation
-            ```typescript
+            ```ts twoslash
             import { 
                 Absolute2DPosition, 
                 Orientation, 
@@ -186,12 +190,12 @@ layout: presentation.njk
             } from '@openhps/core';
             
             const pos = new Absolute2DPosition(1, 4);
-            pos.orientation = new Orientation.fromEuler({
+            pos.orientation = Orientation.fromEuler({
                 yaw: 0,
                 pitch: 0,
                 roll: 0
             });
-            pos.linearVelocity = new linearVelocity(1, 0, 0);
+            pos.linearVelocity = new LinearVelocity(1, 0, 0);
             ```
         {% endmarkdown %}
     </section>
