@@ -164,8 +164,17 @@ export class QRDataFrame extends DataFrame {
 ```
 
 ## Create a custom position
+OpenHPS supports 2D, 3D and Geographical positions (with different coordinate systems) out of the box. However, there can be a scenario when you
+want to represent a position in more abstract way.
+
+In this section we create an abstract position for the Game of the Goose. A possible use case would be a positioning system that tracks the pieces on the game board.
+
+```ts twoslash
+// @experimentalDecorators: true
+```
 
 # Tutorial 5: Custom Nodes
-
+Nodes are the most modular component of the hybrid positioning framework. Source nodes handle the creation of data frames, which can be obtained from a new custom source. Custom processing nodes can be used to implement different implementations
 
 # Tutorial 6: Graph Shapes
+Whenever you are working with a process network design, you will have to fuse data together. OpenHPS offers many default nodes for performing data fusion and flow manipulation. Common flow shapes can be immediately added in the ```ModelBuilder``` 
