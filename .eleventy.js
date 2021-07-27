@@ -31,7 +31,6 @@ module.exports = function (el) {
   el.addPassthroughCopy("images");
   el.addPassthroughCopy("scripts");
   el.addPassthroughCopy("media");
-  el.addPassthroughCopy("slides");
   el.addPassthroughCopy("fonts");
   el.addPassthroughCopy("CNAME");
   el.addPassthroughCopy({
