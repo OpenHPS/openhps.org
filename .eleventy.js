@@ -137,7 +137,8 @@ module.exports = function (el) {
       "html",
       "liquid",
       "mp4",
-      "svg"
+      "svg",
+      "png"
     ],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",
