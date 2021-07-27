@@ -1,12 +1,13 @@
 ---
 layout: docs.njk
-tags: docs
 title: 'Tutorials'
 menuOrder: 4
 ---
 
 # Tutorial 1: Introduction
+*This introduction tutorial will guide you through the various aspects of creating a hybrid positioning system, the different technologies available and the difficulties that normally arrise from designing a positioning system from scratch.*
 
+## About
 
 # Tutorial 2: Basics
 In this tutorial you will explore the basics of OpenHPS.

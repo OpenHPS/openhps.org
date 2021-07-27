@@ -26,6 +26,7 @@ The core module offers the processing network model and commonly used nodes for 
 ## Communication
 - **[@openhps/socket](/docs/storage)** - Provides node communication through Socket.IO for remote models.
 - **[@openhps/rest](/docs/rest)** - Provides node communication through restful endpoints.
+- **[@openhps/mqtt](/docs/mqtt)** - MQTT client node communication and standalone MQTT server.
 
 ## Misc
 - **[@openhps/sphero](/docs/sphero)** - Example implementation for controlling and receiving sensor data from Sphero toys.

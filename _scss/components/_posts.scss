@@ -6,17 +6,12 @@
 .postlist-item {
     counter-increment: start-from -1;
 }
-.postlist-item:before {
-    display: inline-block;
-    pointer-events: none;
-    content: "" counter(start-from, decimal-leading-zero) ". ";
-    line-height: 100%;
-    text-align: right;
-}
 .postlist-date,
 .postlist-item:before {
     font-size: 0.8125em; /* 13px /16 */
-    color: var(--darkgray);
+    color: rgb(158, 158, 158);
+    margin-left: 25px;
+    display: block;
 }
 .postlist-date {
     word-spacing: -0.5px;

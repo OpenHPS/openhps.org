@@ -91,7 +91,7 @@ module.exports = function (el) {
   });
 
   el.addFilter("readableDate", dateObj => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
+    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("cccc, dd LLL yyyy");
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
@@ -137,7 +137,8 @@ module.exports = function (el) {
       "md",
       "html",
       "liquid",
-      "mp4"
+      "mp4",
+      "svg"
     ],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",

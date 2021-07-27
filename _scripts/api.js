@@ -16,7 +16,8 @@ const modules = [
     "localstorage",
     "imu",
     "fingerprinting",
-    "react-native"
+    "react-native",
+    //"mqtt"
 ];
 
 async function downloadDocs() {
