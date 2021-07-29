@@ -21,17 +21,26 @@ layout: default.njk
 
 <div class="container main typography home">
   <div class="row">
-    <div class="col-sm-8">
-      {{ content | safe }}
+    <div class="col-sm-4">
+      OpenHPS is an open source hybrid positioning system to help developers fuse various positioning technologies and algorithms. The system offers a modular data processing framework with each modules ranging from computervision to common algorithms such as fingerprinting or data persistence of sampled data.
     </div>
     <div class="col-sm-4">
+      
+    </div>
+    <div class="col-sm-4">
+      The framework is maintained and used by the Web and Information Systems Engineering Lab at the Vrije Universiteit Brussel. [Read more...](/docs/about)
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      {{ content | safe }}
       {% set maxPosts = collections.posts.length | min(3) %}
       <h2>Latest News</h2>
       {% set postslist = collections.posts | head(-3) %}
-      {% set postslistCounter = collections.posts | length %}
       {% include "postslist.njk" %}
-      
-      <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/OpenHPS?ref_src=twsrc%5Etfw">Tweets by OpenHPS</a>
+    </div>
+    <div class="col-sm-4">      
+      <a class="twitter-timeline" data-tweet-limit="3" data-dnt="true" href="https://twitter.com/OpenHPS?ref_src=twsrc%5Etfw">Tweets by OpenHPS</a>
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
   </div>

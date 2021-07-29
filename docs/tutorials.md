@@ -11,7 +11,7 @@ menuOrder: 4
 ## About
 Outdoors we rely on Global Positioning System (GPS) to know our position. Positioning in general goes way beyond the outdoor scenario, indoors technologies like Bluetooth, UWB or Wi-Fi help to determine a position - and on a more smaller scale, positioning can be used to track the location of an item on a table or game board.
 
-A multitude of technologies and algorithms exist - each with their own pros and cons for different scenarios.
+A multitude of technologies and algorithms exist - each with their own pros and cons for different scenarios. OpenHPS attempts to offer a framework to support these technologies and algorithms to develop prototype or production-ready positioning systems.
 
 ## Positioning Technologies and Algorithms
 Each technology can be used differently in order to obtain a (partial) position.
