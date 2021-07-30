@@ -7,11 +7,8 @@ layout: default.njk
     <div class="col-sm-2">
       {% include "docs_menu.njk" %}
     </div>
-    <div class="col-sm-7 typography">
+    <div class="col-sm-9 typography">
       {{ content | safe }}
-    </div>
-    <div class="col-sm-3 toc-container">
-      {{ content | toc | safe }}
     </div>
   </div>
 </div>

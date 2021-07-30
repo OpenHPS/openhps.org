@@ -1,16 +1,19 @@
 ---
 layout: docs.njk
 tags: docs
-title: 'About'
-menuOrder: 1
+title: 'Introduction'
+menuOrder: 101
 redirect_from:
   - /docs/
+  - /docs/about
 ---
-
-# About
-OpenHPS is an open source hybrid positioning system that allows developers to fuse multiple positioning techniques and algorithms together in a graph topology. It is being developed by PhD Student [Maxim Van de Wynckel](https://wise.vub.ac.be/member/maxim-van-de-wynckel) as part of his research towards *Hybrid Positioning and Implicit Human-Computer Interaction* under the supervision of [Prof. Dr. Beat Signer](https://wise.vub.ac.be/member/beat-signer).
+## What is OpenHPS?
+OpenHPS is an open source hybrid positioning system that allows developers to fuse multiple positioning techniques and algorithms together in a graph topology. The project is led by PhD candidate [Maxim Van de Wynckel](https://wise.vub.ac.be/member/maxim-van-de-wynckel) as part of his research towards *Hybrid Positioning and Implicit Human-Computer Interaction* under the supervision of [Prof. Dr. Beat Signer](https://wise.vub.ac.be/member/beat-signer).
 
 It was created as a positioning framework that can support various different positioning techniques, both during the *online* and *offline* stage.
+
+## What is OpenHPS not?
+
 
 ## Source
 Our repositories can be found on GitHub [https://github.com/OpenHPS](https://github.com/OpenHPS)
