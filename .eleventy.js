@@ -63,8 +63,8 @@ module.exports = function (el) {
   md.use(html5Media);
   el.setLibrary("md", md);
   el.addPlugin(pluginTOC, {
-    tags: ['h2', 'h3'],
-    wrapper: 'div'
+    tags: ['h2'],
+    ul: true
   });
 
   /* Stylesheets */

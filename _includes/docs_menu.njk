@@ -1,8 +1,19 @@
 <nav class="navigation">
   <ul>
     {% for doc in collections.sorted_docs %}
+      {% if doc.data.menuOrder == 101 %}
+      <h3>Documentation</h3>
+      {% elif doc.data.menuOrder == 201 %}
+      <h3>Main Concepts</h3>
+      {% elif doc.data.menuOrder == 901 %}
+      <h3>Miscellaneous</h3>
+      {% endif %}
+      
       <li {% if page.url == doc.url %}class="selected"{% endif %}>
         <a href="{{ doc.url }}" {% if page.url == doc.url %}class="current"{% endif %}>{{ doc.data.title }}</a>
+        {% if page.url == doc.url %}
+        {{ content | toc | safe }}
+        {% endif %}
       </li>
     {% endfor %}
   </ul>

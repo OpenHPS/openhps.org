@@ -1,23 +1,32 @@
 .navigation {
-    padding: 20px 20px 0 0;
+    padding: 0px 10px 0 0;
+    text-align: left;
+    margin-top: -0.5em;
 }
 .navigation ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    border-bottom: 1px solid #eee;
 }
 .navigation a {
     display: block;
-    padding: 10px 0;
+    padding: 2px 0;
     text-decoration: none;
     color: var(--color-text);
-    border-top: 1px solid #eee;
     transition: opacity 0.2s;
 }
 .navigation a.current {
     color: #9600ff;
+    font-weight: bold;
 }
 .navigation a:hover {
     opacity: 0.75;
+}
+.navigation h3 {
+    margin-top: 0.8em;
+    margin-bottom: 0.2em;
+}
+.toc {
+    margin-left: 20px;
+    font-size: 0.9rem;
 }

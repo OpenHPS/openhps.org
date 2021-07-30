@@ -2,9 +2,9 @@
 layout: docs.njk
 tags: docs
 title: 'Modules'
-menuOrder: 2
+menuOrder: 103
 ---
-This page lists the official OpenHPS modules that are available.
+This page gives an overview of the official OpenHPS modules that are available. This list does not contain third party modules that provide nodes or data services.
 
 ## [@openhps/core](/docs/core/)
 The core module offers the processing network model and commonly used nodes for sampling absolute and relative positions. It offers 2D, 3D and geographical positioning through trilateration, triangulation, fingerprinting and velocity processing.

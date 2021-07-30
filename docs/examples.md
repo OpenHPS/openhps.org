@@ -2,7 +2,7 @@
 layout: docs.njk
 tags: docs
 title: 'Examples'
-menuOrder: 3
+menuOrder: 901
 ---
 This documentation page provides several examples to get started. 
 
