@@ -4,7 +4,6 @@ tags: docs
 title: 'Examples'
 menuOrder: 3
 ---
-# Examples
 This documentation page provides several examples to get started. 
 
 ## [Orientation](https://observablehq.com/d/c58a3f29b5c3d343)

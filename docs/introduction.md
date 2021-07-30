@@ -2,7 +2,7 @@
 layout: docs.njk
 tags: docs
 title: 'Introduction'
-menuOrder: 101
+menuOrder: 1
 redirect_from:
   - /docs/
   - /docs/about

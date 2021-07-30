@@ -6,8 +6,6 @@ menuOrder: 1
 redirect_from:
   - /getting-started
 ---
-
-# Getting Started
 This documentation provides a brief overview of OpenHPS, its creators and how to get started using the components in your projects.
 
 ## Framework Architecture
