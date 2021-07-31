@@ -63,5 +63,37 @@ pos.toVector3(GCS.ECEF);
 - ```RelativeAngle```: Angle to another data object.
 - ```RelativeVelocity```: Relative velocity towards another object.
 
+```ts twoslash
+import { DataObject } from '@openhps/core';
+const object = new DataObject("mvdewync");
+
+// ---cut---
+import { RelativeDistance } from '@openhps/core';
+
+object.addRelativePosition(new RelativeDistance("WAP_1", 10));
+object.addRelativePosition(new RelativeDistance("WAP_2", 5));
+object.addRelativePosition(new RelativeDistance("WAP_3", 8));
+```
+
 ## Creating an orientation
 Every absolute position can contain an orientation. The orientation is stored as a quaternion but can be initialized through euler angles or axis angles.
+
+```ts twoslash
+import { Absolute2DPosition } from '@openhps/core';
+const position = new Absolute2DPosition(1, 3);
+// ---cut---
+import { Orientation, AngleUnit } from '@openhps/core';
+
+const orientation = Orientation.fromEuler({
+    pitch: 0,
+    roll: 0,
+    yaw: 90,
+    unit: AngleUnit.DEGREE
+});
+position.orientation = orientation;
+```
+
+An orientation offers the same quaternion methods as [Three.js](https://threejs.org/docs/index.html?q=quat#api/en/math/Quaternion). You can find more information about available methods [here](/docs/core/classes/orientation.html).
+
+### Examples
+You can find an ObservableHQ notebook with examples for creating an orientation [here](https://observablehq.com/d/c58a3f29b5c3d343).

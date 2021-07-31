@@ -33,6 +33,7 @@ module.exports = function (el) {
   el.addPassthroughCopy("media");
   el.addPassthroughCopy("fonts");
   el.addPassthroughCopy("CNAME");
+  el.addPassthroughCopy("_redirects");
   el.addPassthroughCopy({
     "node_modules/reveal.js/dist/reveal.css": "vendor/reveal.js/reveal.css",
     "node_modules/reveal.js/dist/reset.css": "vendor/reveal.js/reset.css",
