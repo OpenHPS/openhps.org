@@ -1,6 +1,6 @@
 <h1 align="center">
   <img alt="OpenHPS" src="https://openhps.org/images/logo_text-512.png" width="40%" /><br />
-  OpenHPS Site
+  www.openhps.org
 </h1>
 
 <br />
