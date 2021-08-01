@@ -30,3 +30,8 @@
     margin-left: 20px;
     font-size: 0.9rem;
 }
+@media (max-width: 768px) {
+    .col-sm-3>:last-child {
+        margin-bottom: 1em;
+    }
+}

@@ -6,6 +6,8 @@ menuOrder: 202
 ---
 Data frames are envelopes that are transmitted and processed through a positioning model. These frames are created by source nodes (e.g. sensors) and contain one or more data objects needed to process the frame.
 
+![Data frame visualization](/docs/core/media/images/dataframe.svg)
+
 ## Creating data frames
 OpenHPS is a framework that processes sensor information to retrieve a position for one or more data objects. These objects are contained within an envelope called a data frame.
 

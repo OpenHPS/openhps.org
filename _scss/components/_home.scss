@@ -51,6 +51,10 @@
     margin-bottom: 25px;
 }
 
+.lead p {
+    margin: 0 0 10px;
+}
+
 .container.home {
     padding-top: 20px;
 }
@@ -70,13 +74,13 @@
 }
 
 #logo-wise {
-    background-image: url("/images/misc/wise-logo-alpha.png");
+    background-image: url("/images/misc/wise-logo-alpha.svg");
 }
 
 #logo-vub {
-    background-image: url("/images/misc/vub-logo-alpha.png");
+    background-image: url("/images/misc/vub-logo-alpha.svg");
 }
 
 #logo-openhps {
-    background-image: url("/images/misc/openhps-logo-alpha.png");
+    background-image: url("/images/misc/openhps-logo-alpha.svg");
 }
