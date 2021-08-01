@@ -1,31 +1,30 @@
-const { renderCodeToHTML, runTwoSlash } = require("shiki-twoslash");
+// @ts-check
+const { setupForFile, transformAttributesToHTML } = require("remark-shiki-twoslash")
+const { sleep } = require("deasync")
 
-module.exports = async function markdownItShikiTwoslash(markdownit, highlighter) {
-    const oldFence = markdownit.renderer.rules.fence;
-    if (!oldFence) throw new Error("No fence set");
-    markdownit.renderer.rules.fence = (...args) => {
-    const tokens = args[0];
-    const idx = args[1];
-    const token = tokens[idx];
-    if (token.info && token.info.includes("twoslash")) {
-        const before = token.info.split(/\s+/g)[0];
-        token.info = before + "-twoslash";
+/**
+ * @param {*} eleventyConfig
+ * @param {import("shiki-twoslash").UserConfigSettings} options
+ */
+module.exports = function (eleventyConfig, options = {}) {
+  /** @type {import("shiki").Highlighter[]} */
+  let highlighters = undefined
+  setupForFile(options).then(h => (highlighters = h.highlighters))
+
+  if (!highlighters) {
+    let count = 10000 / 200
+    while (!highlighters) {
+      sleep(200)
+      count -= 1
+      if (count <= 0)
+        throw new Error(
+          "Could not get Shiki loaded async via 'deasync'. 11ty doesn't have an API for async plugins, and Shiki needs this for the WASM syntax highlighter. You can try using a different version of node, or requesting APIs at https://github.com/11ty/eleventy"
+        )
     }
-        const theirs = oldFence(...args);
-        return theirs;
-    };
+  }
 
-    markdownit.options.highlight = function (text, _lang) {
-        const hasTwoslash = _lang.includes("-twoslash")
-        let lang = _lang.replace("-twoslash", "")
-        let code = text
-        let twoslash = undefined;
-        if (hasTwoslash) {
-            twoslash = runTwoSlash(text, lang)
-            code = twoslash.code
-            lang = twoslash.extension
-        }
-        const html = renderCodeToHTML(code, lang, hasTwoslash ? ["twoslash"] : [], {}, highlighter, twoslash)
-        return html.replace('background-color: #fff', 'background-color: #1E1E1E');
-    };
+  eleventyConfig.addMarkdownHighlighter((code, lang, fence) => {
+    code = code.replace(/\r?\n$/, "") // strip trailing newline fed during code block parsing
+    return transformAttributesToHTML(code, [lang, fence].join(" "), highlighters, options)
+  })
 }

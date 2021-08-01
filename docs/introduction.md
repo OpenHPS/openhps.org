@@ -41,7 +41,7 @@ Our repositories can be found on GitHub [https://github.com/OpenHPS](https://git
 The CI server containing the compiled components can be found on our CI Server [https://ci.mvdw-software.com/view/OpenHPS/](https://ci.mvdw-software.com/view/OpenHPS/).
 
 ## Citing & Press Kit
-A press kit containing logos (*.SVG, *.PNG) can be found [here](/images/openhps-presskit.zip).
+A press kit containing logos (*.SVG, *.PNG) can be found [here](/media/openhps-presskit.zip).
 Citing the OpenHPS framework should be done using the technical paper.
 
 *Van de Wynckel, M. and Signer, B.: "OpenHPS: An Open Source Hybrid Positioning System", Technical Report WISE Lab, WISE-2020-01, December 2020*

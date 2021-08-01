@@ -1,8 +1,8 @@
 ---
 layout: docs.njk
 tags: docs
-title: 'Unit'
-menuOrder: 205
+title: 'Standard Units'
+menuOrder: 203
 ---
 Different units and precisions can be used throughout the framework through the use of the unit API.
 

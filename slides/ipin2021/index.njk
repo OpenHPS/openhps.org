@@ -5,17 +5,69 @@ layout: presentation.njk
 h2, h4 {
     text-transform: none !important;
 }
+.logos {
+    bottom: -200px;
+}
+.qr-image {
+    width: 150px;
+    height: 150px;
+}
 </style>
 
 <section>
     <h2>Indoor Positioning Using the OpenHPS Framework</h2>
     <h4>Maxim Van de Wynckel, Beat Signer</h4>
-    <small>{mvdewync,bsigner}@vub.be<small>
+    <div class="row logos">
+        <div id="logo-vub" class="col-sm-4 jumbotron-logo"></div>
+        <div id="logo-wise" class="col-sm-4 jumbotron-logo"></div>
+        <div id="logo-openhps" class="col-sm-4 jumbotron-logo"></div>
+    </div>
+
+    <aside class="notes">
+    Hello, my name is Maxim Van de Wynckel and I will be presenting the paper "Indoor Positioning Using the OpenHPS Framework"
+    </aside>
 </section>
 <section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Use Cases
+            ## What is OpenHPS?
+            *An open source hybrid positioning system.*
         {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
     </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## What is OpenHPS?
+            test
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
+</section>
+
+<section data-markdown>
+    {% markdown %}
+        ## OpenHPS
+        ```ts twoslash {0}
+        import { DataObject } from '@openhps/core';
+
+        const object = new DataObject("phone");
+        ```
+    {% endmarkdown %}
+</section>
+
+<section data-markdown>
+    {% markdown %}
+        ## Demonstration & Dataset
+    {% endmarkdown %}
+</section>
+
+<section data-markdown>
+    {% markdown %}
+        ## Conclusions & Future Work
+    {% endmarkdown %}
+    <img class="qr-image" src="./qr-code.svg"/>
 </section>

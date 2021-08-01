@@ -2,7 +2,7 @@
 layout: docs.njk
 tags: docs
 title: 'Reference Space'
-menuOrder: 206
+menuOrder: 205
 ---
 Reference spaces are data objects that represent spaces which are used for absolute positions. Using these
 reference spaces, absolute positions created in a different space can easily be identified and transformed to the global reference space

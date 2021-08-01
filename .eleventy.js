@@ -1,7 +1,7 @@
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItVideo = require("markdown-it-video");
-const shiki = require("./_scripts/highlighter");
+const shikiTwoslash = require("./_scripts/highlighter");
 const { html5Media } = require('markdown-it-html5-media');
 const pluginTOC = require('eleventy-plugin-toc');
 const pluginSEO = require("eleventy-plugin-seo");
@@ -11,24 +11,10 @@ const { DateTime } = require("luxon");
 const fs = require('fs');
 const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
-const { createShikiHighlighter } = require("shiki-twoslash");
-const deasync = require('deasync');
 
 const downloadDocs = require("./_scripts/api");
 
-function getHighlighter() {
-  let highlighter = undefined;
-  createShikiHighlighter({ theme: "dark-plus" }).then(h => {
-    highlighter = h;
-  });
-  while (!highlighter) {
-    deasync.sleep(200);
-  }
-  return highlighter;
-}
-
 module.exports = function (el) {
-  el.addPassthroughCopy("images");
   el.addPassthroughCopy("scripts");
   el.addPassthroughCopy("media");
   el.addPassthroughCopy("fonts");
@@ -51,10 +37,9 @@ module.exports = function (el) {
   });
 
   /* Markdown */
-  const highlighter = getHighlighter();
   const md = markdownIt({ html: true });
   md.use(markdownItAnchor);
-  md.use(shiki, highlighter);
+  el.addPlugin(shikiTwoslash, { theme: "dark-plus" });
   md.use(markdownItVideo, {
     youtube: { width: 640, height: 390 },
     vimeo: { width: 500, height: 281 },
@@ -137,7 +122,6 @@ module.exports = function (el) {
       "md",
       "html",
       "liquid",
-      "mp4",
       "svg",
       "png"
     ],
