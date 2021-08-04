@@ -128,6 +128,7 @@ pre.shiki div.highlight {
   }
   pre.shiki .code-container {
     overflow-x: scroll;
+    overflow-y: hidden;
   }
   pre.shiki .line {
     white-space: pre;
