@@ -2,9 +2,6 @@
 layout: presentation.njk
 ---
 <style>
-h2, h4 {
-    text-transform: none !important;
-}
 .logos {
     bottom: -200px;
 }
@@ -16,7 +13,7 @@ h2, h4 {
 
 <section>
     <h2>Indoor Positioning Using the OpenHPS Framework</h2>
-    <h4>Maxim Van de Wynckel, Beat Signer</h4>
+    <h5>Maxim Van de Wynckel, Beat Signer</h5>
     <div class="row logos">
         <div id="logo-vub" class="col-sm-4 jumbotron-logo"></div>
         <div id="logo-wise" class="col-sm-4 jumbotron-logo"></div>
@@ -31,30 +28,52 @@ h2, h4 {
     <section data-markdown data-auto-animate>
         {% markdown %}
             ## What is OpenHPS?
-            *An open source hybrid positioning system.*
+            *An open source hybrid positioning system*
+
+            ![](openhps-site.png)
         {% endmarkdown %}
+
         <aside class="notes">
-        
+        OpenHPS is an open source hybrid positioning system developed in Typescript. With OpenHPS we aim to offer a framework for developers that
+        can support a variety of different positioning technologies and algorithms.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
             ## What is OpenHPS?
-            test
+            *Process network with a graph topology for processing sensor data to an output position.*
+
+            ![](/images/docs/architecture.svg)
         {% endmarkdown %}
         <aside class="notes">
-        
+        Our main concept 
         </aside>
     </section>
 </section>
 
 <section data-markdown>
     {% markdown %}
-        ## OpenHPS
-        ```ts twoslash {0}
+        ### Data Object
+        ```ts twoslash
         import { DataObject } from '@openhps/core';
 
-        const object = new DataObject("phone");
+        const myobject = new DataObject("mvdewync");
+        myobject.displayName = "Maxim Van de Wynckel";
+        ```
+    {% endmarkdown %}
+</section>
+<section data-markdown>
+    {% markdown %}
+        ### Data Frame
+        ```ts twoslash
+        import { DataObject } from '@openhps/core';
+
+        const myobject = new DataObject("mvdewync");
+        myobject.displayName = "Maxim Van de Wynckel";
+        // ---cut---
+        import { DataFrame } from '@openhps/core';
+
+        const myframe = new DataFrame(myobject);
         ```
     {% endmarkdown %}
 </section>
@@ -68,6 +87,14 @@ h2, h4 {
 <section data-markdown>
     {% markdown %}
         ## Conclusions & Future Work
+        - Enabling **end users** to author positioning systems.
     {% endmarkdown %}
-    <img class="qr-image" src="./qr-code.svg"/>
+    <div class="row">
+        <div class="col-sm-3">
+            <img class="qr-image" src="./qr-code.svg"/>
+        </div>
+        <div class="col-sm-4">
+            https://www.openhps.org
+        </div>
+    </div>
 </section>

@@ -5,6 +5,7 @@
   <body>
     <link rel="stylesheet" href="/vendor/reveal.js/reset.css">
     <link rel="stylesheet" href="/vendor/reveal.js/reveal.css">
+    <link rel="stylesheet" href="/vendor/reveal.js/plugin/pointer/pointer.css">
     <link rel="stylesheet" href="/css/presentation.css" id="theme">
 
     <div class="reveal">
@@ -13,14 +14,24 @@
         </div>
     </div>
 
-    <script src="/vendor/reveal.js/reveal.js"></script>
     <script src="/scripts/twoslash.js"></script>
-    <script>
-        Reveal.initialize({
-            hash: true,
-            margin: 0.10,
-            plugins: [],
-        });
+    <script type="module">
+      import Reveal from '/vendor/reveal.js/reveal.esm.js';
+      import Notes from '/vendor/reveal.js/plugin/notes/notes.esm.js';
+      import Pointer from '/vendor/reveal.js/plugin/pointer/pointer.esm.js';
+
+      Reveal.initialize({
+        hash: true,
+        margin: 0.10,
+        plugins: [ Notes, Pointer ],
+        pointer: {
+          key: "q",
+          color: "yellow",
+          pointerSize: 15,
+          alwaysVisible: false,
+          tailLength: 10,
+        }
+      });
     </script>
   </body>
 </html>

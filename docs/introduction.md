@@ -13,6 +13,9 @@ OpenHPS is an open source hybrid positioning system that allows developers to fu
 
 It was created as a positioning framework that can support various different positioning techniques, both during the *online* and *offline* stage.
 
+## Features
+- 2D, 3D and geographical positioning
+
 ## Framework Architecture
 OpenHPS is a open source hybrid positioning system that allows developers to fuse multiple positioning techniques and algorithms together in a graph topology. It is being developed by PhD Student [Maxim Van de Wynckel](https://wise.vub.ac.be/member/maxim-van-de-wynckel) as part of his research towards *Hybrid Positioning and Implicit Human-Computer Interaction* under the supervision of [Prof. Dr. Beat Signer](https://wise.vub.ac.be/member/beat-signer).
 
@@ -35,6 +38,8 @@ More in-depth information can be found in the [core API description](/docs/core)
 
 ## Modularity
 OpenHPS is split up into multiple modules that each offer a certain set of functionalities. The core API (@openhps/core) offers the processing model and commonly used nodes for sampling absolute and relative positions. Various additions such as *@openhps/socket*, *@openhps/rest* or *@openhps/mongodb* can be added to extend the framework with remote graph nodes or persistent data store.
+
+![OpenHPS Stack](/images/docs/openhps-stack.svg)
 
 ## Source
 Our repositories can be found on GitHub [https://github.com/OpenHPS](https://github.com/OpenHPS)

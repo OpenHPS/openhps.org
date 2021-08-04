@@ -116,3 +116,20 @@ pre.shiki div.dim, pre.shiki div.highlight {
 pre.shiki div.highlight {
   opacity: 1;
 }
+
+@media screen and (max-width: $on-medium) {
+  pre.shiki {
+    margin-left: -40px;
+    margin-right: -40px;
+    border-radius: 0;
+    box-shadow:  5px 5px 18px #d4d4d4,
+    -5px -5px 18px #ffffff;
+    font-size: 80%;
+  }
+  pre.shiki .code-container {
+    overflow-x: scroll;
+  }
+  pre.shiki .line {
+    white-space: pre;
+  }
+}
