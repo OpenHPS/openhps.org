@@ -57,3 +57,14 @@ ModelBuilder.create()
 ```ts twoslash
 
 ```
+
+## Creating a threaded graph shape
+**Master File**
+```ts twoslash
+
+```
+
+**Worker File**
+```ts twoslash
+
+```

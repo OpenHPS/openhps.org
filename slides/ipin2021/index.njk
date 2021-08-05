@@ -42,9 +42,31 @@ layout: presentation.njk
         {% markdown %}
             ## What is OpenHPS?
             *Process network with a graph topology for processing sensor data to an output position.*
-
-            ![](/images/docs/architecture.svg)
         {% endmarkdown %}
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="architecture.svg"/>
+            </div>
+            <div class="col-sm-6">
+                {% markdown %}
+                    ```ts twoslash
+                    import { ModelBuilder, GraphBuilder } from '@openhps/core';
+                    // ---cut---
+                    ModelBuilder.create()
+                        .addShape(GraphBuilder.create()
+                            .from()
+                            .to())
+                        .addShape(GraphBuilder.create()
+                            .from()
+                            .to())
+                        .addShape(GraphBuilder.create()
+                            .from()
+                            .to())
+                        .build();
+                    ```
+                {% endmarkdown %}
+            </div>
+        </div>
         <aside class="notes">
         Our main concept 
         </aside>

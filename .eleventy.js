@@ -1,7 +1,7 @@
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItVideo = require("markdown-it-video");
-const shikiTwoslash = require("./_scripts/highlighter");
+const shikiTwoslash = require("eleventy-plugin-shiki-twoslash");
 const { html5Media } = require('markdown-it-html5-media');
 const pluginTOC = require('eleventy-plugin-toc');
 const pluginSEO = require("eleventy-plugin-seo");

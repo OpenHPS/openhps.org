@@ -18,7 +18,7 @@
     "deasync": "^0.1.21",
     "eleventy-plugin-sass": "^1.2.0",
     "eleventy-plugin-seo": "^0.5.2",
-    "eleventy-plugin-shiki-twoslash": "^1.0.24",
+    "eleventy-plugin-shiki-twoslash": "^1.0.25",
     "eleventy-plugin-toc": "^1.1.0",
     "fs-extra": "^9.1.0",
     "gh-pages": "^3.1.0",
