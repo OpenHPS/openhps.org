@@ -15,6 +15,11 @@ It was created as a positioning framework that can support various different pos
 
 ## Features
 - 2D, 3D and geographical positioning
+- Relative positioning.
+- Basic positioning algorithms (e.g. trilateration, triangulation, fingerprinting, dead reckoning...)
+- Advanced positioning algorithms (e.g. computer vision through @openhps/opencv)
+- Extremely extensible.
+- Open source.
 
 ## Framework Architecture
 OpenHPS is a open source hybrid positioning system that allows developers to fuse multiple positioning techniques and algorithms together in a graph topology. It is being developed by PhD Student [Maxim Van de Wynckel](https://wise.vub.ac.be/member/maxim-van-de-wynckel) as part of his research towards *Hybrid Positioning and Implicit Human-Computer Interaction* under the supervision of [Prof. Dr. Beat Signer](https://wise.vub.ac.be/member/beat-signer).
