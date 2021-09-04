@@ -45,3 +45,15 @@ $heading4Size: 1.0em;
 h1, h2, h3, h4, h5 {
     text-transform: none !important;
 }
+
+code,
+pre {
+    padding: 1.4em;
+    border-radius: 1em;
+}
+
+.col-sm-6 code,
+.col-sm-6 pre {
+    line-height: 1.2em;
+    font-size: 100%;
+}
