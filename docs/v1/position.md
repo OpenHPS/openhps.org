@@ -97,3 +97,37 @@ An orientation offers the same quaternion methods as [Three.js](https://threejs.
 
 ### Examples
 You can find an ObservableHQ notebook with examples for creating an orientation [here](https://observablehq.com/d/c58a3f29b5c3d343).
+
+## Creating a Pose
+A ```Pose``` is a position and orientation combined. It is represented as a 4x4 matrix.
+
+The pose is composed of a translation (position) denoted as `$M$` and a rotation matrix.
+```math
+M=\begin{pmatrix}
+1 & 0 & 0 & t_x\\
+0 & 1 & 0 & t_y\\
+0 & 0 & 1 & t_z\\
+0 & 0 & 0 & 1
+\end{pmatrix}
+
+R_X(\theta)=\begin{pmatrix}
+1 & 0 & 0 & 0\\
+0 & cos(\theta) & sin(\theta) & 0\\
+0 & -sin(\theta) & cos(\theta) & 0\\
+0 & 0 & 0 & 1
+\end{pmatrix}
+
+R_Y(\theta)=\begin{pmatrix}
+cos(\theta) & 0 & -sin(\theta) & 0\\
+0 & 1 & 0 & 0\\
+sin(\theta) & 0 & cos(\theta) & 0\\
+0 & 0 & 0 & 1
+\end{pmatrix}
+
+R_Z(\theta)=\begin{pmatrix}
+cos(\theta) & -sin(\theta) & 0 & 0\\
+sin(\theta) & cos(\theta) & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+\end{pmatrix}
+```

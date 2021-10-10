@@ -1,6 +1,7 @@
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItVideo = require("markdown-it-video");
+const markdownItLatex = require("markdown-it-latex").default;
 const shikiTwoslash = require("eleventy-plugin-shiki-twoslash");
 const { html5Media } = require('markdown-it-html5-media');
 const pluginTOC = require('eleventy-plugin-toc');
@@ -41,6 +42,7 @@ module.exports = function (el) {
   /* Markdown */
   const md = markdownIt({ html: true });
   md.use(markdownItAnchor);
+  md.use(markdownItLatex);
   el.addPlugin(shikiTwoslash, { theme: "dark-plus" });
   md.use(markdownItVideo, {
     youtube: { width: 640, height: 390 },

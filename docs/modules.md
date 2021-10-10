@@ -12,7 +12,8 @@ The core module offers the processing network model and commonly used nodes for 
 ## Positioning Algorithms
 - **[@openhps/imu](/docs/imu)** - Adds IMU processing nodes for fusing IMU sensors.
 - **[@openhps/fingerprinting](/docs/fingerprinting)** - Adds various fingerprinting nodes and services for offline and offline positioning models.
-- **[@openhps/opencv](/docs/opencv)** - Provides linkage with opencv4nodejs and OpenCV.js for computer vision algorithms on the server or browser.
+- **[@openhps/opencv](/docs/opencv)** - Provides binding with opencv4nodejs and OpenCV.js for computer vision algorithms on the server or browser.
+- **[@openhps/openvslam](/docs/openvslam)** - Provides bindings to OpenVSLAM for Visual Simultaneous Localization and Mapping.
 
 ## Abstractions
 - **[@openhps/spaces](/docs/spaces)** - Enables the concept of symbolic spaces (e.g. building, room) on top of reference spaces.

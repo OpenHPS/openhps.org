@@ -78,6 +78,18 @@ layout: presentation.njk
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
+            ## Main Components
+            - ```DataObject```
+            - ```DataFrame```
+            - ```Model```
+            - ```Node```
+        {% endmarkdown %}
+        <aside class="notes">
+        Our main concept 
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
             ## What is OpenHPS?
             *Modular components*
         {% endmarkdown %}
@@ -109,20 +121,23 @@ layout: presentation.njk
         </div>
     </div>
 </section>
-<section data-markdown>
-    {% markdown %}
-        ### Data Frame
-        ```ts twoslash
-        import { DataObject } from '@openhps/core';
 
-        const myobject = new DataObject("mvdewync");
-        myobject.displayName = "Maxim Van de Wynckel";
-        // ---cut---
-        import { DataFrame } from '@openhps/core';
+<section>
+    <section data-markdown>
+        {% markdown %}
+            ### Data Frame
+            ```ts twoslash
+            import { DataObject } from '@openhps/core';
 
-        const myframe = new DataFrame(myobject);
-        ```
-    {% endmarkdown %}
+            const myobject = new DataObject("mvdewync");
+            myobject.displayName = "Maxim Van de Wynckel";
+            // ---cut---
+            import { DataFrame } from '@openhps/core';
+
+            const myframe = new DataFrame(myobject);
+            ```
+        {% endmarkdown %}
+    </section>
 </section>
 
 <section data-markdown>
