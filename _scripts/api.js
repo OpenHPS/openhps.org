@@ -17,15 +17,20 @@ const modules = [
     "imu",
     "fingerprinting",
     "react-native",
-    "mqtt"
+    "mqtt",
+    "video",
 ];
 
 async function downloadDocs() {
     for (let i in modules) {
-        const module = modules[i];
-        const stream = await download(module);
-        await rmdir(module);
-        await extract(module, stream);
+        try {
+            const module = modules[i];
+            const stream = await download(module);
+            await rmdir(module);
+            await extract(module, stream);
+        } catch(ex) {
+            console.error(ex);
+        }
     }
 }
 
@@ -45,9 +50,16 @@ async function rmdir(module) {
 async function download(module) {
     return new Promise((resolve) => {
         console.log(chalk.green(`Downloading API documentation for '${module}'`));
-        const url = `https://ci.mvdw-software.com/job/openhps-${module}/job/dev/Documentation/*zip*/Documentation.zip`;
+        let url = `https://ci.mvdw-software.com/job/openhps-${module}/job/dev/lastStableBuild/Documentation/*zip*/Documentation.zip`;
         https.get(url, function(response) {
-            resolve(response);
+            if (response.statusCode === 404) {
+                url = `https://ci.mvdw-software.com/job/openhps-${module}/job/master/lastStableBuild/Documentation/*zip*/Documentation.zip`;
+                https.get(url, function(response) {
+                    resolve(response);
+                });
+            } else {
+                resolve(response);
+            }
         });
     });
 }
@@ -69,7 +81,7 @@ async function extract(module, stream) {
                     resolve();
                 });
             });
-        });
+        }).on('error', reject);
     });
 }
 
