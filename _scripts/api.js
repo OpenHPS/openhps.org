@@ -19,6 +19,7 @@ const modules = [
     "react-native",
     "mqtt",
     "video",
+    "rf"
 ];
 
 async function downloadDocs() {
