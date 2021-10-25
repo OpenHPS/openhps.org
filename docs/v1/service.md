@@ -17,4 +17,14 @@ menuOrder: 210
 - ```LocationBasedService```: A developer friendly service for pulling or watching for position changes.
 
 ## Create a ```DataServiceDriver```
-A data service driver is a 
+A data service driver is a database storage interface for storing any serializable object (that is any object using the ```@SerializableObject()``` decorator) with any type of identifier.
+
+The driver should implement the following methods:
+- ```findByUID(id: I): Promise<T>```: Find the data by a UID.
+- ```findOne(query?: FilterQuery<T>, options?: FindOptions): Promise<T>```: Find one item based on an optional query.
+- ```findAll(query?: FilterQuery<T>, options?: FindOptions): Promise<T[]>```: Find all items based on an optional query.
+- ```count(query?: FilterQuery<T>): Promise<number>```: Count all items.
+- ```insert(id: I, object: T): Promise<T>```: Insert a new item.
+- ```delete(id: I): Promise<void>```: Delete an item.
+- ```deleteAll(query?: FilterQuery<T>): Promise<void>```: Delete all items. 
+The methods are similar to the [Node.js MongoDB API](https://mongodb.github.io/node-mongodb-native/4.1/classes/Collection.html) but with more limited features that would still allow other drivers other than MongoDB.

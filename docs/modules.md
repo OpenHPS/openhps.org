@@ -19,7 +19,7 @@ The core module offers the processing network model and commonly used nodes for 
 - **@openhps/orb-slam3** - Provides bindings to ORB-SLAM3
 
 ### Abstractions
-- **[@openhps/spaces](/docs/spaces/)** - Enables the concept of symbolic spaces (e.g. building, room) on top of reference spaces.
+- **[@openhps/geospatial](/docs/geospatial/)** - Enables the concept of symbolic spaces (e.g. building, room) on top of reference spaces.
 
 ### Data Services
 - **[@openhps/mongodb](/docs/mongodb/)** - Adds MongoDB support for the storage of data objects.
