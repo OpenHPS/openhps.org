@@ -3,7 +3,7 @@ const unzip = require('unzip-stream');
 const chalk = require('chalk');
 const rimraf = require('rimraf');
 
-const token = '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';
+const token = process.env.GITHUB_TOKEN;
 
 /**
  * Documentations to download from github.com/OpenHPS/openhps-*

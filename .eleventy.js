@@ -12,6 +12,7 @@ const { DateTime } = require("luxon");
 const fs = require('fs');
 const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
+require('dotenv').config();
 
 const downloadDocs = require("./_scripts/api");
 
@@ -43,7 +44,12 @@ module.exports = function (el) {
   const md = markdownIt({ html: true });
   md.use(markdownItAnchor);
   md.use(markdownItLatex);
-  el.addPlugin(shikiTwoslash, { theme: "dark-plus" });
+  el.addPlugin(shikiTwoslash, { 
+    theme: "dark-plus",
+    defaultCompilerOptions: {
+      strict: false
+    }
+  });
   md.use(markdownItVideo, {
     youtube: { width: 640, height: 390 },
     vimeo: { width: 500, height: 281 },

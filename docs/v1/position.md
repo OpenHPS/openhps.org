@@ -131,3 +131,27 @@ sin(\theta) & cos(\theta) & 0 & 0\\
 0 & 0 & 0 & 1\\
 \end{pmatrix}
 ```
+## Position accuracy and probability
+Accuracy defines how accurate the position is from the given or calculated coordinates. An accuracy can be defined in 1D, 2D or a 3D spheroid but should always
+support being expressed as a one dimensional value.
+
+Accuracy is always present in an absolute position and can be directly updated with ```setAccuracy``.
+```ts twoslash
+import { Absolute2DPosition, LengthUnit } from '@openhps/core';
+const position = new Absolute2DPosition(1, 3);
+// ---cut---
+position.setAccuracy(20, LengthUnit.CENTIMETER);
+```
+
+Alternatively you can specify a 2D, 3D or custom accuracy.
+```ts twoslash
+import { Absolute2DPosition } from '@openhps/core';
+const position = new Absolute2DPosition(1, 3);
+// ---cut---
+import { Accuracy1D, Accuracy2D, Accuracy3D, LengthUnit } from '@openhps/core';
+position.accuracy = new Accuracy1D(5, LengthUnit.METER);
+// or
+position.accuracy = new Accuracy2D(5, 3, LengthUnit.METER);
+// or
+position.accuracy = new Accuracy3D(5, 3, 1, LengthUnit.METER);
+```
