@@ -7,6 +7,8 @@ menuOrder: 201
 Data objects represent the object or person that you are trying to determine a position for. It can also represent
 any other landmark or sensor that could have an absolute or relative position.
 
+A data object is considered a snapshot of a the current state and should not contain any temporary information.
+
 ## Creating data objects
 ```ts twoslash
 import { DataObject } from '@openhps/core';

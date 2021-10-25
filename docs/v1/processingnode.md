@@ -43,3 +43,10 @@ export class MyObjectProcessingNode<InOut extends DataFrame> extends ObjectProce
 
 }
 ```
+
+## Create a processing node for multiple inlets
+In the previous examples we assumed that only one type of data frame was provided to the processing node. Processing data from multiple inlets is possible. An example could be a processing node that requires both IMU and Video data to process information. 
+
+```ts twoslash
+
+```

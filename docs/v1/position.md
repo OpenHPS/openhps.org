@@ -97,3 +97,30 @@ An orientation offers the same quaternion methods as [Three.js](https://threejs.
 
 ### Examples
 You can find an ObservableHQ notebook with examples for creating an orientation [here](https://observablehq.com/d/c58a3f29b5c3d343).
+
+## Position accuracy and probability
+Accuracy defines how accurate the position is from the given or calculated coordinates. An accuracy can be defined in 1D, 2D or a 3D spheroid but should always
+support being expressed as a one dimensional value.
+
+Accuracy is always present in an absolute position and can be directly updated with ```setAccuracy``.
+```ts twoslash
+import { Absolute2DPosition } from '@openhps/core';
+const position = new Absolute2DPosition(1, 3);
+// ---cut---
+position.accuracy.setValue(20);
+// or
+position.setAccuracy(20);
+```
+
+Alternatively you can specify a 2D, 3D or custom accuracy.
+```ts twoslash
+import { Absolute2DPosition } from '@openhps/core';
+const position = new Absolute2DPosition(1, 3);
+// ---cut---
+import { Accuracy1D, LengthUnit } from '@openhps/core';
+position.accuracy = new Accuracy1D(5, LengthUnit.METER);
+// or
+position.accuracy = new Accuracy2D(5, 3, LengthUnit.METER);
+// or
+position.accuracy = new Accuracy3D(5, 3, 1, LengthUnit.METER);
+```
