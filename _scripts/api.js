@@ -1,9 +1,13 @@
-const https = require('https');
+const axios = require('axios');
 const unzip = require('unzip-stream');
 const chalk = require('chalk');
-const fs = require('fs-extra');
 const rimraf = require('rimraf');
 
+const token = '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';
+
+/**
+ * Documentations to download from github.com/OpenHPS/openhps-*
+ */
 const modules = [
     "core",
     "csv",
@@ -49,19 +53,50 @@ async function rmdir(module) {
 }
 
 async function download(module) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         console.log(chalk.green(`Downloading API documentation for '${module}'`));
-        let url = `https://ci.mvdw-software.com/job/openhps-${module}/job/dev/lastStableBuild/Documentation/*zip*/Documentation.zip`;
-        https.get(url, function(response) {
-            if (response.statusCode === 404) {
-                url = `https://ci.mvdw-software.com/job/openhps-${module}/job/master/lastStableBuild/Documentation/*zip*/Documentation.zip`;
-                https.get(url, function(response) {
-                    resolve(response);
-                });
-            } else {
-                resolve(response);
+        fetchLatestBuild(module).then(downloadDocumentation).then(resolve).catch(reject);
+    });
+}
+
+async function fetchLatestBuild(module) {
+    return new Promise((resolve, reject) => {
+        const url = `https://api.github.com/repos/OpenHPS/openhps-${module}/actions/runs`;
+        axios.get(url, {
+            headers: {
+                'Authorization': `token ${token}`
             }
-        });
+        }).then((response) => {
+            const latestBuild = response.data.workflow_runs[0];
+            if (!latestBuild) {
+                throw new Error(`No documentation uploaded on github!`);
+            }
+            resolve(latestBuild);
+        })
+        .catch(reject);
+    });
+}
+
+async function downloadDocumentation(latestBuild) {
+    return new Promise((resolve, reject) => {
+        const url = latestBuild.artifacts_url;
+        axios.get(url, {
+            headers: {
+                'Authorization': `token ${token}`
+            }
+        }).then((response) => {
+            const artifacts = response.data.artifacts;
+            const docs = artifacts.find(artifact => artifact.name === 'docs');
+            return axios.get(docs.archive_download_url, {
+                headers: {
+                    'Authorization': `token ${token}`
+                },
+                responseType: "stream"
+            });
+        }).then(response => {
+            resolve(response.data);
+        })
+        .catch(reject);
     });
 }
 
@@ -69,19 +104,7 @@ async function extract(module, stream) {
     return new Promise((resolve, reject) => {
         console.log(chalk.white(`\tExtracting API documentation for '${module}'`));
         stream.pipe(unzip.Extract({ path: `_site/docs/${module}` })).on('finish', () => {
-            fs.copy(`_site/docs/${module}/Documentation`, `_site/docs/${module}`, function(err) {
-                if (err) {
-                    console.error(chalk.red("\t" + err));
-                    reject();
-                }
-                rimraf(`_site/docs/${module}/Documentation`, (err) => {
-                    if (err) {
-                        console.error(chalk.red("\t" + err));
-                        reject();
-                    }
-                    resolve();
-                });
-            });
+            resolve();
         }).on('error', reject);
     });
 }

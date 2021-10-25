@@ -52,3 +52,20 @@ ModelBuilder.create()
     .to(/* ... */)
     .build();
 ```
+
+**Worker File**
+```ts twoslash
+import { 
+    CallbackNode, 
+    DataFrame, 
+    DataObject, 
+    ModelBuilder
+} from '@openhps/core';
+
+export default ModelBuilder.create()
+    .from()
+    .via(new CallbackNode(frame => {
+        // Do something time consuming ...
+    }))
+    .to();
+```
