@@ -12,7 +12,7 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@11ty/eleventy": "^1.0.0-canary.39",
+    "@11ty/eleventy": "^1.0.0-beta.2",
     "@quasibit/eleventy-plugin-sitemap": "^2.1.4",
     "axios": "^0.23.0",
     "chalk": "^4.1.2",
@@ -26,7 +26,7 @@
     "gh-pages": "^3.2.3",
     "luxon": "^2.0.2",
     "markdown-it": "^12.2.0",
-    "markdown-it-anchor": "^8.3.1",
+    "markdown-it-anchor": "^8.4.1",
     "markdown-it-html5-media": "^0.7.0",
     "markdown-it-latex": "^0.2.0",
     "markdown-it-video": "^0.6.3",
@@ -45,6 +45,7 @@
     "build": "npm run clean && eleventy"
   },
   "devDependencies": {
-    "@openhps/core": "^0.3.2-alpha.3"
+    "@openhps/core": "^0.3.2-alpha.3",
+    "@types/node": "^16.11.5"
   }
 }

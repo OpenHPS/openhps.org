@@ -50,6 +50,11 @@ module.exports = function (el) {
       strict: false
     }
   });
+  const highlighter = el.markdownHighlighter;
+  el.markdownHighlighter = (code, lang, fence) => {
+    const result = highlighter(code, lang, fence);
+    return result === "" ? "<pre style='display: none'></pre>" : result;
+  };
   md.use(markdownItVideo, {
     youtube: { width: 640, height: 390 },
     vimeo: { width: 500, height: 281 },
