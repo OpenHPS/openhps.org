@@ -1,10 +1,10 @@
 ---
 layout: presentation.njk
+title: Indoor Positioning Using the OpenHPS Framework
+author: <u>Maxim Van de Wynckel</u>, Beat Signer
+logo: true
 ---
 <style>
-.logos {
-    bottom: -200px;
-}
 .qr-image {
     width: 150px;
     height: 150px;
@@ -17,154 +17,256 @@ layout: presentation.njk
 </style>
 
 <section>
-    <h2>Indoor Positioning Using the OpenHPS Framework</h2>
-    <h5><u>Maxim Van de Wynckel</u>, Beat Signer</h5>
-    <div class="row logos">
-        <div id="logo-vub" class="col-sm-4 jumbotron-logo"></div>
-        <div id="logo-wise" class="col-sm-4 jumbotron-logo"></div>
-        <div id="logo-openhps" class="col-sm-4 jumbotron-logo"></div>
-    </div>
-
-    <aside class="notes">
-    Hello, my name is Maxim Van de Wynckel and I will be presenting the paper "Indoor Positioning Using the OpenHPS Framework"
-    </aside>
-</section>
-<section>
     <section data-markdown data-auto-animate>
         {% markdown %}
             ## What is OpenHPS?
-            *An open source hybrid positioning system*
-
-            ![](openhps-site.png)
+            ### An open source hybrid positioning system
         {% endmarkdown %}
-
+        <img width="70%" class="shadow" src="images/openhps-site.png"/>
         <aside class="notes">
-        OpenHPS is an open source hybrid positioning system developed in Typescript. With OpenHPS we aim to offer a framework for developers that
-        can support a variety of different positioning technologies and algorithms.
+        OpenHPS is an open source hybrid positioning system developed in TypeScript that can run both on a server, 
+        embedded device, smartphone or even the browser.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
             ## What is OpenHPS?
-            *Create a process network with a graph topology for processing sensor data to an output position.*
-        {% endmarkdown %}
-        <div class="row">
-            <div class="col-sm-6">
-                <img src="architecture.svg"/>
-            </div>
-            <div class="col-sm-6">
-                {% markdown %}
-                    ```ts twoslash
-                    import { ModelBuilder, GraphBuilder } from '@openhps/core';
-                    // ---cut---
-                    ModelBuilder.create()
-                        .addShape(GraphBuilder.create()
-                            .from()
-                            .to())
-                        .addShape(GraphBuilder.create()
-                            .from()
-                            .to())
-                        .addShape(GraphBuilder.create()
-                            .from()
-                            .to())
-                        .build();
-                    ```
-                {% endmarkdown %}
-            </div>
-        </div>
-        <aside class="notes">
-        Our main concept 
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## Main Components
-            - ```DataObject```
-            - ```DataFrame```
-            - ```Model```
-            - ```Node```
+            ### An open source hybrid positioning system
+            - Support any technology
+                - From RF-based to cameras or LIDAR scanners
+            - Support any algorithm
+                - From basic fingerprinting to GPU intensive computer vision
+            - Support any use case
+                - Indoor or outdoor positioning or navigation
+                - Tabletop positioning
+            - Aimed towards ...
+                - **Developers**: For creating production-ready positioning systems
+                - **Researchers**: For rapid prototyping new algorithms and fusion techniques
         {% endmarkdown %}
         <aside class="notes">
-        Our main concept 
+        With OpenHPS we aim to offer a framework for developers and researchers that
+        can support a variety of positioning technologies, algorithms and uses cases that are not just
+        limited to indoor positioning.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
             ## What is OpenHPS?
-            *Modular components*
+            ### Process network design
+            
         {% endmarkdown %}
-        <img src="stack.svg"/>
+
+        <img width="90%" src="images/architecture.svg"/>
         <aside class="notes">
-        Our main concept 
+        When creating a positioning system, you obtain sensor data from multiple different sensors. You process the data until at some stage in your processing
+        you merge the sensor data in order to obtain a more reliable or accurate position that you can show to your user.
         </aside>
     </section>
-</section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## What is OpenHPS?
+            ### Process network design
+            
+        {% endmarkdown %}
+        <img height="30%" src="images/architecture.svg"/>
+        <img height="30%" src="images/architecture2.svg"/>
+        <aside class="notes">
+        OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
+        We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## What is OpenHPS?
+            ### Shared services
+            
+        {% endmarkdown %}
+        <img height="60%" src="images/architecture3.svg"/>
+        <aside class="notes">
+        On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
+        handle background processing of information that is already pushed through the network.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## What is OpenHPS?
+            ### Modularity
+        {% endmarkdown %}
+        <img width="70%" src="images/stack.svg"/>
+        <aside class="notes">
+        By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
+        can be reused throughout multiple different packages. Our core component offers the main concepts
+        needed to design a process network for processing sensor data to an output position, communication
+        modules allow for remote nodes or parts of the process network. Modules offering positioning techniques
+        add extra algorithms or interfaces to other technologies such as fingerprinting or links
+        to a visual SLAM algorithm. Data storage modules offer persistence of data and finally a module can
+        also create an entire abstraction of the underling process network so it can be more easily used by developers.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## What is OpenHPS?
+            ### Modularity
+            **Communication**\
+            Socket, MQTT, REST API, ...
 
-<section data-markdown>
-    {% markdown %}
-        ### Data Object
-        Represents a tracked object, landmark or anything related to the sensor data.
-    {% endmarkdown %}
-    <div class="row">
-        <div class="col-sm-6">
-            <img src="architecture.svg"/>
-        </div>
-        <div class="col-sm-6">
-            {% markdown %}
-                ```ts twoslash
-                import { DataObject } from '@openhps/core';
+            **Data Storage**\
+            MongoDB, LocalStorage, ...
 
-                const myobject = new DataObject("mvdewync");
-                myobject.displayName = "Maxim Van de Wynckel";
-                ```
-            {% endmarkdown %}
-        </div>
-    </div>
+            **Positioning Algorithms**\
+            IMU, fingerprinting, OpenVSLAM, ...
+
+            **Abstractions**\
+            Symbolic spaces, location based services, geojson ...
+
+            **Misc**\
+            NativeScript, React-Native, Sphero ...
+        {% endmarkdown %}
+        <aside class="notes">
+        We already offer many different modules for the more common positioning techinques. In this paper we will use a socket module
+        that handles the communication from a mobile application to a server, MongoDB to persist our fingerprinting data and
+        fixed beacon locations, the IMU module for pedestrian dead reckoning, symbolic spaces that we will discuss later and finally react-native
+        that offers source nodes for sensor data on a smartphone.
+        </aside>
+    </section>
 </section>
 
 <section>
     <section data-markdown>
         {% markdown %}
-            ### Data Frame
-            ```ts twoslash
-            import { DataObject } from '@openhps/core';
-
-            const myobject = new DataObject("mvdewync");
-            myobject.displayName = "Maxim Van de Wynckel";
-            // ---cut---
-            import { DataFrame } from '@openhps/core';
-
-            const myframe = new DataFrame(myobject);
-            ```
+            ## Architecture
+            ### Design principles
+            - Tracked actor
+            - Tracking actor
+            - Computing actor
+            - Calibration actor
         {% endmarkdown %}
+        <aside class="notes">
+        Our framework architecture evolved around four actors that we can identify in all positioning system implementations. A tracked
+        actor represents the person or object that is being tracked - it is the actor that we want to know the position for.
+
+        A tracking actor is the device responsible for tracking a tracked actor. It can be an external camera tracking how a person
+        moves through a building, or simply sensor data obtained by the tracked actor itself.
+
+        The computing actor is a type of actor that computes the information obtained by a tracking actor to a position for the tracked actor.
+
+        Finally, a calibration actor is the object or device responsible for setting up the system. This can be a manual configuration by a developer or
+        a training or calibration needed when setting up the system.
+        </aside>
+    </section>
+    <section data-markdown>
+        {% markdown %}
+            ## Architecture
+            ### Design principles
+
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
     </section>
 </section>
 
 <section data-markdown>
     {% markdown %}
         ## Indoor Positioning
+
     {% endmarkdown %}
 </section>
 
 <section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration & Dataset
+            ## Demonstration
+            ### Positioning model
         {% endmarkdown %}
-        <img src="model.svg" style="width: 95%;"/>
+        <img src="images/model.svg" style="width: 95%;"/>
+        <aside class="notes">
+        For demonstrating the use of OpenHPS in an indoor positioning scenario we created a positioning system consisting out of two applications and a server
+        for handling a common implmentation with IMU data, WLAN access points and BLE beacons. This demonstrator mainly serves as a validation that we can
+        use a process network design for developing a modular indoor positioning system.
+        </aside>
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration & Dataset
+            ## Demonstration
+            ### Positioning model (Offline App)
         {% endmarkdown %}
         <div class="row">
-            <div class="col-sm-6">
-                <img src="pdr.svg" style="height: 100%;"/>
+            <div class="col-3">
+                <img src="images/smartphone-offline.png" height="100%"/>
             </div>
-            <div class="col-sm-6">
-            
+            <div class="col-8">
+                <img src="images/model-offline.svg" width="100%"/>
             </div>
         </div>
+        <aside class="notes">
+        The offline stage application handles the set-up and uses source nodes from our react native component; one that scans for wifi access points,
+        one that scans for BLE tags and finally another custom source node for the user location input using
+        the smartphone. The user selected location is merged with the scan results of the BLE and WLAN device and
+        send to a sink node that acts as a socket interface to the server.
+        </aside>
+    </section>
+       <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Positioning model (Server #1)
+        {% endmarkdown %}
+        <img src="images/model-server-offline.svg" style="width: 90%;"/>
+        <aside class="notes">
+        On the server this data is received and stored to a shared fingerprinting services
+        that extracts the features.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Positioning model (Online app #1)
+        {% endmarkdown %}
+        <img src="images/model-online-1.svg" style="width: 90%;"/>
+        <aside class="notes">
+        The online stage application uses a wifi and ble source similar to the offline stage application. 
+        The WLAN and BLE scan results are merged and send to the server using a socket connection
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Positioning model (Server #2)
+        {% endmarkdown %}
+        <img src="images/model-server-online.svg" style="width: 90%;"/>
+        <aside class="notes">
+        On the server we use three positioning techniques to obtain a position from this WLAN and BLE data.
+        We process the wlan data with a knn fingerprinting algorithm and we perform both ble fingerprinting and
+        ble multilateration using the known positions of the beacons in our building. These three outputs are merged and
+        send back to the online application.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Positioning model (Online app #2)
+        {% endmarkdown %}
+        <img src="images/model-online-2.svg" style="width: 90%;"/>
+        <aside class="notes">
+        In the online application an IMU source node is used together with pedestrian dead reckoning. The dead reckoning
+        is applied on the last calculated position and is used as an intermediate calculate between responses from the server.
+        The known velocity of the user is applied to the response from the server in the Velocity processing node named 'a' in order
+        to account for the time it took between the wlan or ble scan and the response from the server. Once this processed
+        server response is merged with the imu data, it is displayed to the user. An addition feedback loop is created for the predicted
+        movement based on the current momentum.
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Dataset
+        {% endmarkdown %}
+
+        <aside class="notes">
+        
+        </aside>
     </section>
 </section>
 
@@ -175,7 +277,7 @@ layout: presentation.njk
     {% endmarkdown %}
     <div class="qr">
         <div class="row">
-            <img class="qr-image" src="./qr-code.svg"/>
+            <img class="qr-image" src="images/qr-code.svg"/>
         </div>
         <div class="row">
             https://www.openhps.org

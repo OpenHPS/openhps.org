@@ -10,7 +10,19 @@
 
     <div class="reveal">
         <div class="slides">
-            {{ content | safe }}
+          <section class="title-slide center">
+              {% if logo %}
+              <div class="logos">
+                <div id="openhps-logo"></div>
+                <div id="vub-logo"></div>
+                <div id="wise-logo"></div>
+              </div>
+              {% endif %}
+              <h2 id="label-title">{{ title }}</h2>
+              <h3 id="label-subtitle">{{ subtitle }}</h3>
+              <h5 class="author">{{ author | safe }}</h5>
+          </section>
+          {{ content | safe }}
         </div>
     </div>
 
@@ -22,16 +34,32 @@
 
       Reveal.initialize({
         hash: true,
-        margin: 0.10,
+        margin: 0.15,
         plugins: [ Notes, Pointer ],
+        controlsTutorial: true,
+        pdfMaxPagesPerSlide: 1,
+        slideNumber: true,
+        center: false,
         pointer: {
           key: "q",
-          color: "yellow",
-          pointerSize: 15,
+          color: "red",
+          pointerSize: 20,
           alwaysVisible: false,
           tailLength: 10,
         }
       });
+
+      // Allow outside access
+      window.Reveal = Reveal;
+      if (window.location.search.indexOf("presenter") > -1) {
+        console.log("Starting in presenter mode");
+        Reveal.configure({
+          keyboard: {
+            39: 'next',
+            37: 'prev',
+          }
+        });
+      }
     </script>
   </body>
 </html>
