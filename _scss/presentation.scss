@@ -110,15 +110,15 @@ h1, h2, h3, h4, h5 {
 }
 
 #wise-logo {
-    background-image: url('/images/misc/wise-logo.svg');
+    background-image: url(/images/misc/wise-logo.svg);
 }
 
 #vub-logo {
-    background-image: url('/images/misc/vub-logo.svg');
+    background-image: url(/images/misc/vub-logo.svg);
 }
 
 #openhps-logo {
-    background-image: url('/images/misc/openhps-logo.svg');
+    background-image: url(/images/misc/openhps-logo.svg);
 }
 
 .logos {
@@ -179,4 +179,13 @@ h1, h2, h3, h4, h5 {
 
 .language-id {
     display: none;
+}
+
+.header-logo {
+    display: inline-block;
+    height: 75px;
+    width: 200px;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
 }

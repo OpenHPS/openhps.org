@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="/vendor/reveal.js/plugin/pointer/pointer.css">
     <link rel="stylesheet" href="/css/presentation.css" id="theme">
 
+    <div id="hidden" style="display:none;">
+      <div id="header">
+        <div id="header-right"><div class="header-logo"></div></div>
+      </div>
+    </div>
+
     <div class="reveal">
         <div class="slides">
           <section class="title-slide center">
@@ -48,6 +54,30 @@
           tailLength: 10,
         }
       });
+
+      {% if header_logo %}
+      const header = document.querySelector("#header").children;
+      document.querySelector('.header-logo').setAttribute("style", `background-image: url({{ header_logo }})`);
+      const slides = document.querySelector('.slides');
+      for (let i = 0 ; i < header.length ; i++) {
+        slides.append(header[i]);
+      }
+
+      Reveal.on('slidechanged', event => {
+        if (event.indexh === 0) {
+          document.querySelector('#header-right').setAttribute("style", "display: none;")
+        } else {
+          document.querySelector('#header-right').setAttribute("style", "display: block;")
+        }
+      });
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector('#header-right').setAttribute("style", "display: none;")
+        } else {
+          document.querySelector('#header-right').setAttribute("style", "display: block;")
+        }
+      });
+      {% endif %}
 
       // Allow outside access
       window.Reveal = Reveal;

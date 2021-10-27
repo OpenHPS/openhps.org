@@ -3,16 +3,12 @@ layout: presentation.njk
 title: Indoor Positioning Using the OpenHPS Framework
 author: <u>Maxim Van de Wynckel</u>, Beat Signer
 logo: true
+header_logo: /images/misc/openhps-logo.svg
 ---
 <style>
 .qr-image {
-    width: 150px;
-    height: 150px;
-}
-.qr {
-    position: absolute;
-    bottom: -400px;
-    right: 1em;
+    width: 200px;
+    height: 200px;
 }
 </style>
 
@@ -132,7 +128,7 @@ logo: true
 </section>
 
 <section>
-    <section data-markdown>
+    <section data-markdown data-auto-animate>
         {% markdown %}
             ## Architecture
             ### Design principles
@@ -154,11 +150,33 @@ logo: true
         a training or calibration needed when setting up the system.
         </aside>
     </section>
-    <section data-markdown>
+    <section data-markdown data-auto-animate>
         {% markdown %}
             ## Architecture
-            ### Design principles
+            ### ```DataObject```
 
+        {% endmarkdown %}
+
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Architecture
+            ### ```DataFrame```
+
+        {% endmarkdown %}
+        <img width="100%" src="images/dataframe.svg"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Architecture
+            ### ```ReferenceSpace```
+            *An absolute position is relative to a reference space. By default this is the global reference space (i.e. world).*
         {% endmarkdown %}
         <aside class="notes">
         
@@ -166,11 +184,52 @@ logo: true
     </section>
 </section>
 
-<section data-markdown>
+<section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Indoor Positioning
+            - Symbolic Spaces
+            - Location-based Service
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate>
     {% markdown %}
         ## Indoor Positioning
-
+        ### ```SymbolicSpace```
+        
     {% endmarkdown %}
+</section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Dataset
+        {% endmarkdown %}
+        <img data-id="dataset-image" src="images/datapoints.svg" style="width: 75%;"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Dataset
+            **Total BLE Beacons**: 11\
+            **Total detected WLAN access points**: 220\
+            **Total stable WLAN access points**: 199
+
+            ||Training|Test|
+            |-|-|-|
+            |**Datapoints**|110|30|
+            |**Total fingerprints**|440|120|
+            |**Duration <small>(per orientation)</small>**|20s|20s|
+            |**Avg. WLAN Scans <small>(per fingerprint)</small>**|6|6|
+            |**Avg. BLE Advertisements <small>(per fingerprint)</small>**|16|15|
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
 </section>
 
 <section>
@@ -256,31 +315,47 @@ logo: true
         movement based on the current momentum.
         </aside>
     </section>
-</section>
-
-<section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Dataset
+            ## Demonstration
+            ### Positioning model (Online app #3)
         {% endmarkdown %}
-        <img src="images/datapoints.svg" style="width: 75%;"/>
+        <img src="images/pdr.svg" style="height: 70%;"/>
         <aside class="notes">
         
         </aside>
     </section>
 </section>
 
-<section data-markdown>
-    {% markdown %}
-        ## Conclusions & Future Work
-        - Enabling **end users** to author positioning systems.
-    {% endmarkdown %}
-    <div class="qr">
-        <div class="row">
-            <img class="qr-image" src="images/qr-code.svg"/>
-        </div>
-        <div class="row">
-            https://www.openhps.org
-        </div>
-    </div>
+<section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Trajectories
+        {% endmarkdown %}
+        <img data-id="trajectories" src="images/trajectories_thesis.svg" style="width: 90%;"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Trajectories
+        {% endmarkdown %}
+        <img data-id="trajectories"src="images/trajectories_flipped.svg" style="width: 90%;"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Conclusions & Future Work
+            - Enabling **end users** to author positioning systems.
+        {% endmarkdown %}
+        <img class="qr-image" src="images/qr-code.svg"/>
+    </section>
 </section>
