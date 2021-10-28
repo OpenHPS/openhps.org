@@ -35,6 +35,8 @@ header_logo: /images/misc/openhps-logo.svg
             - Support any use case
                 - Indoor or outdoor positioning or navigation
                 - Tabletop positioning
+            - Flexibility of outcome
+                - Accuracy over battery consumption, reliability, ..
             - Aimed towards ...
                 - **Developers**: For creating production-ready positioning systems
                 - **Researchers**: For rapid prototyping new algorithms and fusion techniques
@@ -42,7 +44,9 @@ header_logo: /images/misc/openhps-logo.svg
         <aside class="notes">
         With OpenHPS we aim to offer a framework for developers and researchers that
         can support a variety of positioning technologies, algorithms and uses cases that are not just
-        limited to indoor positioning.
+        limited to indoor positioning. We also aim to offer a lot of flexibility in the outcome of the position,
+        weither it is a developer wishing to offer the most accurate position, power optimized solution or
+        simply a reliable system that can rougly indicate weither or not you are in a specific room.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
@@ -68,7 +72,8 @@ header_logo: /images/misc/openhps-logo.svg
         <img height="30%" src="images/architecture2.svg"/>
         <aside class="notes">
         OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
-        We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data.
+        We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
+        We call this complete process network from source to sink a positioning model.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
@@ -80,7 +85,8 @@ header_logo: /images/misc/openhps-logo.svg
         <img height="60%" src="images/architecture3.svg"/>
         <aside class="notes">
         On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
-        handle background processing of information that is already pushed through the network.
+        handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
+        exchange between the calibration part of a process network and the actual online stage used on a production ready system.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
@@ -154,7 +160,7 @@ header_logo: /images/misc/openhps-logo.svg
         {% markdown %}
             ## Architecture
             ### ```DataObject```
-
+            
         {% endmarkdown %}
 
         <aside class="notes">
@@ -193,12 +199,12 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate>
-    {% markdown %}
-        ## Indoor Positioning
-        ### ```SymbolicSpace```
-        
-    {% endmarkdown %}
-</section>
+        {% markdown %}
+            ## Indoor Positioning
+            ### ```SymbolicSpace```
+            
+        {% endmarkdown %}
+    </section>
 </section>
 
 <section>
@@ -208,7 +214,10 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
         <img data-id="dataset-image" src="images/datapoints.svg" style="width: 75%;"/>
         <aside class="notes">
-        
+        For this paper we created a new public dataset recorded using OpenHPS. Our dataset consists of multiple
+        training and test data points that are each recorded in four directions. For each orientation we included WLAN
+        scan results and BLE scan results from the 11 beacons with known position. We also provide several trajectories
+        that also include IMU sensor data.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
@@ -227,11 +236,27 @@ header_logo: /images/misc/openhps-logo.svg
             |**Avg. BLE Advertisements <small>(per fingerprint)</small>**|16|15|
         {% endmarkdown %}
         <aside class="notes">
-        
+        We have 110 training datapoints and 30 datapoints, which in total gives us 440 training fingerprints
+        and 120 test datapoints. For each fingerprint we waited 20 seconds to collect wifi and ble scan results.
         </aside>
     </section>
 </section>
 
+<section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Goals
+            - Use OpenHPS for indoor positioning
+            - Flexibility of changing the positioning model
+                - Focus on accuracy
+                - Focus on 
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
+</section>
 <section>
     <section data-markdown data-auto-animate>
         {% markdown %}
@@ -241,7 +266,7 @@ header_logo: /images/misc/openhps-logo.svg
         <img src="images/model.svg" style="width: 95%;"/>
         <aside class="notes">
         For demonstrating the use of OpenHPS in an indoor positioning scenario we created a positioning system consisting out of two applications and a server
-        for handling a common implmentation with IMU data, WLAN access points and BLE beacons. This demonstrator mainly serves as a validation that we can
+        for handling a common implementation with IMU data, WLAN access points and BLE beacons. This demonstrator mainly serves as a validation that we can
         use a process network design for developing a modular indoor positioning system.
         </aside>
     </section>
@@ -325,6 +350,43 @@ header_logo: /images/misc/openhps-logo.svg
         
         </aside>
     </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Positioning model (Online app #3)
+        {% endmarkdown %}
+        {% markdown %}
+            ```ts {10-20}
+            ModelBuilder.create()
+                .addShape(GraphBuilder.create()
+                    .from(new IMUSourceNode({
+                        source: new DataObject(phoneUID),
+                        interval: 20,
+                        sensors: [
+                            SensorType.ACCELEROMETER, 
+                            SensorType.ORIENTATION
+                        ]
+                    }))
+                    .via(new SMAFilterNode(
+                        frame => [frame, "acceleration"], 
+                        { taps: 10 }
+                    ))
+                    .via(new GravityProcessingNode({
+                        method: GravityProcessingMethod.ABSOLUTE_ORIENTATION
+                    }))
+                    .via(new PedometerProcessingNode({
+                        minConsecutiveSteps: 1, 
+                        stepSize: 0.40
+                    }))
+                    .via(new VelocityProcessingNode())
+                    .to("pedometer-output"))
+                .build();
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
 </section>
 
 <section>
@@ -344,6 +406,17 @@ header_logo: /images/misc/openhps-logo.svg
             ### Trajectories
         {% endmarkdown %}
         <img data-id="trajectories"src="images/trajectories_flipped.svg" style="width: 90%;"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Trajectories
+            **WLAN Fingerprinting**
+
+        {% endmarkdown %}
         <aside class="notes">
         
         </aside>
