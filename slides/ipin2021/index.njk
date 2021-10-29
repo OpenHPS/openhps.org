@@ -188,6 +188,41 @@ header_logo: /images/misc/openhps-logo.svg
         
         </aside>
     </section>
+        <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Architecture
+            ### Pushing data
+
+        {% endmarkdown %}
+        <img width="100%" src="images/nodes-push.svg"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Architecture
+            ### Pulling data
+
+        {% endmarkdown %}
+        <img width="100%" src="images/nodes-pull.svg"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Architecture
+            ### Pushing error
+
+        {% endmarkdown %}
+        <img width="100%" src="images/nodes-push-error.svg"/>
+        <aside class="notes">
+        Errors can of course occur in the process network. When this happens, the push is rejected instead of resolved - and the
+        last node that performed the failed push will emit an error that will propagate upstream so the upstream nodes
+        are aware of the error. It is down to the developer to decide how these errors are handled.
+        </aside>
+    </section>
 </section>
 
 <section>

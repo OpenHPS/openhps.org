@@ -22,12 +22,13 @@ module.exports = function (el) {
   el.addPassthroughCopy("fonts");
   el.addPassthroughCopy("CNAME");
   el.addPassthroughCopy("_redirects");
-  el.addPassthroughCopy("vendor");
   el.addPassthroughCopy({
     "node_modules/reveal.js/dist/reveal.css": "vendor/reveal.js/reveal.css",
     "node_modules/reveal.js/dist/reset.css": "vendor/reveal.js/reset.css",
     "node_modules/reveal.js/dist/reveal.esm.js": "vendor/reveal.js/reveal.esm.js",
     "node_modules/reveal.js/plugin/notes/notes.esm.js": "vendor/reveal.js/plugin/notes/notes.esm.js",
+    "node_modules/reveal.js-pointer/dist/pointer.esm.js": "vendor/reveal.js/plugin/pointer/pointer.esm.js",
+    "node_modules/reveal.js-pointer/dist/pointer.css": "vendor/reveal.js/plugin/pointer/pointer.css",
   });
 
   el.setDataDeepMerge(true);
@@ -138,7 +139,8 @@ module.exports = function (el) {
       "html",
       "liquid",
       "svg",
-      "png"
+      "png",
+      "pdf"
     ],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",

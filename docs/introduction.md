@@ -47,8 +47,7 @@ OpenHPS is split up into multiple modules that each offer a certain set of funct
 ![OpenHPS Stack](/images/docs/openhps-stack.svg)
 
 ## Source
-Our repositories can be found on GitHub [https://github.com/OpenHPS](https://github.com/OpenHPS)
-The CI server containing the compiled components can be found on our CI Server [https://ci.mvdw-software.com/view/OpenHPS/](https://ci.mvdw-software.com/view/OpenHPS/).
+Our repositories can be found on GitHub [https://github.com/OpenHPS](https://github.com/OpenHPS). The distributed NPM packages can be found under the OpenHPS organisation [https://www.npmjs.com/org/openhps](https://www.npmjs.com/org/openhps). 
 
 ## Citing & Press Kit
 A press kit containing logos (*.SVG, *.PNG) can be found [here](/media/openhps-presskit.zip).

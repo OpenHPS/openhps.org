@@ -1,0 +1,18 @@
+---
+layout: default.njk
+---
+
+<div class="container main">
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-10 typography">
+            <h1>{{ title }}</h1>
+
+            {{ content | safe }}
+            <object data="{{ pdf }}" class="pdf-viewer" type="application/pdf">
+                <iframe src="https://docs.google.com/viewer?url=your_url_to_pdf&embedded=true"></iframe>
+            </object>
+        </div>
+    </div>
+</div>
