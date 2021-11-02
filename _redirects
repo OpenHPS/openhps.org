@@ -3,5 +3,6 @@
 /docs/getting-started   /docs/introduction
 /docs/about             /docs/introduction
 
-/owl/v1                 /owl/v1/openhps.ttl
 /owl                    /owl/v1
+/owl                    /owl/v1/ontology.ttl 200 Accept=text/turtle
+/owl/*                  /owl/v1/#:splat

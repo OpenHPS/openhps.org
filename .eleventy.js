@@ -14,10 +14,10 @@ const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
 require('dotenv').config();
 
-const downloadDocs = require("./_scripts/api");
+const buildDocs = require("./_scripts/api");
+const buildOntology = require("./_scripts/ontology");
 
 module.exports = function (el) {
-  el.addPassthroughCopy("owl");
   el.addPassthroughCopy("scripts");
   el.addPassthroughCopy("media");
   el.addPassthroughCopy("fonts");
@@ -129,7 +129,8 @@ module.exports = function (el) {
     ghostMode: false
   });
 
-  downloadDocs();
+  buildDocs();
+  buildOntology();
 
   return {
     templateFormats: [

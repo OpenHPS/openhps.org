@@ -26,7 +26,7 @@ const modules = [
     "rf"
 ];
 
-async function downloadDocs() {
+async function buildDocs() {
     for (let i in modules) {
         try {
             const module = modules[i];
@@ -109,4 +109,4 @@ async function extract(module, stream) {
     });
 }
 
-module.exports = downloadDocs;
+module.exports = buildDocs;
