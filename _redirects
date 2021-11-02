@@ -3,5 +3,5 @@
 /docs/getting-started   /docs/introduction
 /docs/about             /docs/introduction
 
-/owl                    /owl/v1
-/owl/v1                 /owl/v1/index-en.html
+/terms                  /terms/v1
+/terms/v1               /terms/v1/index-en.html

@@ -13,8 +13,7 @@ async function buildOntology() {
     await executeWidoco(
         widocoJar, 
         path.join(__dirname, "../_ontology/v1/openhps.ttl"), 
-        path.join(__dirname, "../_ontology/v1/widoco.conf"),
-        path.join(__dirname, "../_site/owl/v1")
+        path.join(__dirname, "../_site/terms/v1")
     );
     await rmdir(`_ontology`);
     await moveDoc();
@@ -43,12 +42,11 @@ async function downloadWidoco(version = "1.4.15") {
     });
 }
 
-async function executeWidoco(file, ontologyFile, configFile, outputFolder) {
+async function executeWidoco(file, ontologyFile, outputFolder) {
     return new Promise((resolve, reject) => {
         console.log(chalk.yellow(`\tExecuting ${file} ...`));
         const cmd = `java -jar ${file} \
             -ontFile ${ontologyFile} \
-            -confFile ${configFile} \
             -outFolder ${outputFolder} \
             -rewriteAll`;
         exec(cmd, (err, stdout, stderr) => {
@@ -63,12 +61,12 @@ async function executeWidoco(file, ontologyFile, configFile, outputFolder) {
 async function moveDoc() {
     return new Promise((resolve, reject) => {
         console.log(chalk.yellow(`\tMoving Widoco documentation to parent directory ...`));
-        fs.copy(path.join(__dirname, `../_site/owl/v1/doc`), path.join(__dirname, `../_site/owl/v1`), function(err) {
+        fs.copy(path.join(__dirname, `../_site/terms/v1/doc`), path.join(__dirname, `../_site/terms/v1`), function(err) {
             if (err) {
                 console.error(chalk.red("\t" + err));
                 reject();
             }
-            rmdir(path.join(__dirname, `../_site/owl/v1/doc`)).then(resolve).catch(reject);
+            rmdir(path.join(__dirname, `../_site/terms/v1/doc`)).then(resolve).catch(reject);
         });
     });
 }
