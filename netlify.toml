@@ -3,4 +3,9 @@
   to = "/owl/v1/ontology.ttl"
   status = 200
   force = true
-  headers = {Accept = "text/turtle"}
+  conditions = {Accept = "text/turtle"}
+
+[[redirects]]
+  from = "/owl"
+  to = "/owl/v1"
+  status = 200

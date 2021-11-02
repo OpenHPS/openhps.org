@@ -2,6 +2,7 @@
   <img alt="OpenHPS" src="https://openhps.org/images/logo_text-512.png" width="40%" /><br />
   www.openhps.org
 </h1>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cd5b79e8-3390-4644-9c46-713285941835/deploy-status)](https://app.netlify.com/sites/openhps/deploys)
 
 <br />
 
