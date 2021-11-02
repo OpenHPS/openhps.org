@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "/url"
-  to = "/url/v1/ontology.ttl"
+  from = "/owl"
+  to = "/owl/v1/ontology.ttl"
   status = 200
   force = true
   headers = {Accept = "text/turtle"}
