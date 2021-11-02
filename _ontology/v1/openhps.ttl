@@ -51,13 +51,15 @@
 ###  http://openhps.org/owl/Absolute2DPosition
 :Absolute2DPosition rdf:type owl:Class ;
                     rdfs:subClassOf :AbsolutePosition ;
-                    rdfs:comment "Defines the absolute position of an object represented as a 2D point." .
+                    rdfs:comment "Defines the absolute position of an object represented as a 2D point." ;
+                    rdfs:label "Absolute2DPosition" .
 
 
 ###  http://openhps.org/owl/Absolute3DPosition
 :Absolute3DPosition rdf:type owl:Class ;
                     rdfs:subClassOf :AbsolutePosition ;
-                    rdfs:comment "Defines the absolute position of an object represented as a 3D point." .
+                    rdfs:comment "Defines the absolute position of an object represented as a 3D point." ;
+                    rdfs:label "Absolute3DPosition" .
 
 
 ###  http://openhps.org/owl/AbsolutePosition
@@ -91,7 +93,8 @@
 ###  http://openhps.org/owl/GeographicalPosition
 :GeographicalPosition rdf:type owl:Class ;
                       rdfs:subClassOf :AbsolutePosition ;
-                      rdfs:comment "Defines the absolute position of an object represented as a geographical point." .
+                      rdfs:comment "Defines the absolute position of an object represented as a geographical point." ;
+                      rdfs:label "GeographicalPosition" .
 
 
 ###  http://openhps.org/owl/Orientation
