@@ -2,7 +2,7 @@ const path = require('path');
 const axios = require('axios');
 const chalk = require('chalk');
 const { exec } = require('child_process');
-const fs = require('fs-extra');
+const fs = require('fs');
 const { fetchLatestBuild, extractZip, downloadArtifact, rmdir } = require("./utils");
 
 async function buildOntology() {
@@ -10,13 +10,15 @@ async function buildOntology() {
     console.log(chalk.yellow(`\tExtracting ontology ...'`));
     await extractZip(`_ontology/`, stream);
     const widocoJar = await downloadWidoco();
+    const version = 'v1';
     await executeWidoco(
         widocoJar, 
-        path.join(__dirname, "../_ontology/v1/openhps.ttl"), 
-        path.join(__dirname, "../_site/terms/v1")
+        path.join(__dirname, `../_ontology/${version}/openhps.ttl`), 
+        path.join(__dirname, `../_site/terms/${version}`)
     );
     await rmdir(`_ontology`);
-    await moveDoc();
+    console.log(chalk.yellow(`\tCreating Netlify rewrites ...'`));
+    await createRedirects(version);
 }
 
 async function downloadOntology() {
@@ -58,16 +60,21 @@ async function executeWidoco(file, ontologyFile, outputFolder) {
     });
 }
 
-async function moveDoc() {
-    return new Promise((resolve, reject) => {
-        console.log(chalk.yellow(`\tMoving Widoco documentation to parent directory ...`));
-        fs.copy(path.join(__dirname, `../_site/terms/v1/doc`), path.join(__dirname, `../_site/terms/v1`), function(err) {
-            if (err) {
-                console.error(chalk.red("\t" + err));
-                reject();
+async function createRedirects(version) {
+    return new Promise((resolve) => {
+        const jsonld = path.join(__dirname, `../_site/terms/${version}/ontology.jsonld`);
+        const ontology = JSON.parse(fs.readFileSync(jsonld));
+        let rewrites = "";
+        ontology.forEach(quad => {
+            let originalUri = quad['@id'];
+            if (originalUri.startsWith("http://openhps.org/terms#")) {
+                originalUri = originalUri.replace("http://openhps.org", "");
+                const newUri = originalUri.replace("/terms#", `/terms/${version}#`);
+                rewrites = rewrites + `${originalUri}\t${newUri}\n`;
             }
-            rmdir(path.join(__dirname, `../_site/terms/v1/doc`)).then(resolve).catch(reject);
         });
+        fs.appendFileSync(path.join(__dirname, "../_site/_redirects"), rewrites, { flag: "a" });
+        resolve();
     });
 }
 
