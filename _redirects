@@ -2,3 +2,6 @@
 /getting-started        /docs/introduction
 /docs/getting-started   /docs/introduction
 /docs/about             /docs/introduction
+
+/owl/v1                 /owl/v1/openhps.ttl
+/owl                    /owl/v1

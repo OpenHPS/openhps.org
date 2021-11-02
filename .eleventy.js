@@ -17,6 +17,7 @@ require('dotenv').config();
 const downloadDocs = require("./_scripts/api");
 
 module.exports = function (el) {
+  el.addPassthroughCopy("owl");
   el.addPassthroughCopy("scripts");
   el.addPassthroughCopy("media");
   el.addPassthroughCopy("fonts");
