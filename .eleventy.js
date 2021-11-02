@@ -14,7 +14,7 @@ const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
 require('dotenv').config();
 
-const buildDocs = require("./_scripts/api");
+const buildDocs = require("./_scripts/docs");
 const buildOntology = require("./_scripts/ontology");
 
 module.exports = function (el) {
