@@ -4,5 +4,3 @@
 /docs/about             /docs/introduction
 
 /owl                    /owl/v1
-/owl                    /owl/v1/ontology.ttl 200 Accept=text/turtle
-/owl/*                  /owl/v1/#:splat
