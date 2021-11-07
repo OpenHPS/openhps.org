@@ -31,8 +31,8 @@ async function downloadArtifact(latestBuild, name) {
             }
         }).then((response) => {
             const artifacts = response.data.artifacts;
-            const docs = artifacts.find(artifact => artifact.name === name);
-            return axios.get(docs.archive_download_url, {
+            const artifact = artifacts.find(artifact => artifact.name === name);
+            return axios.get(artifact.archive_download_url, {
                 headers: {
                     'Authorization': `token ${token}`
                 },

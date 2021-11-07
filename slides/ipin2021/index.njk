@@ -94,7 +94,7 @@ header_logo: /images/misc/openhps-logo.svg
             ## What is OpenHPS?
             ### Modularity
         {% endmarkdown %}
-        <img width="70%" src="images/stack.svg"/>
+        <img width="95%" src="images/stack.svg"/>
         <aside class="notes">
         By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
         can be reused throughout multiple different packages. Our core component offers the main concepts
@@ -164,7 +164,12 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
 
         <aside class="notes">
-        
+        We translated these design principles into data objects. A data object is an entity
+        that is relevant for the positioning of other data objects. A data object can be considered
+        a camera object tracking another object - or it can be a phone that is responsible itself for
+        the data collection.
+
+        Each data object can have a hierarchical relation with other objects.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
@@ -175,7 +180,16 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
         <img width="100%" src="images/dataframe.svg"/>
         <aside class="notes">
-        
+        Data frames are individual captured moments of sensor data processed in the positioning system. They are created
+        by a source object and can contain a set of relevant objects or raw sensor data.
+
+        In this example image we have a video frame that is captured by a camera object. It contains the actual image
+        of that frame and a set of objects that were detected inside this frame.
+
+        In the second example we have a simple IMU data frame that captures the currently acceleration of a sensor object.
+
+        And finally, an RF data frame that is created by a receiver and contains relative signal strengths to detected
+        access points that are represented as individual data objects.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
@@ -237,7 +251,9 @@ header_logo: /images/misc/openhps-logo.svg
         {% markdown %}
             ## Indoor Positioning
             ### ```SymbolicSpace```
-            
+            *An object that defines a space*
+            - Hierarchical relation with other spaces (or other objects)
+            - Connected relation with other spaces (or other objects)
         {% endmarkdown %}
     </section>
 </section>
@@ -285,10 +301,14 @@ header_logo: /images/misc/openhps-logo.svg
             - Use OpenHPS for indoor positioning
             - Flexibility of changing the positioning model
                 - Focus on accuracy
-                - Focus on 
+                - Focus on reliability (symbolic space hit rate)
         {% endmarkdown %}
         <aside class="notes">
-        
+        In order to demonstrate that OpenHPS can be used for indoor positioning scenario's we created
+        a demonstration using known and common indoor positioning techniques.
+
+        This demonstrator mainly serves as a validation that we can use a process network design for 
+        developing a modular indoor positioning system. We demonstrate the flexibility by 
         </aside>
     </section>
 </section>
@@ -301,8 +321,7 @@ header_logo: /images/misc/openhps-logo.svg
         <img src="images/model.svg" style="width: 95%;"/>
         <aside class="notes">
         For demonstrating the use of OpenHPS in an indoor positioning scenario we created a positioning system consisting out of two applications and a server
-        for handling a common implementation with IMU data, WLAN access points and BLE beacons. This demonstrator mainly serves as a validation that we can
-        use a process network design for developing a modular indoor positioning system.
+        for handling a common implementation with IMU data, WLAN access points and BLE beacons. 
         </aside>
     </section>
     <section data-markdown data-auto-animate>
@@ -424,6 +443,19 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
 </section>
 
+
+<section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Demonstration
+            ### Static Positioning
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
+</section>
+
 <section>
     <section data-markdown data-auto-animate>
         {% markdown %}
@@ -462,7 +494,9 @@ header_logo: /images/misc/openhps-logo.svg
     <section data-markdown data-auto-animate>
         {% markdown %}
             ## Conclusions & Future Work
-            - Enabling **end users** to author positioning systems.
+            - **Open Source** framework for Hybrid Positioning
+                - Aimed towards **developers** and **researchers**
+            - Public **dataset** with multiple orientations
         {% endmarkdown %}
         <img class="qr-image" src="images/qr-code.svg"/>
     </section>

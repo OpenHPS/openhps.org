@@ -156,8 +156,8 @@ h1, h2, h3, h4, h5 {
 #header-right {
     position: absolute;
     display: inline-block;
-    top: 0%;
-    right: 0%;
+    top: -5%;
+    right: -20%;
 }
 
 #footer-left {
@@ -178,7 +178,7 @@ h1, h2, h3, h4, h5 {
 .header-logo {
     display: inline-block;
     height: 75px;
-    width: 200px;
+    width: 180px;
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain;

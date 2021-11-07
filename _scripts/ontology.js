@@ -50,7 +50,10 @@ async function executeWidoco(file, ontologyFile, outputFolder) {
         const cmd = `java -jar ${file} \
             -ontFile ${ontologyFile} \
             -outFolder ${outputFolder} \
-            -rewriteAll`;
+            -rewriteAll \
+            -oops \
+            -webVowl \
+            -licensius`;
         exec(cmd, (err, stdout, stderr) => {
             if (err) {
                 return reject(err);
@@ -64,7 +67,7 @@ async function createRedirects(version) {
     return new Promise((resolve) => {
         const jsonld = path.join(__dirname, `../_site/terms/${version}/ontology.jsonld`);
         const ontology = JSON.parse(fs.readFileSync(jsonld));
-        let rewrites = "";
+        let rewrites = "\n\n";
         ontology.forEach(quad => {
             let originalUri = quad['@id'];
             if (originalUri.startsWith("http://openhps.org/terms#")) {
@@ -73,6 +76,7 @@ async function createRedirects(version) {
                 rewrites = rewrites + `${originalUri}\t${newUri}\n`;
             }
         });
+        rewrites += "\n\n";
         fs.appendFileSync(path.join(__dirname, "../_site/_redirects"), rewrites, { flag: "a" });
         resolve();
     });

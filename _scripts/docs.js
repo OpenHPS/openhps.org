@@ -19,7 +19,8 @@ const modules = [
     "react-native",
     "mqtt",
     "video",
-    "rf"
+    "rf",
+    "rdf"
 ];
 
 async function buildDocs() {
