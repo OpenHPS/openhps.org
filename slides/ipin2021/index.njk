@@ -162,7 +162,7 @@ header_logo: /images/misc/openhps-logo.svg
             ### ```DataObject```
             
         {% endmarkdown %}
-
+        <img width="100%" src="images/dataobject.svg"/>
         <aside class="notes">
         We translated these design principles into data objects. A data object is an entity
         that is relevant for the positioning of other data objects. A data object can be considered
@@ -255,6 +255,42 @@ header_logo: /images/misc/openhps-logo.svg
             - Hierarchical relation with other spaces (or other objects)
             - Connected relation with other spaces (or other objects)
         {% endmarkdown %}
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Location-based Service
+        {% endmarkdown %}
+        <img data-id="lbs-image" src="images/lbs1.svg" style="height: 90%;"/>
+        <aside class="notes">
+        The location based service creates an abstraction of the underlying process network.
+        It offers a similar API structure than well known APIs. When a user simply requests the
+        current position of a person with a set of options such as the maximum age of the position,
+        the LBS will first check if a position is stored in the storage.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Location-based Service
+        {% endmarkdown %}
+        <img data-id="lbs-image" src="images/lbs2.svg" style="height: 90%;"/>
+        <aside class="notes">
+        Setting the current position will create an abstraction that uses the current storage
+        method to store the new position. This position can then be used by the process network.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## Location-based Service
+        {% endmarkdown %}
+        <img data-id="lbs-image" src="images/lbs3.svg" style="height: 90%;"/>
+        <aside class="notes">
+        Finally, watching for position changes will listen for new dataframe pushes on the sink
+        of the process network. If the positioning system does not update frequently, it will
+        trigger a pull every interval.
+        </aside>
     </section>
 </section>
 
