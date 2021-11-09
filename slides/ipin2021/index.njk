@@ -76,8 +76,8 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## What is OpenHPS?
-            ### Shared services
+            ## Process network design
+            ### Shared Services
             
         {% endmarkdown %}
         <img height="60%" src="images/architecture3.svg"/>
@@ -109,7 +109,7 @@ header_logo: /images/misc/openhps-logo.svg
             Socket, MQTT, REST API, ...
 
             **Data Storage**\
-            MongoDB, LocalStorage, ...
+            MongoDB, LocalStorage, RDF, ...
 
             **Positioning Algorithms**\
             IMU, fingerprinting, OpenVSLAM, ...
@@ -118,7 +118,7 @@ header_logo: /images/misc/openhps-logo.svg
             Symbolic spaces, location based services, geojson ...
 
             **Misc**\
-            NativeScript, React-Native, Sphero ...
+            React-Native, NativeScript, Sphero ...
         {% endmarkdown %}
         <aside class="notes">
         We already offer many different modules for the more common positioning techinques. In this paper we will use a socket module
@@ -187,17 +187,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## ```ReferenceSpace```
-            *An absolute position is relative to a reference space. By default this is the global reference space (e.g. world).*
-        {% endmarkdown %}
-        <aside class="notes">
-        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
-        you can optionally specify the reference space
-        </aside>
-    </section>
-        <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## Architecture
+            ## ```DataFrame```
             ### Pushing data
 
         {% endmarkdown %}
@@ -208,7 +198,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Architecture
+            ## ```DataFrame```
             ### Pulling data
 
         {% endmarkdown %}
@@ -217,9 +207,9 @@ header_logo: /images/misc/openhps-logo.svg
         
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-visibility="hidden">
         {% markdown %}
-            ## Architecture
+            ## ```DataFrame```
             ### Pushing error
 
         {% endmarkdown %}
@@ -228,6 +218,17 @@ header_logo: /images/misc/openhps-logo.svg
         Errors can of course occur in the process network. When this happens, the push is rejected instead of resolved - and the
         last node that performed the failed push will emit an error that will propagate upstream so the upstream nodes
         are aware of the error. It is down to the developer to decide how these errors are handled.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## ```ReferenceSpace```
+            *An absolute position is relative to a reference space. By default this is the global reference space (e.g. world).*
+        {% endmarkdown %}
+        <img width="70%" src="images/referencespace.svg"/>
+        <aside class="notes">
+        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
+        you can optionally specify the reference space
         </aside>
     </section>
 </section>
@@ -242,8 +243,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Indoor Positioning
-            ### ```SymbolicSpace```
+            ## ```SymbolicSpace```
             *An object that defines a space*
             - Hierarchical relation with other spaces (or other objects)
             - Connected relation with other spaces (or other objects)
@@ -360,7 +360,7 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
         <div class="row">
             <div class="col-3">
-                <img src="images/smartphone-offline.png" height="100%"/>
+                <img src="images/smartphone-offline.png" width="100%"/>
             </div>
             <div class="col-8">
                 <img src="images/model-offline.svg" width="100%"/>
