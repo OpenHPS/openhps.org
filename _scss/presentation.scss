@@ -154,10 +154,14 @@ h1, h2, h3, h4, h5 {
 }
 
 .header-right {
-    position: absolute;
+    position: fixed;
     display: inline-block;
     top: -5%;
     right: -20%;
+
+    @media  only screen and (max-width: 1600px) {
+        right: 0%;
+    }
 }
 
 .pdf-page {
