@@ -10,7 +10,7 @@
 
     <div id="hidden" style="display:none;">
       <div id="header">
-        <div id="header-right"><div class="header-logo"></div></div>
+        <div class="header-right"><div class="header-logo"></div></div>
       </div>
     </div>
 
@@ -52,31 +52,19 @@
           pointerSize: 20,
           alwaysVisible: false,
           tailLength: 10,
-        }
+        },
+        totalTime: 15 * 60
       });
 
       {% if header_logo %}
       const header = document.querySelector("#header").children;
       document.querySelector('.header-logo').setAttribute("style", `background-image: url({{ header_logo }})`);
-      const slides = document.querySelector('.slides');
+      const slides = document.querySelectorAll('.slides section:not([class^="stack"],[class^="title-slide"])');
       for (let i = 0 ; i < header.length ; i++) {
-        slides.append(header[i]);
+        slides.forEach(slide => {
+          slide.append(header[i].cloneNode(true));
+        });
       }
-
-      Reveal.on('slidechanged', event => {
-        if (event.indexh === 0) {
-          document.querySelector('#header-right').setAttribute("style", "display: none;")
-        } else {
-          document.querySelector('#header-right').setAttribute("style", "display: block;")
-        }
-      });
-      Reveal.on('ready', event => {
-        if (event.indexh === 0) {
-          document.querySelector('#header-right').setAttribute("style", "display: none;")
-        } else {
-          document.querySelector('#header-right').setAttribute("style", "display: block;")
-        }
-      });
       {% endif %}
 
       // Allow outside access

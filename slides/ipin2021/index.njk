@@ -67,7 +67,7 @@ header_logo: /images/misc/openhps-logo.svg
             
         {% endmarkdown %}
         <img height="30%" src="images/architecture.svg"/>
-        <img height="30%" src="images/architecture2.svg"/>
+        <img height="30%" data-id="architecture-graph" src="images/architecture2.svg"/>
         <aside class="notes">
         OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
         We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
@@ -77,10 +77,10 @@ header_logo: /images/misc/openhps-logo.svg
     <section data-markdown data-auto-animate>
         {% markdown %}
             ## Process network design
-            ### Shared Services
             
         {% endmarkdown %}
-        <img height="60%" src="images/architecture3.svg"/>
+        <img height="20%" src="images/architecture.svg"/>
+        <img height="50%" data-id="architecture-graph" src="images/architecture3.svg"/>
         <aside class="notes">
         On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
         handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
@@ -95,14 +95,11 @@ header_logo: /images/misc/openhps-logo.svg
         <aside class="notes">
         By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
         can be reused throughout multiple different packages. Our core component offers the main concepts
-        needed to design a process network for processing sensor data to an output position, communication
-        modules allow for remote nodes or parts of the process network. Modules offering positioning techniques
-        add extra algorithms or interfaces to other technologies such as fingerprinting or links
-        to a visual SLAM algorithm. Data storage modules offer persistence of data and finally a module can
-        also create an entire abstraction of the underling process network so it can be more easily used by developers.
+        needed to design a process network for processing sensor data to an output position while other components
+        handle the communication, data storage or add additional algorithms.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-visibility="hidden">
         {% markdown %}
             ## Modularity
             **Communication**\
@@ -115,7 +112,7 @@ header_logo: /images/misc/openhps-logo.svg
             IMU, fingerprinting, OpenVSLAM, ...
 
             **Abstractions**\
-            Symbolic spaces, location based services, geojson ...
+            Geospatial, location based services, geojson ...
 
             **Misc**\
             React-Native, NativeScript, Sphero ...
@@ -132,25 +129,34 @@ header_logo: /images/misc/openhps-logo.svg
 <section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Design principles
-            - Tracked actor
-            - Tracking actor
-            - Computing actor
-            - Calibration actor
+            ## Absolute and Relative positions
+            **Absolute**
+            - 2D, 3D, Geographical, ...
+
+            **Relative**
+            - Distance, angle, velocity, RSSI, ...
+            - Relative to another *object*
         {% endmarkdown %}
         <aside class="notes">
-        Our framework architecture evolved around four actors that we can identify in all positioning system implementations. A tracked
-        actor represents the person or object that is being tracked - it is the actor that we want to know the position for.
-
-        A tracking actor is the device responsible for tracking a tracked actor. It can be an external camera tracking how a person
-        moves through a building, or simply sensor data obtained by the tracked actor itself.
-
-        The computing actor is a type of actor that computes the information obtained by a tracking actor to a position for the tracked actor.
-
-        Finally, a calibration actor is the object or device responsible for setting up the system. This can be a manual configuration by a developer or
-        a training or calibration needed when setting up the system.
+        Our framework makes use of the terms absolute and relative position.
         </aside>
     </section>
+        <section data-markdown data-auto-animate>
+        {% markdown %}
+            ## ```ReferenceSpace```
+            *An absolute position can be relative to a reference space.*
+        {% endmarkdown %}
+        <img width="70%" src="images/referencespace.svg"/>
+        <aside class="notes">
+        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
+        you can optionally specify the reference space.
+
+        Similar to data objects, reference spaces can have a hierarchical relation with other objects.
+        </aside>
+    </section>
+</section>
+
+<section>
     <section data-markdown data-auto-animate>
         {% markdown %}
             ## ```DataObject```
@@ -220,34 +226,71 @@ header_logo: /images/misc/openhps-logo.svg
         are aware of the error. It is down to the developer to decide how these errors are handled.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## ```ReferenceSpace```
-            *An absolute position is relative to a reference space. By default this is the global reference space (e.g. world).*
-        {% endmarkdown %}
-        <img width="70%" src="images/referencespace.svg"/>
-        <aside class="notes">
-        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
-        you can optionally specify the reference space
-        </aside>
-    </section>
 </section>
 
 <section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Indoor Positioning
-            - Symbolic Spaces
-            - Location-based Service
+            ## ```SymbolicSpace```
+            *An object that semantically defines a space*
         {% endmarkdown %}
+        <div class="row">
+            <div class="col-7">
+                {% markdown %}
+                - Spatial hierarchy
+                - Connected relation with other spaces
+                - Geocoding (space to position, position to space)
+                - Can be used as a location
+                - GeoJSON import and export
+                {% endmarkdown %}
+            </div>
+            <div class="col-5">
+                <img width="100%" src="images/geojson.svg"/>
+            <div>
+        </div>
+        <aside class="notes">
+        Symbolic spaces extend the concept 
+        </aside>
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
             ## ```SymbolicSpace```
-            *An object that defines a space*
-            - Hierarchical relation with other spaces (or other objects)
-            - Connected relation with other spaces (or other objects)
+            
         {% endmarkdown %}
+        <div class="row">
+            <div class="col-5">
+                <img width="100%" style="margin-top: 1em" src="images/symbolicspace.svg"/>
+            </div>
+            <div class="col-7">
+            {% markdown %}
+                ```ts
+                const building = new Building("PL9")
+                    .setBounds({
+                        topLeft: new GeographicalPosition(
+                                50.8203, 
+                                4.3922),
+                        width: 46.275, 
+                        height: 37.27, 
+                        rotation: -34.04
+                    });
+                
+                const floor = new Floor("PL9.3")
+                    .setBuilding(building)
+                    .setFloorNumber(3);
+                
+                const office = new Room("PL9.3.58")
+                    .setFloor(floor)
+                    .setBounds([
+                        new Absolute2DPosition(4.75, 31.25),
+                        new Absolute2DPosition(8.35, 37.02),
+                    ]);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+        <aside class="notes">
+
+        </aside>
     </section>
 </section>
 
@@ -256,7 +299,7 @@ header_logo: /images/misc/openhps-logo.svg
         {% markdown %}
             ## Location-based Service
         {% endmarkdown %}
-        <img data-id="lbs-image" src="images/lbs1.svg" style="height: 90%;"/>
+        <img data-id="lbs-image" src="images/lbs1_h.svg" style="width: 100%;"/>
         <aside class="notes">
         The location based service creates an abstraction of the underlying process network.
         It offers a similar API structure than well known APIs. When a user simply requests the
@@ -268,7 +311,7 @@ header_logo: /images/misc/openhps-logo.svg
         {% markdown %}
             ## Location-based Service
         {% endmarkdown %}
-        <img data-id="lbs-image" src="images/lbs2.svg" style="height: 90%;"/>
+        <img data-id="lbs-image" src="images/lbs2_h.svg" style="width: 100%;"/>
         <aside class="notes">
         Setting the current position will create an abstraction that uses the current storage
         method to store the new position. This position can then be used by the process network.
@@ -278,7 +321,7 @@ header_logo: /images/misc/openhps-logo.svg
         {% markdown %}
             ## Location-based Service
         {% endmarkdown %}
-        <img data-id="lbs-image" src="images/lbs3.svg" style="height: 90%;"/>
+        <img data-id="lbs-image" src="images/lbs3_h.svg" style="width: 100%;"/>
         <aside class="notes">
         Finally, watching for position changes will listen for new dataframe pushes on the sink
         of the process network. If the positioning system does not update frequently, it will
@@ -317,30 +360,12 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
         <aside class="notes">
         We have 110 training datapoints and 30 datapoints, which in total gives us 440 training fingerprints
-        and 120 test datapoints. For each fingerprint we waited 20 seconds to collect wifi and ble scan results.
+        and 120 test datapoints. For each fingerprint we waited 20 seconds to collect wifi and ble scan results giving
+        us an average of 6 complete wlan scans and 15 individual ble advertisements.
         </aside>
     </section>
 </section>
 
-<section>
-    <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## Demonstration
-            ### Goals
-            - Use OpenHPS for indoor positioning
-            - Flexibility of changing the positioning model
-                - Focus on accuracy
-                - Focus on reliability (symbolic space hit rate)
-        {% endmarkdown %}
-        <aside class="notes">
-        In order to demonstrate that OpenHPS can be used for indoor positioning scenario's we created
-        a demonstration using known and common indoor positioning techniques.
-
-        This demonstrator mainly serves as a validation that we can use a process network design for 
-        developing a modular indoor positioning system. We demonstrate the flexibility by 
-        </aside>
-    </section>
-</section>
 <section>
     <section data-markdown data-auto-animate>
         {% markdown %}
@@ -349,14 +374,20 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
         <img src="images/model.svg" style="width: 95%;"/>
         <aside class="notes">
+        In order to demonstrate that OpenHPS can be used for indoor positioning scenario's we created
+        a demonstration using known and common indoor positioning techniques.
+
+        This demonstrator mainly serves as a validation that we can use a process network design for 
+        developing a modular indoor positioning system.
+
         For demonstrating the use of OpenHPS in an indoor positioning scenario we created a positioning system consisting out of two applications and a server
         for handling a common implementation with IMU data, WLAN access points and BLE beacons. 
         </aside>
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration
-            ### Positioning model (Offline App)
+            ## Positioning model
+            ### Offline app
         {% endmarkdown %}
         <div class="row">
             <div class="col-3">
@@ -375,8 +406,8 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
        <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration
-            ### Positioning model (Server #1)
+            ## Positioning model
+            ### Server
         {% endmarkdown %}
         <img src="images/model-server-offline.svg" style="width: 90%;"/>
         <aside class="notes">
@@ -386,8 +417,8 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration
-            ### Positioning model (Online app #1)
+            ## Positioning model
+            ### Online app
         {% endmarkdown %}
         <img src="images/model-online-1.svg" style="width: 90%;"/>
         <aside class="notes">
@@ -397,8 +428,8 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration
-            ### Positioning model (Server #2)
+            ## Positioning model
+            ### Server
         {% endmarkdown %}
         <img src="images/model-server-online.svg" style="width: 90%;"/>
         <aside class="notes">
@@ -410,8 +441,8 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration
-            ### Positioning model (Online app #2)
+            ## Positioning model
+            ### Online app
         {% endmarkdown %}
         <img src="images/model-online-2.svg" style="width: 90%;"/>
         <aside class="notes">
@@ -425,8 +456,8 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration
-            ### Positioning model (Online app #3)
+            ## Positioning model
+            ### Online app
         {% endmarkdown %}
         <img src="images/pdr.svg" style="height: 70%;"/>
         <aside class="notes">
@@ -435,8 +466,8 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration
-            ### Positioning model (Online app #3)
+            ## Positioning model
+            ### Online app
         {% endmarkdown %}
         {% markdown %}
             ```ts {10-20}
@@ -472,23 +503,44 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
 </section>
 
-
 <section>
     <section data-markdown data-auto-animate>
+        <style>
+        .results table {
+            font-size: 75%;
+        }
+
+        .results tr > td:last-of-type {
+            background-color: #f5f5f5;
+        }
+
+        .results tr > th:last-of-type {
+            background-color: #f5f5f5;
+        }
+        </style>
         {% markdown %}
-            ## Demonstration
-            ### Static Positioning
+            ## Validation results
+            ### Static positioning
         {% endmarkdown %}
+        <div class="results">
+        {% markdown %}
+            ||**WLAN <small>fingerprinting</small>**|**BLE <small>fingerprinting</small>**|**BLE <small>multilateration</small>**|**Fusion**|
+            |-|-|-|-|-|
+            |*failed points*|0|6|12|0|
+            |*average error*|1.23 m|3.23 m|4.92 m|1.37 m|
+            |*minimum error*|0.01 m|0.17 m|0.74 m|0.01 m|
+            |*maximum error*|4.77 m|15.39 m|19.26 m|9.75 m|
+            |*standard deviation*|1.04 m|2.69 m|3.50 m|1.26 m|
+            |*hit rate*|95.82 %|80.83 %|52.50 %|96.67 %|
+        {% endmarkdown %}
+        </div>
         <aside class="notes">
-        
+
         </aside>
     </section>
-</section>
-
-<section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-visibility="hidden">
         {% markdown %}
-            ## Demonstration
+            ## Validation results
             ### Trajectories
         {% endmarkdown %}
         <img data-id="trajectories" src="images/trajectories_thesis.svg" style="width: 90%;"/>
@@ -498,23 +550,43 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Demonstration
+            ## Validation results
             ### Trajectories
         {% endmarkdown %}
-        <img data-id="trajectories"src="images/trajectories_flipped.svg" style="width: 90%;"/>
+        <img data-id="trajectories" src="images/trajectories_flipped.svg" style="width: 90%;"/>
         <aside class="notes">
         
         </aside>
     </section>
     <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## Demonstration
-            ### Trajectories
-            **WLAN Fingerprinting**
+        <style>
+        .results.trajectories tr > td:last-of-type {
+            background-color: #0034ad;
+            color: white;
+        }
 
+        .results.trajectories tr > th:last-of-type {
+            background-color: #0034ad;
+            color: white;
+        }
+        </style>
+        {% markdown %}
+            ## Validation results
+            ### Trajectories
         {% endmarkdown %}
+        <div class="results trajectories">
+        {% markdown %}
+            ||**WLAN + BLE**|**WLAN + BLE + IMU**|
+            |-|-|-|
+            |*average error*|3.28 m|1.26 m|
+            |*maximum error*|9.60 m|3.10 m|
+            |*standard deviation*|3.10 m|0.77 m|
+            |*average update frequency*|3.04 s|0.52 m|
+        {% endmarkdown %}
+        </div>
+        <img data-id="trajectories" src="images/trajectories_flipped.svg" style="width: 50%;"/>
         <aside class="notes">
-        
+
         </aside>
     </section>
 </section>
@@ -522,11 +594,19 @@ header_logo: /images/misc/openhps-logo.svg
 <section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Conclusions & Future Work
-            - **Open Source** framework for Hybrid Positioning
+            ## Conclusions & future work
+            - OpenHPS: **Open Source** framework for Hybrid Positioning
                 - Aimed towards **developers** and **researchers**
             - Public **dataset** with multiple orientations
         {% endmarkdown %}
         <img class="qr-image" src="images/qr-code.svg"/>
+        <aside class="notes">
+        We have discussed OpenHPS as an open source positioning system framework
+        aimed towards developers and researchers.
+
+        We validated this dataset using a new dataset that is available to the public.
+
+        Thank you for your attention
+        </aside>
     </section>
 </section>
