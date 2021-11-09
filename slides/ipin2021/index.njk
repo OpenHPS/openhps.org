@@ -51,8 +51,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## What is OpenHPS?
-            ### Process network design
+            ## Process network design
             
         {% endmarkdown %}
 
@@ -64,8 +63,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## What is OpenHPS?
-            ### Process network design
+            ## Process network design
             
         {% endmarkdown %}
         <img height="30%" src="images/architecture.svg"/>
@@ -91,8 +89,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## What is OpenHPS?
-            ### Modularity
+            ## Modularity
         {% endmarkdown %}
         <img width="95%" src="images/stack.svg"/>
         <aside class="notes">
@@ -107,8 +104,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## What is OpenHPS?
-            ### Modularity
+            ## Modularity
             **Communication**\
             Socket, MQTT, REST API, ...
 
@@ -136,8 +132,7 @@ header_logo: /images/misc/openhps-logo.svg
 <section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Architecture
-            ### Design principles
+            ## Design principles
             - Tracked actor
             - Tracking actor
             - Computing actor
@@ -158,11 +153,10 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Architecture
-            ### ```DataObject```
+            ## ```DataObject```
             
         {% endmarkdown %}
-        <img width="100%" src="images/dataobject.svg"/>
+        <img height="75%" src="images/dataobject.svg"/>
         <aside class="notes">
         We translated these design principles into data objects. A data object is an entity
         that is relevant for the positioning of other data objects. A data object can be considered
@@ -174,8 +168,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Architecture
-            ### ```DataFrame```
+            ## ```DataFrame```
 
         {% endmarkdown %}
         <img width="100%" src="images/dataframe.svg"/>
@@ -194,12 +187,12 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Architecture
-            ### ```ReferenceSpace```
-            *An absolute position is relative to a reference space. By default this is the global reference space (i.e. world).*
+            ## ```ReferenceSpace```
+            *An absolute position is relative to a reference space. By default this is the global reference space (e.g. world).*
         {% endmarkdown %}
         <aside class="notes">
-        
+        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
+        you can optionally specify the reference space
         </aside>
     </section>
         <section data-markdown data-auto-animate>
