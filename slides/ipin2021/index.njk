@@ -12,19 +12,23 @@ header_logo: /images/misc/openhps-logo.svg
 }
 </style>
 
+<!-- Array.from(document.querySelectorAll("section[data-timing]").values()).map(e => e.getAttribute("data-timing")).reduce((a, b) => +a + +b) / 60 -->
+
 <section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## What is OpenHPS?
             ### An open source hybrid positioning system
         {% endmarkdown %}
         <img width="70%" class="shadow" src="images/openhps-site.png"/>
         <aside class="notes">
+        In this paper we introduced OpenHPS and its use within the domain of indoor positioning.
+
         OpenHPS is an open source hybrid positioning system developed in TypeScript that can run both on a server, 
         embedded device, smartphone or even the browser.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## What is OpenHPS?
             ### An open source hybrid positioning system
@@ -49,7 +53,7 @@ header_logo: /images/misc/openhps-logo.svg
         simply a reliable system that can rougly indicate weither or not you are in a specific room.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="25">
         {% markdown %}
             ## Process network design
             
@@ -61,7 +65,7 @@ header_logo: /images/misc/openhps-logo.svg
         you merge the sensor data in order to obtain a more reliable or accurate position that you can show to your user.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Process network design
             
@@ -74,7 +78,7 @@ header_logo: /images/misc/openhps-logo.svg
         We call this complete process network from source to sink a positioning model.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="35">
         {% markdown %}
             ## Process network design
             
@@ -87,7 +91,7 @@ header_logo: /images/misc/openhps-logo.svg
         exchange between the calibration part of a process network and the actual online stage used on a production ready system.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## Modularity
         {% endmarkdown %}
@@ -99,7 +103,7 @@ header_logo: /images/misc/openhps-logo.svg
         handle the communication, data storage or add additional algorithms.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-visibility="hidden">
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## Modularity
             **Communication**\
@@ -126,38 +130,23 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
 </section>
 
-<section>
-    <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## Absolute and Relative positions
-            **Absolute**
-            - 2D, 3D, Geographical, ...
+<section data-markdown data-auto-animate data-timing="30">
+    {% markdown %}
+        ## Absolute and Relative positions
+        **Absolute**
+        - 2D, 3D, Geographical, ...
 
-            **Relative**
-            - Distance, angle, velocity, RSSI, ...
-            - Relative to another *object*
-        {% endmarkdown %}
-        <aside class="notes">
-        Our framework makes use of the terms absolute and relative position.
-        </aside>
-    </section>
-        <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## ```ReferenceSpace```
-            *An absolute position can be relative to a reference space.*
-        {% endmarkdown %}
-        <img width="70%" src="images/referencespace.svg"/>
-        <aside class="notes">
-        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
-        you can optionally specify the reference space.
-
-        Similar to data objects, reference spaces can have a hierarchical relation with other objects.
-        </aside>
-    </section>
+        **Relative**
+        - Distance, angle, velocity, RSSI, ...
+        - Relative to another *object*
+    {% endmarkdown %}
+    <aside class="notes">
+    Our framework makes use of the terms absolute and relative position.
+    </aside>
 </section>
 
 <section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## ```DataObject```
             
@@ -172,7 +161,20 @@ header_logo: /images/misc/openhps-logo.svg
         Each data object can have a hierarchical relation with other objects.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## ```ReferenceSpace```
+            *An absolute position can be relative to a reference space.*
+        {% endmarkdown %}
+        <img width="70%" src="images/referencespace.svg"/>
+        <aside class="notes">
+        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
+        you can optionally specify the reference space.
+
+        Similar to data objects, reference spaces can have a hierarchical relation with other objects.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="80">
         {% markdown %}
             ## ```DataFrame```
 
@@ -191,7 +193,7 @@ header_logo: /images/misc/openhps-logo.svg
         access points that are represented as individual data objects.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## ```DataFrame```
             ### Pushing data
@@ -202,7 +204,7 @@ header_logo: /images/misc/openhps-logo.svg
         
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## ```DataFrame```
             ### Pulling data
@@ -213,7 +215,7 @@ header_logo: /images/misc/openhps-logo.svg
         
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-visibility="hidden">
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## ```DataFrame```
             ### Pushing error
@@ -229,7 +231,7 @@ header_logo: /images/misc/openhps-logo.svg
 </section>
 
 <section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## ```SymbolicSpace```
             *An object that semantically defines a space*
@@ -252,7 +254,7 @@ header_logo: /images/misc/openhps-logo.svg
         Symbolic spaces extend the concept 
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## ```SymbolicSpace```
             
@@ -295,7 +297,7 @@ header_logo: /images/misc/openhps-logo.svg
 </section>
 
 <section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## Location-based Service
         {% endmarkdown %}
@@ -304,10 +306,11 @@ header_logo: /images/misc/openhps-logo.svg
         The location based service creates an abstraction of the underlying process network.
         It offers a similar API structure than well known APIs. When a user simply requests the
         current position of a person with a set of options such as the maximum age of the position,
-        the LBS will first check if a position is stored in the storage.
+        the LBS will first check if a position is stored in the storage. If not, it will perform a pull
+        on the sink of the process network.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="15">
         {% markdown %}
             ## Location-based Service
         {% endmarkdown %}
@@ -317,7 +320,7 @@ header_logo: /images/misc/openhps-logo.svg
         method to store the new position. This position can then be used by the process network.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Location-based Service
         {% endmarkdown %}
@@ -331,43 +334,7 @@ header_logo: /images/misc/openhps-logo.svg
 </section>
 
 <section>
-    <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## Dataset
-        {% endmarkdown %}
-        <img data-id="dataset-image" src="images/datapoints.svg" style="width: 75%;"/>
-        <aside class="notes">
-        For this paper we created a new public dataset recorded using OpenHPS. Our dataset consists of multiple
-        training and test data points that are each recorded in four directions. For each orientation we included WLAN
-        scan results and BLE scan results from the 11 beacons with known position. We also provide several trajectories
-        that also include IMU sensor data.
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## Dataset
-            **Total BLE Beacons**: 11\
-            **Total detected WLAN access points**: 220\
-            **Total stable WLAN access points**: 199
-
-            ||Training|Test|
-            |-|-|-|
-            |**Datapoints**|110|30|
-            |**Total fingerprints**|440|120|
-            |**Duration <small>(per orientation)</small>**|20s|20s|
-            |**Avg. WLAN Scans <small>(per fingerprint)</small>**|6|6|
-            |**Avg. BLE Advertisements <small>(per fingerprint)</small>**|16|15|
-        {% endmarkdown %}
-        <aside class="notes">
-        We have 110 training datapoints and 30 datapoints, which in total gives us 440 training fingerprints
-        and 120 test datapoints. For each fingerprint we waited 20 seconds to collect wifi and ble scan results giving
-        us an average of 6 complete wlan scans and 15 individual ble advertisements.
-        </aside>
-    </section>
-</section>
-
-<section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Demonstration
             ### Positioning model
@@ -380,11 +347,11 @@ header_logo: /images/misc/openhps-logo.svg
         This demonstrator mainly serves as a validation that we can use a process network design for 
         developing a modular indoor positioning system.
 
-        For demonstrating the use of OpenHPS in an indoor positioning scenario we created a positioning system consisting out of two applications and a server
+        Our demonstration consists out of two applications and a server
         for handling a common implementation with IMU data, WLAN access points and BLE beacons. 
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Positioning model
             ### Offline app
@@ -404,7 +371,7 @@ header_logo: /images/misc/openhps-logo.svg
         send to a sink node that acts as a socket interface to the server.
         </aside>
     </section>
-       <section data-markdown data-auto-animate>
+       <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Positioning model
             ### Server
@@ -415,7 +382,7 @@ header_logo: /images/misc/openhps-logo.svg
         that extracts the features.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="15">
         {% markdown %}
             ## Positioning model
             ### Online app
@@ -426,7 +393,7 @@ header_logo: /images/misc/openhps-logo.svg
         The WLAN and BLE scan results are merged and send to the server using a socket connection
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Positioning model
             ### Server
@@ -439,7 +406,7 @@ header_logo: /images/misc/openhps-logo.svg
         send back to the online application.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="60">
         {% markdown %}
             ## Positioning model
             ### Online app
@@ -454,7 +421,7 @@ header_logo: /images/misc/openhps-logo.svg
         movement based on the current momentum.
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## Positioning model
             ### Online app
@@ -464,7 +431,7 @@ header_logo: /images/misc/openhps-logo.svg
         
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## Positioning model
             ### Online app
@@ -504,7 +471,43 @@ header_logo: /images/misc/openhps-logo.svg
 </section>
 
 <section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Dataset
+        {% endmarkdown %}
+        <img data-id="dataset-image" src="images/datapoints.svg" style="width: 75%;"/>
+        <aside class="notes">
+        For this paper we created a new public dataset recorded using OpenHPS. Our dataset consists of multiple
+        training and test data points that are each recorded in four directions. For each orientation we included WLAN
+        scan results and BLE scan results from the 11 beacons with known position. We also provide several trajectories
+        that also include IMU sensor data.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        {% markdown %}
+            ## Dataset
+            **Total BLE Beacons**: 11\
+            **Total detected WLAN access points**: 220\
+            **Total stable WLAN access points**: 199
+
+            ||Training|Test|
+            |-|-|-|
+            |**Datapoints**|110|30|
+            |**Total fingerprints**|440|120|
+            |**Duration <small>(per orientation)</small>**|20s|20s|
+            |**Avg. WLAN Scans <small>(per fingerprint)</small>**|6|6|
+            |**Avg. BLE Advertisements <small>(per fingerprint)</small>**|16|15|
+        {% endmarkdown %}
+        <aside class="notes">
+        We have 110 training datapoints and 30 datapoints, which in total gives us 440 training fingerprints
+        and 120 test datapoints. For each fingerprint we waited 20 seconds to collect wifi and ble scan results giving
+        us an average of 6 complete wlan scans and 15 individual ble advertisements.
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="70">
         <style>
         .results table {
             font-size: 75%;
@@ -535,17 +538,8 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
         </div>
         <aside class="notes">
-
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-visibility="hidden">
-        {% markdown %}
-            ## Validation results
-            ### Trajectories
-        {% endmarkdown %}
-        <img data-id="trajectories" src="images/trajectories_thesis.svg" style="width: 90%;"/>
-        <aside class="notes">
-        
+        Using this demonstrator and the dataset that we recorded with the offline part of the demonstrator - we conducted a validation of our
+        positioning system.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
@@ -558,7 +552,7 @@ header_logo: /images/misc/openhps-logo.svg
         
         </aside>
     </section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="70">
         <style>
         .results.trajectories tr > td:last-of-type {
             background-color: #0034ad;
@@ -592,7 +586,7 @@ header_logo: /images/misc/openhps-logo.svg
 </section>
 
 <section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Conclusions & future work
             - OpenHPS: **Open Source** framework for Hybrid Positioning
