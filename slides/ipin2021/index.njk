@@ -130,27 +130,39 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
 </section>
 
-<section data-markdown data-auto-animate data-timing="30">
-    {% markdown %}
-        ## Absolute and Relative positions
-        **Absolute**
-        - 2D, 3D, Geographical, ...
-        - Relative to a reference *space*
-
-        **Relative**
-        - Distance, angle, velocity, RSSI, ...
-        - Relative to another *object*
-    {% endmarkdown %}
-    <aside class="notes">
-    Our framework makes use of the terms absolute and relative position. An absolute position
-    represents a fixed positoin in space. We support 2D, 3D and geographical positions.
-
-    Relative positions are relative to another object and can be expressed in 
-    distance, angle, velocity or a more abstract RSS.
-    </aside>
-</section>
-
 <section>
+    <section data-markdown data-auto-animate data-timing="30">
+        {% markdown %}
+            ## Data Processing
+        {% endmarkdown %}
+        <img width="100%" src="images/dataframe_hl.svg"/>
+        <aside class="notes">
+        The data that we process in our process network is an important aspect of the core of OpenHPS.
+        We create an enveloppe of data that indicates a single observation. This observation contains information
+        about the source, raw sensor data and other spatial objects relevant to the obtained sensor data.
+
+        Each spatial object can have a position that is either known or should be calculated in the process network.
+        </aside>
+    </section>
+
+    <section data-markdown data-auto-animate data-timing="30">
+        {% markdown %}
+            ## Absolute and Relative positions
+            **Absolute**
+            - 2D, 3D, Geographical, ...
+
+            **Relative**
+            - Distance, angle, velocity, RSSI, ...
+            - Relative to another *object*
+        {% endmarkdown %}
+        <aside class="notes">
+        Our framework makes use of the terms absolute and relative position. An absolute position
+        represents a fixed position in space. We support 2D, 3D and geographical positions.
+
+        Relative positions are relative to another object and can be expressed in 
+        distance, angle, velocity or a more abstract RSS.
+        </aside>
+    </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## ```DataObject```
@@ -158,15 +170,14 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
         <img height="75%" src="images/dataobject.svg"/>
         <aside class="notes">
-        TODO... INTRO... We make use of data objects. A data object is an entity
-        that is relevant for the positioning of other data objects. A data object can be considered
+        A data object is any spatial entity that is relevant for the positioning of other data objects. A data object can be considered
         a camera object tracking another object - or it can be a phone that is responsible itself for
         the data collection.
 
         Each data object can have a hierarchical relation with other objects.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="20">
+    <section data-markdown data-auto-animate data-visibility="hidden">
         {% markdown %}
             ## ```ReferenceSpace```
             *An absolute position can be relative to a reference space.*
@@ -246,9 +257,11 @@ header_logo: /images/misc/openhps-logo.svg
                 {% markdown %}
                 - Spatial hierarchy
                 - Connected relation with other spaces
-                - Geocoding (space to position, position to space)
+                - Geocoding
                 - Can be used as a location
-                - GeoJSON import and export
+                - GeoJSON compatibility
+                    - Create from GeoJSON
+                    - Export to GeoJSON
                 {% endmarkdown %}
             </div>
             <div class="col-5">
@@ -599,6 +612,7 @@ header_logo: /images/misc/openhps-logo.svg
             ## Contributions and conclusions
             - OpenHPS: **Open source** framework for hybrid positioning
                 - Aimed towards **developers** and **researchers**
+            - Known abstractions such as Location-based Services
             - Public **dataset** with multiple orientations
         {% endmarkdown %}
         <img class="qr-image" src="images/qr-code.svg"/>
@@ -606,7 +620,7 @@ header_logo: /images/misc/openhps-logo.svg
         We have discussed OpenHPS as an open source positioning system framework
         aimed towards developers and researchers.
 
-        We validated this dataset using a new dataset that is available to the public.
+        We validated this using a demonstrator and a new dataset that is available to the public.
 
         Thank you for your attention
         </aside>
