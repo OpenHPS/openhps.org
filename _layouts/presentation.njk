@@ -19,14 +19,21 @@
           <section class="title-slide center" data-timing="15">
               {% if logo %}
               <div class="logos">
-                <div id="openhps-logo"></div>
                 <div id="vub-logo"></div>
                 <div id="wise-logo"></div>
+                <div id="openhps-logo"></div>
               </div>
               {% endif %}
-              <h2 id="label-title">{{ title }}</h2>
+              <h2 id="label-title">
+              {% if presentation_title %}
+                {{ presentation_title | safe }}
+              {% else %}
+                {{ title }}
+              {% endif %}
+              </h2>
               <h3 id="label-subtitle">{{ subtitle }}</h3>
               <h5 class="author">{{ author | safe }}</h5>
+              <h5 class="affiliation">{{ affiliation }}</h5>
           </section>
           {{ content | safe }}
         </div>

@@ -1,9 +1,11 @@
 ---
 layout: presentation.njk
 title: Indoor Positioning Using the OpenHPS Framework
+presentation_title: Indoor Positioning Using the OpenHPS&nbsp;Framework
 author: <u>Maxim Van de Wynckel</u>, Beat Signer
 logo: true
 header_logo: /images/misc/openhps-logo.svg
+affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering Lab
 ---
 <style>
 .qr-image {
@@ -11,8 +13,6 @@ header_logo: /images/misc/openhps-logo.svg
     height: 200px;
 }
 </style>
-
-<!-- Array.from(document.querySelectorAll("section[data-timing]").values()).map(e => e.getAttribute("data-timing")).reduce((a, b) => +a + +b) / 60 -->
 
 <section>
     <section data-markdown data-auto-animate data-timing="20">
@@ -32,16 +32,16 @@ header_logo: /images/misc/openhps-logo.svg
         {% markdown %}
             ## What is OpenHPS?
             ### An open source hybrid positioning system
-            - Support any technology
-                - From RF-based to cameras or LIDAR scanners
-            - Support any algorithm
-                - From basic fingerprinting to GPU intensive computer vision
-            - Support any use case
+            - Compatible with any technology
+                - From RF-based (e.g. WLAN, BLE, UWB) to cameras or LIDAR scanners
+            - Compatible with any algorithm
+                - From basic fingerprinting to resource intensive computer vision
+            - Compatible with any use case
                 - Indoor or outdoor positioning or navigation
                 - Tabletop positioning
             - Flexibility of outcome
                 - Accuracy over battery consumption, reliability, ..
-            - Aimed towards ...
+            - Aimed towards
                 - **Developers**: For creating production-ready positioning systems
                 - **Researchers**: For rapid prototyping new algorithms and fusion techniques
         {% endmarkdown %}
@@ -55,7 +55,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate data-timing="25">
         {% markdown %}
-            ## Process network design
+            ## Process Network Design
             
         {% endmarkdown %}
 
@@ -67,7 +67,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
-            ## Process network design
+            ## Process Network Design
             
         {% endmarkdown %}
         <img height="30%" src="images/architecture.svg"/>
@@ -116,10 +116,10 @@ header_logo: /images/misc/openhps-logo.svg
             IMU, fingerprinting, OpenVSLAM, ...
 
             **Abstractions**\
-            Geospatial, location based services, geojson ...
+            Geospatial, location-based services, geojson, ...
 
-            **Misc**\
-            React-Native, NativeScript, Sphero ...
+            **Other**\
+            React-Native, NativeScript, Sphero, ...
         {% endmarkdown %}
         <aside class="notes">
         [OPTIONAL SLIDE] We already offer many different modules for the more common positioning techinques. In this paper we will use a socket module
@@ -135,32 +135,12 @@ header_logo: /images/misc/openhps-logo.svg
         {% markdown %}
             ## Data Processing
         {% endmarkdown %}
-        <img width="100%" src="images/dataframe_hl.svg"/>
+        <object type="image/svg+xml" height="80%" data="images/datatypes.svg" class="logo"></object>
         <aside class="notes">
         The data that we process in our process network is an important aspect of the core of OpenHPS.
-        We create an enveloppe of data that indicates a single observation. This observation contains information
-        about the source, raw sensor data and other spatial objects relevant to the obtained sensor data.
-
-        Each spatial object can have a position that is either known or should be calculated in the process network.
-        </aside>
-    </section>
-
-    <section data-markdown data-auto-animate data-timing="30">
-        {% markdown %}
-            ## Absolute and Relative positions
-            **Absolute**
-            - 2D, 3D, Geographical, ...
-
-            **Relative**
-            - Distance, angle, velocity, RSSI, ...
-            - Relative to another *object*
-        {% endmarkdown %}
-        <aside class="notes">
-        Our framework makes use of the terms absolute and relative position. An absolute position
-        represents a fixed position in space. We support 2D, 3D and geographical positions.
-
-        Relative positions are relative to another object and can be expressed in 
-        distance, angle, velocity or a more abstract RSS.
+        We have knowledge, raw data and processed data. Knowledge is everything that we know - such as sensors, radio transmitters
+        or building layouts. Raw data is unprocessed data that we want to process, such as individual video or image frames, unfiltered
+        accelerometer data. And finally, we have the processed data that will eventually become knowledge.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
@@ -170,11 +150,31 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
         <img height="75%" src="images/dataobject.svg"/>
         <aside class="notes">
+        We represent this knowledge and processed data under the term dataobject.
+
         A data object is any spatial entity that is relevant for the positioning of other data objects. A data object can be considered
         a camera object tracking another object - or it can be a phone that is responsible itself for
         the data collection.
 
         Each data object can have a hierarchical relation with other objects.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        {% markdown %}
+            ## Absolute and Relative Positions
+            **Absolute**
+            - 2D, 3D, Geographical, ...
+
+            **Relative**
+            - Distance, angle, velocity, RSSI, ...
+            - Relative to another *object*
+        {% endmarkdown %}
+        <aside class="notes">
+        These spatial objects can have an absolute or relative position. An absolute position
+        represents a fixed position in space. We support 2D, 3D and geographical positions.
+
+        Relative positions are relative to another object and can be expressed in 
+        distance, angle, velocity or a more abstract RSS.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-visibility="hidden">
@@ -197,9 +197,11 @@ header_logo: /images/misc/openhps-logo.svg
         {% endmarkdown %}
         <img width="100%" src="images/dataframe.svg"/>
         <aside class="notes">
+        In order to contain our processed data with our raw data, we create a new Data frame.
+
         Data frames are individual captured moments of sensor data processed in the positioning system. They are the
         enveloppes transmitted through the process network and are usually created
-        by a source object and can contain a set of relevant objects or raw sensor data.
+        by a source object and can contain a set of relevant objects or raw sensor data that are added or modified by nodes in our network
 
         In this example image we have a video frame that is captured by a camera object. It contains the actual image
         of that frame and a set of objects that were detected inside this frame.
@@ -355,7 +357,7 @@ header_logo: /images/misc/openhps-logo.svg
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Demonstration
-            ### Positioning model
+            ### Positioning Model
         {% endmarkdown %}
         <img src="images/model.svg" style="width: 95%;"/>
         <aside class="notes">
@@ -371,7 +373,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
-            ## Positioning model
+            ## Positioning Model
             ### Offline app
         {% endmarkdown %}
         <div class="row">
@@ -403,7 +405,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate data-timing="15">
         {% markdown %}
-            ## Positioning model
+            ## Positioning Model
             ### Online app
         {% endmarkdown %}
         <img src="images/model-online-1.svg" style="width: 90%;"/>
@@ -427,7 +429,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate data-timing="60">
         {% markdown %}
-            ## Positioning model
+            ## Positioning Model
             ### Online app
         {% endmarkdown %}
         <img src="images/model-online-2.svg" style="width: 90%;"/>
@@ -452,7 +454,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
-            ## Positioning model
+            ## Positioning Model
             ### Online app
         {% endmarkdown %}
         {% markdown %}
@@ -541,7 +543,7 @@ header_logo: /images/misc/openhps-logo.svg
         }
         </style>
         {% markdown %}
-            ## Validation results
+            ## Validation Results
             ### Static positioning
         {% endmarkdown %}
         <div class="results">
@@ -565,7 +567,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
-            ## Validation results
+            ## Validation Results
             ### Trajectories
         {% endmarkdown %}
         <img data-id="trajectories" src="images/trajectories_flipped.svg" style="width: 90%;"/>
@@ -586,7 +588,7 @@ header_logo: /images/misc/openhps-logo.svg
         }
         </style>
         {% markdown %}
-            ## Validation results
+            ## Validation Results
             ### Trajectories
         {% endmarkdown %}
         <div class="results trajectories">
@@ -609,10 +611,11 @@ header_logo: /images/misc/openhps-logo.svg
 <section>
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
-            ## Contributions and conclusions
+            ## Contributions and Conclusions
             - OpenHPS: **Open source** framework for hybrid positioning
                 - Aimed towards **developers** and **researchers**
             - Known abstractions such as Location-based Services
+            - Configurable and interchangeable **nodes** and **services**
             - Public **dataset** with multiple orientations
         {% endmarkdown %}
         <img class="qr-image" src="images/qr-code.svg"/>
