@@ -58,13 +58,13 @@ h1, h2, h3, h4, h5 {
 .title-slide .author {
     color: lighten( $mainColor, 30% );
     font-weight: 400;
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 
 .title-slide .affiliation {
     color: lighten( $mainColor, 35% );
     font-weight: 400;
-    font-size: 0.6em; 
+    font-size: 0.8em; 
     font-style: italic;
 }
 
@@ -98,15 +98,12 @@ h1, h2, h3, h4, h5 {
     height: 100%;
 }
 
-.reveal .slides section.title-slide {
-    height: auto;
-}
-
 .title-slide {
     text-align: left;
 }
 
 .title-slide h2 {
+    font-size: 170%;
     margin-bottom: 1em;
 }
 
@@ -124,6 +121,7 @@ h1, h2, h3, h4, h5 {
 }
 
 #vub-logo {
+    width: 20%;
     background-image: url(/images/misc/vub-logo.svg);
 }
 
@@ -131,12 +129,17 @@ h1, h2, h3, h4, h5 {
     background-image: url(/images/misc/openhps-logo.svg);
 }
 
+.title-slide .slide-content {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
 .logos {
     width: 100%;
     height: 100px;
-    position: absolute;
-    bottom: -250px;
-    left: -15px;
+    position: fixed;
+    bottom: 0;
     overflow: hidden;
 }
 
@@ -172,12 +175,8 @@ h1, h2, h3, h4, h5 {
 .header-right {
     position: fixed;
     display: inline-block;
-    top: -5%;
-    right: -20%;
-
-    @media only screen and (max-width: 1400px) {
-        right: 0;
-    }
+    top: -1%;
+    right: 0%;
 }
 
 .pdf-page {
@@ -197,7 +196,7 @@ h1, h2, h3, h4, h5 {
 .header-logo {
     display: inline-block;
     height: 75px;
-    width: 180px;
+    width: 150px;
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain;

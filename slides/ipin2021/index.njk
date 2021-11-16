@@ -5,7 +5,7 @@ presentation_title: Indoor Positioning Using the OpenHPS&nbsp;Framework
 author: <u>Maxim Van de Wynckel</u>, Beat Signer
 logo: true
 header_logo: /images/misc/openhps-logo.svg
-affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering Lab
+affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel
 ---
 <style>
 .qr-image {
@@ -33,17 +33,13 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
             ## What is OpenHPS?
             ### An open source hybrid positioning system
             - Compatible with any technology
-                - From RF-based (e.g. WLAN, BLE, UWB) to cameras or LIDAR scanners
             - Compatible with any algorithm
-                - From basic fingerprinting to resource intensive computer vision
             - Compatible with any use case
-                - Indoor or outdoor positioning or navigation
-                - Tabletop positioning
             - Flexibility of outcome
                 - Accuracy over battery consumption, reliability, ..
             - Aimed towards
                 - **Developers**: For creating production-ready positioning systems
-                - **Researchers**: For rapid prototyping new algorithms and fusion techniques
+                - **Researchers**: For prototyping new algorithms and fusion techniques
         {% endmarkdown %}
         <aside class="notes">
         With OpenHPS we aim to offer a framework for developers and researchers that
@@ -71,7 +67,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
             
         {% endmarkdown %}
         <img height="30%" src="images/architecture.svg"/>
-        <img height="30%" data-id="architecture-graph" src="images/architecture2.svg"/>
+        <img height="47%" data-id="architecture-graph" src="images/architecture2.svg"/>
         <aside class="notes">
         OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
         We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
@@ -84,7 +80,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
             
         {% endmarkdown %}
         <img height="20%" src="images/architecture.svg"/>
-        <img height="50%" data-id="architecture-graph" src="images/architecture3.svg"/>
+        <img height="58%" data-id="architecture-graph" src="images/architecture3.svg"/>
         <aside class="notes">
         On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
         handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
@@ -95,7 +91,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
         {% markdown %}
             ## Modularity
         {% endmarkdown %}
-        <img width="95%" src="images/stack.svg"/>
+        <img width="100%" style="margin-top: 2em" src="images/stack.svg"/>
         <aside class="notes">
         By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
         can be reused throughout multiple different packages. Our core component offers the main concepts
@@ -105,7 +101,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
-            ## Modularity
+            ## Modularity ...
             **Communication**\
             Socket, MQTT, REST API, ...
 
@@ -148,7 +144,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
             ## ```DataObject```
             
         {% endmarkdown %}
-        <img height="75%" src="images/dataobject.svg"/>
+        <img height="84%" src="images/dataobject.svg"/>
         <aside class="notes">
         We represent this knowledge and processed data under the term dataobject.
 
@@ -326,7 +322,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
         on the sink of the process network.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="15">
+    <section data-markdown data-auto-animate data-visibility="uncounted">
         {% markdown %}
             ## Location-based Service
         {% endmarkdown %}
@@ -389,7 +385,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
     </section>
        <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
-            ## Positioning model
+            ## Positioning Model
             ### Server
         {% endmarkdown %}
         <img src="images/model-server-offline.svg" style="width: 90%;"/>
@@ -412,7 +408,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
     </section>
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
-            ## Positioning model
+            ## Positioning Model
             ### Server
         {% endmarkdown %}
         <img src="images/model-server-online.svg" style="width: 90%;"/>
@@ -440,7 +436,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
-            ## Positioning model
+            ## Positioning Model
             ### Online App
         {% endmarkdown %}
         <img src="images/pdr.svg" style="height: 70%;"/>
@@ -451,7 +447,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## Positioning Model
-            ### Online app
+            ### Online App
         {% endmarkdown %}
         {% markdown %}
             ```ts {10-20}
@@ -502,7 +498,7 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
-            ## Dataset
+            ## Dataset ...
             **Total BLE Beacons**: 11\
             **Total detected WLAN access points**: 220\
             **Total stable WLAN access points**: 199
@@ -550,7 +546,6 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
             |*average error*|1.23 m|3.23 m|4.92 m|1.37 m|
             |*minimum error*|0.01 m|0.17 m|0.74 m|0.01 m|
             |*maximum error*|4.77 m|15.39 m|19.26 m|9.75 m|
-            |*standard deviation*|1.04 m|2.69 m|3.50 m|1.26 m|
             |*hit rate*|95.82 %|80.83 %|52.50 %|96.67 %|
         {% endmarkdown %}
         </div>
@@ -593,7 +588,6 @@ affiliation: Vrije Universiteit Brussel, Web & Information Systems Engineering L
             |-|-|-|
             |*average error*|3.28 m|1.26 m|
             |*maximum error*|9.60 m|3.10 m|
-            |*standard deviation*|3.10 m|0.77 m|
             |*average update frequency*|3.04 s|0.52 s|
         {% endmarkdown %}
         </div>

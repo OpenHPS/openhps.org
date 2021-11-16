@@ -24,16 +24,18 @@
                 <div id="openhps-logo"></div>
               </div>
               {% endif %}
-              <h2 id="label-title">
-              {% if presentation_title %}
-                {{ presentation_title | safe }}
-              {% else %}
-                {{ title }}
-              {% endif %}
-              </h2>
-              <h3 id="label-subtitle">{{ subtitle }}</h3>
-              <h5 class="author">{{ author | safe }}</h5>
-              <h5 class="affiliation">{{ affiliation }}</h5>
+              <div class="slide-content">
+                <h2 id="label-title">
+                {% if presentation_title %}
+                  {{ presentation_title | safe }}
+                {% else %}
+                  {{ title }}
+                {% endif %}
+                </h2>
+                <h3 id="label-subtitle">{{ subtitle }}</h3>
+                <h5 class="author">{{ author | safe }}</h5>
+                <h5 class="affiliation">{{ affiliation | safe }}</h5>
+              </div>
           </section>
           {{ content | safe }}
         </div>
@@ -47,7 +49,9 @@
 
       Reveal.initialize({
         hash: true,
-        margin: 0.15,
+        margin: .08,
+        width: 960,
+        height: 700,
         plugins: [ Notes, Pointer ],
         controlsTutorial: true,
         pdfMaxPagesPerSlide: 1,
@@ -74,14 +78,23 @@
       }
       {% endif %}
 
-      // Allow outside access
       window.Reveal = Reveal;
       if (window.location.search.indexOf("presenter") > -1) {
         console.log("Starting in presenter mode");
         Reveal.configure({
-          keyboard: {
-            39: 'next',
-            37: 'prev',
+          navigationMode: 'linear',
+          slideNumber: 'c',
+          controls: true,
+        });
+        Reveal.on('slidechanged', (event) => {
+          if (event.currentSlide.hasAttribute("data-visibility") && !Reveal.isOverview()) {
+            const prevIndices = Reveal.getIndices(event.previousSlide);
+            const currentIndices = Reveal.getIndices(event.currentSlide);
+            if (prevIndices.h < currentIndices.h || (prevIndices.h === currentIndices.h && prevIndices.v < currentIndices.v)) {
+              Reveal.next();
+            } else if (prevIndices.h > currentIndices.h || (prevIndices.h === currentIndices.h && prevIndices.v > currentIndices.v)) {
+              Reveal.prev();
+            }
           }
         });
       }
