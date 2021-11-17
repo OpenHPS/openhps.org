@@ -7,20 +7,13 @@ logo: true
 header_logo: /images/misc/openhps-logo.svg
 affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel
 ---
-<style>
-.qr-image {
-    width: 200px;
-    height: 200px;
-}
-</style>
-
 <section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## What is OpenHPS?
-            ### An open source hybrid positioning system
+            ### An Open Source Hybrid Positioning System
         {% endmarkdown %}
-        <img width="70%" class="shadow" src="images/openhps-site.png"/>
+        <img width="67%" class="shadow" src="images/openhps-site.png"/>
         <aside class="notes">
         In this paper we introduced OpenHPS and its use within the domain of indoor positioning.
 
@@ -31,15 +24,15 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## What is OpenHPS?
-            ### An open source hybrid positioning system
+            ### An Open Source Hybrid Positioning System
             - Compatible with any technology
             - Compatible with any algorithm
             - Compatible with any use case
             - Flexibility of outcome
-                - Accuracy over battery consumption, reliability, ..
+                - Accuracy over battery consumption, reliability, ...
             - Aimed towards
-                - **Developers**: For creating production-ready positioning systems
-                - **Researchers**: For prototyping new algorithms and fusion techniques
+                - Developers
+                - Researchers
         {% endmarkdown %}
         <aside class="notes">
         With OpenHPS we aim to offer a framework for developers and researchers that
@@ -67,7 +60,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             
         {% endmarkdown %}
         <img height="30%" src="images/architecture.svg"/>
-        <img height="47%" data-id="architecture-graph" src="images/architecture2.svg"/>
+        <img height="45%" data-id="architecture-graph" src="images/architecture2.svg"/>
         <aside class="notes">
         OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
         We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
@@ -80,7 +73,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             
         {% endmarkdown %}
         <img height="20%" src="images/architecture.svg"/>
-        <img height="58%" data-id="architecture-graph" src="images/architecture3.svg"/>
+        <img height="55%" data-id="architecture-graph" src="images/architecture3.svg"/>
         <aside class="notes">
         On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
         handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
@@ -144,7 +137,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ## ```DataObject```
             
         {% endmarkdown %}
-        <img height="84%" src="images/dataobject.svg"/>
+        <img height="75%" src="images/dataobject.svg"/>
         <aside class="notes">
         We represent this knowledge and processed data under the term dataobject.
 
@@ -191,7 +184,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ## ```DataFrame```
 
         {% endmarkdown %}
-        <img height="80%" src="images/dataframe_single.svg"/>
+        <img height="75%" src="images/dataframe_single.svg"/>
         <aside class="notes">
         In order to contain our processed data with our raw data, we create a new Data frame.
 
@@ -206,7 +199,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## ```DataFrame```
-            ### Pushing data
+            ### Pushing Data
 
         {% endmarkdown %}
         <img width="100%" src="images/nodes-push.svg"/>
@@ -217,7 +210,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## ```DataFrame```
-            ### Pulling data
+            ### Pulling Data
 
         {% endmarkdown %}
         <img width="100%" src="images/nodes-pull.svg"/>
@@ -228,7 +221,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
             ## ```DataFrame```
-            ### Pushing error
+            ### Pushing Error
 
         {% endmarkdown %}
         <img width="100%" src="images/nodes-push-error.svg"/>
@@ -349,9 +342,11 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Demonstration
-            ### Positioning Model
+            - Validation of an indoor positioning **use case**
+            - Using **existing techniques**
+            - Validation of the **flexibility** and modularity
         {% endmarkdown %}
-        <img src="images/model.svg" style="width: 95%;"/>
+        <img src="images/model.svg" style="width: 98%;"/>
         <aside class="notes">
         In order to demonstrate that OpenHPS can be used for indoor positioning scenario's we created
         a demonstration using known and common indoor positioning techniques.
@@ -369,11 +364,11 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ### Offline App
         {% endmarkdown %}
         <div class="row">
-            <div class="col-3">
-                <img src="images/smartphone-offline.png" width="100%"/>
-            </div>
             <div class="col-8">
                 <img src="images/model-offline.svg" width="100%"/>
+            </div>
+            <div class="col-3">
+                <img src="images/smartphone-offline.png" width="100%"/>
             </div>
         </div>
         <aside class="notes">
@@ -386,9 +381,9 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
        <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Positioning Model
-            ### Server
+            ### Server (Offline)
         {% endmarkdown %}
-        <img src="images/model-server-offline.svg" style="width: 90%;"/>
+        <img src="images/model-server-offline.svg" style="width: 100%;"/>
         <aside class="notes">
         On the server this data is received and stored to a shared fingerprinting services
         that extracts the features. The services are accessible by the online stage
@@ -400,7 +395,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ## Positioning Model
             ### Online App
         {% endmarkdown %}
-        <img src="images/model-online-1.svg" style="width: 90%;"/>
+        <img src="images/model-online-1.svg" style="width: 100%;"/>
         <aside class="notes">
         The online stage application uses a wifi and ble source similar to the offline stage application. 
         The WLAN and BLE scan results are merged and send to the server using a socket connection
@@ -409,9 +404,9 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Positioning Model
-            ### Server
+            ### Server (Online)
         {% endmarkdown %}
-        <img src="images/model-server-online.svg" style="width: 90%;"/>
+        <img src="images/model-server-online.svg" style="width: 100%;"/>
         <aside class="notes">
         On the server we use three positioning techniques to obtain a position from this WLAN and BLE data.
         We process the wlan data with a knn fingerprinting algorithm and we perform both ble fingerprinting and
@@ -424,7 +419,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ## Positioning Model
             ### Online App
         {% endmarkdown %}
-        <img src="images/model-online-2.svg" style="width: 90%;"/>
+        <img src="images/model-online-2.svg" style="width: 100%;"/>
         <aside class="notes">
         In the online application an IMU source node is used together with pedestrian dead reckoning. The dead reckoning
         is applied on the last calculated position and is used as an intermediate calculate between responses from the server.
@@ -523,7 +518,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-timing="70">
         <style>
         .results table {
-            font-size: 75%;
+            font-size: 80%;
+            margin-top: 2em;
         }
 
         .results tr > td:last-of-type {
@@ -536,7 +532,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </style>
         {% markdown %}
             ## Validation Results
-            ### Static positioning
+            ### Static Positioning
         {% endmarkdown %}
         <div class="results">
         {% markdown %}
@@ -546,14 +542,15 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             |*average error*|1.23 m|3.23 m|4.92 m|1.37 m|
             |*minimum error*|0.01 m|0.17 m|0.74 m|0.01 m|
             |*maximum error*|4.77 m|15.39 m|19.26 m|9.75 m|
-            |*hit rate*|95.82 %|80.83 %|52.50 %|96.67 %|
+            |*hit rate*|95.82 %|80.83 %|52.50 %|<span class="highlight">96.67 %</span>|
         {% endmarkdown %}
         </div>
         <aside class="notes">
         Using this demonstrator and the dataset that we recorded with the offline part of the demonstrator - we conducted a validation of our
         positioning system. In this compared wifi fingerprinting, bluetooth fingerprinting using the 11 beacons and ble multilateration.
         While WLAN fingerprinting offers the best results, we demonstrate that the fusion with bluetooth beacons
-        provides a higher hit rate.
+        provides a higher hit rate. This higher hit rate is because we were able to give a higher weight to the Bluetooth positioning methods
+        whenever the user was close to one or more beacons.
         </aside>
     </section>
     <section data-markdown data-auto-animate>
@@ -598,24 +595,39 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
 </section>
 
-<section>
-    <section data-markdown data-auto-animate data-timing="30">
-        {% markdown %}
-            ## Contributions and Conclusions
-            - OpenHPS: **Open source** framework for hybrid positioning
-                - Aimed towards **developers** and **researchers**
-            - Abstractions such as Location-based Services and spaces
-            - Configurable and interchangeable **nodes** and **services**
-            - Public **dataset** with multiple orientations
-        {% endmarkdown %}
-        <img class="qr-image" src="images/qr-code.svg"/>
-        <aside class="notes">
-        We have discussed OpenHPS as an open source positioning system framework
-        aimed towards developers and researchers.
+<section data-markdown data-auto-animate data-timing="30">
+    <style>
+    .qr-image {
+        width: 200px;
+        height: 200px;
+    }
+    </style>
+    {% markdown %}
+        ## Contributions and Conclusions
+        - OpenHPS: **open source** framework for hybrid positioning
+            - Aimed towards **developers** and **researchers**
+        - Abstractions such as Location-based Services and spaces
+        - Configurable and interchangeable **nodes** and **services**
+        - Public **dataset** with multiple orientations
+    {% endmarkdown %}
+    <div class="row" style="position: absolute; bottom: 7vh;">
+        <div class="col-3">
+            <img class="qr-image" src="images/qr-code.svg"/>
+        </div>
+        <div class="col-7">
+            {% markdown %}
+            \
+            *Visit [https://openhps.org](https://openhps.org) for additional resources,
+            documentation, source code and more!*
+            {% endmarkdown %}
+        </div>
+    </div>
+    <aside class="notes">
+    We have discussed OpenHPS as an open source positioning system framework
+    aimed towards developers and researchers.
 
-        We validated this using a demonstrator and a new dataset that is available to the public.
+    We validated this using a demonstrator and a new dataset that is available to the public.
 
-        Thank you for your attention
-        </aside>
-    </section>
+    Thank you for your attention
+    </aside>
 </section>

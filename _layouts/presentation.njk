@@ -24,18 +24,16 @@
                 <div id="openhps-logo"></div>
               </div>
               {% endif %}
-              <div class="slide-content">
-                <h2 id="label-title">
-                {% if presentation_title %}
-                  {{ presentation_title | safe }}
-                {% else %}
-                  {{ title }}
-                {% endif %}
-                </h2>
-                <h3 id="label-subtitle">{{ subtitle }}</h3>
-                <h5 class="author">{{ author | safe }}</h5>
-                <h5 class="affiliation">{{ affiliation | safe }}</h5>
-              </div>
+              <h2 id="label-title">
+              {% if presentation_title %}
+                {{ presentation_title | safe }}
+              {% else %}
+                {{ title }}
+              {% endif %}
+              </h2>
+              <h3 id="label-subtitle">{{ subtitle }}</h3>
+              <h5 class="author">{{ author | safe }}</h5>
+              <h5 class="affiliation">{{ affiliation | safe }}</h5>
           </section>
           {{ content | safe }}
         </div>
@@ -70,7 +68,8 @@
       {% if header_logo %}
       const header = document.querySelector("#header").children;
       document.querySelector('.header-logo').setAttribute("style", `background-image: url({{ header_logo }})`);
-      const slides = document.querySelectorAll('.slides section:not([class^="stack"],[class^="title-slide"])');
+      const className = window.location.search.indexOf("print-pdf") > -1 ? ".pdf-page" : ".slides";
+      const slides = document.querySelectorAll(`${className} section:not([class^="stack"],[class^="title-slide"])`);
       for (let i = 0 ; i < header.length ; i++) {
         slides.forEach(slide => {
           slide.append(header[i].cloneNode(true));
@@ -84,7 +83,10 @@
         Reveal.configure({
           navigationMode: 'linear',
           slideNumber: 'c',
-          controls: true,
+          controls: false,
+        });
+        Reveal.on('pdf-ready', () => {
+          document.querySelectorAll(`.pdf-page section[data-visibility="uncounted"]`).forEach(e => e.closest('.pdf-page').remove());
         });
         Reveal.on('slidechanged', (event) => {
           if (event.currentSlide.hasAttribute("data-visibility") && !Reveal.isOverview()) {
