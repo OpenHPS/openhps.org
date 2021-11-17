@@ -13,6 +13,7 @@ const fs = require('fs');
 const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
 const faviconPlugin = require("eleventy-favicon");
+const pluginBibTeX = require('eleventy-plugin-bibtex');
 require('dotenv').config();
 
 const buildDocs = require("./_scripts/docs");
@@ -87,6 +88,7 @@ module.exports = function (el) {
   markdown.register(njkEnv, (src, _) => {
     return md.render(src);
   });
+  el.addPairedShortcode("bibtex", pluginBibTeX);
   el.setLibrary("njk", njkEnv);
 
   el.addCollection("sorted_docs", function (collection) {

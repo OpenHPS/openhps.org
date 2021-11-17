@@ -1,0 +1,9 @@
+<nav class="navigation">
+  <ul>
+    {% for publication in collections.publications %}
+      <li {% if page.url == post.url %}class="selected"{% endif %}>
+        <a href="{{ publication.url }}" {% if page.url == publication.url %}class="current"{% endif %}>{{ publication.data.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

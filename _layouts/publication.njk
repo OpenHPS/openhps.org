@@ -4,12 +4,15 @@ layout: default.njk
 
 <div class="container main">
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
+            {% include "publication_menu.njk" %}
         </div>
-        <div class="col-sm-10 typography">
+        <div class="col-sm-9 typography">
             <h1>{{ title }}</h1>
 
-            {{ content | safe }}
+            <h2>Abstract</h2>
+            <p class="abstract">{{ abstract }}</p>
+
             <object data="{{ pdf }}" class="pdf-viewer" type="application/pdf">
                 <iframe src="https://docs.google.com/viewer?url=your_url_to_pdf&embedded=true"></iframe>
             </object>

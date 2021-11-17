@@ -19,6 +19,7 @@
     "deasync": "^0.1.23",
     "dotenv": "^10.0.0",
     "eleventy-favicon": "^1.1.2",
+    "eleventy-plugin-bibtex": "^0.1.1",
     "eleventy-plugin-sass": "^1.2.0",
     "eleventy-plugin-seo": "^0.5.2",
     "eleventy-plugin-shiki-twoslash": "^1.0.42",

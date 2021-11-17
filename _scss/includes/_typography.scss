@@ -99,6 +99,10 @@ body {
     max-width: 100%;
 }
 
+p.abstract {
+    font-style: italic;
+}
+
 @media screen and (max-width: $on-medium) {
     .typography h1 {
         font-size: 42px;
