@@ -1,7 +1,7 @@
 {
     "title": "OpenHPS",
     "url": "https://openhps.org",
-    "description": "An Open Source Hybrid Positioning System",
+    "description": "A modular open source hybrid positioning system developed in TypeScript. OpenHPS allows you to develop prototypes or production ready positioning systems for various use cases.",
     "author": "Maxim Van de Wynckel",
     "twitter": "OpenHPS",
     "image": "/images/social/summary-large.png",

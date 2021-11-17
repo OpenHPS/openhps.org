@@ -12,6 +12,7 @@ const { DateTime } = require("luxon");
 const fs = require('fs');
 const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
+const faviconPlugin = require("eleventy-favicon");
 require('dotenv').config();
 
 const buildDocs = require("./_scripts/docs");
@@ -41,6 +42,7 @@ module.exports = function (el) {
       hostname: "https://openhps.org",
     },
   });
+  el.addPlugin(faviconPlugin);
 
   /* Markdown */
   const md = markdownIt({ html: true });
@@ -78,13 +80,14 @@ module.exports = function (el) {
   });
 
   /* Nunjucks */
-  let nunjucksEnvironment = new nunjucks.Environment(
+  let njkEnv = new nunjucks.Environment(
     new nunjucks.FileSystemLoader("_includes")
   );
-  markdown.register(nunjucksEnvironment, (src, _) => {
+  njkEnv.addGlobal('includeFile', (src) => fs.readFileSync(src));
+  markdown.register(njkEnv, (src, _) => {
     return md.render(src);
   });
-  el.setLibrary("njk", nunjucksEnvironment);
+  el.setLibrary("njk", njkEnv);
 
   el.addCollection("sorted_docs", function (collection) {
     const items = collection.getFilteredByTag("docs");
