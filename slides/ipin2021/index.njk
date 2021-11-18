@@ -25,10 +25,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         {% markdown %}
             ## What is OpenHPS?
             ### An Open Source Hybrid Positioning System
-            - Compatible with any technology
-            - Compatible with any algorithm
-            - Compatible with any use case
-            - Flexibility of outcome
+            - Any technology
+            - Any algorithm
+            - Any use case
+            - Flexibile processing and output
                 - Accuracy over battery consumption, reliability, ...
             - Aimed towards
                 - Developers
@@ -43,11 +43,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="25">
-        {% markdown %}
-            ## Process Network Design
-            
-        {% endmarkdown %}
-
+        <h2 data-id="title-processnetworkdesign">Process Network Design</h2>
         <img width="90%" src="images/architecture.svg"/>
         <aside class="notes">
         When creating a positioning system, you obtain sensor data from multiple different sensors. You process the data until at some stage in your processing
@@ -55,10 +51,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="30">
-        {% markdown %}
-            ## Process Network Design
-            
-        {% endmarkdown %}
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
         <img height="30%" src="images/architecture.svg"/>
         <img height="45%" data-id="architecture-graph" src="images/architecture2.svg"/>
         <aside class="notes">
@@ -68,12 +61,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="35">
-        {% markdown %}
-            ## Process Network Design
-            
-        {% endmarkdown %}
-        <img height="20%" src="images/architecture.svg"/>
-        <img height="55%" data-id="architecture-graph" src="images/architecture3.svg"/>
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="70%" style="margin-top: 1em" data-id="architecture-graph" src="images/architecture3.svg"/>
         <aside class="notes">
         On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
         handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
@@ -81,9 +70,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Modularity
-        {% endmarkdown %}
+        <h2 data-id="title-modularity">Modularity</h2>
         <img width="100%" style="margin-top: 2em" src="images/stack.svg"/>
         <aside class="notes">
         By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
@@ -93,8 +80,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-modularity">Modularity ...</h2>
         {% markdown %}
-            ## Modularity ...
             **Communication**\
             Socket, MQTT, REST API, ...
 
@@ -134,7 +121,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## ```DataObject```
+            ## DataObject
             
         {% endmarkdown %}
         <img height="75%" src="images/dataobject.svg"/>
@@ -168,7 +155,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-visibility="hidden">
         {% markdown %}
-            ## ```ReferenceSpace```
+            ## ReferenceSpace
             *An absolute position can be relative to a reference space.*
         {% endmarkdown %}
         <img width="70%" src="images/referencespace.svg"/>
@@ -180,10 +167,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="80">
-        {% markdown %}
-            ## ```DataFrame```
-
-        {% endmarkdown %}
+        <h2 data-id="title-dataframe">DataFrame</h2>
         <img height="75%" src="images/dataframe_single.svg"/>
         <aside class="notes">
         In order to contain our processed data with our raw data, we create a new Data frame.
@@ -197,8 +181,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
         {% markdown %}
-            ## ```DataFrame```
             ### Pushing Data
 
         {% endmarkdown %}
@@ -208,8 +192,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
         {% markdown %}
-            ## ```DataFrame```
             ### Pulling Data
 
         {% endmarkdown %}
@@ -219,8 +203,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
         {% markdown %}
-            ## ```DataFrame```
             ### Pushing Error
 
         {% endmarkdown %}
@@ -236,18 +220,16 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 <section>
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
-            ## ```SymbolicSpace```
+            ## SymbolicSpace
             *An object that semantically defines a space*
         {% endmarkdown %}
         <div class="row">
             <div class="col-7">
                 {% markdown %}
                 - Spatial hierarchy
-                - Connected relation with other spaces
+                - Graph connectivity with other spaces
                 - Geocoding
                 - GeoJSON compatibility
-                    - Create from GeoJSON
-                    - Export to GeoJSON
                 - Can be used as a location
                 {% endmarkdown %}
             </div>
@@ -261,8 +243,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
         {% markdown %}
-            ## ```SymbolicSpace```
-            
+            ## SymbolicSpace ...
         {% endmarkdown %}
         <div class="row">
             <div class="col-5">
@@ -303,9 +284,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 
 <section>
     <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Location-based Service
-        {% endmarkdown %}
+        <h2 data-id="title-lbs">Location-based Service</h2>
         <img data-id="lbs-image" src="images/lbs1_h.svg" style="width: 100%;"/>
         <aside class="notes">
         The location based service creates an abstraction of the underlying process network.
@@ -316,9 +295,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-visibility="uncounted">
-        {% markdown %}
-            ## Location-based Service
-        {% endmarkdown %}
+        <h2 data-id="title-lbs">Location-based Service ...</h2>
         <img data-id="lbs-image" src="images/lbs2_h.svg" style="width: 100%;"/>
         <aside class="notes">
         Setting the current position will create an abstraction that uses the current storage
@@ -326,9 +303,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="20">
-        {% markdown %}
-            ## Location-based Service
-        {% endmarkdown %}
+        <h2 data-id="title-lbs">Location-based Service ...</h2>
         <img data-id="lbs-image" src="images/lbs3_h.svg" style="width: 100%;"/>
         <aside class="notes">
         Finally, watching for position changes will listen for new dataframe pushes on the sink
@@ -342,9 +317,9 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Demonstration
-            - Validation of an indoor positioning **use case**
-            - Using **existing techniques**
-            - Validation of the **flexibility** and modularity
+            - Indoor positioning **use case**
+            - Use **existing techniques**
+            - Validation of **flexibility** and modularity
         {% endmarkdown %}
         <img src="images/model.svg" style="width: 98%;"/>
         <aside class="notes">
@@ -359,12 +334,9 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="30">
-        {% markdown %}
-            ## Positioning Model
-            ### Offline App
-        {% endmarkdown %}
-        <div class="row">
-            <div class="col-8">
+        <h2 data-id="title-positioningmodel">Positioning Model</h2>
+        <div class="row" style="margin-top: 3rem;">
+            <div class="col-9">
                 <img src="images/model-offline.svg" width="100%"/>
             </div>
             <div class="col-3">
@@ -379,10 +351,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
        <section data-markdown data-auto-animate data-timing="20">
-        {% markdown %}
-            ## Positioning Model
-            ### Server (Offline)
-        {% endmarkdown %}
+        <h2 data-id="title-positioningmodel">Positioning Model ...</h2>
         <img src="images/model-server-offline.svg" style="width: 100%;"/>
         <aside class="notes">
         On the server this data is received and stored to a shared fingerprinting services
@@ -391,22 +360,16 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="15">
-        {% markdown %}
-            ## Positioning Model
-            ### Online App
-        {% endmarkdown %}
-        <img src="images/model-online-1.svg" style="width: 100%;"/>
+        <h2 data-id="title-positioningmodel">Positioning Model ...</h2>
+        <img src="images/model-online-1.svg" style="width: 100%; margin-top: 7rem;"/>
         <aside class="notes">
         The online stage application uses a wifi and ble source similar to the offline stage application. 
         The WLAN and BLE scan results are merged and send to the server using a socket connection
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="30">
-        {% markdown %}
-            ## Positioning Model
-            ### Server (Online)
-        {% endmarkdown %}
-        <img src="images/model-server-online.svg" style="width: 100%;"/>
+        <h2 data-id="title-positioningmodel">Positioning Model ...</h2>
+        <img src="images/model-server-online.svg" style="width: 95%;"/>
         <aside class="notes">
         On the server we use three positioning techniques to obtain a position from this WLAN and BLE data.
         We process the wlan data with a knn fingerprinting algorithm and we perform both ble fingerprinting and
@@ -415,11 +378,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="60">
-        {% markdown %}
-            ## Positioning Model
-            ### Online App
-        {% endmarkdown %}
-        <img src="images/model-online-2.svg" style="width: 100%;"/>
+        <h2 data-id="title-positioningmodel">Positioning Model ...</h2>
+        <img src="images/model-online-2.svg" style="width: 100%; margin-top: 7rem;"/>
         <aside class="notes">
         In the online application an IMU source node is used together with pedestrian dead reckoning. The dead reckoning
         is applied on the last calculated position and is used as an intermediate calculate between responses from the server.
@@ -530,10 +490,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             background-color: #f5f5f5;
         }
         </style>
-        {% markdown %}
-            ## Validation Results
-            ### Static Positioning
-        {% endmarkdown %}
+        <h2 data-id="title-validationresults">Validation Results</h2>
+        <h3>Static Positioning</h3>
         <div class="results">
         {% markdown %}
             ||**WLAN <small>fingerprinting</small>**|**BLE <small>fingerprinting</small>**|**BLE <small>multilateration</small>**|**Fusion**|
@@ -554,10 +512,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         </aside>
     </section>
     <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## Validation Results
-            ### Trajectories
-        {% endmarkdown %}
+        <h2 data-id="title-validationresults">Validation Results ...</h2>
+        <h3>Trajectories</h3>
         <img data-id="trajectories" src="images/trajectories_flipped.svg" style="width: 90%;"/>
         <aside class="notes">
         
@@ -565,6 +521,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-timing="70">
         <style>
+        .results table {
+            margin-top: 0;
+        }
+
         .results.trajectories tr > td:last-of-type {
             background-color: #0034ad;
             color: white;
@@ -575,10 +535,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             color: white;
         }
         </style>
-        {% markdown %}
-            ## Validation Results
-            ### Trajectories
-        {% endmarkdown %}
+        <h2 data-id="title-validationresults">Validation Results ...</h2>
+        <h3>Trajectories</h3>
         <div class="results trajectories">
         {% markdown %}
             ||**WLAN + BLE**|**WLAN + BLE + IMU**|
@@ -588,7 +546,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             |*average update frequency*|3.04 s|0.52 s|
         {% endmarkdown %}
         </div>
-        <img data-id="trajectories" src="images/trajectories_flipped.svg" style="width: 50%;"/>
+        <img data-id="trajectories" src="images/trajectories_flipped_2.svg" style="width: 100%;"/>
         <aside class="notes">
 
         </aside>
@@ -606,7 +564,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         ## Contributions and Conclusions
         - OpenHPS: **open source** framework for hybrid positioning
             - Aimed towards **developers** and **researchers**
-        - Abstractions such as Location-based Services and spaces
+        - Abstractions such as location-based services and spaces
         - Configurable and interchangeable **nodes** and **services**
         - Public **dataset** with multiple orientations
     {% endmarkdown %}
