@@ -16,7 +16,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ## What is OpenHPS?
             ### An Open Source Hybrid Positioning System
         {% endmarkdown %}
-        <img width="67%" class="shadow" src="images/openhps-site.png"/>
+        <img width="67%" class="shadow" src="../ipin2021/images/openhps-site.png"/>
         <aside class="notes">
         In this paper we introduced OpenHPS and its use within the domain of indoor positioning.
 
@@ -47,7 +47,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-timing="25">
         <h2 data-id="title-processnetworkdesign">Process Network Design</h2>
-        <img width="90%" src="images/architecture.svg"/>
+        <img width="90%" src="../ipin2021/images/architecture.svg"/>
         <aside class="notes">
         When creating a positioning system, you obtain sensor data from multiple different sensors. You process the data until at some stage in your processing
         you merge the sensor data to obtain a position that you can show to your user.
@@ -56,7 +56,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-timing="30">
         <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
         <img height="30%" src="images/architecture.svg"/>
-        <img height="45%" data-id="architecture-graph" src="images/architecture2.svg"/>
+        <img height="45%" data-id="architecture-graph" src="../ipin2021/images/architecture2.svg"/>
         <aside class="notes">
         OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
         We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
@@ -65,7 +65,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-timing="35">
         <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
-        <img height="70%" style="margin-top: 1em" data-id="architecture-graph" src="images/architecture3.svg"/>
+        <img height="70%" style="margin-top: 1em" data-id="architecture-graph" src="../ipin2021/images/architecture3.svg"/>
         <aside class="notes">
         On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
         handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
@@ -74,7 +74,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         <h2 data-id="title-modularity">Modularity</h2>
-        <img width="100%" style="margin-top: 2em" src="images/stack.svg"/>
+        <img width="100%" style="margin-top: 2em" src="../ipin2021/images/stack.svg"/>
         <aside class="notes">
         By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
         can be reused throughout multiple different packages. Our core component offers the main concepts
