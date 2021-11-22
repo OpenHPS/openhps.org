@@ -1,0 +1,107 @@
+---
+layout: presentation.njk
+title: "OpenHPS: An Open Source Hybrid Positioning System"
+author: Maxim Van de Wynckel
+logo: true
+header_logo: /images/misc/openhps-logo.svg
+affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel
+---
+<section>
+
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## What is OpenHPS?
+            ### An Open Source Hybrid Positioning System
+        {% endmarkdown %}
+        <img width="67%" class="shadow" src="images/openhps-site.png"/>
+        <aside class="notes">
+        In this paper we introduced OpenHPS and its use within the domain of indoor positioning.
+
+        OpenHPS is an open source hybrid positioning system developed in TypeScript that can run both on a server, 
+        embedded device, smartphone or even the browser.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## What is OpenHPS?
+            ### An Open Source Hybrid Positioning System
+            - Any technology
+            - Any algorithm
+            - Any use case
+            - Flexibile processing and output
+                - Accuracy over battery consumption, reliability, ...
+            - Aimed towards
+                - Developers
+                - Researchers
+        {% endmarkdown %}
+        <aside class="notes">
+        With OpenHPS we aim to offer a framework for developers and researchers that
+        can support a variety of positioning technologies, algorithms and uses cases that are not just
+        limited to indoor positioning. We also aim to offer a lot of flexibility in the outcome of the position,
+        weither it is a developer wishing to offer the most accurate position, power optimized solution or
+        simply a reliable system that can rougly (but reliably) indicate weither or not you are in a specific room.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="25">
+        <h2 data-id="title-processnetworkdesign">Process Network Design</h2>
+        <img width="90%" src="images/architecture.svg"/>
+        <aside class="notes">
+        When creating a positioning system, you obtain sensor data from multiple different sensors. You process the data until at some stage in your processing
+        you merge the sensor data to obtain a position that you can show to your user.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="30%" src="images/architecture.svg"/>
+        <img height="45%" data-id="architecture-graph" src="images/architecture2.svg"/>
+        <aside class="notes">
+        OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
+        We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
+        We call this complete process network from source to sink a positioning model.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="35">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="70%" style="margin-top: 1em" data-id="architecture-graph" src="images/architecture3.svg"/>
+        <aside class="notes">
+        On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
+        handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
+        exchange between the calibration part of a process network and the actual online stage used on a production ready system.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 data-id="title-modularity">Modularity</h2>
+        <img width="100%" style="margin-top: 2em" src="images/stack.svg"/>
+        <aside class="notes">
+        By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
+        can be reused throughout multiple different packages. Our core component offers the main concepts
+        needed to design a process network for processing sensor data to an output position while other components
+        handle the communication, data storage or add additional algorithms.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        {% markdown %}
+            **Communication**\
+            Socket, MQTT, REST API, ...
+
+            **Data Storage**\
+            MongoDB, LocalStorage, RDF, ...
+
+            **Positioning Algorithms**\
+            IMU, fingerprinting, OpenVSLAM, ...
+
+            **Abstractions**\
+            Geospatial, location-based services, geojson, ...
+
+            **Other**\
+            React-Native, NativeScript, Sphero, ...
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
+</section>
