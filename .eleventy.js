@@ -13,13 +13,14 @@ const fs = require('fs');
 const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
 const faviconPlugin = require("eleventy-favicon");
-const pluginBibTeX = require('eleventy-plugin-bibtex');
 require('dotenv').config();
 
 const buildDocs = require("./_scripts/docs");
 const buildOntology = require("./_scripts/ontology");
+const decktape = require("./_scripts/decktape");
 
 module.exports = function (el) {
+  /* Passthrough Copy */
   el.addPassthroughCopy("scripts");
   el.addPassthroughCopy("media");
   el.addPassthroughCopy("fonts");
@@ -84,11 +85,9 @@ module.exports = function (el) {
   let njkEnv = new nunjucks.Environment(
     new nunjucks.FileSystemLoader("_includes")
   );
-  njkEnv.addGlobal('includeFile', (src) => fs.readFileSync(src));
   markdown.register(njkEnv, (src, _) => {
     return md.render(src);
   });
-  el.addPairedShortcode("bibtex", pluginBibTeX);
   el.setLibrary("njk", njkEnv);
 
   el.addCollection("sorted_docs", function (collection) {
@@ -108,7 +107,7 @@ module.exports = function (el) {
 
   // Get the first `n` elements of a collection.
   el.addFilter("head", (array, n) => {
-    if( n < 0 ) {
+    if (n < 0) {
       return array.slice(n);
     }
     return array.slice(0, n);
@@ -120,9 +119,8 @@ module.exports = function (el) {
 
   el.setBrowserSyncConfig({
     callbacks: {
-      ready: function(err, browserSync) {
+      ready: function(_, browserSync) {
         const content_404 = fs.readFileSync('_site/404.html');
-
         browserSync.addMiddleware("*", (req, res) => {
           // Provides the 404 content without redirect.
           res.write(content_404);
@@ -136,6 +134,7 @@ module.exports = function (el) {
 
   buildDocs();
   buildOntology();
+  el.addPlugin(decktape);
 
   return {
     templateFormats: [
