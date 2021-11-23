@@ -22,18 +22,18 @@ function decktape(el) {
         return "";
     });
 
-    el.on('afterBuild', async () => {
-        console.log(chalk.blue(`Starting web server for generating PDFs ...`));
-        const server = await createServer(3000);
-        // Generate pdfs
-        for (let i = 0 ; i < queue.length ; i++) {
-            const item = queue[i];
-            console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
-            await executeDecktape(item);
-        }
-        console.log(chalk.blue(`Stopping web server for generating PDFs!`));
-        server.close();
-    });
+    // el.on('afterBuild', async () => {
+    //     console.log(chalk.blue(`Starting web server for generating PDFs ...`));
+    //     const server = await createServer(3000);
+    //     // Generate pdfs
+    //     for (let i = 0 ; i < queue.length ; i++) {
+    //         const item = queue[i];
+    //         console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
+    //         await executeDecktape(item);
+    //     }
+    //     console.log(chalk.blue(`Stopping web server for generating PDFs!`));
+    //     server.close();
+    // });
 }
 
 function createServer(port = 3000) {

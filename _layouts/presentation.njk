@@ -99,6 +99,21 @@
             }
           }
         });
+        let lastMovement = 0;
+        let idle = false;
+        document.addEventListener('mousemove', (event) => {
+          lastMovement = Date.now();
+          if (idle) {
+            document.querySelector('.cursor-dot').classList.remove("inactive");
+            idle = false;
+          }
+        }, false);
+        setInterval(() => {
+          if (!idle && lastMovement < Date.now() - 3000) {
+            idle = true;
+            document.querySelector('.cursor-dot').classList.add("inactive");
+          }
+        }, 2000);
       }
     </script>
   </body>
