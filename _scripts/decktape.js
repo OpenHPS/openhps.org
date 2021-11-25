@@ -5,10 +5,11 @@ const path = require('path');
 const handler = require('serve-handler');
 const http = require('http');
 
-function decktape(el) {
+let ready = false;
+
+async function decktape(el) {
     el.addAsyncShortcode("decktape", async (title, page) => {
         const url = `http://localhost:3000${page.url}`;
-        console.log(page);
         queue.push({
             title,
             url: url + "?presenter",
@@ -23,17 +24,24 @@ function decktape(el) {
     });
 
     el.on('afterBuild', async () => {
-        console.log(chalk.blue(`Starting web server for generating PDFs ...`));
-        const server = await createServer(3000);
-        // Generate pdfs
-        for (let i = 0 ; i < queue.length ; i++) {
-            const item = queue[i];
-            console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
-            await executeDecktape(item);
+        if (!ready) {
+            ready = true;
+            generate();
         }
-        console.log(chalk.blue(`Stopping web server for generating PDFs!`));
-        server.close();
     });
+}
+
+async function generate() {
+    console.log(chalk.blue(`Starting web server for generating PDFs ...`));
+    const server = await createServer(3000);
+    // Generate pdfs
+    for (let i = 0 ; i < queue.length ; i++) {
+        const item = queue[i];
+        console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
+        await executeDecktape(item);
+    }
+    console.log(chalk.blue(`Stopping web server for generating PDFs!`));
+    server.close();
 }
 
 function createServer(port = 3000) {
@@ -45,7 +53,6 @@ function createServer(port = 3000) {
         });
 
         server.listen(port, () => {
-            console.log("listening on port 3000")
             resolve(server);
         });
     });
@@ -65,7 +72,7 @@ function executeDecktape(item) {
         });
 
         process.stdout.on('data', (data) => {
-            console.log(chalk.blueBright(`\t${data}`));
+            console.log(chalk.blueBright(`${data}`));
         });
         
         process.on('close', (code) => {
