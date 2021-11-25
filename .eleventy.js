@@ -146,7 +146,8 @@ module.exports = function (el) {
       "liquid",
       "svg",
       "png",
-      "pdf"
+      "pdf",
+      'gif'
     ],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",

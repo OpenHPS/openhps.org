@@ -45,7 +45,7 @@
       import Notes from '/vendor/reveal.js/plugin/notes/notes.esm.js';
       import Pointer from '/vendor/reveal.js/plugin/pointer/pointer.esm.js';
 
-      Reveal.initialize({
+      const options = {
         hash: true,
         margin: .08,
         width: 960,
@@ -63,7 +63,7 @@
           tailLength: 10,
         },
         totalTime: 15 * 60
-      });
+      };
 
       {% if header_logo %}
       const header = document.querySelector("#header").children;
@@ -80,10 +80,15 @@
       window.Reveal = Reveal;
       if (window.location.search.indexOf("presenter") > -1) {
         console.log("Starting in presenter mode");
-        Reveal.configure({
+        Reveal.initialize({
+          ...options,
           navigationMode: 'linear',
           slideNumber: 'c',
-          controls: false,
+          controls: false,     
+          pointer: {
+            pointerSize: 25,
+            alwaysVisible: true,
+          },
         });
         Reveal.on('pdf-ready', () => {
           document.querySelectorAll(`.pdf-page section[data-visibility="uncounted"]`).forEach(e => e.closest('.pdf-page').remove());
@@ -99,6 +104,23 @@
             }
           }
         });
+        let lastMovement = 0;
+        let idle = false;
+        document.addEventListener('mousemove', (event) => {
+          lastMovement = Date.now();
+          if (idle) {
+            document.querySelector('.cursor-dot').classList.remove("inactive");
+            idle = false;
+          }
+        }, false);
+        setInterval(() => {
+          if (!idle && lastMovement < Date.now() - 3000) {
+            idle = true;
+            document.querySelector('.cursor-dot').classList.add("inactive");
+          }
+        }, 2000);
+      } else {
+        Reveal.initialize(options);
       }
     </script>
   </body>

@@ -155,11 +155,25 @@ h1, h2, h3, h4, h5 {
 }
 
 .reveal ul {
-    list-style-type: "\25BA";
+    list-style-type: none;
+    margin: 0;
 }
 
-.reveal ul li {
-    padding-left: 1em;
+.reveal ul ul {
+    list-style-type: none;
+}
+
+.reveal li li:before {
+    content: "\2B1B";
+    font-size: 30%;
+}
+
+.reveal li:before {
+    content: "\25BA";
+    font-size: 60%;
+    line-height: 100%;
+    vertical-align: middle;
+    padding-right: .8rem;
 }
 
 .reveal li li { 
@@ -216,4 +230,8 @@ h1, h2, h3, h4, h5 {
 
 .cursor-dot {
     filter: drop-shadow(0 0 0.5rem red);
+}
+
+.cursor-dot.inactive {
+    opacity: 10% !important;
 }
