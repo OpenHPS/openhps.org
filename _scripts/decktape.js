@@ -8,10 +8,6 @@ const http = require('http');
 let ready = false;
 
 async function decktape(el) {
-    if (!process.env.GENERATE_PDF) {
-        return;
-    }
-    
     el.addAsyncShortcode("decktape", async (title, page) => {
         const url = `http://localhost:3000${page.url}`;
         queue.push({
@@ -26,6 +22,10 @@ async function decktape(el) {
         });
         return "";
     });
+
+    if (!process.env.GENERATE_PDF) {
+        return;
+    }
 
     el.on('afterBuild', async () => {
         if (!ready) {
