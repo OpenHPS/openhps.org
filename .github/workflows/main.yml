@@ -22,6 +22,8 @@ jobs:
           npm install
           npm run build
       - name: Deploy site
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           npm run deploy
       - name: Status check
