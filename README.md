@@ -4,7 +4,10 @@
 </h1>
 <p align="center">
     <a href="https://app.netlify.com/sites/openhps/deploys" target="_blank">
-        <img alt="Build Status" src="https://api.netlify.com/api/v1/badges/cd5b79e8-3390-4644-9c46-713285941835/deploy-status">
+        <img alt="Netlify build Status" src="https://api.netlify.com/api/v1/badges/cd5b79e8-3390-4644-9c46-713285941835/deploy-status">
+    </a>
+    <a href="https://github.com/OpenHPS/openhps.org/actions/workflows/main.yml" target="_blank">
+        <img alt="GitHub build Status" src="https://github.com/OpenHPS/openhps.org/actions/workflows/main.yml/badge.sv">
     </a>
 </p>
 
