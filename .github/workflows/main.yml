@@ -26,7 +26,7 @@ jobs:
       - name: Deploy site
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: cd5b79e8-3390-4644-9c46-713285941835
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
           npm run deploy
       - name: Status check
