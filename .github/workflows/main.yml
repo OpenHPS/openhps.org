@@ -23,7 +23,7 @@ jobs:
         run: |
           npm run deploy
       - name: Status check
-        uses: Sibz/github-status-action
+        uses: Sibz/github-status-action@1.1.0
         with:
           authToken: ${{ secrets.GITHUB_TOKEN }}
           context: Netlify preview
