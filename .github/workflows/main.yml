@@ -14,7 +14,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install fonts
         run: |
-          sudo apt update && sudo apt install -y ttf-mscorefonts-installer
+          sudo apt update
+          echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+          sudo apt-get install ttf-mscorefonts-installer
       - name: Build site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
