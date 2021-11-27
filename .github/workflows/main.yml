@@ -22,6 +22,8 @@ jobs:
       - name: Deploy site
         run: |
           npm run deploy
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Status check
         uses: Sibz/github-status-action@v1
         with:
