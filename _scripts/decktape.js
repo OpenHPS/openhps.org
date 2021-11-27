@@ -13,19 +13,15 @@ async function decktape(el) {
         queue.push({
             title,
             url: url + "?presenter",
-            pdf: path.join(page.inputPath, `../${page.fileSlug}_presentation.pdf`)
+            pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation.pdf`)
         });
         queue.push({
             title: title + " | Author Version",
             url,
-            pdf: path.join(page.inputPath, `../${page.fileSlug}_author_presentation.pdf`)
+            pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation.pdf`)
         });
         return "";
     });
-
-    if (!process.env.GENERATE_PDF) {
-        return;
-    }
 
     el.on('afterBuild', async () => {
         if (!ready) {
