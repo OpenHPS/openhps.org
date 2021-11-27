@@ -5,8 +5,6 @@ const path = require('path');
 const handler = require('serve-handler');
 const http = require('http');
 
-let ready = false;
-
 async function decktape(el) {
     el.addAsyncShortcode("decktape", async (title, page) => {
         const url = `http://localhost:3000${page.url}`;
@@ -23,12 +21,11 @@ async function decktape(el) {
         return "";
     });
 
-    el.on('afterBuild', async () => {
-        if (!ready) {
-            ready = true;
-            generate();
-        }
-    });
+    if (!process.argv.includes('--serve')) {
+        el.on('afterBuild', async () => {
+            await generate();
+        });
+    }
 }
 
 async function generate() {

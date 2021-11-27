@@ -132,8 +132,12 @@ module.exports = function (el) {
     ghostMode: false
   });
 
-  buildDocs();
-  buildOntology();
+  if (!process.argv.includes('--serve')) {
+    el.on('afterBuild', async () => {
+      await buildDocs();
+      await buildOntology();
+    });
+  }
   el.addPlugin(decktape);
 
   return {

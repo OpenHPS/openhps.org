@@ -7,13 +7,19 @@
         <img alt="Netlify build Status" src="https://api.netlify.com/api/v1/badges/cd5b79e8-3390-4644-9c46-713285941835/deploy-status">
     </a>
     <a href="https://github.com/OpenHPS/openhps.org/actions/workflows/main.yml" target="_blank">
-        <img alt="GitHub build Status" src="https://github.com/OpenHPS/openhps.org/actions/workflows/main.yml/badge.svG">
+        <img alt="GitHub build Status" src="https://github.com/OpenHPS/openhps.org/actions/workflows/main.yml/badge.svg">
     </a>
 </p>
 
 <br />
 
-This repository contains the site for OpenHPS (Open Source Hybrid Positioning System).
+This repository contains the website for OpenHPS (Open Source Hybrid Positioning System) on the domain https://openhps.org. It contains
+the following information:
+- General documentation
+- API documentation (Typedoc)
+- Presentations for lectures and conferences
+- Publications and resources
+- Ontologies documentation
 
 ## Installation
 Start by installing all dependencies.
@@ -30,6 +36,9 @@ Optionally, the ```--serve``` tag can be used to host a development version of t
 ```bash
 npm run build -- --serve
 ```
+
+## Deployment
+Deployment is done on Netlify
 
 ## Contributing
 Use of OpenHPS, contributions and feedback is highly appreciated. Please read our [contributing guidelines](CONTRIBUTING.md) for more information.
