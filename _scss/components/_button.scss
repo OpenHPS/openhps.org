@@ -1,6 +1,9 @@
 .typography {
     .btn {
-        width: 220px;
+        max-width: 220px;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
         padding: 10px;
         text-decoration: none;
         font-size: 0.9rem;

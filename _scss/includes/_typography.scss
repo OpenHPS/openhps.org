@@ -10,6 +10,9 @@ body {
   color: var(--color-text);
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.6rem;
+}
+
+body p {
   text-align: justify;
 }
 
@@ -97,6 +100,9 @@ body {
 
 .typography img {
     max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 p.abstract {

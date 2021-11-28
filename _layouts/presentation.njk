@@ -58,7 +58,7 @@
         pointer: {
           key: "q",
           color: "red",
-          pointerSize: 20,
+          pointerSize: 25,
           alwaysVisible: false,
           tailLength: 10,
         },
@@ -84,11 +84,7 @@
           ...options,
           navigationMode: 'linear',
           slideNumber: 'c',
-          controls: false,     
-          pointer: {
-            pointerSize: 25,
-            alwaysVisible: true,
-          },
+          controls: false,
         });
         Reveal.on('pdf-ready', () => {
           document.querySelectorAll(`.pdf-page section[data-visibility="uncounted"]`).forEach(e => e.closest('.pdf-page').remove());
