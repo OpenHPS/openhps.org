@@ -65,9 +65,14 @@ async function rmdir(dir) {
     });
 }
 
+function isGitHubAvailable() {
+    return token !== undefined;
+}
+
 module.exports = {
     extractZip,
     fetchLatestBuild,
     downloadArtifact,
-    rmdir
+    rmdir,
+    isGitHubAvailable
 };

@@ -45,11 +45,12 @@
       import Notes from '/vendor/reveal.js/plugin/notes/notes.esm.js';
       import Pointer from '/vendor/reveal.js/plugin/pointer/pointer.esm.js';
 
+      const urlParams = new URLSearchParams(window.location.search);
       const options = {
         hash: true,
         margin: .08,
-        width: 960,
-        height: 700,
+        width: urlParams.get("width") ?? {{ width if width else 960 }} ,
+        height: urlParams.get("height") ?? {{ height if height else 700 }},
         plugins: [ Notes, Pointer ],
         controlsTutorial: true,
         pdfMaxPagesPerSlide: 1,

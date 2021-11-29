@@ -3,9 +3,13 @@ const axios = require('axios');
 const chalk = require('chalk');
 const { exec } = require('child_process');
 const fs = require('fs');
-const { fetchLatestBuild, extractZip, downloadArtifact, rmdir } = require("./utils");
+const { isGitHubAvailable, fetchLatestBuild, extractZip, downloadArtifact, rmdir } = require("./utils");
 
 async function buildOntology() {
+    if (!isGitHubAvailable()) {
+        return;
+    }
+    
     const stream = await downloadOntology();
     console.log(chalk.yellow(`\tExtracting ontology ...'`));
     await extractZip(`_ontology/`, stream);

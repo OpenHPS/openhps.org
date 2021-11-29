@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { fetchLatestBuild, extractZip, downloadArtifact, rmdir } = require("./utils");
+const { isGitHubAvailable, fetchLatestBuild, extractZip, downloadArtifact, rmdir } = require("./utils");
 
 /**
  * Documentations to download from github.com/OpenHPS/openhps-*
@@ -24,6 +24,10 @@ const modules = [
 ];
 
 async function buildDocs() {
+    if (!isGitHubAvailable()) {
+        return;
+    }
+    
     for (let i in modules) {
         try {
             const module = modules[i];

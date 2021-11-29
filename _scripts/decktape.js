@@ -11,12 +11,26 @@ async function decktape(el) {
         queue.push({
             title,
             url: url + "?presenter",
-            pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation.pdf`)
+            pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation.pdf`),
+            widescreen: false
         });
         queue.push({
             title: title + " | Author Version",
             url,
-            pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation.pdf`)
+            pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation.pdf`),
+            widescreen: false
+        });
+        queue.push({
+            title,
+            url: url + "?presenter",
+            pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation-16x9.pdf`),
+            widescreen: true
+        });
+        queue.push({
+            title: title + " | Author Version",
+            url,
+            pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation-16x9.pdf`),
+            widescreen: true
         });
         return "";
     });
@@ -60,7 +74,7 @@ function executeDecktape(item) {
         const process = spawn(
             path.join(__dirname, '../node_modules/.bin/decktape'), 
             [
-                "--size=2048x1536", item.url, item.pdf
+                `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, item.pdf
             ], {
                 shell: true
             });
