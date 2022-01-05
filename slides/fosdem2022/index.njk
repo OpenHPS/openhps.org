@@ -1,14 +1,97 @@
 ---
 layout: presentation.njk
 title: "Rapid Prototyping of a Positioning System"
+presentation_title: "<span style='font-size: 80%'>Rapid Prototyping of a Positioning System</span>"
 subtitle: "Using the OpenHPS Framework"
 author: Maxim Van de Wynckel
 logo: true
 header_logo: /images/misc/openhps-logo.svg
 affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel
 ---
-<section>
 
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Positioning System
+            *"A positioning system is a mechanism for determining the position of an object in space."*\
+            [<small>*- Wikipedia (2022)*</small>](https://en.wikipedia.org/wiki/Positioning_system)
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+    {% markdown %}
+        ## Positioning System
+        *"A positioning system is a mechanism for determining the position of an **object** in **space**."*\
+        [<small>*- Wikipedia (2022)*</small>](https://en.wikipedia.org/wiki/Positioning_system)
+
+        **Object**\
+        What are you tracking? A person, an asset or a phone?
+
+        **Space**\
+        Outdoor, indoor, on a table or on a game board?
+    {% endmarkdown %}
+</section>
+
+</section>
+
+<section data-markdown data-auto-animate data-timing="20">
+    {% markdown %}
+        ## Use Cases
+        - Navigation\
+            *Navigate a person from point A to point B*
+        - Tracking\
+            *Asset tracking, customer tracking, tracking items on a table*
+        - Location Awareness\
+            *Trigger an action whenever a specific person is in a room*
+        - Mapping\
+            *Geospatial mapping of an environment*
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Technologies
+            *Technologies used to obtain sensor data for positioning*
+            - Camera (Sterescopic/Monocular/Omnidirectional)
+            - Bluetooth Beacons
+            - WLAN Access Points
+            - Ultrawideband Beacons
+            - LIDAR
+            - ...
+        {% endmarkdown %}
+    </section>
+</section>
+
+
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Algorithms
+            *Algorithms used to process sensor data*
+            - Lateration
+            - Proximity positioning
+            - Fingerprinting
+            - Computer vision
+            - Dead reckoning
+            - Sensor fusion
+            - ...
+        {% endmarkdown %}
+    </section>
+</section>
+
+<section data-markdown data-auto-animate data-timing="20">
+    {% markdown %}
+        ## Established Open Source Solutions
+        - AnyPlace *[https://anyplace.cs.ucy.ac.cy/](https://anyplace.cs.ucy.ac.cy/)*
+        - FIND *[https://github.com/schollz/find3](https://github.com/schollz/find3)*
+        - IndoorLocation *[https://github.com/IndoorLocation](https://github.com/IndoorLocation)*
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
 </section>
 
 <section>
@@ -18,12 +101,6 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ### An Open Source Hybrid Positioning System
         {% endmarkdown %}
         <img width="67%" class="shadow" src="../ipin2021/images/openhps-site.png"/>
-        <aside class="notes">
-        In this paper we introduced OpenHPS and its use within the domain of indoor positioning.
-
-        OpenHPS is an open source hybrid positioning system developed in TypeScript that can run both on a server, 
-        embedded device, smartphone or even the browser.
-        </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
@@ -31,12 +108,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ### An Open Source Hybrid Positioning System
             - Any technology
             - Any algorithm
-            - Any use case
+            - Various use cases
             - Flexibile processing and output
                 - Accuracy over battery consumption, reliability, ...
-            - Aimed towards
-                - Developers
-                - Researchers
+            - Aimed towards developers with knowledge on positioning techniques
         {% endmarkdown %}
         <aside class="notes">
         With OpenHPS we aim to offer a framework for developers and researchers that
@@ -56,7 +131,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-timing="30">
         <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
-        <img height="30%" src="images/architecture.svg"/>
+        <img height="30%" src="../ipin2021/images/architecture.svg"/>
         <img height="45%" data-id="architecture-graph" src="../ipin2021/images/architecture2.svg"/>
         <aside class="notes">
         OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
@@ -83,26 +158,109 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         handle the communication, data storage or add additional algorithms.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="30">
-        <h2 data-id="title-modularity">Modularity ...</h2>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
+            ## Current State
             **Communication**\
-            Socket, MQTT, REST API, ...
+            Socket, MQTT, REST API
 
             **Data Storage**\
-            MongoDB, LocalStorage, RDF, ...
+            MongoDB, LocalStorage, RDF
 
             **Positioning Algorithms**\
-            IMU, fingerprinting, OpenVSLAM, ...
+            IMU, fingerprinting, RF, OpenVSLAM
 
             **Abstractions**\
-            Geospatial, location-based services, geojson, ...
+            Geospatial, location-based services
 
-            **Other**\
-            React-Native, NativeScript, Sphero, ...
+            **Mobile (sensor source)**\
+            React-Native, NativeScript
         {% endmarkdown %}
-        <aside class="notes">
-        
-        </aside>
     </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Contributing
+            - Positioning algorithms (TypeScript)
+            - Bindings to other systems (TypeScript + ?)
+            - (UI) abstractions
+            - Documentation and examples
+        {% endmarkdown %}
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example
+            *You want to develop a cheap method of tracking small boxes in a lab.*
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example
+            *You want to develop a cheap method of tracking small boxes in a lab.*
+            ### Design considerations
+            - Boxes can be relatively small
+            - Hardware should not be expensive
+            - Position in a lab should be relatively accurate
+            - Infrastructure in the lab can change
+        {% endmarkdown %}
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example: Implementation
+            - Transmitting Bluetooth beacons in each box
+            - Bluetooth receivers around the room with WiFi connectivity (ESP32)
+            - Central server (Raspberry Pi) for keeping track of the boxes
+            - API endpoint in Raspberry Pi
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example: Implementation
+            ### Receivers
+            - ESP32 with Espruino firmware
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example: Implementation
+            ### Positioning model
+
+        {% endmarkdown %}
+    </section>
+</section>
+
+<section data-markdown data-auto-animate data-timing="30">
+    <style>
+    .qr-image {
+        width: 200px;
+        height: 200px;
+    }
+    </style>
+    {% markdown %}
+        ## Contributions and Conclusions
+        - 
+    {% endmarkdown %}
+    <div class="row" style="position: absolute; bottom: 7vh;">
+        <div class="col-3">
+            <img class="qr-image" src="../ipin2021/images/qr-code.svg"/>
+        </div>
+        <div class="col-7">
+            {% markdown %}
+            \
+            *Visit [https://openhps.org](https://openhps.org) for additional resources,
+            documentation, source code and more!*
+            {% endmarkdown %}
+        </div>
+    </div>
 </section>
