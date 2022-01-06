@@ -183,11 +183,123 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 </section>
 
 <section>
+    <section data-markdown data-auto-animate data-timing="30">
+        {% markdown %}
+            ## Data Processing
+        {% endmarkdown %}
+        <img height="80%" src="../ipin2021/images/datatypes.svg" class="logo">
+        <aside class="notes">
+        The data that we process in our process network is an important aspect of the core of OpenHPS.
+        We have knowledge, raw data and processed data. Knowledge is everything that we know - such as sensors, radio transmitters
+        or building layouts. Raw data is unprocessed data that we want to process, such as individual video or image frames, unfiltered
+        accelerometer data. And finally, we have the processed data that will eventually become knowledge.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## DataObject
+            
+        {% endmarkdown %}
+        <img height="75%" src="../ipin2021/images/dataobject.svg"/>
+        <aside class="notes">
+        We represent this knowledge and processed data under the term dataobject.
+
+        A data object is any spatial entity that is relevant for the positioning of other data objects. A data object can be considered
+        a camera object tracking another object - or it can be a phone that is responsible itself for
+        the data collection.
+
+        Each data object can have a hierarchical relation with other objects.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        {% markdown %}
+            ## Absolute and Relative Positions
+            **Absolute**
+            - 2D, 3D, Geographical, ...
+
+            **Relative**
+            - Distance, angle, velocity, ...
+            - Relative to another *object*
+        {% endmarkdown %}
+        <aside class="notes">
+        These spatial objects can have an absolute or relative position. An absolute position
+        represents a fixed position in space. We support 2D, 3D and geographical positions.
+
+        Relative positions are relative to another object and can be expressed in 
+        distance, angle, velocity or a more abstract RSS.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="hidden">
+        {% markdown %}
+            ## ReferenceSpace
+            *An absolute position can be relative to a reference space.*
+        {% endmarkdown %}
+        <img width="70%" src="../ipin2021/images/referencespace.svg"/>
+        <aside class="notes">
+        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
+        you can optionally specify the reference space.
+
+        Similar to data objects, reference spaces can have a hierarchical relation with other objects.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="80">
+        <h2 data-id="title-dataframe">DataFrame</h2>
+        <img height="75%" src="../ipin2021/images/dataframe_single.svg"/>
+        <aside class="notes">
+        In order to contain our processed data with our raw data, we create a new Data frame.
+
+        Data frames are individual captured moments of sensor data processed in the positioning system. They are the
+        enveloppes transmitted through the process network and are usually created
+        by a source object and can contain a set of relevant objects or raw sensor data that are added or modified by nodes in our network
+
+        In this example image we have a video frame that is captured by a camera object. It contains the actual image
+        of that frame and a set of objects that were detected inside this frame.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
+        {% markdown %}
+            ### Pushing Data
+
+        {% endmarkdown %}
+        <img width="100%" src="../ipin2021/images/nodes-push.svg"/>
+        <aside class="notes">
+        [OPTIONAL SLIDE] 
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
+        {% markdown %}
+            ### Pulling Data
+
+        {% endmarkdown %}
+        <img width="100%" src="../ipin2021/images/nodes-pull.svg"/>
+        <aside class="notes">
+        [OPTIONAL SLIDE] 
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
+        {% markdown %}
+            ### Pushing Error
+
+        {% endmarkdown %}
+        <img width="100%" src="../ipin2021/images/nodes-push-error.svg"/>
+        <aside class="notes">
+        [OPTIONAL SLIDE] Errors can of course occur in the process network. When this happens, the push is rejected instead of resolved - and the
+        last node that performed the failed push will emit an error that will propagate upstream so the upstream nodes
+        are aware of the error. It is down to the developer to decide how these errors are handled.
+        </aside>
+    </section>
+</section>
+
+<section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Contributing
-            - Positioning algorithms (TypeScript)
-            - Bindings to other systems (TypeScript + ?)
+            - Positioning algorithms
+            - Process network communication
+            - Bindings to other systems
             - (UI) abstractions
             - Documentation and examples
         {% endmarkdown %}
@@ -199,6 +311,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         {% markdown %}
             ## Example
             *You want to develop a cheap method of tracking small boxes in a lab.*
+            ![](images/20220106_154330.jpg)
         {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate data-timing="20">
@@ -227,13 +340,15 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Example: Implementation
-            ### Receivers
-            - ESP32 with Espruino firmware
+            ### Receivers and Transmitters
+            - ESP32 with Espruino firmware as plugged-in receivers
+			- iTAG Bluetooth key trackers as tracked devices
         {% endmarkdown %}
+        <img height="50%" src="images/20220106_165351.png">
     </section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
-            ## Example: Implementation
+            ## Example: Implementationd
             ### Positioning model
 
         {% endmarkdown %}
