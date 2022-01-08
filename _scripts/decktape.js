@@ -12,19 +12,27 @@ async function decktape(el) {
             title,
             url: url + "?presenter",
             pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation.pdf`),
-            widescreen: false
+            widescreen: false,
+            pdf: true
         });
         queue.push({
             title: title + " | Author Version",
             url,
             pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation.pdf`),
-            widescreen: false
+            widescreen: false,
         });
         queue.push({
             title,
             url: url + "?presenter",
             pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation-16x9.pdf`),
-            widescreen: true
+            widescreen: true,
+            images: path.join(page.outputPath, `../`),
+        });
+        queue.push({
+            title,
+            url: url + "?presenter",
+            widescreen: true,
+            images: path.join(page.outputPath, `../`),
         });
         queue.push({
             title: title + " | Author Version",
@@ -71,13 +79,28 @@ function createServer(port = 3000) {
 
 function executeDecktape(item) {
     return new Promise((resolve, reject) => {
-        const process = spawn(
-            path.join(__dirname, '../node_modules/.bin/decktape'), 
-            [
-                `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, item.pdf
-            ], {
-                shell: true
-            });
+        let process = undefined;
+
+        if (item.pdf) {
+            process = spawn(
+                path.join(__dirname, '../node_modules/.bin/decktape'), 
+                [
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, item.pdf
+                ], {
+                    shell: true
+                });
+        } else if (item.images) {
+            process = spawn(
+                path.join(__dirname, '../node_modules/.bin/decktape'), 
+                [
+                    `--screenshots`,
+                    `--screenshots-directory ${item.images}`
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url
+                ], {
+                    shell: true
+                });
+        }
+
         process.on('error', (err) => {
             reject(err);
         });

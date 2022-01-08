@@ -8,7 +8,7 @@ logo: true
 header_logo: /images/misc/openhps-logo.svg
 affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel
 ---
-
+{% decktape title, page %}
 <section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
@@ -55,7 +55,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         {% markdown %}
             ## Technologies
             *Technologies used to obtain sensor data for positioning*
-            - Camera (Sterescopic/Monocular/Omnidirectional)
+            - Camera (Stereoscopic/Monocular/Omnidirectional)
             - Bluetooth Beacons
             - WLAN Access Points
             - Ultrawideband Beacons
@@ -84,10 +84,13 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 
 <section data-markdown data-auto-animate data-timing="20">
     {% markdown %}
-        ## Established Open Source Solutions
+        ## Open Source Solutions
         - AnyPlace *[https://anyplace.cs.ucy.ac.cy/](https://anyplace.cs.ucy.ac.cy/)*
         - FIND *[https://github.com/schollz/find3](https://github.com/schollz/find3)*
         - IndoorLocation *[https://github.com/IndoorLocation](https://github.com/IndoorLocation)*
+        - Navigine *[https://github.com/Navigine](https://github.com/Navigine)*
+        - RedPin *[http://redpin.org/](http://redpin.org/)*
+        - Traccar *[https://github.com/traccar](https://github.com/traccar)*
     {% endmarkdown %}
     <aside class="notes">
     
@@ -111,7 +114,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             - Various use cases
             - Flexibile processing and output
                 - Accuracy over battery consumption, reliability, ...
-            - Aimed towards developers with knowledge on positioning techniques
+            - Aimed towards developers and researchers
         {% endmarkdown %}
         <aside class="notes">
         With OpenHPS we aim to offer a framework for developers and researchers that
@@ -200,41 +203,86 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ## DataObject
             
         {% endmarkdown %}
-        <img height="75%" src="../ipin2021/images/dataobject.svg"/>
-        <aside class="notes">
-        We represent this knowledge and processed data under the term dataobject.
+        <div class="row">
+            <div class="col-5">
+                <img width="100%" style="margin-top: 1em" src="images/dataobject.svg">
+            </div>
+            <div class="col-7">
+            {% markdown %}
+                ```ts
+                // Data object for the person we are tracking
+                const me = new DataObject("mvdewync@vub.be");
+                me.displayName = "Maxim Van de Wynckel";
 
-        A data object is any spatial entity that is relevant for the positioning of other data objects. A data object can be considered
-        a camera object tracking another object - or it can be a phone that is responsible itself for
-        the data collection.
+                // Phone belonging to the person
+                const phone = new DataObject()
+                phone.displayName = "Maxim's Phone";
+                phone.setParent(me);
 
-        Each data object can have a hierarchical relation with other objects.
-        </aside>
+                // Watch belonging to the person
+                const watch = new DataObject();
+                watch.displayName = "Maxim's Android Watch";
+                watch.setParent(me);
+
+                // Camera of the phone
+                const camera = new CameraObject("80:bb:7c:37:0e:02");
+                camera.width = 1980;
+                camera.height = 1024;
+                camera.fps = 30;
+                camera.setParent(phone);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
     </section>
     <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Absolute and Relative Positions
-            **Absolute**
-            - 2D, 3D, Geographical, ...
-
-            **Relative**
-            - Distance, angle, velocity, ...
-            - Relative to another *object*
         {% endmarkdown %}
-        <aside class="notes">
-        These spatial objects can have an absolute or relative position. An absolute position
-        represents a fixed position in space. We support 2D, 3D and geographical positions.
+        <div class="row">
+            <div class="col-5">
+                {% markdown %}
+                    **Absolute**
+                    - 2D, 3D, Geographical, ...
 
-        Relative positions are relative to another object and can be expressed in 
-        distance, angle, velocity or a more abstract RSS.
-        </aside>
+                    **Relative**
+                    - Distance, angle, velocity, ...
+                    - Relative to another *object*
+                {% endmarkdown %}
+            </div>
+            <div class="col-7">
+            {% markdown %}
+                ```ts
+                // Absolute geographical position
+                phone.setPosition(new GeographicalPosition(
+                    50.8204, 4.3921
+                ));
+
+                // Relative position(s) to another object
+                phone.addRelativePosition(new RelativeDistance(
+                    "9F:F1:90:4C:F5:6A", 5.2, LengthUnit.METER
+                ));
+                phone.addRelativePosition(new RelativeDistance(
+                    "DC:0F:14:B2:6B:80", 1.4, LengthUnit.METER
+                ));
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
     </section>
-    <section data-markdown data-auto-animate data-visibility="hidden">
+    <section data-markdown data-auto-animate>
         {% markdown %}
             ## ReferenceSpace
             *An absolute position can be relative to a reference space.*
         {% endmarkdown %}
-        <img width="70%" src="../ipin2021/images/referencespace.svg"/>
+        <div class="row">
+            <div class="col-5">
+                <img width="100%" src="images/referencespace.svg"/>
+            </div>
+            <div class="col-7">
+                <img height="70%" src="../ipin2021/images/geojson.svg"/>
+            </div>
+        </div>
         <aside class="notes">
         Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
         you can optionally specify the reference space.
@@ -242,54 +290,108 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         Similar to data objects, reference spaces can have a hierarchical relation with other objects.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="80">
-        <h2 data-id="title-dataframe">DataFrame</h2>
-        <img height="75%" src="../ipin2021/images/dataframe_single.svg"/>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        {% markdown %}
+            ## SymbolicSpace
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-5">
+                <img width="100%" style="margin-top: 1em" src="../ipin2021/images/symbolicspace.svg"/>
+            </div>
+            <div class="col-7">
+            {% markdown %}
+                ```ts
+                const building = new Building("PL9")
+                    .setBounds({
+                        topLeft: new GeographicalPosition(
+                                50.8203, 
+                                4.3922),
+                        width: 46.275, 
+                        height: 37.27, 
+                        rotation: -34.04
+                    });
+                
+                const floor = new Floor("PL9.3")
+                    .setBuilding(building)
+                    .setFloorNumber(3);
+                
+                const office = new Room("PL9.3.58")
+                    .setFloor(floor)
+                    .setBounds([
+                        new Absolute2DPosition(4.75, 31.25),
+                        new Absolute2DPosition(8.35, 37.02),
+                    ]);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
         <aside class="notes">
-        In order to contain our processed data with our raw data, we create a new Data frame.
-
-        Data frames are individual captured moments of sensor data processed in the positioning system. They are the
-        enveloppes transmitted through the process network and are usually created
-        by a source object and can contain a set of relevant objects or raw sensor data that are added or modified by nodes in our network
-
-        In this example image we have a video frame that is captured by a camera object. It contains the actual image
-        of that frame and a set of objects that were detected inside this frame.
+        [OPTIONAL SLIDE] 
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+    <section data-markdown data-auto-animate data-timing="80">
+        <h2 data-id="title-dataframe">DataFrame</h2>
+        <div class="row">
+            <div class="col-5">
+                <img width="100%" src="../ipin2021/images/dataframe_single.svg"/>
+            </div>
+            <div class="col-7">
+            {% markdown %}
+                ```ts
+                // Sensor that captured the frame
+                const camera = new CameraObject();
+
+                // Create a new frame
+                const frame = new VideoFrame();
+                frame.source = camera;
+                frame.image = myImage;
+
+                // Add detected objects to frame
+                frame.addObject(/* ... */);
+                frame.addObject(/* ... */);
+                frame.addObject(/* ... */);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="0">
         <h2 data-id="title-dataframe">DataFrame ...</h2>
         {% markdown %}
             ### Pushing Data
 
         {% endmarkdown %}
         <img width="100%" src="../ipin2021/images/nodes-push.svg"/>
-        <aside class="notes">
-        [OPTIONAL SLIDE] 
-        </aside>
     </section>
-    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+    <section data-markdown data-auto-animate data-timing="0">
         <h2 data-id="title-dataframe">DataFrame ...</h2>
         {% markdown %}
             ### Pulling Data
 
         {% endmarkdown %}
         <img width="100%" src="../ipin2021/images/nodes-pull.svg"/>
-        <aside class="notes">
-        [OPTIONAL SLIDE] 
-        </aside>
     </section>
-    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
-        <h2 data-id="title-dataframe">DataFrame ...</h2>
-        {% markdown %}
-            ### Pushing Error
+</section>
 
+<section>
+    <section data-markdown data-auto-animate data-timing="30">
+        {% markdown %}
+            ## Positioning Model
+            ```ts
+            ModelBuilder.create()
+                .addService(/* ... */)
+                .addShape(GraphBuilder.create()
+                    .from(/* Source node(s) */)
+                    .via(/* Processing node(s) */)
+                    .via(/* Processing node(s) */)
+                    .to(/* Sink node(s) */)
+                )
+                .addShape(/* Other graph shape */)
+                .build().then(model => {
+                    console.log("Model is ready!");
+                }).catch(reject);
+            ```
         {% endmarkdown %}
-        <img width="100%" src="../ipin2021/images/nodes-push-error.svg"/>
-        <aside class="notes">
-        [OPTIONAL SLIDE] Errors can of course occur in the process network. When this happens, the push is rejected instead of resolved - and the
-        last node that performed the failed push will emit an error that will propagate upstream so the upstream nodes
-        are aware of the error. It is down to the developer to decide how these errors are handled.
-        </aside>
     </section>
 </section>
 
@@ -317,8 +419,9 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Example
-            *You want to develop a cheap method of tracking small boxes in a lab.*
-            ### Design considerations
+            *You want to develop a cheap method of tracking small boxes in a lab.*\
+            \
+            **Design considerations**
             - Boxes can be relatively small
             - Hardware should not be expensive
             - Position in a lab should be relatively accurate
@@ -357,25 +460,24 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 
 <section data-markdown data-auto-animate data-timing="30">
     <style>
-    .qr-image {
-        width: 200px;
-        height: 200px;
+    .resource-img {
+        height: 50px;
+        margin-left: none !important;
+        display: inline-block !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    .resource-link {
+        margin-left: 1em;
     }
     </style>
     {% markdown %}
-        ## Contributions and Conclusions
-        - 
+        ## Resources and Links
+        <img class="resource-img" src="images/globe-solid.svg"><a class="resource-link" href="https://openhps.org">https://openhps.org</a>
+
+        <img class="resource-img" src="images/github-brands.svg"><a class="resource-link" href="https://github.com/OpenHPS">https://github.com/OpenHPS</a>
+
+        <img class="resource-img" src="images/file-pdf-solid.svg"><a class="resource-link" href="https://openhps.org/posts/2021/01/14/">Technical Paper</a>
+
     {% endmarkdown %}
-    <div class="row" style="position: absolute; bottom: 7vh;">
-        <div class="col-3">
-            <img class="qr-image" src="../ipin2021/images/qr-code.svg"/>
-        </div>
-        <div class="col-7">
-            {% markdown %}
-            \
-            *Visit [https://openhps.org](https://openhps.org) for additional resources,
-            documentation, source code and more!*
-            {% endmarkdown %}
-        </div>
-    </div>
 </section>
