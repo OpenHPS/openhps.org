@@ -4,6 +4,7 @@ const queue = [];
 const path = require('path');
 const handler = require('serve-handler');
 const http = require('http');
+const fs = require('fs');
 
 async function decktape(el) {
     el.addAsyncShortcode("decktape", async (title, page) => {
@@ -27,13 +28,6 @@ async function decktape(el) {
             pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation-16x9.pdf`),
             widescreen: true,
             images: path.join(page.outputPath, `../`),
-        });
-        queue.push({
-            title,
-            url: url + "?presenter",
-            widescreen: true,
-            images: path.join(page.outputPath, `../`),
-            slug: page.fileSlug
         });
         queue.push({
             title: title + " | Author Version",
@@ -82,7 +76,19 @@ function executeDecktape(item) {
     return new Promise((resolve, reject) => {
         let process = undefined;
 
-        if (item.pdf) {
+        if (item.images) {
+            const screenshotDir = path.join(item.images, "screenshots");
+            fs.mkdirSync(screenshotDir);
+            process = spawn(
+                path.join(__dirname, '../node_modules/.bin/decktape'), 
+                [
+                    `--screenshots`,
+                    `--screenshots-directory ${screenshotDir}`,
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, path.basename(item.pdf)
+                ], {
+                    shell: true
+                });
+        } else {
             process = spawn(
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
                 [
@@ -90,17 +96,7 @@ function executeDecktape(item) {
                 ], {
                     shell: true
                 });
-        } else if (item.images) {
-            process = spawn(
-                path.join(__dirname, '../node_modules/.bin/decktape'), 
-                [
-                    `--screenshots`,
-                    `--screenshots-directory ${path.join(item.images, "screenshots")}`,
-                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, `${item.slug}.pdf`
-                ], {
-                    shell: true
-                });
-        }
+        } 
 
         process.on('error', (err) => {
             reject(err);
