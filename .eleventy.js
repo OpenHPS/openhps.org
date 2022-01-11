@@ -22,7 +22,6 @@ const decktape = require("./_scripts/decktape");
 module.exports = function (el) {
   /* Passthrough Copy */
   el.addPassthroughCopy("scripts");
-  el.addPassthroughCopy("media");
   el.addPassthroughCopy("fonts");
   el.addPassthroughCopy("CNAME");
   el.addPassthroughCopy("_redirects");
@@ -151,7 +150,8 @@ module.exports = function (el) {
       "svg",
       "png",
       "pdf",
-      'gif'
+      'gif',
+      "mp4"
     ],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",

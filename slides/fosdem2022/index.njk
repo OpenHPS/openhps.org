@@ -16,6 +16,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             *"A positioning system is a mechanism for determining the position of an object in space."*\
             [<small>*- Wikipedia (2022)*</small>](https://en.wikipedia.org/wiki/Positioning_system)
         {% endmarkdown %}
+        <aside class="notes">
+        Starting off with the basics, a positioning system is a defined as a mechanism for
+        deterimining the position of an object in space.
+        </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="20">
     {% markdown %}
@@ -29,6 +33,13 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         **Space**\
         Outdoor, indoor, on a table or on a game board?
     {% endmarkdown %}
+    <aside class="notes">
+        The 'object' and 'space' in this definition are open for interpretation. Whether you want to track a person
+        an asset or a device beloning to a person.
+
+        Similarly, the space can be outdoor - like we are used with GPS, but it can also be indoor or even
+        on a smaller scale such as a table or physical game board.
+    </aside>
 </section>
 
 </section>
@@ -46,7 +57,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             *Geospatial mapping of an environment*
     {% endmarkdown %}
     <aside class="notes">
-    
+    Use cases usually involve around four main goals. The navigation of a person from one point to another,
+    the tracking of customers, employees or assets. Location awareness to simply have knowledge on the rough
+    position or trajectory of a person. And finally, a positioning system can be used as a tool for mapping geospatial
+    environments.
     </aside>
 </section>
 
@@ -56,12 +70,21 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ## Technologies
             *Technologies used to obtain sensor data for positioning*
             - Camera (Stereoscopic/Monocular/Omnidirectional)
-            - Bluetooth Beacons
-            - WLAN Access Points
-            - Ultrawideband Beacons
+            - Bluetooth beacons
+            - WLAN access points
+            - Ultrawideband beacons
             - LIDAR
+            - Inertial measurement unit
+            - Visible light communication
             - ...
         {% endmarkdown %}
+        <img src="images/technologies/overview.png" style="position: absolute; right: 0; top: 200px; width: 50%;">
+        <aside class="notes">
+        Outdoors we rely on GPS signals, but depending on the use case there are plenty of technologies to choose from.
+        Different types of cameras can be used to obtain sensor data, Bluetooth beacons
+        were one of the very early go-to technologies for indoor positioning. You have wifi access points, the newer
+        Ultrawideband beacons that start to be supported in modern smartphones and many more
+        </aside>
     </section>
 </section>
 
@@ -79,6 +102,13 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             - Sensor fusion
             - ...
         {% endmarkdown %}
+        <aside class="notes">
+        Likewise, for each of these technologies - different algorithms can be chosen to process the
+        sensor data that you obtain from these technologies, again each with their own pro's and con's.
+        Proximity positioning can for example be very reliable, but is not accurate as it takes the position
+        of the item that is within closest proximity. Choosing the combination of technologies and algorithms
+        can be a challenge that often requires experimenting and tweaking to fit the goal that you want to achieve.
+        </aside>
     </section>
 </section>
 
@@ -93,7 +123,12 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         - Traccar *[https://github.com/traccar](https://github.com/traccar)*
     {% endmarkdown %}
     <aside class="notes">
-    
+    Various open source solutions exist for creating a positioning system such as AnyPlace, Find or IndoorLocation. but
+    all of these solutions focus on a specific use case or do not offer you the flexibility to choose the positioning algorithms.
+
+    For developers who want to implement the use case that the open source solution is based on, this is a positive thing.
+    As they do not need to experiment or test new things - but for developers who want to create new prototypes
+    this is a problem.
     </aside>
 </section>
 
@@ -104,6 +139,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ### An Open Source Hybrid Positioning System
         {% endmarkdown %}
         <img width="67%" class="shadow" src="../ipin2021/images/openhps-site.png"/>
+        <aside class="notes">
+        This is where OpenHPS comes into place. OpenHPs is an open source hybrid positioning system developed in Typescript
+        that can run both on a server, smartphone, embedded device and even the browser.
+        </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
@@ -118,8 +157,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         {% endmarkdown %}
         <aside class="notes">
         With OpenHPS we aim to offer a framework for developers and researchers that
-        can support a variety of positioning technologies, algorithms and uses cases that are not just
-        limited to indoor positioning. We also aim to offer a lot of flexibility in the outcome of the position,
+        can support a variety of positioning technologies, algorithms and uses cases. We also aim to offer a lot of flexibility in the outcome of the position,
         weither it is a developer wishing to offer the most accurate position, power optimized solution or
         simply a reliable system that can rougly (but reliably) indicate weither or not you are in a specific room.
         </aside>
@@ -135,16 +173,16 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <section data-markdown data-auto-animate data-timing="30">
         <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
         <img height="30%" src="../ipin2021/images/architecture.svg"/>
-        <img height="45%" data-id="architecture-graph" src="../ipin2021/images/architecture2.svg"/>
+        <img height="45%" data-id="architecture-graph" src="images/architecture2.svg"/>
         <aside class="notes">
         OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
         We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
-        We call this complete process network from source to sink a positioning model.
+        We call this complete process network from source to sink a positioning model. 
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="35">
         <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
-        <img height="70%" style="margin-top: 1em" data-id="architecture-graph" src="../ipin2021/images/architecture3.svg"/>
+        <img height="70%" style="margin-top: 1em" data-id="architecture-graph" src="images/architecture3.svg"/>
         <aside class="notes">
         On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
         handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
@@ -182,6 +220,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             **Mobile (sensor source)**\
             React-Native, NativeScript
         {% endmarkdown %}
+        <aside class="notes">
+        In its current state OpenHPS already has several public repositories on github for the more
+        common positioning techniques. 
+        </aside>
     </section>
 </section>
 
@@ -279,8 +321,8 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             <div class="col-5">
                 <img width="100%" src="images/referencespace.svg"/>
             </div>
-            <div class="col-7">
-                <img height="70%" src="../ipin2021/images/geojson.svg"/>
+            <div class="col-5">
+                <img width="100%" src="../ipin2021/images/geojson.svg"/>
             </div>
         </div>
         <aside class="notes">
@@ -290,46 +332,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         Similar to data objects, reference spaces can have a hierarchical relation with other objects.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
-        {% markdown %}
-            ## SymbolicSpace
-        {% endmarkdown %}
-        <div class="row">
-            <div class="col-5">
-                <img width="100%" style="margin-top: 1em" src="../ipin2021/images/symbolicspace.svg"/>
-            </div>
-            <div class="col-7">
-            {% markdown %}
-                ```ts
-                const building = new Building("PL9")
-                    .setBounds({
-                        topLeft: new GeographicalPosition(
-                                50.8203, 
-                                4.3922),
-                        width: 46.275, 
-                        height: 37.27, 
-                        rotation: -34.04
-                    });
-                
-                const floor = new Floor("PL9.3")
-                    .setBuilding(building)
-                    .setFloorNumber(3);
-                
-                const office = new Room("PL9.3.58")
-                    .setFloor(floor)
-                    .setBounds([
-                        new Absolute2DPosition(4.75, 31.25),
-                        new Absolute2DPosition(8.35, 37.02),
-                    ]);
-                ```
-            {% endmarkdown %}
-            </div>
-        </div>
-        <aside class="notes">
-        [OPTIONAL SLIDE] 
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="80">
+</section>
+
+<section>
+   <section data-markdown data-auto-animate data-timing="80">
         <h2 data-id="title-dataframe">DataFrame</h2>
         <div class="row">
             <div class="col-5">
@@ -398,62 +404,113 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 <section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
-            ## Contributing
+            ## Example
+            <img height="80%" src="images/demo-overview.png">
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example
+            <img height="80%" src="images/image_zoom_wrapped.png">
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example
+            <img data-id="model" height="80%" src="images/model2.svg">
+        {% endmarkdown %}
+    </section>
+     <section data-markdown data-auto-animate data-timing="20">
+        <style>
+        .reveal pre code {
+            max-height: 550px;
+        }
+        </style>
+        {% markdown %}
+            ## Example
+            ```ts
+            GraphBuilder.create()
+                .from(new VideoSource(new CameraObject("sphero_video"), {
+                    autoPlay: true,
+                    fps: 30,
+                    throttleRead: true,
+                    source: new CameraObject("sphero_video")
+                }).load("/dev/video2"))
+                .via(new ImageTransformNode({
+                    src: [
+                        new OpenCV.Point2(307, 120),
+                        new OpenCV.Point2(1473, 87),
+                        new OpenCV.Point2(1899, 891),
+                        new OpenCV.Point2(20, 1024),
+                    ],
+                    height: 800,
+                    width: 1040
+                }))
+                .via(new ColorMaskProcessing({
+                    minRange: [90, 50, 50],
+                    maxRange: [140, 255, 255]
+                }))
+                .via(new ContourDetectionNode())
+                .convertFromSpace(new ReferenceSpace(defaultSpace)
+                    .translation(1040, 800)
+                    .rotation(new Euler(180, 180, 0, 'ZXY', AngleUnit.DEGREE))
+                    .scale(4, 4))
+                .to();
+            ```
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <style>
+        .reveal pre code {
+            max-height: 550px;
+        }
+        </style>
+        {% markdown %}
+            ## Example
+            ```ts
+            class ContourDetectionNode extends ProcessingNode<VideoFrame> {
+                public process(frame: VideoFrame): Promise<VideoFrame> {
+                    return new Promise((resolve) => {
+                        let contours = frame.image.findContours(
+                            OpenCV.RETR_EXTERNAL,
+                            OpenCV.CHAIN_APPROX_SIMPLE);
+                        if (contours.length >= 1) {
+                            // Sort contours by area
+                            contours = contours.sort((a, b) => a.area - b.area);
+                            // Select the contour with the largest area size
+                            const m = contours[0].moments();
+                            const center = new OpenCV.Vec2(
+                                m.m10 / m.m00,
+                                m.m01 / m.m00);
+                            // Use the center as the 2D pixel position
+                            const position = new Absolute2DPosition(
+                                center.x,
+                                center.y);
+                            position.unit = LengthUnit.CENTIMETER;
+                            position.accuracy = Math.sqrt(contours[0].area);
+                            frame.source.setPosition(position);
+                        }
+                        resolve(frame);
+                    });
+                }
+            }
+            ```
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <video autoplay="true" width="100%" src="/media/2020-12_sphero-demo.mp4"></video>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Contributing and Future Work
             - Positioning algorithms
             - Process network communication
             - Bindings to other systems
-            - (UI) abstractions
+            - (UI) abstractions for end-user authoring
             - Documentation and examples
-        {% endmarkdown %}
-    </section>
-</section>
-
-<section>
-    <section data-markdown data-auto-animate data-timing="20">
-        {% markdown %}
-            ## Example
-            *You want to develop a cheap method of tracking small boxes in a lab.*
-            ![](images/20220106_154330.jpg)
-        {% endmarkdown %}
-    </section>
-    <section data-markdown data-auto-animate data-timing="20">
-        {% markdown %}
-            ## Example
-            *You want to develop a cheap method of tracking small boxes in a lab.*\
-            \
-            **Design considerations**
-            - Boxes can be relatively small
-            - Hardware should not be expensive
-            - Position in a lab should be relatively accurate
-            - Infrastructure in the lab can change
-        {% endmarkdown %}
-    </section>
-</section>
-
-<section>
-    <section data-markdown data-auto-animate data-timing="20">
-        {% markdown %}
-            ## Example: Implementation
-            - Transmitting Bluetooth beacons in each box
-            - Bluetooth receivers around the room with WiFi connectivity (ESP32)
-            - Central server (Raspberry Pi) for keeping track of the boxes
-            - API endpoint in Raspberry Pi
-        {% endmarkdown %}
-    </section>
-    <section data-markdown data-auto-animate data-timing="20">
-        {% markdown %}
-            ## Example: Implementation
-            ### Receivers and Transmitters
-            - ESP32 with Espruino firmware as plugged-in receivers
-			- iTAG Bluetooth key trackers as tracked devices
-        {% endmarkdown %}
-        <img height="50%" src="images/20220106_165351.png">
-    </section>
-    <section data-markdown data-auto-animate data-timing="20">
-        {% markdown %}
-            ## Example: Implementationd
-            ### Positioning model
-
         {% endmarkdown %}
     </section>
 </section>
@@ -462,6 +519,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     <style>
     .resource-img {
         height: 50px;
+        width: 50px;
         margin-left: none !important;
         display: inline-block !important;
         margin-top: 0 !important;
@@ -477,7 +535,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 
         <img class="resource-img" src="images/github-brands.svg"><a class="resource-link" href="https://github.com/OpenHPS">https://github.com/OpenHPS</a>
 
-        <img class="resource-img" src="images/file-pdf-solid.svg"><a class="resource-link" href="https://openhps.org/posts/2021/01/14/">Technical Paper</a>
+        <img class="resource-img" src="images/npm-brands.svg"><a class="resource-link" href="https://npmjs.com/org/openhps">https://npmjs.com/org/openhps</a>
 
+        <img class="resource-img" src="images/file-pdf-solid.svg"><a class="resource-link" href="https://openhps.org/posts/2021/01/14/">Technical Report</a>
+
+        <img class="resource-img" src="images/video-solid.svg"><a class="resource-link" href="https://openhps.org/media/2020-12_sphero-demo.mp4">Example Video</a>
     {% endmarkdown %}
 </section>

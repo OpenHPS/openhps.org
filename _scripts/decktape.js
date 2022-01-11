@@ -33,6 +33,7 @@ async function decktape(el) {
             url: url + "?presenter",
             widescreen: true,
             images: path.join(page.outputPath, `../`),
+            slug: page.fileSlug
         });
         queue.push({
             title: title + " | Author Version",
@@ -94,8 +95,8 @@ function executeDecktape(item) {
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
                 [
                     `--screenshots`,
-                    `--screenshots-directory ${item.images}`
-                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url
+                    `--screenshots-directory ${path.join(item.images, "screenshots")}`,
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, `${item.slug}.pdf`
                 ], {
                     shell: true
                 });
