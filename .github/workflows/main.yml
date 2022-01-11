@@ -17,6 +17,9 @@ jobs:
           sudo apt update
           echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
           sudo apt-get install ttf-mscorefonts-installer
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - name: Build site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
