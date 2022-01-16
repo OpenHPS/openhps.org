@@ -1,14 +1,27 @@
 ---
 layout: presentation.njk
 title: "Rapid Prototyping of a Positioning System"
-presentation_title: "<span style='font-size: 80%'>Rapid Prototyping of a Positioning System</span>"
+presentation_title: "<span style='font-size: 100%'>Rapid Prototyping of a Positioning System</span>"
 subtitle: "Using the OpenHPS Framework"
 author: Maxim Van de Wynckel
 logo: true
 header_logo: /images/misc/openhps-logo.svg
 affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel
+width: 1280
+height: 720
+hide_slide_numbers: true
 ---
 {% decktape title, page %}
+
+<style>
+.reveal pre {
+    font-size: .65em;
+}
+.reveal small {
+    font-size: .9em;
+}
+</style>
+
 <section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
@@ -31,7 +44,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         What are you tracking? A person, an asset or a phone?
 
         **Space**\
-        Outdoor, indoor, on a table or on a game board?
+        Outdoor, indoor, under water or on a table?
     {% endmarkdown %}
     <aside class="notes">
         The 'object' and 'space' in this definition are open for interpretation. Whether you want to track a person
@@ -47,13 +60,13 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 <section data-markdown data-auto-animate data-timing="20">
     {% markdown %}
         ## Use Cases
-        - Navigation\
+        - **Navigation**\
             *Navigate a person from point A to point B*
-        - Tracking\
+        - **Tracking**\
             *Asset tracking, customer tracking, tracking items on a table*
-        - Location Awareness\
+        - **Location Awareness**\
             *Trigger an action whenever a specific person is in a room*
-        - Mapping\
+        - **Mapping**\
             *Geospatial mapping of an environment*
     {% endmarkdown %}
     <aside class="notes">
@@ -70,15 +83,13 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             ## Technologies
             *Technologies used to obtain sensor data for positioning*
             - Camera (Stereoscopic/Monocular/Omnidirectional)
-            - Bluetooth beacons
-            - WLAN access points
-            - Ultrawideband beacons
+            - Beacons (Ultrawideband, Bluetooth, Ultrasound)
             - LIDAR
             - Inertial measurement unit
             - Visible light communication
             - ...
         {% endmarkdown %}
-        <img src="images/technologies/overview.png" style="position: absolute; right: 0; top: 200px; width: 50%;">
+        <img src="images/technologies/overview.png" style="position: absolute; right: 0; top: 160px; width: 40%;">
         <aside class="notes">
         Outdoors we rely on GPS signals, but depending on the use case there are plenty of technologies to choose from.
         Different types of cameras can be used to obtain sensor data, Bluetooth beacons
@@ -96,18 +107,22 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             *Algorithms used to process sensor data*
             - Lateration
             - Proximity positioning
+            - Signal propagation
             - Fingerprinting
             - Computer vision
             - Dead reckoning
             - Sensor fusion
             - ...
         {% endmarkdown %}
+        <img src="images/Word Art.png" style="position: absolute; right: 0; top: 150px; width: 50%;">
         <aside class="notes">
         Likewise, for each of these technologies - different algorithms can be chosen to process the
         sensor data that you obtain from these technologies, again each with their own pro's and con's.
         Proximity positioning can for example be very reliable, but is not accurate as it takes the position
         of the item that is within closest proximity. Choosing the combination of technologies and algorithms
         can be a challenge that often requires experimenting and tweaking to fit the goal that you want to achieve.
+        What is more, the public available algorithms do not often follow a same data structure making the implementation
+        of a novel positioning system that is optimized for the task a difficult journey.
         </aside>
     </section>
 </section>
@@ -135,7 +150,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 <section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
-            ## What is OpenHPS?
+            ## OpenHPS
             ### An Open Source Hybrid Positioning System
         {% endmarkdown %}
         <img width="67%" class="shadow" src="../ipin2021/images/openhps-site.png"/>
@@ -146,7 +161,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## What is OpenHPS?
+            ## OpenHPS
             ### An Open Source Hybrid Positioning System
             - Any technology
             - Any algorithm
@@ -164,7 +179,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-timing="25">
         <h2 data-id="title-processnetworkdesign">Process Network Design</h2>
-        <img width="90%" src="../ipin2021/images/architecture.svg"/>
+        <img width="90%" src="images/architecture.svg"/>
         <aside class="notes">
         When creating a positioning system, you obtain sensor data from multiple different sensors. You process the data until at some stage in your processing
         you merge the sensor data to obtain a position that you can show to your user.
@@ -172,13 +187,28 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
     </section>
     <section data-markdown data-auto-animate data-timing="30">
         <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
-        <img height="30%" src="../ipin2021/images/architecture.svg"/>
+        <img height="30%" src="images/architecture.svg"/>
         <img height="45%" data-id="architecture-graph" src="images/architecture2.svg"/>
         <aside class="notes">
         OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
         We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
         We call this complete process network from source to sink a positioning model. 
         </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="30%" src="images/architecture.svg"/>
+        <img height="45%" data-id="architecture-graph" src="images/architecture2_source.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="30%" src="images/architecture.svg"/>
+        <img height="45%" data-id="architecture-graph" src="images/architecture2_processing.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="30%" src="images/architecture.svg"/>
+        <img height="45%" data-id="architecture-graph" src="images/architecture2_sink.svg"/>
     </section>
     <section data-markdown data-auto-animate data-timing="35">
         <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
@@ -232,7 +262,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
         {% markdown %}
             ## Data Processing
         {% endmarkdown %}
-        <img height="80%" src="../ipin2021/images/datatypes.svg" class="logo">
+        <img height="80%" src="images/dataprocessing.svg" class="logo">
         <aside class="notes">
         The data that we process in our process network is an important aspect of the core of OpenHPS.
         We have knowledge, raw data and processed data. Knowledge is everything that we know - such as sensors, radio transmitters
@@ -246,10 +276,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             
         {% endmarkdown %}
         <div class="row">
-            <div class="col-5">
+            <div class="col-4">
                 <img width="100%" style="margin-top: 1em" src="images/dataobject.svg">
             </div>
-            <div class="col-7">
+            <div class="col-8">
             {% markdown %}
                 ```ts
                 // Data object for the person we are tracking
@@ -266,12 +296,123 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
                 watch.displayName = "Maxim's Android Watch";
                 watch.setParent(me);
 
-                // Camera of the phone
+                // IP camera identified by MAC
                 const camera = new CameraObject("80:bb:7c:37:0e:02");
                 camera.width = 1980;
                 camera.height = 1024;
                 camera.fps = 30;
-                camera.setParent(phone);
+                camera.setPosition(/* ... */);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## DataObject
+            
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-4">
+                <img width="100%" style="margin-top: 1em" src="images/dataobject.svg">
+            </div>
+            <div class="col-8">
+            {% markdown %}
+                ```ts {0-2}
+                // Data object for the person we are tracking
+                const me = new DataObject("mvdewync@vub.be");
+                me.displayName = "Maxim Van de Wynckel";
+
+                // Phone belonging to the person
+                const phone = new DataObject();
+                phone.displayName = "Maxim's Phone";
+                phone.setParent(me);
+
+                // Watch belonging to the person
+                const watch = new DataObject();
+                watch.displayName = "Maxim's Android Watch";
+                watch.setParent(me);
+
+                // IP camera identified by MAC
+                const camera = new CameraObject("80:bb:7c:37:0e:02");
+                camera.width = 1980;
+                camera.height = 1024;
+                camera.fps = 30;
+                camera.setPosition(/* ... */);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## DataObject
+            
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-4">
+                <img width="100%" style="margin-top: 1em" src="images/dataobject.svg">
+            </div>
+            <div class="col-8">
+            {% markdown %}
+                ```ts {4-12}
+                // Data object for the person we are tracking
+                const me = new DataObject("mvdewync@vub.be");
+                me.displayName = "Maxim Van de Wynckel";
+
+                // Phone belonging to the person
+                const phone = new DataObject();
+                phone.displayName = "Maxim's Phone";
+                phone.setParent(me);
+
+                // Watch belonging to the person
+                const watch = new DataObject();
+                watch.displayName = "Maxim's Android Watch";
+                watch.setParent(me);
+
+                // IP camera identified by MAC
+                const camera = new CameraObject("80:bb:7c:37:0e:02");
+                camera.width = 1980;
+                camera.height = 1024;
+                camera.fps = 30;
+                camera.setPosition(/* ... */);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## DataObject
+            
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-4">
+                <img width="100%" style="margin-top: 1em" src="images/dataobject.svg">
+            </div>
+            <div class="col-8">
+            {% markdown %}
+                ```ts {14-19}
+                // Data object for the person we are tracking
+                const me = new DataObject("mvdewync@vub.be");
+                me.displayName = "Maxim Van de Wynckel";
+
+                // Phone belonging to the person
+                const phone = new DataObject();
+                phone.displayName = "Maxim's Phone";
+                phone.setParent(me);
+
+                // Watch belonging to the person
+                const watch = new DataObject();
+                watch.displayName = "Maxim's Android Watch";
+                watch.setParent(me);
+
+                // IP camera identified by MAC
+                const camera = new CameraObject("80:bb:7c:37:0e:02");
+                camera.width = 1980;
+                camera.height = 1024;
+                camera.fps = 30;
+                camera.setPosition(/* ... */);
                 ```
             {% endmarkdown %}
             </div>
@@ -286,6 +427,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
                 {% markdown %}
                     **Absolute**
                     - 2D, 3D, Geographical, ...
+                    - Within a reference space
 
                     **Relative**
                     - Distance, angle, velocity, ...
@@ -296,41 +438,22 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             {% markdown %}
                 ```ts
                 // Absolute geographical position
-                phone.setPosition(new GeographicalPosition(
+                me.setPosition(new GeographicalPosition(
                     50.8204, 4.3921
                 ));
 
                 // Relative position(s) to another object
-                phone.addRelativePosition(new RelativeDistance(
+                me.addRelativePosition(new RelativeDistance(
                     "9F:F1:90:4C:F5:6A", 5.2, LengthUnit.METER
                 ));
-                phone.addRelativePosition(new RelativeDistance(
+                me.addRelativePosition(new RelativeDistance(
                     "DC:0F:14:B2:6B:80", 1.4, LengthUnit.METER
                 ));
                 ```
             {% endmarkdown %}
             </div>
         </div>
-    </section>
-    <section data-markdown data-auto-animate>
-        {% markdown %}
-            ## ReferenceSpace
-            *An absolute position can be relative to a reference space.*
-        {% endmarkdown %}
-        <div class="row">
-            <div class="col-5">
-                <img width="100%" src="images/referencespace.svg"/>
-            </div>
-            <div class="col-5">
-                <img width="100%" src="../ipin2021/images/geojson.svg"/>
-            </div>
-        </div>
-        <aside class="notes">
-        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
-        you can optionally specify the reference space.
-
-        Similar to data objects, reference spaces can have a hierarchical relation with other objects.
-        </aside>
+        <img src="images/position.svg" width="50%">
     </section>
 </section>
 
@@ -338,10 +461,10 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
    <section data-markdown data-auto-animate data-timing="80">
         <h2 data-id="title-dataframe">DataFrame</h2>
         <div class="row">
-            <div class="col-5">
+            <div class="col-4">
                 <img width="100%" src="../ipin2021/images/dataframe_single.svg"/>
             </div>
-            <div class="col-7">
+            <div class="col-8">
             {% markdown %}
                 ```ts
                 // Sensor that captured the frame
@@ -360,6 +483,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             {% endmarkdown %}
             </div>
         </div>
+        <img width="50%" src="images/dataframe2.svg"/>
     </section>
     <section data-markdown data-auto-animate data-timing="0">
         <h2 data-id="title-dataframe">DataFrame ...</h2>
@@ -380,44 +504,29 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
 </section>
 
 <section>
-    <section data-markdown data-auto-animate data-timing="30">
-        {% markdown %}
-            ## Positioning Model
-            ```ts
-            ModelBuilder.create()
-                .addService(/* ... */)
-                .addShape(GraphBuilder.create()
-                    .from(/* Source node(s) */)
-                    .via(/* Processing node(s) */)
-                    .via(/* Processing node(s) */)
-                    .to(/* Sink node(s) */)
-                )
-                .addShape(/* Other graph shape */)
-                .build().then(model => {
-                    console.log("Model is ready!");
-                }).catch(reject);
-            ```
-        {% endmarkdown %}
-    </section>
-</section>
-
-<section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Example
-            <img height="80%" src="images/demo-overview.png">
-        {% endmarkdown %}
-    </section>
-    <section data-markdown data-auto-animate data-timing="20">
-        {% markdown %}
-            ## Example
-            <img height="80%" src="images/image_zoom_wrapped.png">
+            <div class="row" style="margin-top: 100px;">
+                <div class="col-6">
+                    <img height="100%" src="images/sphero.jpg">
+                </div>
+                <div class="col-6">
+                    <img height="100%" src="images/demo-overview.png">
+                </div>
+            </div>
         {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Example
             <img data-id="model" height="80%" src="images/model2.svg">
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example
+            <img height="80%" src="images/image_zoom_wrapped.png">
         {% endmarkdown %}
     </section>
      <section data-markdown data-auto-animate data-timing="20">
@@ -511,6 +620,7 @@ affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Br
             - Bindings to other systems
             - (UI) abstractions for end-user authoring
             - Documentation and examples
+            - Calibration and set-up utilities
         {% endmarkdown %}
     </section>
 </section>

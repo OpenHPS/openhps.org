@@ -63,7 +63,8 @@
           alwaysVisible: false,
           tailLength: 10,
         },
-        totalTime: 15 * 60
+        totalTime: 15 * 60,
+        showSlideNumber: {{ "'speaker'" | safe if hide_slide_numbers else "'all'" | safe }}
       };
 
       {% if header_logo %}

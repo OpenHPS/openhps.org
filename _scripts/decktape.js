@@ -84,7 +84,7 @@ function executeDecktape(item) {
                 [
                     `--screenshots`,
                     `--screenshots-directory ${screenshotDir}`,
-                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, `.cache/${item.slug}.pdf`
+                    `--size=1280x720`, item.url, `${item.slug}.pdf`
                 ], {
                     shell: true
                 });
