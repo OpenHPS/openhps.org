@@ -84,7 +84,7 @@ function executeDecktape(item) {
                 [
                     `--screenshots`,
                     `--screenshots-directory ${screenshotDir}`,
-                    `--size=1280x720`, item.url, `${item.slug}.pdf`
+                    `--size=1280x720`, item.url, `${item.slug}.pdf`,
                 ], {
                     shell: true
                 });

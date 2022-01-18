@@ -26,8 +26,8 @@ hide_slide_numbers: true
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Positioning System
-            *"A positioning system is a mechanism for determining the position of an object in space."*\
-            [<small>*- Wikipedia (2022)*</small>](https://en.wikipedia.org/wiki/Positioning_system)
+            > *"A positioning system is a mechanism for determining the position of an object in space."*\
+            > [<small>*- Wikipedia (2022)*</small>](https://en.wikipedia.org/wiki/Positioning_system)
         {% endmarkdown %}
         <aside class="notes">
         Starting off with the basics, a positioning system is a defined as a mechanism for
@@ -37,8 +37,8 @@ hide_slide_numbers: true
     <section data-markdown data-auto-animate data-timing="20">
     {% markdown %}
         ## Positioning System
-        *"A positioning system is a mechanism for determining the position of an **object** in **space**."*\
-        [<small>*- Wikipedia (2022)*</small>](https://en.wikipedia.org/wiki/Positioning_system)
+        > *"A positioning system is a mechanism for determining the position of an **object** in **space**."*\
+        > [<small>*- Wikipedia (2022)*</small>](https://en.wikipedia.org/wiki/Positioning_system)
 
         **Object**\
         What are you tracking? A person, an asset or a phone?
@@ -82,10 +82,10 @@ hide_slide_numbers: true
         {% markdown %}
             ## Technologies
             *Technologies used to obtain sensor data for positioning*
-            - Camera (Stereoscopic/Monocular/Omnidirectional)
-            - Beacons (Ultrawideband, Bluetooth, Ultrasound)
+            - Camera (stereoscopic, monocular, omnidirectional)
+            - Beacons (ultrawideband, Bluetooth, ultrasound)
             - LIDAR
-            - Inertial measurement unit
+            - Inertial measurement unit (IMU)
             - Visible light communication
             - ...
         {% endmarkdown %}
@@ -136,6 +136,7 @@ hide_slide_numbers: true
         - Navigine *[https://github.com/Navigine](https://github.com/Navigine)*
         - RedPin *[http://redpin.org/](http://redpin.org/)*
         - Traccar *[https://github.com/traccar](https://github.com/traccar)*
+        - TraceMeNow *[https://isislab-unisa.github.io/trace-me-now](https://isislab-unisa.github.io/trace-me-now)*
     {% endmarkdown %}
     <aside class="notes">
     Various open source solutions exist for creating a positioning system such as AnyPlace, Find or IndoorLocation. but
@@ -153,9 +154,12 @@ hide_slide_numbers: true
             ## OpenHPS
             ### An Open Source Hybrid Positioning System
         {% endmarkdown %}
-        <img width="67%" class="shadow" src="../ipin2021/images/openhps-site.png"/>
+        <img width="61%" class="shadow" style="position: absolute; left: 0;" src="../ipin2021/images/openhps-site.png"/>
+        <img width="260px" style="position: absolute; right: 100px; top: 155px;" src="images/badge_license.svg"/>
+        <img width="260px" style="position: absolute; right: 100px; top: 215px;" src="images/badge_typescript.svg"/>
+        <img width="260px" style="position: absolute; right: 100px; top: 275px;" src="images/badge_website.svg"/>
         <aside class="notes">
-        This is where OpenHPS comes into place. OpenHPs is an open source hybrid positioning system developed in Typescript
+        This is where OpenHPS comes into place. OpenHPS is an open source hybrid positioning system developed in Typescript
         that can run both on a server, smartphone, embedded device and even the browser.
         </aside>
     </section>
@@ -167,7 +171,7 @@ hide_slide_numbers: true
             - Any algorithm
             - Various use cases
             - Flexibile processing and output
-                - Accuracy over battery consumption, reliability, ...
+                - Prefer accuracy over battery consumption, reliability, ...
             - Aimed towards developers and researchers
         {% endmarkdown %}
         <aside class="notes">
@@ -221,7 +225,7 @@ hide_slide_numbers: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         <h2 data-id="title-modularity">Modularity</h2>
-        <img width="100%" style="margin-top: 2em" src="../ipin2021/images/stack.svg"/>
+        <img width="100%" data-id="stack" style="margin-top: 2em" src="../ipin2021/images/stack.svg"/>
         <aside class="notes">
         By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
         can be reused throughout multiple different packages. Our core component offers the main concepts
@@ -233,27 +237,24 @@ hide_slide_numbers: true
 
 <section>
     <section data-markdown data-auto-animate data-timing="20">
-        {% markdown %}
-            ## Current State
-            **Communication**\
-            Socket, MQTT, REST API
-
-            **Data Storage**\
-            MongoDB, LocalStorage, RDF
-
-            **Positioning Algorithms**\
-            IMU, fingerprinting, RF, OpenVSLAM
-
-            **Abstractions**\
-            Geospatial, location-based services
-
-            **Mobile (sensor source)**\
-            React-Native, NativeScript
-        {% endmarkdown %}
-        <aside class="notes">
-        In its current state OpenHPS already has several public repositories on github for the more
-        common positioning techniques. 
-        </aside>
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="images/stack_examples.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="images/stack_examples_1.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="images/stack_examples_2.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="images/stack_examples_3.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="images/stack_examples_4.svg"/>
     </section>
 </section>
 
@@ -426,7 +427,7 @@ hide_slide_numbers: true
             <div class="col-5">
                 {% markdown %}
                     **Absolute**
-                    - 2D, 3D, Geographical, ...
+                    - 2D, 3D, geographical, ...
                     - Within a reference space
 
                     **Relative**
@@ -462,7 +463,7 @@ hide_slide_numbers: true
         <h2 data-id="title-dataframe">DataFrame</h2>
         <div class="row">
             <div class="col-4">
-                <img width="100%" src="../ipin2021/images/dataframe_single.svg"/>
+                <img width="100%" src="images/dataframe.svg"/>
             </div>
             <div class="col-8">
             {% markdown %}
@@ -504,6 +505,33 @@ hide_slide_numbers: true
 </section>
 
 <section>
+    <section data-markdown data-auto-animate data-timing="0">
+        {% markdown %}
+            ## Positioning Model
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-12">
+            {% markdown %}
+                ```ts
+                ModelBuilder.create()
+                    .from(new CallbackSourceNode(() => {
+                        const myObject = new DataObject("mvdewync");
+                        const frame = new DataFrame();
+                        frame.addObject(myObject);
+                        return frame;
+                    }))
+                    .via(new CallbackNode((frame: DataFrame) => { /* ... */ }))
+                    .to(new CallbackSinkNode((frame: DataFrame) => { /* ... */ }))
+                    .build().then((model: Model) => { /* ... */ });
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+        <img src="images/positioningmodel.svg" width="70%">
+    </section>
+</section>
+
+<section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Example
@@ -519,85 +547,323 @@ hide_slide_numbers: true
     </section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
-            ## Example
+            ## Example ...
             <img data-id="model" height="80%" src="images/model2.svg">
         {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
-            ## Example
-            <img height="80%" src="images/image_zoom_wrapped.png">
+            ## Example ...
+            <img data-id="model" height="80%" src="images/model_sources.svg">
         {% endmarkdown %}
     </section>
-     <section data-markdown data-auto-animate data-timing="20">
-        <style>
-        .reveal pre code {
-            max-height: 550px;
-        }
-        </style>
+    <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
-            ## Example
-            ```ts
-            GraphBuilder.create()
-                .from(new VideoSource(new CameraObject("sphero_video"), {
-                    autoPlay: true,
-                    fps: 30,
-                    throttleRead: true,
-                    source: new CameraObject("sphero_video")
-                }).load("/dev/video2"))
-                .via(new ImageTransformNode({
-                    src: [
-                        new OpenCV.Point2(307, 120),
-                        new OpenCV.Point2(1473, 87),
-                        new OpenCV.Point2(1899, 891),
-                        new OpenCV.Point2(20, 1024),
-                    ],
-                    height: 800,
-                    width: 1040
-                }))
-                .via(new ColorMaskProcessing({
-                    minRange: [90, 50, 50],
-                    maxRange: [140, 255, 255]
-                }))
-                .via(new ContourDetectionNode())
-                .convertFromSpace(new ReferenceSpace(defaultSpace)
-                    .translation(1040, 800)
-                    .rotation(new Euler(180, 180, 0, 'ZXY', AngleUnit.DEGREE))
-                    .scale(4, 4))
-                .to();
-            ```
+            ## Example ...
+            <img data-id="model" height="80%" src="images/model_sources_1.svg">
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example ...
+            <img data-id="model" height="80%" src="images/model_sources_2.svg">
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example ...
+            <img data-id="model" height="80%" src="images/model_sources_3.svg">
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example ...
+            <img data-id="model" height="80%" src="images/model_branch.svg">
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## Example ...
+            <img height="80%" src="images/image-transform.svg">
         {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate data-timing="20">
         <style>
         .reveal pre code {
-            max-height: 550px;
+            max-height: 555px;
         }
         </style>
         {% markdown %}
-            ## Example
-            ```ts
+            ## Example ...
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-1">
+                <img data-id="model-branch" src="images/model_branch_2.svg" width="100%"/>
+            </div>
+            <div class="col-11">
+                {% markdown %}
+                ```ts
+                GraphBuilder.create()
+                    .from(new VideoSource({
+                        autoPlay: true,
+                        fps: 30,
+                        throttleRead: true,
+                        source: new CameraObject("sphero_video")
+                    }).load("/dev/video2"))
+                    .via(new ImageTransformNode({
+                        src: [
+                            new OpenCV.Point2(307, 120),
+                            new OpenCV.Point2(1473, 87),
+                            new OpenCV.Point2(1899, 891),
+                            new OpenCV.Point2(20, 1024),
+                        ],
+                        height: 800,
+                        width: 1040
+                    }))
+                    .via(new ColorMaskProcessing({
+                        minRange: [90, 50, 50],
+                        maxRange: [140, 255, 255]
+                    }))
+                    .via(new ContourDetectionNode()) // Custom
+                    .to();
+                ```
+                {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+
+        {% markdown %}
+            ## Example ...
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-1">
+                <img data-id="model-branch" src="images/model_branch_3.svg" width="100%"/>
+            </div>
+            <div class="col-11">
+                {% markdown %}
+                ```ts {1-6}
+                GraphBuilder.create()
+                    .from(new VideoSource({
+                        autoPlay: true,
+                        fps: 30,
+                        throttleRead: true,
+                        source: new CameraObject("sphero_video")
+                    }).load("/dev/video2"))
+                    .via(new ImageTransformNode({
+                        src: [
+                            new OpenCV.Point2(307, 120),
+                            new OpenCV.Point2(1473, 87),
+                            new OpenCV.Point2(1899, 891),
+                            new OpenCV.Point2(20, 1024),
+                        ],
+                        height: 800,
+                        width: 1040
+                    }))
+                    .via(new ColorMaskProcessing({
+                        minRange: [90, 50, 50],
+                        maxRange: [140, 255, 255]
+                    }))
+                    .via(new ContourDetectionNode()) // Custom
+                    .to();
+                ```
+                {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+
+        {% markdown %}
+            ## Example ...
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-1">
+                <img data-id="model-branch" src="images/model_branch_4.svg" width="100%"/>
+            </div>
+            <div class="col-11">
+                {% markdown %}
+                ```ts {7-16}
+                GraphBuilder.create()
+                    .from(new VideoSource({
+                        autoPlay: true,
+                        fps: 30,
+                        throttleRead: true,
+                        source: new CameraObject("sphero_video")
+                    }).load("/dev/video2"))
+                    .via(new ImageTransformNode({
+                        src: [
+                            new OpenCV.Point2(307, 120),
+                            new OpenCV.Point2(1473, 87),
+                            new OpenCV.Point2(1899, 891),
+                            new OpenCV.Point2(20, 1024),
+                        ],
+                        height: 800,
+                        width: 1040
+                    }))
+                    .via(new ColorMaskProcessing({
+                        minRange: [90, 50, 50],
+                        maxRange: [140, 255, 255]
+                    }))
+                    .via(new ContourDetectionNode()) // Custom
+                    .to();
+                ```
+                {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+
+        {% markdown %}
+            ## Example ...
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-1">
+                <img data-id="model-branch" src="images/model_branch_5.svg" width="100%"/>
+            </div>
+            <div class="col-11">
+                {% markdown %}
+                ```ts {17-20}
+                GraphBuilder.create()
+                    .from(new VideoSource({
+                        autoPlay: true,
+                        fps: 30,
+                        throttleRead: true,
+                        source: new CameraObject("sphero_video")
+                    }).load("/dev/video2"))
+                    .via(new ImageTransformNode({
+                        src: [
+                            new OpenCV.Point2(307, 120),
+                            new OpenCV.Point2(1473, 87),
+                            new OpenCV.Point2(1899, 891),
+                            new OpenCV.Point2(20, 1024),
+                        ],
+                        height: 800,
+                        width: 1040
+                    }))
+                    .via(new ColorMaskProcessing({
+                        minRange: [90, 50, 50],
+                        maxRange: [140, 255, 255]
+                    }))
+                    .via(new ContourDetectionNode()) // Custom
+                    .to();
+                ```
+                {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+
+        {% markdown %}
+            ## Example ...
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-1">
+                <img data-id="model-branch" src="images/model_branch_6.svg" width="100%"/>
+            </div>
+            <div class="col-11">
+                {% markdown %}
+                ```ts {21}
+                GraphBuilder.create()
+                    .from(new VideoSource({
+                        autoPlay: true,
+                        fps: 30,
+                        throttleRead: true,
+                        source: new CameraObject("sphero_video")
+                    }).load("/dev/video2"))
+                    .via(new ImageTransformNode({
+                        src: [
+                            new OpenCV.Point2(307, 120),
+                            new OpenCV.Point2(1473, 87),
+                            new OpenCV.Point2(1899, 891),
+                            new OpenCV.Point2(20, 1024),
+                        ],
+                        height: 800,
+                        width: 1040
+                    }))
+                    .via(new ColorMaskProcessing({
+                        minRange: [90, 50, 50],
+                        maxRange: [140, 255, 255]
+                    }))
+                    .via(new ContourDetectionNode()) // Custom
+                    .to();
+                ```
+                {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## OpenCV: Contour detection
+            ```ts {0-2,16-19}
             class ContourDetectionNode extends ProcessingNode<VideoFrame> {
-                public process(frame: VideoFrame): Promise<VideoFrame> {
+                process(frame: VideoFrame): Promise<VideoFrame> {
                     return new Promise((resolve) => {
                         let contours = frame.image.findContours(
-                            OpenCV.RETR_EXTERNAL,
-                            OpenCV.CHAIN_APPROX_SIMPLE);
+                            OpenCV.RETR_EXTERNAL, OpenCV.CHAIN_APPROX_SIMPLE);
                         if (contours.length >= 1) {
-                            // Sort contours by area
+                            // Sort contours by area and select largest area as 'ball'
                             contours = contours.sort((a, b) => a.area - b.area);
-                            // Select the contour with the largest area size
                             const m = contours[0].moments();
-                            const center = new OpenCV.Vec2(
-                                m.m10 / m.m00,
-                                m.m01 / m.m00);
+                            const center = new OpenCV.Vec2(m.m10 / m.m00, m.m01 / m.m00);
                             // Use the center as the 2D pixel position
-                            const position = new Absolute2DPosition(
-                                center.x,
-                                center.y);
+                            const position = new Absolute2DPosition(center.x, center.y);
                             position.unit = LengthUnit.CENTIMETER;
                             position.accuracy = Math.sqrt(contours[0].area);
-                            frame.source.setPosition(position);
+                            frame.addObject(new DataObject("ball").setPosition(position));
+                        }
+                        resolve(frame);
+                    });
+                }
+            }
+            ```
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## OpenCV: Contour detection
+            ```ts {}
+            class ContourDetectionNode extends ProcessingNode<VideoFrame> {
+                process(frame: VideoFrame): Promise<VideoFrame> {
+                    return new Promise((resolve) => {
+                        let contours = frame.image.findContours(
+                            OpenCV.RETR_EXTERNAL, OpenCV.CHAIN_APPROX_SIMPLE);
+                        if (contours.length >= 1) {
+                            // Sort contours by area and select largest area as 'ball'
+                            contours = contours.sort((a, b) => a.area - b.area);
+                            const m = contours[0].moments();
+                            const center = new OpenCV.Vec2(m.m10 / m.m00, m.m01 / m.m00);
+                            // Use the center as the 2D pixel position
+                            const position = new Absolute2DPosition(center.x, center.y);
+                            position.unit = LengthUnit.CENTIMETER;
+                            position.accuracy = Math.sqrt(contours[0].area);
+                            frame.addObject(new DataObject("ball").setPosition(position));
+                        }
+                        resolve(frame);
+                    });
+                }
+            }
+            ```
+        {% endmarkdown %}
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        {% markdown %}
+            ## OpenCV: Contour detection
+            ```ts {10-14}
+            class ContourDetectionNode extends ProcessingNode<VideoFrame> {
+                process(frame: VideoFrame): Promise<VideoFrame> {
+                    return new Promise((resolve) => {
+                        let contours = frame.image.findContours(
+                            OpenCV.RETR_EXTERNAL, OpenCV.CHAIN_APPROX_SIMPLE);
+                        if (contours.length >= 1) {
+                            // Sort contours by area and select largest area as 'ball'
+                            contours = contours.sort((a, b) => a.area - b.area);
+                            const m = contours[0].moments();
+                            const center = new OpenCV.Vec2(m.m10 / m.m00, m.m01 / m.m00);
+                            // Use the center as the 2D pixel position
+                            const position = new Absolute2DPosition(center.x, center.y);
+                            position.unit = LengthUnit.CENTIMETER; // Convert later
+                            position.accuracy = Math.sqrt(contours[0].area);
+                            frame.addObject(new DataObject("ball").setPosition(position));
                         }
                         resolve(frame);
                     });
@@ -637,6 +903,7 @@ hide_slide_numbers: true
     }
     .resource-link {
         margin-left: 1em;
+        bottom: 12px;
     }
     </style>
     {% markdown %}
@@ -647,8 +914,19 @@ hide_slide_numbers: true
 
         <img class="resource-img" src="images/npm-brands.svg"><a class="resource-link" href="https://npmjs.com/org/openhps">https://npmjs.com/org/openhps</a>
 
-        <img class="resource-img" src="images/file-pdf-solid.svg"><a class="resource-link" href="https://openhps.org/posts/2021/01/14/">Technical Report</a>
-
-        <img class="resource-img" src="images/video-solid.svg"><a class="resource-link" href="https://openhps.org/media/2020-12_sphero-demo.mp4">Example Video</a>
+        <img class="resource-img" src="images/twitter-brands.svg"><a class="resource-link" href="https://twitter.com/OpenHPS">https://twitter.com/OpenHPS</a>
     {% endmarkdown %}
+
+    <style>
+    .qr-image {
+        width: 200px;
+        height: 200px;
+    }
+    </style>
+    <div class="row" style="position: absolute; right: 50px; top: 130px; width: 30%;">
+        <img style="width: 100%" src="images/contact.svg"/>
+    </div>
+    <div class="row" style="position: absolute; bottom: 7vh;">
+        <img class="qr-image" src="../ipin2021/images/qr-code.svg"/>
+    </div>
 </section>
