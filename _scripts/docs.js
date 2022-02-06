@@ -37,7 +37,7 @@ async function buildDocs() {
             console.log(chalk.white(`\tExtracting API documentation for '${module}'`));
             await extractZip(`_site/docs/${module}`, stream);
         } catch(ex) {
-            console.error(ex);
+            console.error(chalk.red(`\tUnable to get documentation for ${modules[i]}`));
         }
     }
 }
