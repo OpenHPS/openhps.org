@@ -4,6 +4,8 @@ title: Next Generation User Interface - Indoor Positioning and Location Awarenes
 presentation_title: Next Generation User Interface</br><small>Indoor Positioning and Location Awareness</small>
 author: Maxim Van de Wynckel
 logo: true
+width: 1280
+height: 720
 header_logo: /images/misc/openhps-logo.svg
 ---
 
@@ -13,52 +15,76 @@ header_logo: /images/misc/openhps-logo.svg
         
         "*An indoor positioning system (IPS) is a network of devices used to locate people or objects where GPS and other satellite technologies lack precision or fail entirely, such as inside multistory buildings, airports, alleys, parking garages, and underground locations.*"
         
-        [<small>*- Wikipedia (2021)*</small>](https://en.wikipedia.org/wiki/Indoor_positioning_system)
+        [<small>*- Wikipedia (2022)*</small>](https://en.wikipedia.org/wiki/Indoor_positioning_system)\
+        [<small>*- (image) Bonkers.io (2018)*</small>](https://www.bonkers.io/assets/papers/Bonkers_ICO_WhitePaper_1.0.7.pdf)
     {% endmarkdown %}
-</section>
-<section data-markdown>
-    {% markdown %}
-        ## Location Awareness
-        
-        "*Location awareness refers to devices that can passively or actively determine their location.*"
-        
-        [<small>*- Wikipedia (2021)*</small>](https://en.wikipedia.org/wiki/Location_awareness)
-    {% endmarkdown %}
+    <img height="60%" style="position: absolute; right: 0; top: 200px;" src="images/ips.png">
 </section>
 <section>
-    <section data-markdown data-auto-animate>
+    <section data-markdown>
         {% markdown %}
-            ## Use Cases
+            ## Location Awareness
+            
+            "*Location awareness refers to devices that can passively or actively determine their location.*"
+            
+            [<small>*- Wikipedia (2022)*</small>](https://en.wikipedia.org/wiki/Location_awareness)
         {% endmarkdown %}
     </section>
+    <section data-markdown>
+        {% markdown %}
+            ## Contextual Location Awareness
+            Using the location of a person or asset as contextual information for implicit human-computer interaction.
+        {% endmarkdown %}
+    </section>
+</section>
+<section>
     <section data-markdown data-auto-animate class="left">
         {% markdown %}
+            ## Use Cases
             ### Indoor Navigation
-            <img src="./images/indoor-navigation.png" width="40%"></br>
+            <img src="./images/indoor-navigation.png" width="50%"></br>
             [<small>*- Gatwick Airport Limited (2017)*</small>](http://www.mediacentre.gatwickairport.com/press-releases/2017/17_05_25_beacons.aspx)
         {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate class="left">
         {% markdown %}
+            ## Use Cases ...
             ### Asset Tracking
             - Track the location of expensive items
             - Material resource planning
             - Personnel tracking
-            <img src="./images/apple-airtag.jpg" width="40%"></br>
-            [<small>*- LetsGoDigital (2021)*</small>](https://nl.letsgodigital.org/accessoires/apple-airtag/)
+
+
         {% endmarkdown %}
+            <div class="row">
+                <div class="col-5">
+                    <img src="./images/apple-airtag.jpg" width="100%"></br>
+                </div>
+                <div class="col-3">
+                    <img src="./images/asset-tracking.png" width="100%"></br>
+                </div>
+                <div class="col-3">
+                    {% markdown %}
+                        [<small>*- LetsGoDigital (2021)*</small>](https://nl.letsgodigital.org/accessoires/apple-airtag/)\
+                        [<small>*- Favendo (2022)*</small>](https://www.favendo.com/asset-tracking/asset-tracking-software-by-favendo)
+                    {% endmarkdown %}
+                </div>
+            </div>
     </section>
     <section data-markdown data-auto-animate class="left">
         {% markdown %}
+            ## Use Cases ...
             ### Implicit Interaction
             - Home automation
             - Resource assigning
+            - Machine learning recommendations
         {% endmarkdown %}
     </section>
     <section data-markdown data-auto-animate>
         {% markdown %}
+            ## Use Cases ...
             ### Autonomous Robots
-            <img src="./images/roborock.jpg" width="40%"></br>
+            <img src="./images/roborock.jpg" width="45%"></br>
             [<small>*- Jim Martin (2019)*</small>](https://www.techadvisor.com/review/roborock-s6-3696730/)
         {% endmarkdown %}
     </section>
@@ -69,7 +95,7 @@ header_logo: /images/misc/openhps-logo.svg
         - RF-based <small>(Wi-Fi, Bluetooth, UWB)</small>
         - Sound-based <small>(Ultrasound beacons, ambient noise)</small>
         - Camera-based <small>(VSLAM, MTMC, VLC)</small>
-        - IMU-based <small>(acceleration, velocity, geomagnetic)</small>
+        - Inertial Measurement Unit (IMU-based) <small>(acceleration, velocity, geomagnetic)</small>
         - *Many more ...*
     {% endmarkdown %}
 </section>
@@ -87,7 +113,8 @@ header_logo: /images/misc/openhps-logo.svg
 <section data-markdown class="left">
     {% markdown %}
         ## Bluetooth beacons
-        A small (battery powered) device that sends out a BLE advertisement in a fixed interval.
+        A small (battery powered) device that sends out a BLE advertisement in a fixed interval. The received signal
+        strength is used to esimate the linear distance.
 
         **Algorithms:**
         - Fingerprinting
@@ -97,8 +124,8 @@ header_logo: /images/misc/openhps-logo.svg
 <section data-markdown class="left">
     {% markdown %}
         ## Ultra wideband
-        A small (battery powered) device that sends out an RF signal over a large band, allowing to achieve
-        more predictable signal strength readings.
+        A small (battery powered) device that sends out an RF signal over a large band (6 - 8 GHz), allowing the use of Time of Flight (ToF)
+        for determining the distance to centimeter precision. More power consumption than BLE.
 
         **Algorithms:**
         - Multilateration
@@ -107,7 +134,7 @@ header_logo: /images/misc/openhps-logo.svg
 <section data-markdown class="left">
     {% markdown %}
         ## Wi-Fi access points
-        Existing Wi-Fi infrastructure to predict the position based on the signal strength or time of flight (on supported access points).
+        Existing Wi-Fi infrastructure to predict the position based on the signal strength or Time of Flight (ToF) (on supported access points).
 
         **Algorithms:**
         - Fingerprinting
@@ -117,11 +144,14 @@ header_logo: /images/misc/openhps-logo.svg
 <section data-markdown class="left">
     {% markdown %}
         ## Inertial Measurement Unit (IMU sensor)
-        
+        Accelerometer, gyroscope and magnetometer to determine the orientation, linear
+        and angular velocity. Optionally can contain a barometer.
 
         **Algorithms:**
         - Dead reckoning (raw, pedometer)
+        - Geomagnetic fingerprinting
     {% endmarkdown %}
+    <img src="images/imu.jpg" width="40%">
 </section>
 <section>
     <section data-markdown data-auto-animate data-timing="20">
@@ -139,28 +169,25 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## What is OpenHPS?
+            ## OpenHPS
             ### An Open Source Hybrid Positioning System
             - Any technology
             - Any algorithm
-            - Any use case
-            - Flexibile processing and output
-                - Accuracy over battery consumption, reliability, ...
-            - Aimed towards
-                - Developers
-                - Researchers
+            - Various use cases
+            - Flexible processing and output
+                - Prefer accuracy over battery consumption, reliability, ...
+            - Aimed towards developers and researchers
         {% endmarkdown %}
         <aside class="notes">
         With OpenHPS we aim to offer a framework for developers and researchers that
-        can support a variety of positioning technologies, algorithms and uses cases that are not just
-        limited to indoor positioning. We also aim to offer a lot of flexibility in the outcome of the position,
+        can support a variety of positioning technologies, algorithms and uses cases. We also aim to offer a lot of flexibility in the outcome of the position,
         weither it is a developer wishing to offer the most accurate position, power optimized solution or
         simply a reliable system that can rougly (but reliably) indicate weither or not you are in a specific room.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="25">
         <h2 data-id="title-processnetworkdesign">Process Network Design</h2>
-        <img width="90%" src="../ipin2021/images/architecture.svg"/>
+        <img width="90%" src="../fosdem2022/images/architecture.svg"/>
         <aside class="notes">
         When creating a positioning system, you obtain sensor data from multiple different sensors. You process the data until at some stage in your processing
         you merge the sensor data to obtain a position that you can show to your user.
@@ -168,17 +195,32 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate data-timing="30">
         <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
-        <img height="30%" src="images/architecture.svg"/>
-        <img height="45%" data-id="architecture-graph" src="../ipin2021/images/architecture2.svg"/>
+        <img height="30%" src="../fosdem2022/images/architecture.svg"/>
+        <img height="45%" data-id="architecture-graph" src="../fosdem2022/images/architecture2.svg"/>
         <aside class="notes">
         OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
         We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
-        We call this complete process network from source to sink a positioning model.
+        We call this complete process network from source to sink a positioning model. 
         </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="30%" src="../fosdem2022/images/architecture.svg"/>
+        <img height="45%" data-id="architecture-graph" src="../fosdem2022/images/architecture2_source.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="30%" src="../fosdem2022/images/architecture.svg"/>
+        <img height="45%" data-id="architecture-graph" src="../fosdem2022/images/architecture2_processing.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="30%" src="../fosdem2022/images/architecture.svg"/>
+        <img height="45%" data-id="architecture-graph" src="../fosdem2022/images/architecture2_sink.svg"/>
     </section>
     <section data-markdown data-auto-animate data-timing="35">
         <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
-        <img height="70%" style="margin-top: 1em" data-id="architecture-graph" src="../ipin2021/images/architecture3.svg"/>
+        <img height="70%" style="margin-top: 1em" data-id="architecture-graph" src="../fosdem2022/images/architecture3.svg"/>
         <aside class="notes">
         On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
         handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
@@ -187,7 +229,7 @@ header_logo: /images/misc/openhps-logo.svg
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         <h2 data-id="title-modularity">Modularity</h2>
-        <img width="100%" style="margin-top: 2em" src="../ipin2021/images/stack.svg"/>
+        <img width="100%" data-id="stack" style="margin-top: 2em" src="../ipin2021/images/stack.svg"/>
         <aside class="notes">
         By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
         can be reused throughout multiple different packages. Our core component offers the main concepts
@@ -195,26 +237,27 @@ header_logo: /images/misc/openhps-logo.svg
         handle the communication, data storage or add additional algorithms.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="30">
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
         <h2 data-id="title-modularity">Modularity ...</h2>
-        {% markdown %}
-            **Communication**\
-            Socket, MQTT, REST API, ...
-
-            **Data Storage**\
-            MongoDB, LocalStorage, RDF, ...
-
-            **Positioning Algorithms**\
-            IMU, fingerprinting, OpenVSLAM, ...
-
-            **Abstractions**\
-            Geospatial, location-based services, geojson, ...
-
-            **Other**\
-            React-Native, NativeScript, Sphero, ...
-        {% endmarkdown %}
-        <aside class="notes">
-        
-        </aside>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="../fosdem2022/images/stack_examples.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="../fosdem2022/images/stack_examples_1.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="../fosdem2022/images/stack_examples_2.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="../fosdem2022/images/stack_examples_3.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="../fosdem2022/images/stack_examples_4.svg"/>
     </section>
 </section>
