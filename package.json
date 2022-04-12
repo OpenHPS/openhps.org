@@ -20,7 +20,7 @@
     "@quasibit/eleventy-plugin-sitemap": "^2.1.5",
     "@types/node": "^17.0.23",
     "axios": "^0.26.1",
-    "chalk": "^5.0.1",
+    "chalk": "^4.*",
     "deasync": "^0.1.26",
     "decktape": "^3.4.1",
     "dotenv": "^16.0.0",
