@@ -261,3 +261,299 @@ header_logo: /images/misc/openhps-logo.svg
         <img width="90%" style="margin-top: -0.3em" data-id="stack-examples" src="../fosdem2022/images/stack_examples_4.svg"/>
     </section>
 </section>
+<section>
+    <section data-markdown data-auto-animate data-timing="30">
+        {% markdown %}
+            ## Data Processing
+        {% endmarkdown %}
+        <img height="80%" src="../fosdem2022/images/dataprocessing.svg" class="logo">
+        <aside class="notes">
+        The data that we process in our process network is an important aspect of the core of OpenHPS.
+        We have knowledge, raw data and processed data. Knowledge is everything that we know - such as sensors, radio transmitters
+        or building layouts. Raw data is unprocessed data that we want to process, such as individual video or image frames, unfiltered
+        accelerometer data. And finally, we have the processed data that will eventually become knowledge.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## DataObject
+            
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-4">
+                <img width="100%" style="margin-top: 1em" src="../fosdem2022/images/dataobject.svg">
+            </div>
+            <div class="col-8">
+            {% markdown %}
+                ```ts
+                // Data object for the person we are tracking
+                const me = new DataObject("mvdewync@vub.be");
+                me.displayName = "Maxim Van de Wynckel";
+
+                // Phone belonging to the person
+                const phone = new DataObject()
+                phone.displayName = "Maxim's Phone";
+                phone.setParent(me);
+
+                // Watch belonging to the person
+                const watch = new DataObject();
+                watch.displayName = "Maxim's Android Watch";
+                watch.setParent(me);
+
+                // IP camera identified by MAC
+                const camera = new CameraObject("80:bb:7c:37:0e:02");
+                camera.width = 1980;
+                camera.height = 1024;
+                camera.fps = 30;
+                camera.setPosition(/* ... */);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## DataObject
+            
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-4">
+                <img width="100%" style="margin-top: 1em" src="../fosdem2022/images/dataobject.svg">
+            </div>
+            <div class="col-8">
+            {% markdown %}
+                ```ts {0-2}
+                // Data object for the person we are tracking
+                const me = new DataObject("mvdewync@vub.be");
+                me.displayName = "Maxim Van de Wynckel";
+
+                // Phone belonging to the person
+                const phone = new DataObject();
+                phone.displayName = "Maxim's Phone";
+                phone.setParent(me);
+
+                // Watch belonging to the person
+                const watch = new DataObject();
+                watch.displayName = "Maxim's Android Watch";
+                watch.setParent(me);
+
+                // IP camera identified by MAC
+                const camera = new CameraObject("80:bb:7c:37:0e:02");
+                camera.width = 1980;
+                camera.height = 1024;
+                camera.fps = 30;
+                camera.setPosition(/* ... */);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## DataObject
+            
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-4">
+                <img width="100%" style="margin-top: 1em" src="../fosdem2022/images/dataobject.svg">
+            </div>
+            <div class="col-8">
+            {% markdown %}
+                ```ts {4-12}
+                // Data object for the person we are tracking
+                const me = new DataObject("mvdewync@vub.be");
+                me.displayName = "Maxim Van de Wynckel";
+
+                // Phone belonging to the person
+                const phone = new DataObject();
+                phone.displayName = "Maxim's Phone";
+                phone.setParent(me);
+
+                // Watch belonging to the person
+                const watch = new DataObject();
+                watch.displayName = "Maxim's Android Watch";
+                watch.setParent(me);
+
+                // IP camera identified by MAC
+                const camera = new CameraObject("80:bb:7c:37:0e:02");
+                camera.width = 1980;
+                camera.height = 1024;
+                camera.fps = 30;
+                camera.setPosition(/* ... */);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## DataObject
+            
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-4">
+                <img width="100%" style="margin-top: 1em" src="../fosdem2022/images/dataobject.svg">
+            </div>
+            <div class="col-8">
+            {% markdown %}
+                ```ts {14-19}
+                // Data object for the person we are tracking
+                const me = new DataObject("mvdewync@vub.be");
+                me.displayName = "Maxim Van de Wynckel";
+
+                // Phone belonging to the person
+                const phone = new DataObject();
+                phone.displayName = "Maxim's Phone";
+                phone.setParent(me);
+
+                // Watch belonging to the person
+                const watch = new DataObject();
+                watch.displayName = "Maxim's Android Watch";
+                watch.setParent(me);
+
+                // IP camera identified by MAC
+                const camera = new CameraObject("80:bb:7c:37:0e:02");
+                camera.width = 1980;
+                camera.height = 1024;
+                camera.fps = 30;
+                camera.setPosition(/* ... */);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        {% markdown %}
+            ## Absolute and Relative Positions
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-5">
+                {% markdown %}
+                    **Absolute**
+                    - 2D, 3D, geographical, ...
+                    - Within a reference space
+
+                    **Relative**
+                    - Distance, angle, velocity, ...
+                    - Relative to another *object*
+                {% endmarkdown %}
+            </div>
+            <div class="col-7">
+            {% markdown %}
+                ```ts
+                // Absolute geographical position
+                me.setPosition(new GeographicalPosition(
+                    50.8204, 4.3921
+                ));
+
+                // Relative position(s) to another object
+                me.addRelativePosition(new RelativeDistance(
+                    "9F:F1:90:4C:F5:6A", 5.2, LengthUnit.METER
+                ));
+                me.addRelativePosition(new RelativeDistance(
+                    "DC:0F:14:B2:6B:80", 1.4, LengthUnit.METER
+                ));
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+        <img src="../fosdem2022/images/position.svg" width="50%">
+    </section>
+</section>
+
+<section>
+   <section data-markdown data-auto-animate data-timing="80">
+        <h2 data-id="title-dataframe">DataFrame</h2>
+        <div class="row">
+            <div class="col-4">
+                <img width="100%" src="../fosdem2022/images/dataframe.svg"/>
+            </div>
+            <div class="col-8">
+            {% markdown %}
+                ```ts
+                // Sensor that captured the frame
+                const camera = new CameraObject();
+
+                // Create a new frame
+                const frame = new VideoFrame();
+                frame.source = camera;
+                frame.image = myImage;
+
+                // Add detected objects to frame
+                frame.addObject(/* ... */);
+                frame.addObject(/* ... */);
+                frame.addObject(/* ... */);
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+        <img width="50%" src="../fosdem2022/images/dataframe2.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
+        {% markdown %}
+            ### Pushing Data
+
+        {% endmarkdown %}
+        <img width="100%" src="../ipin2021/images/nodes-push.svg"/>
+    </section>
+    <section data-markdown data-auto-animate data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
+        {% markdown %}
+            ### Pulling Data
+
+        {% endmarkdown %}
+        <img width="100%" src="../ipin2021/images/nodes-pull.svg"/>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="0">
+        {% markdown %}
+            ## Positioning Model
+        {% endmarkdown %}
+        <div class="row">
+            <div class="col-12">
+            {% markdown %}
+                ```ts
+                ModelBuilder.create()
+                    .from(new CallbackSourceNode(() => {
+                        const myObject = new DataObject("mvdewync");
+                        const frame = new DataFrame();
+                        frame.addObject(myObject);
+                        return frame;
+                    }))
+                    .via(new CallbackNode((frame: DataFrame) => { /* ... */ }))
+                    .to(new CallbackSinkNode((frame: DataFrame) => { /* ... */ }))
+                    .build().then((model: Model) => { /* ... */ });
+                ```
+            {% endmarkdown %}
+            </div>
+        </div>
+        <img src="../fosdem2022/images/positioningmodel.svg" width="70%">
+    </section>
+</section>
+<section data-markdown class="left">
+    {% markdown %}
+        ## Exercises Dataset
+    {% endmarkdown %}
+    <iframe width="100%" height="80%" frameborder="0" src="https://observablehq.com/embed/@openhps/openhps-fingerprinting-dataset-overview?cell=*"></iframe>
+</section>
+<section data-markdown class="left">
+    {% markdown %}
+        ## Exercise 1 - Multilateration
+
+    {% endmarkdown %}
+</section>
+<section data-markdown class="left">
+    {% markdown %}
+        ## Exercise 2 - Fingerprinting
+
+    {% endmarkdown %}
+</section>
+<section data-markdown class="left">
+    {% markdown %}
+        ## Exercise 3 - Location Awareness
+
+    {% endmarkdown %}
+</section>
