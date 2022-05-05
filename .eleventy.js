@@ -152,7 +152,8 @@ module.exports = function (el) {
       "pdf",
       'gif',
       "mp4",
-      "webm"
+      "webm",
+      "webp"
     ],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",

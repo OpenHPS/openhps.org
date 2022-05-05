@@ -33,7 +33,9 @@ header_logo: /images/misc/openhps-logo.svg
     <section data-markdown>
         {% markdown %}
             ## Contextual Location Awareness
-            Using the location of a person or asset as contextual information for implicit human-computer interaction.
+            Using the location of a person or asset as contextual information for **implicit human-computer interaction**.
+
+            *NOTE: You will see implicit human-computer interaction in a later lecture*
         {% endmarkdown %}
     </section>
 </section>
@@ -122,6 +124,29 @@ header_logo: /images/misc/openhps-logo.svg
     {% endmarkdown %}
     <img src="./images/beacon.png" width="45%"></br>
 </section>
+<section>
+    <section data-markdown class="left">
+        {% markdown %}
+            ## Multilateration (>3 transmitters)
+            <img src="./images/multilateration-1.svg" width="45%"></br>
+            [<small>*- Van de Wynckel, Maxim (2019)*</small>](https://researchportal.vub.be/en/studentTheses/indoor-navigation-by-centralized-tracking)
+        {% endmarkdown %}
+    </section>
+    <section data-markdown class="left">
+        {% markdown %}
+            ## Multilateration (2 transmitters)
+            <img src="./images/multilateration-2.svg" width="80%"></br>
+            [<small>*- Van de Wynckel, Maxim (2019)*</small>](https://researchportal.vub.be/en/studentTheses/indoor-navigation-by-centralized-tracking)
+        {% endmarkdown %}
+    </section>
+</section>
+<section data-markdown class="left">
+    {% markdown %}
+        ## Cell-Identification (1 transmitter)
+        <img src="./images/cell-id-multilateration.svg" width="50%"></br>
+        [<small>*- Van de Wynckel, Maxim (2019)*</small>](https://researchportal.vub.be/en/studentTheses/indoor-navigation-by-centralized-tracking)
+    {% endmarkdown %}
+</section>
 <section data-markdown class="left">
     {% markdown %}
         ## Ultra wideband
@@ -142,6 +167,22 @@ header_logo: /images/misc/openhps-logo.svg
         - Multilateration
     {% endmarkdown %}
 </section>
+<section>
+    <section data-markdown class="left">
+        {% markdown %}
+            ## Fingerprinting
+            <img src="../ipin2021/images/datapoints.svg" width="50%"></br>
+            [<small>*- Van de Wynckel, Maxim \& Signer, Beat (2021)*</small>](https://researchportal.vub.be/en/publications/indoor-positioning-using-the-openhps-framework)
+        {% endmarkdown %}
+    </section>
+    <section data-markdown class="left">
+        {% markdown %}
+            ## Fingerprinting ...
+            <img src="./images/dataset.png" width="80%"></br>
+            [<small>*- Van de Wynckel, Maxim \& Signer, Beat (2021)*</small>](https://researchportal.vub.be/en/publications/indoor-positioning-using-the-openhps-framework)
+        {% endmarkdown %}
+    </section>
+</section>
 <section data-markdown class="left">
     {% markdown %}
         ## Inertial Measurement Unit (IMU sensor)
@@ -153,6 +194,13 @@ header_logo: /images/misc/openhps-logo.svg
         - Geomagnetic fingerprinting
     {% endmarkdown %}
     <img src="images/imu.jpg" width="40%">
+</section>
+<section data-markdown class="left">
+    {% markdown %}
+        ## Dead Reckoning
+        <img src="./images/deadreckoning.png" width="55%"></br>
+        [<small>*- OXTS (2022)*</small>](https://www.oxts.com/dead-reckoning/)
+    {% endmarkdown %}
 </section>
 <section>
     <section data-markdown data-auto-animate data-timing="20">
@@ -543,18 +591,52 @@ header_logo: /images/misc/openhps-logo.svg
 <section data-markdown class="left">
     {% markdown %}
         ## Exercise 1 - Multilateration
+        ### Question 1
+        > Create a new Bluetooth beacon object with the ID column as its uid 
+        and an absolute 3d position for the X, Y and Z coordinates.
+        Return the beacon object in this function.
 
+        ### Question 2
+        > Create a relative position for the rssi and beacon
+        Use the RelativeRSSI class in combination with a new BLEObject that uses the beacon name as its UID
+    {% endmarkdown %}
+</section>
+<section data-markdown class="left">
+    {% markdown %}
+        ## Exercise 1 ...
+        ### Question 3
+        > Convert the RSSI to a distance using log distance propagation
+        Assume we have a calibrated received signal strength of -69 at 1 meter distance.
+        Play around with the environment factor to see what works best.
+
+        ### Question 4
+        > Use the RSSI converted to a distance (from question 2) to
+        calculate the position with multilateration.
     {% endmarkdown %}
 </section>
 <section data-markdown class="left">
     {% markdown %}
         ## Exercise 2 - Fingerprinting
+        ### Question 1
+        > Create a fingerprint service that will store the scene analysis.
+        Experiment with the default RSSI value and grouping
 
+        ### Question 2
+        > Create a KNN fingerprinting node to convert sensor data to a position.
+        Experiment with the parameters to obtain a better result.
     {% endmarkdown %}
 </section>
 <section data-markdown class="left">
     {% markdown %}
         ## Exercise 3 - Location Awareness
+        ### Question 1
+        > Load the spaces/features defined in our dataset (spaces.geo.json).
+        The file is already loaded as the variable GEOJSON_FEATURES.
 
+        ### Question 2
+        > Emit the event of entering and exiting a space
+        This event should only trigger when you enter a new space.
+        The 'enterspace' event should only trigger when you enter a new space.
+        The 'exitspace' event should only trigger when you leave a space.
     {% endmarkdown %}
 </section>
