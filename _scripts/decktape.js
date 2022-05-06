@@ -44,9 +44,13 @@ async function decktape(el) {
 }
 
 async function generate() {
-    this.queue = JSON.parse(fs.readFileSync('_presentations.json', {
+    queue = JSON.parse(fs.readFileSync('_presentations.json', {
         encoding: 'utf-8'
     }));
+    console.log(`There are ${queue.length} presentations to be generated ...`);
+    if (queue.length === 0) {
+        return;
+    }
     console.log(chalk.blue(`Starting web server for generating PDFs ...`));
     const server = await createServer(3000);
     // Generate pdfs

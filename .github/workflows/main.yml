@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Load dependecy cache
+      - name: Load dependency cache
         uses: actions/cache@v2
         with:
           path: |
@@ -50,7 +50,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Load dependecy cache
+      - name: Load dependency cache
         uses: actions/cache@v2
         with:
           path: |
@@ -75,7 +75,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Load dependecy cache
+      - name: Load dependency cache
         uses: actions/cache@v2
         with:
           path: |
@@ -100,7 +100,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Load dependecy cache
+      - name: Load dependency cache
         uses: actions/cache@v2
         with:
           path: |
@@ -130,7 +130,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Load dependecy cache
+      - name: Load dependency cache
         uses: actions/cache@v2
         with:
           path: |
@@ -146,7 +146,14 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./website/_site
+          publish_dir: ./_site
+      - name: Status check
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          context: Github Pages preview
+          state: success
+          target_url: https://openhps.github.io/openhps.org/
 
   deploy_netlify:
     needs:
