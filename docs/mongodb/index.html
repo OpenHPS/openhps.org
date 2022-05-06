@@ -1,0 +1,68 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@openhps/mongodb</title><meta name="description" content="Documentation for @openhps/mongodb"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@openhps/mongodb</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@openhps/mongodb </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><h1 align="center">
+  <img alt="OpenHPS" src="https://openhps.org/images/logo_text-512.png" width="40%" /><br />
+  @openhps/mongodb
+</h1>
+<p align="center">
+    <a href="https://github.com/OpenHPS/openhps-mongodb/actions/workflows/main.yml" target="_blank">
+        <img alt="Build Status" src="https://github.com/OpenHPS/openhps-mongodb/actions/workflows/main.yml/badge.svg">
+    </a>
+    <a href="https://codecov.io/gh/OpenHPS/openhps-mongodb">
+        <img src="https://codecov.io/gh/OpenHPS/openhps-mongodb/branch/master/graph/badge.svg"/>
+    </a>
+    <a href="https://codeclimate.com/github/OpenHPS/openhps-mongodb/" target="_blank">
+        <img alt="Maintainability" src="https://img.shields.io/codeclimate/maintainability/OpenHPS/openhps-mongodb">
+    </a>
+    <a href="https://badge.fury.io/js/@openhps%2Fmongodb">
+        <img src="https://badge.fury.io/js/@openhps%2Fmongodb.svg" alt="npm version" height="18">
+    </a>
+</p>
+
+<h3 align="center">
+    <a href="https://github.com/OpenHPS/openhps-core">@openhps/core</a> &mdash; <a href="https://openhps.org/docs/mongodb">API</a>
+</h3>
+
+<br />
+
+<p>This repository contains the MongoDB component for OpenHPS (Open Source Hybrid Positioning System). It includes a data service that can be used to store data frames, objects and node data in a MongoDB database.</p>
+<p>OpenHPS is a data processing positioning framework. It is designed to support many different use cases ranging from simple positioning such as detecting the position of a pawn on a chessboard using RFID, to indoor positioning methods using multiple cameras.</p>
+
+<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+  <h2>Features</h2>
+</a>
+<ul>
+<li><code>MongoDataServiceDriver</code> that can be used to initialize a <code>DataService</code> or as a standalone data service.</li>
+</ul>
+
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h2>Getting Started</h2>
+</a>
+<p>If you have <a href="https://www.npmjs.com/get-npm">npm installed</a>, start using @openhps/core with the following command.</p>
+<pre><code class="language-bash"><span class="hl-0">npm install @openhps/mongodb --save</span>
+</code></pre>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h3>Usage</h3>
+</a>
+<p>You can use a <code>MongoDataServiceDriver</code> in a data service such as a <code>DataObjectService</code> to
+use the driver to store data objects of a specific type.</p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">ModelBuilder</span><span class="hl-0">, </span><span class="hl-2">DataObjectService</span><span class="hl-0">, </span><span class="hl-2">DataObject</span><span class="hl-0">, </span><span class="hl-2">ReferenceSpace</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/core&#39;</span><span class="hl-0">;</span><br/><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">MongoDataServiceDriver</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/mongodb&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-2">ModelBuilder</span><span class="hl-0">.</span><span class="hl-4">create</span><span class="hl-0">()</span><br/><span class="hl-0">    .</span><span class="hl-4">addService</span><span class="hl-0">(</span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-4">DataObjectService</span><span class="hl-0">(</span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-4">MongoDataServiceDriver</span><span class="hl-0">(</span><span class="hl-2">DataObject</span><span class="hl-0">, {</span><br/><span class="hl-0">        </span><span class="hl-2">dbURL:</span><span class="hl-0"> </span><span class="hl-3">&quot;mongodb://mongo:27017&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-2">dbName:</span><span class="hl-0"> </span><span class="hl-3">&quot;myObjects&quot;</span><br/><span class="hl-0">    })))</span><br/><span class="hl-0">    .</span><span class="hl-4">addService</span><span class="hl-0">(</span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-4">DataObjectService</span><span class="hl-0">(</span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-4">MongoDataServiceDriver</span><span class="hl-0">(</span><span class="hl-2">ReferenceSpace</span><span class="hl-0">, {</span><br/><span class="hl-0">        </span><span class="hl-2">dbURL:</span><span class="hl-0"> </span><span class="hl-3">&quot;mongodb://mongo:27017&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-2">dbName:</span><span class="hl-0"> </span><span class="hl-3">&quot;mySpaces&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-2">collectionName:</span><span class="hl-0"> </span><span class="hl-3">&quot;referenceSpaces&quot;</span><br/><span class="hl-0">    })))</span><br/><span class="hl-0">    .</span><span class="hl-4">addShape</span><span class="hl-0">(</span><span class="hl-6">/* ... */</span><span class="hl-0">)</span><br/><span class="hl-0">    .</span><span class="hl-4">build</span><span class="hl-0">().</span><span class="hl-4">then</span><span class="hl-0">(</span><span class="hl-2">model</span><span class="hl-0"> </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-6">/* ... */</span><br/><span class="hl-0">    });</span>
+</code></pre>
+
+<a href="#contributors" id="contributors" style="color: inherit; text-decoration: none;">
+  <h2>Contributors</h2>
+</a>
+<p>The framework is open source and is mainly developed by PhD Student Maxim Van de Wynckel as part of his research towards <em>Hybrid Positioning and Implicit Human-Computer Interaction</em> under the supervision of Prof. Dr. Beat Signer.</p>
+
+<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+  <h2>Contributing</h2>
+</a>
+<p>Use of OpenHPS, contributions and feedback is highly appreciated. Please read our <a href="CONTRIBUTING.md">contributing guidelines</a> for more information.</p>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p>Copyright (C) 2019-2022 Maxim Van de Wynckel &amp; Vrije Universiteit Brussel</p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at</p>
+<p><a href="https://www.apache.org/licenses/LICENSE-2.0">https://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/MongoDataServiceDriver.html" class="tsd-kind-icon">Mongo<wbr/>Data<wbr/>Service<wbr/>Driver</a></li><li class="tsd-kind-interface"><a href="interfaces/DatabaseOptions.html" class="tsd-kind-icon">Database<wbr/>Options</a></li></ul></nav></div></div></div><footer class=""><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="overlay"></div><script src="assets/main.js"></script></body></html>

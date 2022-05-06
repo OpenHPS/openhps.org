@@ -1,0 +1,114 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@openhps/rdf</title><meta name="description" content="Documentation for @openhps/rdf"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@openhps/rdf</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@openhps/rdf </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><h1 align="center">
+  <img alt="OpenHPS" src="https://openhps.org/images/logo_text-512.png" width="40%" /><br />
+  @openhps/rdf
+</h1>
+<p align="center">
+    <a href="https://github.com/OpenHPS/openhps-rdf/actions/workflows/main.yml" target="_blank">
+        <img alt="Build Status" src="https://github.com/OpenHPS/openhps-rdf/actions/workflows/main.yml/badge.svg">
+    </a>
+    <a href="https://codecov.io/gh/OpenHPS/openhps-rdf">
+        <img src="https://codecov.io/gh/OpenHPS/openhps-rdf/branch/master/graph/badge.svg"/>
+    </a>
+    <a href="https://codeclimate.com/github/OpenHPS/openhps-rdf/" target="_blank">
+        <img alt="Maintainability" src="https://img.shields.io/codeclimate/maintainability/OpenHPS/openhps-rdf">
+    </a>
+    <a href="https://badge.fury.io/js/@openhps%2Frdf">
+        <img src="https://badge.fury.io/js/@openhps%2Frdf.svg" alt="npm version" height="18">
+    </a>
+</p>
+
+<h3 align="center">
+    <a href="https://github.com/OpenHPS/openhps-core">@openhps/core</a> &mdash; <a href="https://openhps.org/docs/rdf">API</a>
+</h3>
+
+<br />
+
+
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h2>Getting Started</h2>
+</a>
+<p>If you have <a href="https://www.npmjs.com/get-npm">npm installed</a>, start using @openhps/rdf with the following command.</p>
+<pre><code class="language-bash"><span class="hl-0">npm install @openhps/rdf --save</span>
+</code></pre>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+
+<a href="#rdfserializer" id="rdfserializer" style="color: inherit; text-decoration: none;">
+  <h3><code>RDFSerializer</code></h3>
+</a>
+<p>The <code>RDFSerializer</code> is a similar utility as the <code>DataSerializer</code> from <a href="https://openhps.org/docs/core/classes/dataserializer">@openhps/core</a>. Instead of serializing and deserializing to JSON, it converts to RDF triples.</p>
+
+<a href="#to-thing" id="to-thing" style="color: inherit; text-decoration: none;">
+  <h4>to thing</h4>
+</a>
+<p>Serialize a serializable object to an RDF thing.</p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">RDFSerializer</span><span class="hl-0">, </span><span class="hl-2">Thing</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/rdf&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">thing</span><span class="hl-0">: </span><span class="hl-6">Thing</span><span class="hl-0"> = </span><span class="hl-2">RDFSerializer</span><span class="hl-0">.</span><span class="hl-7">serialize</span><span class="hl-0">(</span><span class="hl-4">new</span><span class="hl-0"> </span><span class="hl-7">DataObject</span><span class="hl-0">(</span><span class="hl-8">/* ... */</span><span class="hl-0">));</span>
+</code></pre>
+<p>When storing a named object, a base URI should be provided.</p>
+
+<a href="#to-quads" id="to-quads" style="color: inherit; text-decoration: none;">
+  <h4>to quads</h4>
+</a>
+<p>Serialize a serializable object to <a href="https://rdf.js.org/data-model-spec/">RdfJS Quads</a>.</p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">RDFSerializer</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/rdf&#39;</span><span class="hl-0">;</span><br/><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">Quad</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;rdfjs&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">quads</span><span class="hl-0">: </span><span class="hl-6">Quad</span><span class="hl-0">[] = </span><span class="hl-2">RDFSerializer</span><span class="hl-0">.</span><span class="hl-7">serializeToQuads</span><span class="hl-0">(</span><span class="hl-4">new</span><span class="hl-0"> </span><span class="hl-7">DataObject</span><span class="hl-0">(</span><span class="hl-8">/* ... */</span><span class="hl-0">));</span>
+</code></pre>
+<p>When storing a named object, a base URI should be provided.</p>
+
+<a href="#to-string" id="to-string" style="color: inherit; text-decoration: none;">
+  <h4>to string</h4>
+</a>
+<p>Serializing to a string is possible. We use N3 for exporting the serializable objects to
+turtle, Notation-3 or <a href="https://github.com/rdfjs/N3.js/#writing">other supported formats</a>.</p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">RDFSerializer</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/rdf&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">turtle</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> = </span><span class="hl-2">RDFSerializer</span><span class="hl-0">.</span><span class="hl-7">stringify</span><span class="hl-0">(</span><span class="hl-4">new</span><span class="hl-0"> </span><span class="hl-7">DataObject</span><span class="hl-0">(</span><span class="hl-8">/* ... */</span><span class="hl-0">), {</span><br/><span class="hl-0">    </span><span class="hl-2">format:</span><span class="hl-0"> </span><span class="hl-3">&#39;text/turtle&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-2">prettyPrint:</span><span class="hl-0"> </span><span class="hl-4">true</span><br/><span class="hl-0">});</span>
+</code></pre>
+
+<a href="#from-thing" id="from-thing" style="color: inherit; text-decoration: none;">
+  <h4>from thing</h4>
+</a>
+<p>Deserialize a serializable object from a thing.</p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">RDFSerializer</span><span class="hl-0">, </span><span class="hl-2">Thing</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/rdf&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">thing</span><span class="hl-0">: </span><span class="hl-6">Thing</span><br/><br/><span class="hl-8">/* ... */</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">object</span><span class="hl-0">: </span><span class="hl-6">DataObject</span><span class="hl-0"> = </span><span class="hl-2">RDFSerializer</span><span class="hl-0">.</span><span class="hl-7">deserialize</span><span class="hl-0">(</span><span class="hl-2">thing</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#create-a-new-rdf-serializable-object" id="create-a-new-rdf-serializable-object" style="color: inherit; text-decoration: none;">
+  <h3>Create a new RDF serializable object</h3>
+</a>
+
+<a href="#serializableobject" id="serializableobject" style="color: inherit; text-decoration: none;">
+  <h4><code>SerializableObject</code></h4>
+</a>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/rdf&#39;</span><span class="hl-0">; </span><span class="hl-8">// Import to load type declarations</span><br/><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">SerializableObject</span><span class="hl-0">, </span><span class="hl-2">SerializableMember</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@openhps/core&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-0">@</span><span class="hl-7">SerializableObject</span><span class="hl-0">({</span><br/><span class="hl-0">    </span><span class="hl-2">rdf:</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-2">type:</span><span class="hl-0"> </span><span class="hl-3">&#39;http://myontology.org#SomeObject&#39;</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">})</span><br/><span class="hl-4">class</span><span class="hl-0"> </span><span class="hl-6">SomeObject</span><span class="hl-0"> {</span><br/><br/><span class="hl-0">}</span>
+</code></pre>
+
+<a href="#serializablemember" id="serializablemember" style="color: inherit; text-decoration: none;">
+  <h4><code>SerializableMember</code></h4>
+</a>
+<p>API documentation for literal: <a href="https://openhps.org/docs/rdf/interfaces/rdfliteraloptions">https://openhps.org/docs/rdf/interfaces/rdfliteraloptions</a></p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">SerializableMember</span><span class="hl-0">, </span><span class="hl-2">SerializableObject</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&quot;@openhps/core&quot;</span><span class="hl-0">;</span><br/><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">foaf</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&quot;@openhps/rdf&quot;</span><span class="hl-0">;</span><br/><br/><span class="hl-0">@</span><span class="hl-7">SerializableObject</span><span class="hl-0">({</span><br/><span class="hl-0">    </span><span class="hl-2">rdf:</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-2">type:</span><span class="hl-0"> </span><span class="hl-2">foaf</span><span class="hl-0">.</span><span class="hl-2">Project</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">})</span><br/><span class="hl-1">export</span><span class="hl-0"> </span><span class="hl-4">class</span><span class="hl-0"> </span><span class="hl-6">Project</span><span class="hl-0"> {</span><br/><span class="hl-0">    @</span><span class="hl-7">SerializableMember</span><span class="hl-0">({</span><br/><span class="hl-0">        </span><span class="hl-2">rdf:</span><span class="hl-0"> {</span><br/><span class="hl-0">            </span><span class="hl-2">predicate:</span><span class="hl-0"> </span><span class="hl-2">foaf</span><span class="hl-0">.</span><span class="hl-2">name</span><br/><span class="hl-0">        }</span><br/><span class="hl-0">    })</span><br/><span class="hl-0">    </span><span class="hl-2">name</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">;</span><br/><span class="hl-0">}</span>
+</code></pre>
+
+<a href="#sparqldatadriver" id="sparqldatadriver" style="color: inherit; text-decoration: none;">
+  <h3><code>SPARQLDataDriver</code></h3>
+</a>
+<p>The SPARQL endpoint uses <a href="https://comunica.dev/">Comunica</a> as its query engine while still
+using the query syntax from MongoDB.</p>
+
+<a href="#contributors" id="contributors" style="color: inherit; text-decoration: none;">
+  <h2>Contributors</h2>
+</a>
+<p>The framework is open source and is mainly developed by PhD Student Maxim Van de Wynckel as part of his research towards <em>Hybrid Positioning and Implicit Human-Computer Interaction</em> under the supervision of Prof. Dr. Beat Signer.</p>
+
+<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+  <h2>Contributing</h2>
+</a>
+<p>Use of OpenHPS, contributions and feedback is highly appreciated. Please read our <a href="CONTRIBUTING.md">contributing guidelines</a> for more information.</p>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p>Copyright (C) 2019-2022 Maxim Van de Wynckel &amp; Vrije Universiteit Brussel</p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at</p>
+<p><a href="https://www.apache.org/licenses/LICENSE-2.0">https://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li><li class="label tsd-is-external"><span>Internals</span></li><li class="label tsd-is-external"><span>Externals</span></li><li class=" tsd-kind-namespace tsd-is-external"><a href="modules/DataFactory.html">Data<wbr/>Factory</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class tsd-is-external"><a href="classes/BlankNode.html" class="tsd-kind-icon">Blank<wbr/>Node</a></li><li class="tsd-kind-class tsd-is-external"><a href="classes/Literal.html" class="tsd-kind-icon">Literal</a></li><li class="tsd-kind-class tsd-has-type-parameter tsd-is-external"><a href="classes/NamedNode.html" class="tsd-kind-icon">Named<wbr/>Node</a></li><li class="tsd-kind-class tsd-has-type-parameter tsd-is-external"><a href="classes/Parser.html" class="tsd-kind-icon">Parser</a></li><li class="tsd-kind-class tsd-is-external"><a href="classes/Quad.html" class="tsd-kind-icon">Quad</a></li><li class="tsd-kind-class"><a href="classes/RDFSerializer.html" class="tsd-kind-icon">RDFSerializer</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/SPARQLDataDriver.html" class="tsd-kind-icon">SPARQLData<wbr/>Driver</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/SPARQLGenerator.html" class="tsd-kind-icon">SPARQLGenerator</a></li><li class="tsd-kind-class"><a href="classes/SerializableNamedNode.html" class="tsd-kind-icon">Serializable<wbr/>Named<wbr/>Node</a></li><li class="tsd-kind-class tsd-has-type-parameter tsd-is-external"><a href="classes/Store.html" class="tsd-kind-icon">Store</a></li><li class="tsd-kind-class tsd-has-type-parameter tsd-is-external"><a href="classes/Writer.html" class="tsd-kind-icon">Writer</a></li><li class="tsd-kind-interface tsd-is-external"><a href="interfaces/IQueryEngine.html" class="tsd-kind-icon">IQuery<wbr/>Engine</a></li><li class="tsd-kind-interface"><a href="interfaces/RDFIdentifierOptions.html" class="tsd-kind-icon">RDFIdentifier<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/RDFLiteralOptions.html" class="tsd-kind-icon">RDFLiteral<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/RDFObjectOptions.html" class="tsd-kind-icon">RDFObject<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/RDFSerializerConfig.html" class="tsd-kind-icon">RDFSerializer<wbr/>Config</a></li><li class="tsd-kind-interface"><a href="interfaces/SPARQLDriverOptions.html" class="tsd-kind-icon">SPARQLDriver<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/WriterOptions.html" class="tsd-kind-icon">Writer<wbr/>Options</a></li><li class="tsd-kind-type-alias tsd-is-external"><a href="modules.html#Bindings" class="tsd-kind-icon">Bindings</a></li><li class="tsd-kind-type-alias tsd-is-external"><a href="modules.html#BindingsStream" class="tsd-kind-icon">Bindings<wbr/>Stream</a></li><li class="tsd-kind-type-alias"><a href="modules.html#IriString" class="tsd-kind-icon">Iri<wbr/>String</a></li><li class="tsd-kind-type-alias"><a href="modules.html#LocaleString" class="tsd-kind-icon">Locale<wbr/>String</a></li><li class="tsd-kind-type-alias tsd-is-external"><a href="modules.html#Quad_Object" class="tsd-kind-icon">Quad_<wbr/>Object</a></li><li class="tsd-kind-type-alias tsd-is-external"><a href="modules.html#Quad_Predicate" class="tsd-kind-icon">Quad_<wbr/>Predicate</a></li><li class="tsd-kind-type-alias tsd-is-external"><a href="modules.html#Quad_Subject" class="tsd-kind-icon">Quad_<wbr/>Subject</a></li><li class="tsd-kind-type-alias tsd-is-external"><a href="modules.html#QueryStringContext" class="tsd-kind-icon">Query<wbr/>String<wbr/>Context</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Subject" class="tsd-kind-icon">Subject</a></li><li class="tsd-kind-type-alias tsd-is-external"><a href="modules.html#Term" class="tsd-kind-icon">Term</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Thing" class="tsd-kind-icon">Thing</a></li><li class="tsd-kind-type-alias"><a href="modules.html#UrlString" class="tsd-kind-icon">Url<wbr/>String</a></li><li class="tsd-kind-type-alias"><a href="modules.html#XmlSchemaTypeIri" class="tsd-kind-icon">Xml<wbr/>Schema<wbr/>Type<wbr/>Iri</a></li><li class="tsd-kind-variable"><a href="modules.html#dcmi" class="tsd-kind-icon">dcmi</a></li><li class="tsd-kind-variable"><a href="modules.html#dcterms" class="tsd-kind-icon">dcterms</a></li><li class="tsd-kind-variable"><a href="modules.html#dqm" class="tsd-kind-icon">dqm</a></li><li class="tsd-kind-variable"><a href="modules.html#foaf" class="tsd-kind-icon">foaf</a></li><li class="tsd-kind-variable"><a href="modules.html#geo" class="tsd-kind-icon">geo</a></li><li class="tsd-kind-variable"><a href="modules.html#ogc" class="tsd-kind-icon">ogc</a></li><li class="tsd-kind-variable"><a href="modules.html#openhps" class="tsd-kind-icon">openhps</a></li><li class="tsd-kind-variable"><a href="modules.html#owl" class="tsd-kind-icon">owl</a></li><li class="tsd-kind-variable"><a href="modules.html#quantitykind" class="tsd-kind-icon">quantitykind</a></li><li class="tsd-kind-variable"><a href="modules.html#qudt" class="tsd-kind-icon">qudt</a></li><li class="tsd-kind-variable"><a href="modules.html#qudt_unit" class="tsd-kind-icon">qudt_<wbr/>unit</a></li><li class="tsd-kind-variable"><a href="modules.html#rdf" class="tsd-kind-icon">rdf</a></li><li class="tsd-kind-variable"><a href="modules.html#rdfs" class="tsd-kind-icon">rdfs</a></li><li class="tsd-kind-variable"><a href="modules.html#schema" class="tsd-kind-icon">schema</a></li><li class="tsd-kind-variable"><a href="modules.html#sosa" class="tsd-kind-icon">sosa</a></li><li class="tsd-kind-variable"><a href="modules.html#ssn" class="tsd-kind-icon">ssn</a></li><li class="tsd-kind-variable"><a href="modules.html#ssns" class="tsd-kind-icon">ssns</a></li><li class="tsd-kind-variable"><a href="modules.html#time" class="tsd-kind-icon">time</a></li><li class="tsd-kind-variable"><a href="modules.html#vcard" class="tsd-kind-icon">vcard</a></li><li class="tsd-kind-variable"><a href="modules.html#xsd" class="tsd-kind-icon">xsd</a></li></ul></nav></div></div></div><footer class=""><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="overlay"></div><script src="assets/main.js"></script></body></html>

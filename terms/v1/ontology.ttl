@@ -1,0 +1,291 @@
+@prefix : <http://openhps.org/terms#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://openhps.org/terms#> .
+
+<http://openhps.org/terms#> rdf:type owl:Ontology ;
+                             owl:versionIRI <http://openhps.org/terms/v1#> ;
+                             owl:imports <http://www.w3.org/ns/sosa/> ,
+                                         <http://www.w3.org/ns/ssn/> ;
+                             <http://purl.org/dc/terms/abstract> "OpenHPS is an open source hybrid positioning system to help developers fuse various positioning technologies and algorithms. The system offers a modular data processing framework with each modules ranging from computer vision to common algorithms such as fingerprinting or data persistence of sampled data. The framework is maintained and used by the Web and Information Systems Engineering Lab at the Vrije Universiteit Brussel."@en ;
+                             <http://purl.org/dc/terms/bibliographicCitation> "Maxim Van de Wynckel and Beat Signer. OpenHPS Terms: An Ontology for Positioning Systems. URL: https://openhps.org/terms#" ;
+                             <http://purl.org/dc/terms/contributor> "Beat Signer"@de ,
+                                                                    "Maxim Van de Wynckel"@nl ;
+                             <http://purl.org/dc/terms/creator> "Maxim Van de Wynckel"@nl ;
+                             <http://purl.org/dc/terms/description> "This ontology provides the terminologies used for OpenHPS." ;
+                             <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0.txt> ;
+                             <http://purl.org/dc/terms/modified> "2021-11-02T00:00:00"^^xsd:dateTime ;
+                             <http://purl.org/dc/terms/source> <https://github.com/OpenHPS/openhps-core> ;
+                             <http://purl.org/dc/terms/title> "OpenHPS Terminology"@en ;
+                             <http://purl.org/vocab/vann/preferredNamespacePrefix> "openhps" ;
+                             <http://purl.org/vocab/vann/preferredNamespaceUri> "http://openhps.org/terms#" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/abstract
+<http://purl.org/dc/terms/abstract> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/bibliographicCitation
+<http://purl.org/dc/terms/bibliographicCitation> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+<http://purl.org/dc/terms/source> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://openhps.org/terms#hasAccuracy
+:hasAccuracy rdf:type owl:ObjectProperty ;
+             rdfs:range :Accuracy ;
+             rdfs:comment "Defines the accuracy of an observation." ;
+             rdfs:label "has Accuracy"@en .
+
+
+###  http://openhps.org/terms#hasOrientation
+:hasOrientation rdf:type owl:ObjectProperty ;
+                rdfs:domain :DataObject ,
+                            :Position ;
+                rdfs:range :Orientation ;
+                rdfs:label "has Orientation"@en .
+
+
+###  http://openhps.org/terms#hasPosition
+:hasPosition rdf:type owl:ObjectProperty ;
+             rdfs:domain :DataObject ;
+             rdfs:range :Position ;
+             rdfs:comment "The position of an object." ;
+             rdfs:label "has Position"@en .
+
+
+###  http://openhps.org/terms#includesObject
+:includesObject rdf:type owl:ObjectProperty ;
+                rdfs:domain :DataFrame ;
+                rdfs:range :DataObject ;
+                rdfs:label "includes Object"@en .
+
+
+###  http://openhps.org/terms#relativeTo
+:relativeTo rdf:type owl:ObjectProperty ;
+            rdfs:domain :Position ;
+            rdfs:range :DataObject ;
+            rdfs:comment "A position relative to an object or space." ;
+            rdfs:label "relative To"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://openhps.org/terms#coordX
+:coordX rdf:type owl:DatatypeProperty ;
+        rdfs:domain :AbsolutePosition ;
+        rdfs:range xsd:decimal .
+
+
+###  http://openhps.org/terms#coordY
+:coordY rdf:type owl:DatatypeProperty ;
+        rdfs:domain :AbsolutePosition ;
+        rdfs:range xsd:decimal .
+
+
+###  http://openhps.org/terms#coordZ
+:coordZ rdf:type owl:DatatypeProperty ;
+        rdfs:domain :AbsolutePosition ;
+        rdfs:range xsd:decimal .
+
+
+###  http://openhps.org/terms#pitch
+:pitch rdf:type owl:DatatypeProperty ;
+       rdfs:domain :EulerOrientation ;
+       rdfs:range xsd:decimal .
+
+
+###  http://openhps.org/terms#roll
+:roll rdf:type owl:DatatypeProperty ;
+      rdfs:domain :EulerOrientation ;
+      rdfs:range xsd:decimal .
+
+
+###  http://openhps.org/terms#yaw
+:yaw rdf:type owl:DatatypeProperty ;
+     rdfs:domain :EulerOrientation ;
+     rdfs:range xsd:decimal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://openhps.org/terms#Absolute2DPosition
+:Absolute2DPosition rdf:type owl:Class ;
+                    rdfs:subClassOf :AbsolutePosition ;
+                    rdfs:comment "Defines the absolute position of an object represented as a 2D point." ;
+                    rdfs:label "Absolute 2D Position" .
+
+
+###  http://openhps.org/terms#Absolute3DPosition
+:Absolute3DPosition rdf:type owl:Class ;
+                    rdfs:subClassOf :AbsolutePosition ;
+                    rdfs:comment "Defines the absolute position of an object represented as a 3D point." ;
+                    rdfs:label "Absolute 3D Position" .
+
+
+###  http://openhps.org/terms#AbsolutePosition
+:AbsolutePosition rdf:type owl:Class ;
+                  rdfs:subClassOf :Position ;
+                  <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/AbsolutePosition.ts> ;
+                  rdfs:comment "Defines the absolute position of an object." ;
+                  rdfs:label "Absolute Position" .
+
+
+###  http://openhps.org/terms#Accuracy
+:Accuracy rdf:type owl:Class ;
+          <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/values/Accuracy.ts> ;
+          rdfs:label "Accuracy" .
+
+
+###  http://openhps.org/terms#AxisAngleOrientation
+:AxisAngleOrientation rdf:type owl:Class ;
+                      rdfs:subClassOf :Orientation ;
+                      rdfs:label "Axis Angle Orientation" .
+
+
+###  http://openhps.org/terms#DataFrame
+:DataFrame rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.w3.org/ns/ssn/Input> ,
+                           <http://www.w3.org/ns/ssn/Output> ;
+           <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/DataFrame.ts> ;
+           rdfs:comment "A frame containing sensor data generated by a specific data object source." ;
+           rdfs:label "Data Frame" .
+
+
+###  http://openhps.org/terms#DataObject
+:DataObject rdf:type owl:Class ;
+            owl:equivalentClass <http://purl.oclc.org/NET/ssnx/ssn#Device> ;
+            <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/object/DataObject.ts> ;
+            rdfs:comment "An object or person relevant for the positioning of other data objects." ;
+            rdfs:label "Data Object" .
+
+
+###  http://openhps.org/terms#EulerOrientation
+:EulerOrientation rdf:type owl:Class ;
+                  rdfs:subClassOf :Orientation ;
+                  rdfs:label "Euler Orientation" .
+
+
+###  http://openhps.org/terms#GeographicalPosition
+:GeographicalPosition rdf:type owl:Class ;
+                      owl:equivalentClass <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
+                      rdfs:subClassOf :AbsolutePosition ;
+                      <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/GeographicalPosition.ts> ;
+                      rdfs:comment "Defines the absolute position of an object represented as a geographical point." ;
+                      rdfs:label "Geographical Position" .
+
+
+###  http://openhps.org/terms#OpenHPS
+:OpenHPS rdf:type owl:Class ;
+         rdfs:subClassOf <http://www.w3.org/ns/sosa/Platform> .
+
+
+###  http://openhps.org/terms#Orientation
+:Orientation rdf:type owl:Class ;
+             owl:equivalentClass <http://purl.org/iot/vocab/m3-lite#Direction> ;
+             <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/Orientation.ts> ;
+             rdfs:comment "Defines the orientation of an object." .
+
+
+###  http://openhps.org/terms#Position
+:Position rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+          <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/Position.ts> ;
+          rdfs:label "Position" .
+
+
+###  http://openhps.org/terms#PositioningModel
+:PositioningModel rdf:type owl:Class ;
+                  rdfs:subClassOf <http://www.w3.org/ns/ssn/System> ;
+                  rdfs:label "Positioning System"@en .
+
+
+###  http://openhps.org/terms#QuaternionOrientation
+:QuaternionOrientation rdf:type owl:Class ;
+                       rdfs:subClassOf :Orientation ;
+                       rdfs:label "Quaternion Orientation" .
+
+
+###  http://openhps.org/terms#ReferenceSpace
+:ReferenceSpace rdf:type owl:Class ;
+                rdfs:subClassOf :DataObject ;
+                <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/object/space/ReferenceSpace.ts> ;
+                rdfs:label "Reference Space" .
+
+
+###  http://openhps.org/terms#RelativePosition
+:RelativePosition rdf:type owl:Class ;
+                  rdfs:subClassOf :Position ;
+                  <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/RelativePosition.ts> ;
+                  rdfs:label "Relative Position" .
+
+
+###  http://purl.oclc.org/NET/ssnx/ssn#Device
+<http://purl.oclc.org/NET/ssnx/ssn#Device> rdf:type owl:Class .
+
+
+###  http://purl.org/iot/vocab/m3-lite#Direction
+<http://purl.org/iot/vocab/m3-lite#Direction> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
+<http://www.w3.org/2003/01/geo/wgs84_pos#Point> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/sosa/Sensor
+<http://www.w3.org/ns/sosa/Sensor> rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

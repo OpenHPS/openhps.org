@@ -1,0 +1,259 @@
+<http://openhps.org/terms#> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://openhps.org/terms#> <http://www.w3.org/2002/07/owl#versionIRI> <http://openhps.org/terms/v1#> .
+<http://openhps.org/terms#> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/ns/sosa/> .
+<http://openhps.org/terms#> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/ns/ssn/> .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/abstract> "OpenHPS is an open source hybrid positioning system to help developers fuse various positioning technologies and algorithms. The system offers a modular data processing framework with each modules ranging from computer vision to common algorithms such as fingerprinting or data persistence of sampled data. The framework is maintained and used by the Web and Information Systems Engineering Lab at the Vrije Universiteit Brussel."@en .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/bibliographicCitation> "Maxim Van de Wynckel and Beat Signer. OpenHPS Terms: An Ontology for Positioning Systems. URL: https://openhps.org/terms#" .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/contributor> "Beat Signer"@de .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/contributor> "Maxim Van de Wynckel"@nl .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/creator> "Maxim Van de Wynckel"@nl .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/description> "This ontology provides the terminologies used for OpenHPS." .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0.txt> .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/modified> "2021-11-02T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/source> <https://github.com/OpenHPS/openhps-core> .
+<http://openhps.org/terms#> <http://purl.org/dc/terms/title> "OpenHPS Terminology"@en .
+<http://openhps.org/terms#> <http://purl.org/vocab/vann/preferredNamespacePrefix> "openhps" .
+<http://openhps.org/terms#> <http://purl.org/vocab/vann/preferredNamespaceUri> "http://openhps.org/terms#" .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/abstract
+<http://purl.org/dc/terms/abstract> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/bibliographicCitation
+<http://purl.org/dc/terms/bibliographicCitation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/source
+<http://purl.org/dc/terms/source> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://openhps.org/terms#hasAccuracy
+<http://openhps.org/terms#hasAccuracy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://openhps.org/terms#hasAccuracy> <http://www.w3.org/2000/01/rdf-schema#range> <http://openhps.org/terms#Accuracy> .
+<http://openhps.org/terms#hasAccuracy> <http://www.w3.org/2000/01/rdf-schema#comment> "Defines the accuracy of an observation." .
+<http://openhps.org/terms#hasAccuracy> <http://www.w3.org/2000/01/rdf-schema#label> "has Accuracy"@en .
+# 
+# http://openhps.org/terms#hasOrientation
+<http://openhps.org/terms#hasOrientation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://openhps.org/terms#hasOrientation> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#DataObject> .
+<http://openhps.org/terms#hasOrientation> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#Position> .
+<http://openhps.org/terms#hasOrientation> <http://www.w3.org/2000/01/rdf-schema#range> <http://openhps.org/terms#Orientation> .
+<http://openhps.org/terms#hasOrientation> <http://www.w3.org/2000/01/rdf-schema#label> "has Orientation"@en .
+# 
+# http://openhps.org/terms#hasPosition
+<http://openhps.org/terms#hasPosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://openhps.org/terms#hasPosition> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#DataObject> .
+<http://openhps.org/terms#hasPosition> <http://www.w3.org/2000/01/rdf-schema#range> <http://openhps.org/terms#Position> .
+<http://openhps.org/terms#hasPosition> <http://www.w3.org/2000/01/rdf-schema#comment> "The position of an object." .
+<http://openhps.org/terms#hasPosition> <http://www.w3.org/2000/01/rdf-schema#label> "has Position"@en .
+# 
+# http://openhps.org/terms#includesObject
+<http://openhps.org/terms#includesObject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://openhps.org/terms#includesObject> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#DataFrame> .
+<http://openhps.org/terms#includesObject> <http://www.w3.org/2000/01/rdf-schema#range> <http://openhps.org/terms#DataObject> .
+<http://openhps.org/terms#includesObject> <http://www.w3.org/2000/01/rdf-schema#label> "includes Object"@en .
+# 
+# http://openhps.org/terms#relativeTo
+<http://openhps.org/terms#relativeTo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://openhps.org/terms#relativeTo> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#Position> .
+<http://openhps.org/terms#relativeTo> <http://www.w3.org/2000/01/rdf-schema#range> <http://openhps.org/terms#DataObject> .
+<http://openhps.org/terms#relativeTo> <http://www.w3.org/2000/01/rdf-schema#comment> "A position relative to an object or space." .
+<http://openhps.org/terms#relativeTo> <http://www.w3.org/2000/01/rdf-schema#label> "relative To"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://openhps.org/terms#coordX
+<http://openhps.org/terms#coordX> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://openhps.org/terms#coordX> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#AbsolutePosition> .
+<http://openhps.org/terms#coordX> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+# 
+# http://openhps.org/terms#coordY
+<http://openhps.org/terms#coordY> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://openhps.org/terms#coordY> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#AbsolutePosition> .
+<http://openhps.org/terms#coordY> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+# 
+# http://openhps.org/terms#coordZ
+<http://openhps.org/terms#coordZ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://openhps.org/terms#coordZ> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#AbsolutePosition> .
+<http://openhps.org/terms#coordZ> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+# 
+# http://openhps.org/terms#pitch
+<http://openhps.org/terms#pitch> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://openhps.org/terms#pitch> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#EulerOrientation> .
+<http://openhps.org/terms#pitch> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+# 
+# http://openhps.org/terms#roll
+<http://openhps.org/terms#roll> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://openhps.org/terms#roll> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#EulerOrientation> .
+<http://openhps.org/terms#roll> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+# 
+# http://openhps.org/terms#yaw
+<http://openhps.org/terms#yaw> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://openhps.org/terms#yaw> <http://www.w3.org/2000/01/rdf-schema#domain> <http://openhps.org/terms#EulerOrientation> .
+<http://openhps.org/terms#yaw> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://openhps.org/terms#Absolute2DPosition
+<http://openhps.org/terms#Absolute2DPosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#Absolute2DPosition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://openhps.org/terms#AbsolutePosition> .
+<http://openhps.org/terms#Absolute2DPosition> <http://www.w3.org/2000/01/rdf-schema#comment> "Defines the absolute position of an object represented as a 2D point." .
+<http://openhps.org/terms#Absolute2DPosition> <http://www.w3.org/2000/01/rdf-schema#label> "Absolute 2D Position" .
+# 
+# http://openhps.org/terms#Absolute3DPosition
+<http://openhps.org/terms#Absolute3DPosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#Absolute3DPosition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://openhps.org/terms#AbsolutePosition> .
+<http://openhps.org/terms#Absolute3DPosition> <http://www.w3.org/2000/01/rdf-schema#comment> "Defines the absolute position of an object represented as a 3D point." .
+<http://openhps.org/terms#Absolute3DPosition> <http://www.w3.org/2000/01/rdf-schema#label> "Absolute 3D Position" .
+# 
+# http://openhps.org/terms#AbsolutePosition
+<http://openhps.org/terms#AbsolutePosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#AbsolutePosition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://openhps.org/terms#Position> .
+<http://openhps.org/terms#AbsolutePosition> <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/AbsolutePosition.ts> .
+<http://openhps.org/terms#AbsolutePosition> <http://www.w3.org/2000/01/rdf-schema#comment> "Defines the absolute position of an object." .
+<http://openhps.org/terms#AbsolutePosition> <http://www.w3.org/2000/01/rdf-schema#label> "Absolute Position" .
+# 
+# http://openhps.org/terms#Accuracy
+<http://openhps.org/terms#Accuracy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#Accuracy> <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/values/Accuracy.ts> .
+<http://openhps.org/terms#Accuracy> <http://www.w3.org/2000/01/rdf-schema#label> "Accuracy" .
+# 
+# http://openhps.org/terms#AxisAngleOrientation
+<http://openhps.org/terms#AxisAngleOrientation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#AxisAngleOrientation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://openhps.org/terms#Orientation> .
+<http://openhps.org/terms#AxisAngleOrientation> <http://www.w3.org/2000/01/rdf-schema#label> "Axis Angle Orientation" .
+# 
+# http://openhps.org/terms#DataFrame
+<http://openhps.org/terms#DataFrame> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#DataFrame> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/ns/ssn/Input> .
+<http://openhps.org/terms#DataFrame> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/ns/ssn/Output> .
+<http://openhps.org/terms#DataFrame> <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/DataFrame.ts> .
+<http://openhps.org/terms#DataFrame> <http://www.w3.org/2000/01/rdf-schema#comment> "A frame containing sensor data generated by a specific data object source." .
+<http://openhps.org/terms#DataFrame> <http://www.w3.org/2000/01/rdf-schema#label> "Data Frame" .
+# 
+# http://openhps.org/terms#DataObject
+<http://openhps.org/terms#DataObject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#DataObject> <http://www.w3.org/2002/07/owl#equivalentClass> <http://purl.oclc.org/NET/ssnx/ssn#Device> .
+<http://openhps.org/terms#DataObject> <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/object/DataObject.ts> .
+<http://openhps.org/terms#DataObject> <http://www.w3.org/2000/01/rdf-schema#comment> "An object or person relevant for the positioning of other data objects." .
+<http://openhps.org/terms#DataObject> <http://www.w3.org/2000/01/rdf-schema#label> "Data Object" .
+# 
+# http://openhps.org/terms#EulerOrientation
+<http://openhps.org/terms#EulerOrientation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#EulerOrientation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://openhps.org/terms#Orientation> .
+<http://openhps.org/terms#EulerOrientation> <http://www.w3.org/2000/01/rdf-schema#label> "Euler Orientation" .
+# 
+# http://openhps.org/terms#GeographicalPosition
+<http://openhps.org/terms#GeographicalPosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#GeographicalPosition> <http://www.w3.org/2002/07/owl#equivalentClass> <http://www.w3.org/2003/01/geo/wgs84_pos#Point> .
+<http://openhps.org/terms#GeographicalPosition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://openhps.org/terms#AbsolutePosition> .
+<http://openhps.org/terms#GeographicalPosition> <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/GeographicalPosition.ts> .
+<http://openhps.org/terms#GeographicalPosition> <http://www.w3.org/2000/01/rdf-schema#comment> "Defines the absolute position of an object represented as a geographical point." .
+<http://openhps.org/terms#GeographicalPosition> <http://www.w3.org/2000/01/rdf-schema#label> "Geographical Position" .
+# 
+# http://openhps.org/terms#OpenHPS
+<http://openhps.org/terms#OpenHPS> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#OpenHPS> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/ns/sosa/Platform> .
+# 
+# http://openhps.org/terms#Orientation
+<http://openhps.org/terms#Orientation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#Orientation> <http://www.w3.org/2002/07/owl#equivalentClass> <http://purl.org/iot/vocab/m3-lite#Direction> .
+<http://openhps.org/terms#Orientation> <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/Orientation.ts> .
+<http://openhps.org/terms#Orientation> <http://www.w3.org/2000/01/rdf-schema#comment> "Defines the orientation of an object." .
+# 
+# http://openhps.org/terms#Position
+<http://openhps.org/terms#Position> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#Position> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+<http://openhps.org/terms#Position> <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/Position.ts> .
+<http://openhps.org/terms#Position> <http://www.w3.org/2000/01/rdf-schema#label> "Position" .
+# 
+# http://openhps.org/terms#PositioningModel
+<http://openhps.org/terms#PositioningModel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#PositioningModel> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/ns/ssn/System> .
+<http://openhps.org/terms#PositioningModel> <http://www.w3.org/2000/01/rdf-schema#label> "Positioning System"@en .
+# 
+# http://openhps.org/terms#QuaternionOrientation
+<http://openhps.org/terms#QuaternionOrientation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#QuaternionOrientation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://openhps.org/terms#Orientation> .
+<http://openhps.org/terms#QuaternionOrientation> <http://www.w3.org/2000/01/rdf-schema#label> "Quaternion Orientation" .
+# 
+# http://openhps.org/terms#ReferenceSpace
+<http://openhps.org/terms#ReferenceSpace> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#ReferenceSpace> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://openhps.org/terms#DataObject> .
+<http://openhps.org/terms#ReferenceSpace> <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/object/space/ReferenceSpace.ts> .
+<http://openhps.org/terms#ReferenceSpace> <http://www.w3.org/2000/01/rdf-schema#label> "Reference Space" .
+# 
+# http://openhps.org/terms#RelativePosition
+<http://openhps.org/terms#RelativePosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://openhps.org/terms#RelativePosition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://openhps.org/terms#Position> .
+<http://openhps.org/terms#RelativePosition> <http://purl.org/dc/terms/source> <https://raw.githubusercontent.com/OpenHPS/openhps-core/master/src/data/position/RelativePosition.ts> .
+<http://openhps.org/terms#RelativePosition> <http://www.w3.org/2000/01/rdf-schema#label> "Relative Position" .
+# 
+# http://purl.oclc.org/NET/ssnx/ssn#Device
+<http://purl.oclc.org/NET/ssnx/ssn#Device> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://purl.org/iot/vocab/m3-lite#Direction
+<http://purl.org/iot/vocab/m3-lite#Direction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://www.w3.org/2003/01/geo/wgs84_pos#Point
+<http://www.w3.org/2003/01/geo/wgs84_pos#Point> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://www.w3.org/ns/sosa/Sensor
+<http://www.w3.org/ns/sosa/Sensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/
