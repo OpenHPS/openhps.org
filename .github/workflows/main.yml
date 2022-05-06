@@ -95,7 +95,7 @@ jobs:
       
   build_presentations:
     needs: build
-    name: 'Build Presenations'
+    name: 'Build Presentations'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository

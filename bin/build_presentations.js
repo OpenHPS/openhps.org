@@ -1,2 +1,2 @@
-const { generate } = require("./_scripts/decktape");
+const { generate } = require("../_scripts/decktape");
 generate();
