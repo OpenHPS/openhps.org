@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const { spawn } = require('child_process');
-const queue = [];
+let queue = [];
 const path = require('path');
 const handler = require('serve-handler');
 const http = require('http');

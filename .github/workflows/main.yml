@@ -61,6 +61,7 @@ jobs:
         with:
           path: |
             **/_site
+            _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Build documentation
         env:
@@ -86,6 +87,7 @@ jobs:
         with:
           path: |
             **/_site
+            _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Build ontology
         env:
@@ -141,6 +143,7 @@ jobs:
         with:
           path: |
             **/_site
+            _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Deploy site to GitHub
         uses: peaceiris/actions-gh-pages@v3
@@ -177,6 +180,7 @@ jobs:
         with:
           path: |
             **/_site
+            _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Deploy site
         env:
