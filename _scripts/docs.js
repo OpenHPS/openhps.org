@@ -1,5 +1,12 @@
 const chalk = require('chalk');
-const { isGitHubAvailable, fetchLatestBuild, extractZip, downloadArtifact, rmdir } = require("./utils");
+const { 
+    isGitHubAvailable, 
+    fetchLatestBuild, 
+    extractZip, 
+    downloadArtifact, 
+    rmdir, 
+    downloadBranch 
+} = require("./utils");
 
 /**
  * Documentations to download from github.com/OpenHPS/openhps-*
@@ -45,9 +52,13 @@ async function buildDocs() {
 async function download(module) {
     return new Promise((resolve, reject) => {
         console.log(chalk.green(`Downloading API documentation for '${module}'`));
-        fetchLatestBuild(module).then(latestBuild => {
-            return downloadArtifact(latestBuild, 'docs');
-        }).then(resolve).catch(reject);
+        downloadBranch(module, 'gh-pages').then(resolve)
+            .catch(() => {
+                console.log(chalk.bgYellowBright.black(`\tConsider moving documentation to Github Pages for '${module}'`));
+                fetchLatestBuild(module).then(latestBuild => {
+                    return downloadArtifact(latestBuild, 'docs');
+                }).then(resolve).catch(reject);
+            });
     });
 }
 

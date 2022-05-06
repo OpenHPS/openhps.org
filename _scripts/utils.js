@@ -22,6 +22,18 @@ async function fetchLatestBuild(module) {
     });
 }
 
+async function downloadBranch(module, branch) {
+    return new Promise((resolve, reject) => {
+        const url = `https://github.com/OpenHPS/openhps-${module}/archive/refs/heads/${branch}.zip`;
+        axios.get(url, {
+            responseType: "stream"
+        }).then((response) => {
+            resolve(response.data);
+        })
+        .catch(reject);
+    });
+}
+
 async function downloadArtifact(latestBuild, name) {
     return new Promise((resolve, reject) => {
         const url = latestBuild.artifacts_url;
@@ -74,5 +86,6 @@ module.exports = {
     fetchLatestBuild,
     downloadArtifact,
     rmdir,
+    downloadBranch,
     isGitHubAvailable
 };
