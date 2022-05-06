@@ -13,8 +13,7 @@ async function decktape(el) {
             title,
             url: url + "?presenter",
             pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation.pdf`),
-            widescreen: false,
-            pdf: true
+            widescreen: false
         });
         queue.push({
             title: title + " | Author Version",
@@ -56,8 +55,13 @@ async function generate() {
     // Generate pdfs
     for (let i = 0 ; i < queue.length ; i++) {
         const item = queue[i];
-        console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
-        await executeDecktape(item);
+        if (!fs.existsSync(item.pdf)) {
+            console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
+            console.log(chalk.white(`\t${item.pdf}`));
+            await executeDecktape(item);   
+        } else {
+            console.log(chalk.yellow(`Skipping PDF for '${item.title}'!`));
+        }
     }
     console.log(chalk.blue(`Stopping web server for generating PDFs!`));
     server.close();
