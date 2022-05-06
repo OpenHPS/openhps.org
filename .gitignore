@@ -6,3 +6,4 @@ _scripts/*.jar
 tmp*/
 *.pdf
 _ontology
+_presentations.json

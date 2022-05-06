@@ -11,6 +11,15 @@
     "Beat Signer"
   ],
   "license": "Apache-2.0",
+  "scripts": {
+    "clean": "rimraf ./_site",
+    "start": "eleventy --serve",
+    "build": "npm run clean && eleventy",
+    "build:docs": "node ./bin/build_docs.js",
+    "build:ontology": "node ./bin/build_ontology.js",
+    "build:presentations": "node ./bin/build_presentations.js",
+    "deploy": "netlify deploy --prod --dir=_site"
+  },
   "dependencies": {
     "@11ty/eleventy": "^1.0.1",
     "@openhps/core": "^0.3.31",
@@ -46,12 +55,6 @@
     "serve": "^13.0.2",
     "shx": "^0.3.4",
     "unzip-stream": "^0.3.1"
-  },
-  "scripts": {
-    "clean": "rimraf ./_site",
-    "start": "eleventy --serve",
-    "build": "npm run clean && eleventy",
-    "deploy": "netlify deploy --prod --dir=_site"
   },
   "devDependencies": {
     "netlify-cli": "^10.1.0"

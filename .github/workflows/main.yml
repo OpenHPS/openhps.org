@@ -13,12 +13,19 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Load cache
+      - name: Load dependecy cache
         uses: actions/cache@v2
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-build-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load site cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site
+            _presentations.json
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Install fonts
         run: |
           sudo apt update
@@ -27,43 +34,143 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - name: Installing Dependencies
+        run: |
+          npm install
       - name: Build site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm install
           npm run build
-  deploy_github:
+
+  build_documentation:
     needs: build
+    name: 'Build Documentation'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Load dependecy cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load site cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Build documentation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm run build:docs
+
+  build_ontology:
+    needs: build
+    name: 'Build Ontology'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Load dependecy cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load site cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Build ontology
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm run build:ontology
+      
+  build_presentations:
+    needs: build
+    name: 'Build Presenations'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Load dependecy cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load site cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site
+            _presentations.json
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Build presentations
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm run build:presentations
+
+  deploy_github:
+    needs:
+      - build
+      - build_documentation
+      - build_presentations
+      - build_ontology
     name: 'Deploy to Github Pages'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Load cache
+      - name: Load dependecy cache
         uses: actions/cache@v2
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-deploy-github-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load site cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Deploy site to GitHub
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website/_site
+
   deploy_netlify:
-    needs: build
+    needs:
+      - build
+      - build_documentation
+      - build_presentations
+      - build_ontology
     name: 'Deploy to Netlify'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Load cache
+      - name: Load dependecy cache
         uses: actions/cache@v2
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-deploy-netlify-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load site cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Deploy site
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

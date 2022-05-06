@@ -14,10 +14,7 @@ const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
 const faviconPlugin = require("eleventy-favicon");
 require('dotenv').config();
-
-const buildDocs = require("./_scripts/docs");
-const buildOntology = require("./_scripts/ontology");
-const decktape = require("./_scripts/decktape");
+const { decktape } = require("./_scripts/decktape");
 
 module.exports = function (el) {
   /* Passthrough Copy */
@@ -131,12 +128,6 @@ module.exports = function (el) {
     ghostMode: false
   });
 
-  if (!process.argv.includes('--serve')) {
-    el.on('afterBuild', async () => {
-      await buildDocs();
-      await buildOntology();
-    });
-  }
   el.addPlugin(decktape);
 
   return {

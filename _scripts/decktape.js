@@ -35,17 +35,18 @@ async function decktape(el) {
             pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation-16x9.pdf`),
             widescreen: true
         });
+        // Save queue
+        fs.writeFileSync('_presentations.json', JSON.stringify(queue), {
+            encoding: 'utf-8'
+        });
         return "";
     });
-
-    if (!process.argv.includes('--serve')) {
-        el.on('afterBuild', async () => {
-            await generate();
-        });
-    }
 }
 
 async function generate() {
+    this.queue = JSON.parse(fs.readFileSync('_presentations.json', {
+        encoding: 'utf-8'
+    }));
     console.log(chalk.blue(`Starting web server for generating PDFs ...`));
     const server = await createServer(3000);
     // Generate pdfs
@@ -112,4 +113,7 @@ function executeDecktape(item) {
     });
 }
 
-module.exports = decktape;
+module.exports = {
+    decktape,
+    generate
+};
