@@ -63,6 +63,12 @@ jobs:
             **/_site
             _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load documentation cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site/docs
+          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Build documentation
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -89,6 +95,13 @@ jobs:
             **/_site
             _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load ontology cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site/terms
+            **/_ontology
+          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Build ontology
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -115,6 +128,12 @@ jobs:
             **/_site
             _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load presentations cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site/slides
+          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('**/_presentations.json') }}
       - name: Build presentations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -145,6 +164,25 @@ jobs:
             **/_site
             _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load documentation cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site/docs
+          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load presentations cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site/slides
+          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('**/_presentations.json') }}
+      - name: Load ontology cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site/terms
+            **/_ontology
+          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Deploy site to GitHub
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -182,6 +220,25 @@ jobs:
             **/_site
             _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load documentation cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site/docs
+          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Load presentations cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site/slides
+          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('**/_presentations.json') }}
+      - name: Load ontology cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/_site/terms
+            **/_ontology
+          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Deploy site
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
