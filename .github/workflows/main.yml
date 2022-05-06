@@ -7,11 +7,18 @@ on:
     branches: [ master ]
 
 jobs:
-  deploy:
-    name: 'Deploy to Netlify'
+  build:
+    name: 'Build Website'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Load cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-build-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Install fonts
         run: |
           sudo apt update
@@ -26,6 +33,37 @@ jobs:
         run: |
           npm install
           npm run build
+  deploy_github:
+    needs: build
+    name: 'Deploy to Github Pages'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Load cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-deploy-github-v1-${{ hashFiles('**/package-lock.json') }}
+      - name: Deploy site to GitHub
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./website/_site
+  deploy_netlify:
+    needs: build
+    name: 'Deploy to Netlify'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Load cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-deploy-netlify-v1-${{ hashFiles('**/package-lock.json') }}
       - name: Deploy site
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
