@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Indoor Positioning Using the OpenHPS Framework | OpenHPS</title>
+
+<meta name="description" content="IPIN 2021 presentation for Indoor Positioning Using the OpenHPS Framework. In this paper we introduced OpenHPS and its use within the domain of indoor positioning.">
+<meta name="robots" content="index,follow">
+<meta name="author" content="<u>Maxim Van de Wynckel</u>, Beat Signer">
+
+<link rel="canonical" href="https://openhps.org/slides/ipin2021/">
+
+<meta property="og:title" content="Indoor Positioning Using the OpenHPS Framework | OpenHPS">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="https://openhps.org/slides/ipin2021/">
+<meta property="og:description" content="IPIN 2021 presentation for Indoor Positioning Using the OpenHPS Framework. In this paper we introduced OpenHPS and its use within the domain of indoor positioning.">
+<meta property="og:image" content="https://openhps.org/images/social/summary-large.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@OpenHPS">
+<meta name="twitter:url" content="https://openhps.org/slides/ipin2021/">
+<meta name="twitter:title" content="Indoor Positioning Using the OpenHPS Framework | OpenHPS">
+<meta name="twitter:description" content="IPIN 2021 presentation for Indoor Positioning Using the OpenHPS Framework. In this paper we introduced OpenHPS and its use within the domain of indoor positioning.">
+<meta name="twitter:image" content="https://openhps.org/images/social/summary-large.png">
+
+
+    <meta name="keywords" content="hybrid positioning system typescript javascript open source" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="/css/main.css?version=8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"></link>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <meta name="theme-color" content="#9c0000">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QY7ESJZX3K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QY7ESJZX3K');
+    </script>
+</head>
+
+
+  <body>
+    <link rel="stylesheet" href="/vendor/reveal.js/reset.css">
+    <link rel="stylesheet" href="/vendor/reveal.js/reveal.css">
+    <link rel="stylesheet" href="/vendor/reveal.js/plugin/pointer/pointer.css">
+    <link rel="stylesheet" href="/css/presentation.css" id="theme">
+
+    <div id="hidden" style="display:none;">
+      <div id="header">
+        <div class="header-right"><div class="header-logo"></div></div>
+      </div>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+          <section class="title-slide center" data-timing="15">
+              
+              <div class="logos">
+                <div id="vub-logo"></div>
+                <div id="wise-logo"></div>
+                <div id="openhps-logo"></div>
+              </div>
+              
+              <h2 id="label-title">
+              
+                Indoor Positioning Using the OpenHPS&nbsp;Framework
+              
+                <small id="label-subtitle"></small>
+              </h2>
+              <h5 class="author"><u>Maxim Van de Wynckel</u>, Beat Signer</h5>
+              <h5 class="affiliation">Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel</h5>
+          </section>
+          
+<section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 id="what-is-openhps%3F" tabindex="-1">What is OpenHPS?</h2>
+<h3 id="an-open-source-hybrid-positioning-system" tabindex="-1">An Open Source Hybrid Positioning System</h3>
+
+        <img width="67%" class="shadow" src="images/openhps-site.png"/>
+        <aside class="notes">
+        In this paper we introduced OpenHPS and its use within the domain of indoor positioning.
+
+        OpenHPS is an open source hybrid positioning system developed in TypeScript that can run both on a server, 
+        embedded device, smartphone or even the browser.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="what-is-openhps%3F" tabindex="-1">What is OpenHPS?</h2>
+<h3 id="an-open-source-hybrid-positioning-system" tabindex="-1">An Open Source Hybrid Positioning System</h3>
+<ul>
+<li>Any technology</li>
+<li>Any algorithm</li>
+<li>Various use cases</li>
+<li>Flexible processing and output
+<ul>
+<li>Accuracy over battery consumption, reliability, ...</li>
+</ul>
+</li>
+<li>Aimed towards
+<ul>
+<li>Developers</li>
+<li>Researchers</li>
+</ul>
+</li>
+</ul>
+
+        <aside class="notes">
+        With OpenHPS we aim to offer a framework for developers and researchers that
+        can support a variety of positioning technologies, algorithms and uses cases that are not just
+        limited to indoor positioning. We also aim to offer a lot of flexibility in the outcome of the position,
+        weither it is a developer wishing to offer the most accurate position, power optimized solution or
+        simply a reliable system that can rougly (but reliably) indicate weither or not you are in a specific room.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="25">
+        <h2 data-id="title-processnetworkdesign">Process Network Design</h2>
+        <img width="90%" src="images/architecture.svg"/>
+        <aside class="notes">
+        When creating a positioning system, you obtain sensor data from multiple different sensors. You process the data until at some stage in your processing
+        you merge the sensor data to obtain a position that you can show to your user.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="30%" src="images/architecture.svg"/>
+        <img height="45%" data-id="architecture-graph" src="images/architecture2.svg"/>
+        <aside class="notes">
+        OpenHPS focuses on this method of developing a positioning system by allowing the creation of a process network with graph topology. 
+        We identify source nodes that provide data, processing nodes that process this data and finally sink nodes that store or display this data. 
+        We call this complete process network from source to sink a positioning model.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="35">
+        <h2 data-id="title-processnetworkdesign">Process Network Design ...</h2>
+        <img height="70%" style="margin-top: 1em" data-id="architecture-graph" src="images/architecture3.svg"/>
+        <aside class="notes">
+        On top of this, every node in our process network has access to a range of 'Services' that either manage the persistent storage of data that is being handled or
+        handle background processing of information that is already pushed through the network. Each service can be added to multiple positioning models, allowing data
+        exchange between the calibration part of a process network and the actual online stage used on a production ready system.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 data-id="title-modularity">Modularity</h2>
+        <img width="100%" style="margin-top: 2em" src="images/stack.svg"/>
+        <aside class="notes">
+        By creating this process network design with shared services we allow for a very modular ecosystem where individual nodes or services
+        can be reused throughout multiple different packages. Our core component offers the main concepts
+        needed to design a process network for processing sensor data to an output position while other components
+        handle the communication, data storage or add additional algorithms.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-modularity">Modularity ...</h2>
+        <p><strong>Communication</strong><br>
+Socket, MQTT, REST API, ...</p>
+<p><strong>Data Storage</strong><br>
+MongoDB, LocalStorage, RDF, ...</p>
+<p><strong>Positioning Algorithms</strong><br>
+IMU, fingerprinting, OpenVSLAM, ...</p>
+<p><strong>Abstractions</strong><br>
+Geospatial, location-based services, geojson, ...</p>
+<p><strong>Other</strong><br>
+React-Native, NativeScript, Sphero, ...</p>
+
+        <aside class="notes">
+        [OPTIONAL SLIDE] We already offer many different modules for the more common positioning techinques. In this paper we will use a socket module
+        that handles the communication from a mobile application to a server, MongoDB to persist our fingerprinting data and
+        fixed beacon locations, the IMU module for pedestrian dead reckoning, symbolic spaces that we will discuss later and finally react-native
+        that offers source nodes for sensor data on a smartphone.
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 id="data-processing" tabindex="-1">Data Processing</h2>
+
+        <img height="80%" src="images/datatypes.svg" class="logo">
+        <aside class="notes">
+        The data that we process in our process network is an important aspect of the core of OpenHPS.
+        We have knowledge, raw data and processed data. Knowledge is everything that we know - such as sensors, radio transmitters
+        or building layouts. Raw data is unprocessed data that we want to process, such as individual video or image frames, unfiltered
+        accelerometer data. And finally, we have the processed data that will eventually become knowledge.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="dataobject" tabindex="-1">DataObject</h2>
+
+        <img height="75%" src="images/dataobject.svg"/>
+        <aside class="notes">
+        We represent this knowledge and processed data under the term dataobject.
+
+        A data object is any spatial entity that is relevant for the positioning of other data objects. A data object can be considered
+        a camera object tracking another object - or it can be a phone that is responsible itself for
+        the data collection.
+
+        Each data object can have a hierarchical relation with other objects.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 id="absolute-and-relative-positions" tabindex="-1">Absolute and Relative Positions</h2>
+<p><strong>Absolute</strong></p>
+<ul>
+<li>2D, 3D, Geographical, ...</li>
+</ul>
+<p><strong>Relative</strong></p>
+<ul>
+<li>Distance, angle, velocity, ...</li>
+<li>Relative to another <em>object</em></li>
+</ul>
+
+        <aside class="notes">
+        These spatial objects can have an absolute or relative position. An absolute position
+        represents a fixed position in space. We support 2D, 3D and geographical positions.
+
+        Relative positions are relative to another object and can be expressed in 
+        distance, angle, velocity or a more abstract RSS.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="hidden">
+        <h2 id="referencespace" tabindex="-1">ReferenceSpace</h2>
+<p><em>An absolute position can be relative to a reference space.</em></p>
+
+        <img width="70%" src="images/referencespace.svg"/>
+        <aside class="notes">
+        Reference spaces are data objects that represent a transformation of a position. When setting the position or orientation of an object
+        you can optionally specify the reference space.
+
+        Similar to data objects, reference spaces can have a hierarchical relation with other objects.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="80">
+        <h2 data-id="title-dataframe">DataFrame</h2>
+        <img height="75%" src="images/dataframe_single.svg"/>
+        <aside class="notes">
+        In order to contain our processed data with our raw data, we create a new Data frame.
+
+        Data frames are individual captured moments of sensor data processed in the positioning system. They are the
+        enveloppes transmitted through the process network and are usually created
+        by a source object and can contain a set of relevant objects or raw sensor data that are added or modified by nodes in our network
+
+        In this example image we have a video frame that is captured by a camera object. It contains the actual image
+        of that frame and a set of objects that were detected inside this frame.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
+        <h3 id="pushing-data" tabindex="-1">Pushing Data</h3>
+
+        <img width="100%" src="images/nodes-push.svg"/>
+        <aside class="notes">
+        [OPTIONAL SLIDE] 
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
+        <h3 id="pulling-data" tabindex="-1">Pulling Data</h3>
+
+        <img width="100%" src="images/nodes-pull.svg"/>
+        <aside class="notes">
+        [OPTIONAL SLIDE] 
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 data-id="title-dataframe">DataFrame ...</h2>
+        <h3 id="pushing-error" tabindex="-1">Pushing Error</h3>
+
+        <img width="100%" src="images/nodes-push-error.svg"/>
+        <aside class="notes">
+        [OPTIONAL SLIDE] Errors can of course occur in the process network. When this happens, the push is rejected instead of resolved - and the
+        last node that performed the failed push will emit an error that will propagate upstream so the upstream nodes
+        are aware of the error. It is down to the developer to decide how these errors are handled.
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 id="symbolicspace" tabindex="-1">SymbolicSpace</h2>
+<p><em>An object that semantically defines a space</em></p>
+
+        <div class="row">
+            <div class="col-7">
+                <ul>
+<li>Spatial hierarchy</li>
+<li>Graph connectivity with other spaces</li>
+<li>Geocoding</li>
+<li>GeoJSON compatibility</li>
+<li>Can be used as a location</li>
+<li>Can be extended ...</li>
+</ul>
+
+            </div>
+            <div class="col-5">
+                <img width="100%" src="images/geojson.svg"/>
+            <div>
+        </div>
+        <aside class="notes">
+        Symbolic spaces extend the concept of reference spaces ....
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 id="symbolicspace-..." tabindex="-1">SymbolicSpace ...</h2>
+
+        <div class="row">
+            <div class="col-5">
+                <img width="100%" style="margin-top: 1em" src="images/symbolicspace.svg"/>
+            </div>
+            <div class="col-7">
+            <pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">building</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Building</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">"PL9"</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA">setBounds</span><span style="color: #D4D4D4">({</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">topLeft:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">GeographicalPosition</span><span style="color: #D4D4D4">(</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #B5CEA8">50.8203</span><span style="color: #D4D4D4">, </span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #B5CEA8">4.3922</span><span style="color: #D4D4D4">),</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">width:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">46.275</span><span style="color: #D4D4D4">, </span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">height:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">37.27</span><span style="color: #D4D4D4">, </span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE">rotation:</span><span style="color: #D4D4D4"> -</span><span style="color: #B5CEA8">34.04</span></div><div class='line'><span style="color: #D4D4D4">    });</span></div><div class='line'></div><div class='line'><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">floor</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Floor</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">"PL9.3"</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA">setBuilding</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">building</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA">setFloorNumber</span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">);</span></div><div class='line'></div><div class='line'><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF">office</span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Room</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">"PL9.3.58"</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA">setFloor</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">floor</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA">setBounds</span><span style="color: #D4D4D4">([</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Absolute2DPosition</span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">4.75</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">31.25</span><span style="color: #D4D4D4">),</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">Absolute2DPosition</span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">8.35</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">37.02</span><span style="color: #D4D4D4">),</span></div><div class='line'><span style="color: #D4D4D4">    ]);</span></div></code></div></pre>
+
+            </div>
+        </div>
+        <aside class="notes">
+        [OPTIONAL SLIDE] 
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 data-id="title-lbs">Location-based Service</h2>
+        <img data-id="lbs-image" src="images/lbs1_h.svg" style="width: 100%;"/>
+        <aside class="notes">
+        The location based service creates an abstraction of the underlying process network.
+        It offers a similar API structure than well known APIs. When a user simply requests the
+        current position of a person with a set of options such as the maximum age of the position,
+        the LBS will first check if a position is stored in the storage. If not, it will perform a pull
+        on the sink of the process network.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted">
+        <h2 data-id="title-lbs">Location-based Service ...</h2>
+        <img data-id="lbs-image" src="images/lbs2_h.svg" style="width: 100%;"/>
+        <aside class="notes">
+        Setting the current position will create an abstraction that uses the current storage
+        method to store the new position. This position can then be used by the process network.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-lbs">Location-based Service ...</h2>
+        <img data-id="lbs-image" src="images/lbs3_h.svg" style="width: 100%;"/>
+        <aside class="notes">
+        Finally, watching for position changes will listen for new dataframe pushes on the sink
+        of the process network. If the positioning system does not update frequently, it will
+        trigger a pull every interval.
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 id="demonstration" tabindex="-1">Demonstration</h2>
+<ul>
+<li>Indoor positioning <strong>use case</strong></li>
+<li>Use <strong>existing techniques</strong></li>
+<li>Validation of <strong>flexibility</strong> and modularity</li>
+</ul>
+
+        <img src="images/model.svg" style="width: 98%;"/>
+        <aside class="notes">
+        In order to demonstrate that OpenHPS can be used for indoor positioning scenario's we created
+        a demonstration using known and common indoor positioning techniques.
+
+        This demonstrator mainly serves as a validation that we can use a process network design for 
+        developing a modular indoor positioning system.
+
+        Our demonstration consists out of two applications and a server
+        for handling a common implementation with IMU data, WLAN access points and BLE beacons. 
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-positioningmodel">Positioning Model</h2>
+        <div class="row" style="margin-top: 3rem;">
+            <div class="col-9">
+                <img src="images/model-offline.svg" width="100%"/>
+            </div>
+            <div class="col-3">
+                <img src="images/smartphone-offline.png" width="100%"/>
+            </div>
+        </div>
+        <aside class="notes">
+        The offline stage application handles the set-up and uses source nodes from our react native component; one that scans for wifi access points,
+        one that scans for BLE tags and finally another custom source node for the user location input using
+        the smartphone. The user selected location is merged with the scan results of the BLE and WLAN device and
+        send to a sink node that acts as a socket interface to the server.
+        </aside>
+    </section>
+       <section data-markdown data-auto-animate data-timing="20">
+        <h2 data-id="title-positioningmodel">Positioning Model ...</h2>
+        <img src="images/model-server-offline.svg" style="width: 100%;"/>
+        <aside class="notes">
+        On the server this data is received and stored to a shared fingerprinting services
+        that extracts the features. The services are accessible by the online stage
+        of the positioning.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="15">
+        <h2 data-id="title-positioningmodel">Positioning Model ...</h2>
+        <img src="images/model-online-1.svg" style="width: 100%; margin-top: 7rem;"/>
+        <aside class="notes">
+        The online stage application uses a wifi and ble source similar to the offline stage application. 
+        The WLAN and BLE scan results are merged and send to the server using a socket connection
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="30">
+        <h2 data-id="title-positioningmodel">Positioning Model ...</h2>
+        <img src="images/model-server-online.svg" style="width: 95%;"/>
+        <aside class="notes">
+        On the server we use three positioning techniques to obtain a position from this WLAN and BLE data.
+        We process the wlan data with a knn fingerprinting algorithm and we perform both ble fingerprinting and
+        ble multilateration using the known positions of the beacons in our building. These three outputs are merged and
+        send back to the online application.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="60">
+        <h2 data-id="title-positioningmodel">Positioning Model ...</h2>
+        <img src="images/model-online-2.svg" style="width: 100%; margin-top: 7rem;"/>
+        <aside class="notes">
+        In the online application an IMU source node is used together with pedestrian dead reckoning. The dead reckoning
+        is applied on the last calculated position and is used as an intermediate calculate between responses from the server.
+        The known velocity of the user is applied to the response from the server in the Velocity processing node named 'a' in order
+        to account for the time it took between the wlan or ble scan and the response from the server. Once this processed
+        server response is merged with the imu data, it is displayed to the user. An addition feedback loop is created for the predicted
+        movement based on the current momentum.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 id="positioning-model" tabindex="-1">Positioning Model</h2>
+<h3 id="online-app" tabindex="-1">Online App</h3>
+
+        <img src="images/pdr.svg" style="height: 70%;"/>
+        <aside class="notes">
+        [OPTIONAL SLIDE] 
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 id="positioning-model" tabindex="-1">Positioning Model</h2>
+<h3 id="online-app" tabindex="-1">Online App</h3>
+
+        <pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">ts</div><div class='code-container'><code><div class='line dim'><span style="color: #9CDCFE">ModelBuilder</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">create</span><span style="color: #D4D4D4">()</span></div><div class='line dim'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA">addShape</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">GraphBuilder</span><span style="color: #D4D4D4">.</span><span style="color: #DCDCAA">create</span><span style="color: #D4D4D4">()</span></div><div class='line dim'><span style="color: #D4D4D4">        .</span><span style="color: #DCDCAA">from</span><span style="color: #D4D4D4">(</span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">IMUSourceNode</span><span style="color: #D4D4D4">({</span></div><div class='line dim'><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">source:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">DataObject</span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE">phoneUID</span><span style="color: #D4D4D4">),</span></div><div class='line dim'><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">interval:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">20</span><span style="color: #D4D4D4">,</span></div><div class='line dim'><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">sensors:</span><span style="color: #D4D4D4"> [</span></div><div class='line dim'><span style="color: #D4D4D4">                </span><span style="color: #9CDCFE">SensorType</span><span style="color: #D4D4D4">.</span><span style="color: #4FC1FF">ACCELEROMETER</span><span style="color: #D4D4D4">, </span></div><div class='line dim'><span style="color: #D4D4D4">                </span><span style="color: #9CDCFE">SensorType</span><span style="color: #D4D4D4">.</span><span style="color: #4FC1FF">ORIENTATION</span></div><div class='line dim'><span style="color: #D4D4D4">            ]</span></div><div class='line dim'><span style="color: #D4D4D4">        }))</span></div><div class='line highlight'><span style="color: #D4D4D4">        .</span><span style="color: #DCDCAA">via</span><span style="color: #D4D4D4">(</span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">SMAFilterNode</span><span style="color: #D4D4D4">(</span></div><div class='line highlight'><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">frame</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">=&gt;</span><span style="color: #D4D4D4"> [</span><span style="color: #9CDCFE">frame</span><span style="color: #D4D4D4">, </span><span style="color: #CE9178">"acceleration"</span><span style="color: #D4D4D4">], </span></div><div class='line highlight'><span style="color: #D4D4D4">            { </span><span style="color: #9CDCFE">taps:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">10</span><span style="color: #D4D4D4"> }</span></div><div class='line highlight'><span style="color: #D4D4D4">        ))</span></div><div class='line highlight'><span style="color: #D4D4D4">        .</span><span style="color: #DCDCAA">via</span><span style="color: #D4D4D4">(</span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">GravityProcessingNode</span><span style="color: #D4D4D4">({</span></div><div class='line highlight'><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">method:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE">GravityProcessingMethod</span><span style="color: #D4D4D4">.</span><span style="color: #4FC1FF">ABSOLUTE_ORIENTATION</span></div><div class='line highlight'><span style="color: #D4D4D4">        }))</span></div><div class='line highlight'><span style="color: #D4D4D4">        .</span><span style="color: #DCDCAA">via</span><span style="color: #D4D4D4">(</span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">PedometerProcessingNode</span><span style="color: #D4D4D4">({</span></div><div class='line highlight'><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">minConsecutiveSteps:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">1</span><span style="color: #D4D4D4">, </span></div><div class='line highlight'><span style="color: #D4D4D4">            </span><span style="color: #9CDCFE">stepSize:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">0.40</span></div><div class='line highlight'><span style="color: #D4D4D4">        }))</span></div><div class='line dim'><span style="color: #D4D4D4">        .</span><span style="color: #DCDCAA">via</span><span style="color: #D4D4D4">(</span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">VelocityProcessingNode</span><span style="color: #D4D4D4">())</span></div><div class='line dim'><span style="color: #D4D4D4">        .</span><span style="color: #DCDCAA">to</span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">"pedometer-output"</span><span style="color: #D4D4D4">))</span></div><div class='line dim'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA">build</span><span style="color: #D4D4D4">();</span></div></code></div></pre>
+
+        <aside class="notes">
+        [OPTIONAL SLIDE] 
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="dataset" tabindex="-1">Dataset</h2>
+
+        <img data-id="dataset-image" src="images/datapoints.svg" style="width: 75%;"/>
+        <aside class="notes">
+        For this paper we created a new public dataset recorded using OpenHPS. Our dataset consists of multiple
+        training and test data points that are each recorded in four directions. For each orientation we included WLAN
+        scan results and BLE scan results from the 11 beacons with known position. We also provide several trajectories
+        that also include IMU sensor data.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-visibility="uncounted" data-timing="0">
+        <h2 id="dataset-..." tabindex="-1">Dataset ...</h2>
+<p><strong>Total BLE Beacons</strong>: 11<br>
+<strong>Total detected WLAN access points</strong>: 220<br>
+<strong>Total stable WLAN access points</strong>: 199</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Training</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Datapoints</strong></td>
+<td>110</td>
+<td>30</td>
+</tr>
+<tr>
+<td><strong>Total fingerprints</strong></td>
+<td>440</td>
+<td>120</td>
+</tr>
+<tr>
+<td><strong>Duration <small>(per orientation)</small></strong></td>
+<td>20s</td>
+<td>20s</td>
+</tr>
+<tr>
+<td><strong>Avg. WLAN Scans <small>(per fingerprint)</small></strong></td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>Avg. BLE Advertisements <small>(per fingerprint)</small></strong></td>
+<td>16</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+
+        <aside class="notes">
+        [OPTIONAL SLIDE] We have 110 training datapoints and 30 datapoints, which in total gives us 440 training fingerprints
+        and 120 test datapoints. For each fingerprint we waited 20 seconds to collect wifi and ble scan results giving
+        us an average of 6 complete wlan scans and 15 individual ble advertisements.
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="70">
+        <style>
+        .results table {
+            font-size: 80%;
+            margin-top: 2em;
+        }
+
+        .results tr > td:last-of-type {
+            background-color: #f5f5f5;
+        }
+
+        .results tr > th:last-of-type {
+            background-color: #f5f5f5;
+        }
+        </style>
+        <h2 data-id="title-validationresults">Validation Results</h2>
+        <h3>Static Positioning</h3>
+        <div class="results">
+        <table>
+<thead>
+<tr>
+<th></th>
+<th><strong>WLAN <small>fingerprinting</small></strong></th>
+<th><strong>BLE <small>fingerprinting</small></strong></th>
+<th><strong>BLE <small>multilateration</small></strong></th>
+<th><strong>Fusion</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>failed points</em></td>
+<td>0</td>
+<td>6</td>
+<td>12</td>
+<td>0</td>
+</tr>
+<tr>
+<td><em>average error</em></td>
+<td>1.23 m</td>
+<td>3.23 m</td>
+<td>4.92 m</td>
+<td>1.37 m</td>
+</tr>
+<tr>
+<td><em>minimum error</em></td>
+<td>0.01 m</td>
+<td>0.17 m</td>
+<td>0.74 m</td>
+<td>0.01 m</td>
+</tr>
+<tr>
+<td><em>maximum error</em></td>
+<td>4.77 m</td>
+<td>15.39 m</td>
+<td>19.26 m</td>
+<td>9.75 m</td>
+</tr>
+<tr>
+<td><em>hit rate</em></td>
+<td>95.82 %</td>
+<td>80.83 %</td>
+<td>52.50 %</td>
+<td><span class="highlight">96.67 %</span></td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+        <aside class="notes">
+        Using this demonstrator and the dataset that we recorded with the offline part of the demonstrator - we conducted a validation of our
+        positioning system. In this compared wifi fingerprinting, bluetooth fingerprinting using the 11 beacons and ble multilateration.
+        While WLAN fingerprinting offers the best results, we demonstrate that the fusion with bluetooth beacons
+        provides a higher hit rate. This higher hit rate is because we were able to give a higher weight to the Bluetooth positioning methods
+        whenever the user was close to one or more beacons.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate>
+        <h2 data-id="title-validationresults">Validation Results ...</h2>
+        <h3>Trajectories</h3>
+        <img data-id="trajectories" src="images/trajectories_flipped.svg" style="width: 90%;"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="70">
+        <style>
+        .results table {
+            margin-top: 0;
+        }
+
+        .results.trajectories tr > td:last-of-type {
+            background-color: #0034ad;
+            color: white;
+        }
+
+        .results.trajectories tr > th:last-of-type {
+            background-color: #0034ad;
+            color: white;
+        }
+        </style>
+        <h2 data-id="title-validationresults">Validation Results ...</h2>
+        <h3>Trajectories</h3>
+        <div class="results trajectories">
+        <table>
+<thead>
+<tr>
+<th></th>
+<th><strong>WLAN + BLE</strong></th>
+<th><strong>WLAN + BLE + IMU</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>average error</em></td>
+<td>3.28 m</td>
+<td>1.26 m</td>
+</tr>
+<tr>
+<td><em>maximum error</em></td>
+<td>9.60 m</td>
+<td>3.10 m</td>
+</tr>
+<tr>
+<td><em>average update frequency</em></td>
+<td>3.04 s</td>
+<td>0.52 s</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+        <img data-id="trajectories" src="images/trajectories_flipped_2.svg" style="width: 100%;"/>
+        <aside class="notes">
+
+        </aside>
+    </section>
+</section>
+
+<section data-markdown data-auto-animate data-timing="30">
+    <style>
+    .qr-image {
+        width: 200px;
+        height: 200px;
+    }
+    </style>
+    <h2 id="contributions-and-conclusions" tabindex="-1">Contributions and Conclusions</h2>
+<ul>
+<li>OpenHPS: <strong>open source</strong> framework for hybrid positioning
+<ul>
+<li>Aimed towards <strong>developers</strong> and <strong>researchers</strong></li>
+</ul>
+</li>
+<li><strong>Abstractions</strong> such as location-based services and spaces</li>
+<li>Validation of an indoor positioning use case</li>
+<li>Configurable and interchangeable <strong>nodes</strong> and <strong>services</strong></li>
+<li><strong>Public dataset</strong> with multiple orientations</li>
+</ul>
+
+    <div class="row" style="position: absolute; bottom: 7vh;">
+        <div class="col-3">
+            <img class="qr-image" src="images/qr-code.svg"/>
+        </div>
+        <div class="col-7">
+            <p><br>
+<em>Visit <a href="https://openhps.org">https://openhps.org</a> for additional resources,
+documentation, source code and more!</em></p>
+
+        </div>
+    </div>
+    <aside class="notes">
+    We have discussed OpenHPS as an open source positioning system framework
+    aimed towards developers and researchers.
+
+    We validated this using a demonstrator and a new dataset that is available to the public.
+
+    Thank you for your attention
+    </aside>
+</section>
+        </div>
+    </div>
+
+    <script src="/scripts/twoslash.js"></script>
+    <script type="module">
+      import Reveal from '/vendor/reveal.js/reveal.esm.js';
+      import Notes from '/vendor/reveal.js/plugin/notes/notes.esm.js';
+      import Pointer from '/vendor/reveal.js/plugin/pointer/pointer.esm.js';
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const options = {
+        hash: true,
+        margin: .08,
+        width: urlParams.get("width") ?? 960 ,
+        height: urlParams.get("height") ?? 700,
+        plugins: [ Notes, Pointer ],
+        controlsTutorial: true,
+        pdfMaxPagesPerSlide: 1,
+        slideNumber: true,
+        center: false,
+        pointer: {
+          key: "q",
+          color: "red",
+          pointerSize: 25,
+          alwaysVisible: false,
+          tailLength: 10,
+        },
+        totalTime: 15 * 60,
+        showSlideNumber: 'all'
+      };
+
+      
+      const header = document.querySelector("#header").children;
+      document.querySelector('.header-logo').setAttribute("style", `background-image: url(/images/misc/openhps-logo.svg)`);
+      const className = window.location.search.indexOf("print-pdf") > -1 ? ".pdf-page" : ".slides";
+      const slides = document.querySelectorAll(`${className} section:not([class^="stack"],[class^="title-slide"])`);
+      for (let i = 0 ; i < header.length ; i++) {
+        slides.forEach(slide => {
+          slide.append(header[i].cloneNode(true));
+        });
+      }
+      
+
+      window.Reveal = Reveal;
+      if (window.location.search.indexOf("presenter") > -1) {
+        console.log("Starting in presenter mode");
+        Reveal.initialize({
+          ...options,
+          navigationMode: 'linear',
+          slideNumber: 'c',
+          controls: false,
+        });
+        Reveal.on('pdf-ready', () => {
+          document.querySelectorAll(`.pdf-page section[data-visibility="uncounted"]`).forEach(e => e.closest('.pdf-page').remove());
+        });
+        Reveal.on('slidechanged', (event) => {
+          if (event.currentSlide.hasAttribute("data-visibility") && !Reveal.isOverview()) {
+            const prevIndices = Reveal.getIndices(event.previousSlide);
+            const currentIndices = Reveal.getIndices(event.currentSlide);
+            if (prevIndices.h < currentIndices.h || (prevIndices.h === currentIndices.h && prevIndices.v < currentIndices.v)) {
+              Reveal.next();
+            } else if (prevIndices.h > currentIndices.h || (prevIndices.h === currentIndices.h && prevIndices.v > currentIndices.v)) {
+              Reveal.prev();
+            }
+          }
+        });
+        let lastMovement = 0;
+        let idle = false;
+        document.addEventListener('mousemove', (event) => {
+          lastMovement = Date.now();
+          if (idle) {
+            document.querySelector('.cursor-dot').classList.remove("inactive");
+            idle = false;
+          }
+        }, false);
+        setInterval(() => {
+          if (!idle && lastMovement < Date.now() - 3000) {
+            idle = true;
+            document.querySelector('.cursor-dot').classList.add("inactive");
+          }
+        }, 2000);
+      } else {
+        Reveal.initialize(options);
+      }
+    </script>
+  </body>
+</html>

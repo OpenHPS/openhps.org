@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Reference Space | OpenHPS</title>
+
+<meta name="description" content="A modular open source hybrid positioning system developed in TypeScript. OpenHPS allows you to develop prototypes or production ready positioning systems for various use cases.">
+<meta name="robots" content="index,follow">
+<meta name="author" content="Maxim Van de Wynckel">
+
+<link rel="canonical" href="https://openhps.org/docs/v1/referencespace/">
+
+<meta property="og:title" content="Reference Space | OpenHPS">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="https://openhps.org/docs/v1/referencespace/">
+<meta property="og:description" content="A modular open source hybrid positioning system developed in TypeScript. OpenHPS allows you to develop prototypes or production ready positioning systems for various use cases.">
+<meta property="og:image" content="https://openhps.org/images/social/summary-large.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@OpenHPS">
+<meta name="twitter:url" content="https://openhps.org/docs/v1/referencespace/">
+<meta name="twitter:title" content="Reference Space | OpenHPS">
+<meta name="twitter:description" content="A modular open source hybrid positioning system developed in TypeScript. OpenHPS allows you to develop prototypes or production ready positioning systems for various use cases.">
+<meta name="twitter:image" content="https://openhps.org/images/social/summary-large.png">
+
+
+    <meta name="keywords" content="hybrid positioning system typescript javascript open source" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="/css/main.css?version=8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"></link>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <meta name="theme-color" content="#9c0000">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QY7ESJZX3K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QY7ESJZX3K');
+    </script>
+</head>
+
+
+  <body>
+    <header class="site-header">
+    <div class="container">
+        <a href="/" class="logo"></a>
+  
+        <nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger">
+              <a class="page-link" href="/docs/introduction">Docs</a>
+              <a class="page-link" href="/posts">Blog</a>
+              <a class="page-link" href="https://github.com/OpenHPS">GitHub</a>
+          </div>
+        </nav>
+    </div>
+</header>
+
+    <section class="content" id="content">
+      
+<div class="container main">
+  <div class="row">
+    <div class="col-sm-3">
+      <nav class="navigation">
+  <ul>
+    
+      
+      <h3>Documentation</h3>
+      
+      
+      <li >
+        <a href="/docs/introduction/" >Introduction</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/installation/" >Installation</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/modules/" >Modules</a>
+        
+      </li>
+    
+      
+      <h3>Basic Concepts</h3>
+      
+      
+      <li >
+        <a href="/docs/v1/dataobject/" >Data Object</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/v1/dataframe/" >Data Frame</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/v1/unit/" >Standard Units</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/v1/position/" >Position and Orientation</a>
+        
+      </li>
+    
+      
+      
+      <li class="selected">
+        <a href="/docs/v1/referencespace/" class="current">Reference Space</a>
+        
+        <nav class="toc" >
+        <ul><li><a href="#geospatial-places">Geospatial Places</a></li></ul>
+      </nav>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/v1/model/" >Positioning Model</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/v1/sourcenode/" >Source Node</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/v1/processingnode/" >Processing Node</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/v1/sinknode/" >Sink Node</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/v1/service/" >Services</a>
+        
+      </li>
+    
+      
+      <h3>Advanced Concepts</h3>
+      
+      
+      <li >
+        <a href="/docs/v1/remoteservice/" >Remote Service</a>
+        
+      </li>
+    
+      
+      
+      <li >
+        <a href="/docs/v1/workernode/" >Threading</a>
+        
+      </li>
+    
+      
+      <h3>Tutorials</h3>
+      
+      
+      <li >
+        <a href="/docs/tutorials/floordetection/" >Building and Floor Detection</a>
+        
+      </li>
+    
+      
+      <h3>Miscellaneous</h3>
+      
+      
+      <li >
+        <a href="/docs/examples/" >Examples</a>
+        
+      </li>
+    
+  </ul>
+</nav>
+    </div>
+    <div class="col-sm-9 typography">
+      <h1>Reference Space</h1>
+      <p>Reference spaces are data objects that represent spaces which are used for absolute positions. Using these
+reference spaces, absolute positions created in a different space can easily be identified and transformed to the global reference space
+created when building a model.</p>
+<pre class="shiki dark-plus twoslash lsp" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #C586C0">import</span><span style="color: #D4D4D4"> { </span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class ReferenceSpace&#10;import ReferenceSpace' >ReferenceSpace</data-lsp></span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class LengthUnit&#10;import LengthUnit' >LengthUnit</data-lsp></span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class AngleUnit&#10;import AngleUnit' >AngleUnit</data-lsp></span><span style="color: #D4D4D4"> } </span><span style="color: #C586C0">from</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&apos;@openhps/core&apos;</span><span style="color: #D4D4D4">;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF"><data-lsp lsp='const refSpace: ReferenceSpace' >refSpace</data-lsp></span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new ReferenceSpace(parent?: TransformationSpace): ReferenceSpace&#10;import ReferenceSpace' >ReferenceSpace</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE"><data-lsp lsp='const model: Model&lt;DataFrame, DataFrame>' >model</data-lsp></span><span style="color: #D4D4D4">.</span><span style="color: #9CDCFE"><data-lsp lsp='(property) Model&lt;DataFrame, DataFrame>.referenceSpace: TransformationSpace' >referenceSpace</data-lsp></span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) ReferenceSpace.referenceUnit(unit: LengthUnit): ReferenceSpace' >referenceUnit</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class LengthUnit&#10;import LengthUnit' >LengthUnit</data-lsp></span><span style="color: #D4D4D4">.</span><span style="color: #4FC1FF"><data-lsp lsp='(property) LengthUnit.CENTIMETER: LengthUnit' >CENTIMETER</data-lsp></span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) ReferenceSpace.translation(dX: number, dY: number, dZ?: number): ReferenceSpace' >translation</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">10</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">10</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">0</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) ReferenceSpace.scale(kX: number, kY: number, kZ?: number): ReferenceSpace' >scale</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">1</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">1</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">0</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) ReferenceSpace.rotation(r: {&#10;    x: number;&#10;    y: number;&#10;    z: number;&#10;    order?: EulerOrder;&#10;    unit?: AngleUnit;&#10;}): ReferenceSpace (+5 overloads)' >rotation</data-lsp></span><span style="color: #D4D4D4">({ </span><span style="color: #9CDCFE"><data-lsp lsp='(property) x: number' >x</data-lsp>:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">0</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE"><data-lsp lsp='(property) y: number' >y</data-lsp>:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">0</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE"><data-lsp lsp='(property) z: number' >z</data-lsp>:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">0</span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE"><data-lsp lsp='(property) unit?: AngleUnit' >unit</data-lsp>:</span><span style="color: #D4D4D4"> </span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class AngleUnit&#10;import AngleUnit' >AngleUnit</data-lsp></span><span style="color: #D4D4D4">.</span><span style="color: #4FC1FF"><data-lsp lsp='(property) AngleUnit.RADIAN: AngleUnit' >RADIAN</data-lsp></span><span style="color: #D4D4D4"> });</span></div></code></div></pre>
+<h2 id="geospatial-places" tabindex="-1">Geospatial Places</h2>
+<p>Geospatial places are supported using the <a href="/docs/geospatial">@openhps/geospatial</a> module. This module provides the concept of <code>SymbolicSpace</code>s that extend on reference spaces.</p>
+<pre class="shiki dark-plus twoslash lsp" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #C586C0">import</span><span style="color: #D4D4D4"> { </span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class Absolute2DPosition&#10;import Absolute2DPosition' >Absolute2DPosition</data-lsp></span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class GeographicalPosition&#10;import GeographicalPosition' >GeographicalPosition</data-lsp></span><span style="color: #D4D4D4"> } </span><span style="color: #C586C0">from</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&apos;@openhps/core&apos;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #C586C0">import</span><span style="color: #D4D4D4"> { </span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class Building&#10;import Building' >Building</data-lsp></span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class Floor&#10;import Floor' >Floor</data-lsp></span><span style="color: #D4D4D4">, </span><span style="color: #9CDCFE"><data-lsp lsp='(alias) class Room&#10;import Room' >Room</data-lsp></span><span style="color: #D4D4D4"> } </span><span style="color: #C586C0">from</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">&apos;@openhps/geospatial&apos;</span><span style="color: #D4D4D4">;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF"><data-lsp lsp='const building: Building' >building</data-lsp></span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new Building&lt;GeographicalPosition>(displayName?: string): Building&#10;import Building' >Building</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">"Pleinlaan 9"</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) Building.setBounds(bounds: any): Building' >setBounds</data-lsp></span><span style="color: #D4D4D4">({</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE"><data-lsp lsp='(property) topLeft: GeographicalPosition' >topLeft</data-lsp>:</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new GeographicalPosition(lat?: number, lng?: number, amsl?: number): GeographicalPosition&#10;import GeographicalPosition' >GeographicalPosition</data-lsp></span><span style="color: #D4D4D4">(</span></div><div class='line'><span style="color: #D4D4D4">            </span><span style="color: #B5CEA8">50.8203726927966</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">4.392241309019189</span></div><div class='line'><span style="color: #D4D4D4">        ),</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE"><data-lsp lsp='(property) width: number' >width</data-lsp>:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">46.275</span><span style="color: #D4D4D4">,</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE"><data-lsp lsp='(property) height: number' >height</data-lsp>:</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">37.27</span><span style="color: #D4D4D4">,</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #9CDCFE"><data-lsp lsp='(property) rotation: number' >rotation</data-lsp>:</span><span style="color: #D4D4D4"> -</span><span style="color: #B5CEA8">34.04</span></div><div class='line'><span style="color: #D4D4D4">    });</span></div><div class='line'><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF"><data-lsp lsp='const floor: Floor' >floor</data-lsp></span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new Floor&lt;Absolute2DPosition>(displayName?: string): Floor&#10;import Floor' >Floor</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">"3"</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) Floor.setBuilding(building: Building): Floor' >setBuilding</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE"><data-lsp lsp='const building: Building' >building</data-lsp></span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) Floor.setFloorNumber(floor: number, floorHeight?: number): Floor' >setFloorNumber</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">);</span></div><div class='line'><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF"><data-lsp lsp='const office: Room' >office</data-lsp></span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new Room&lt;Absolute2DPosition>(displayName?: string): Room&#10;import Room' >Room</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">"3.58"</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) CellSpace.setFloor(floor: Floor): Room' >setFloor</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE"><data-lsp lsp='const floor: Floor' >floor</data-lsp></span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) SymbolicSpace&lt;Absolute2DPosition>.setBounds(bounds: Absolute2DPosition[]): Room (+2 overloads)' >setBounds</data-lsp></span><span style="color: #D4D4D4">([</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new Absolute2DPosition(x?: number, y?: number, unit?: LengthUnit): Absolute2DPosition&#10;import Absolute2DPosition' >Absolute2DPosition</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">4.75</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">31.25</span><span style="color: #D4D4D4">),</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new Absolute2DPosition(x?: number, y?: number, unit?: LengthUnit): Absolute2DPosition&#10;import Absolute2DPosition' >Absolute2DPosition</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">8.35</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">37.02</span><span style="color: #D4D4D4">),</span></div><div class='line'><span style="color: #D4D4D4">    ]);</span></div><div class='line'><span style="color: #569CD6">const</span><span style="color: #D4D4D4"> </span><span style="color: #4FC1FF"><data-lsp lsp='const lab: Room' >lab</data-lsp></span><span style="color: #D4D4D4"> = </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new Room&lt;Absolute2DPosition>(displayName?: string): Room&#10;import Room' >Room</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #CE9178">"3.58"</span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) CellSpace.setFloor(floor: Floor): Room' >setFloor</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #9CDCFE"><data-lsp lsp='const floor: Floor' >floor</data-lsp></span><span style="color: #D4D4D4">)</span></div><div class='line'><span style="color: #D4D4D4">    .</span><span style="color: #DCDCAA"><data-lsp lsp='(method) SymbolicSpace&lt;Absolute2DPosition>.setBounds(bounds: Absolute2DPosition[]): Room (+2 overloads)' >setBounds</data-lsp></span><span style="color: #D4D4D4">([</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new Absolute2DPosition(x?: number, y?: number, unit?: LengthUnit): Absolute2DPosition&#10;import Absolute2DPosition' >Absolute2DPosition</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">13.15</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">31.25</span><span style="color: #D4D4D4">),</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #569CD6">new</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA"><data-lsp lsp='(alias) new Absolute2DPosition(x?: number, y?: number, unit?: LengthUnit): Absolute2DPosition&#10;import Absolute2DPosition' >Absolute2DPosition</data-lsp></span><span style="color: #D4D4D4">(</span><span style="color: #B5CEA8">25.15</span><span style="color: #D4D4D4">, </span><span style="color: #B5CEA8">37.02</span><span style="color: #D4D4D4">),</span></div><div class='line'><span style="color: #D4D4D4">    ]);</span></div></code></div></pre>
+
+    </div>
+  </div>
+</div>
+
+    </section>
+
+    <script src="/scripts/twoslash.js"></script>
+<footer>
+    &copy; OpenHPS 2019-2022. This site is powered by <a href="https://www.netlify.com/">Netlify</a> | 
+    <a href="https://github.com/OpenHPS/openhps-site/blob/master/./docs/v1/referencespace.md">Edit this page on GitHub</a>
+</footer>
+
+  </body>
+</html>
