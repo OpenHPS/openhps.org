@@ -5,9 +5,15 @@ const path = require('path');
 const handler = require('serve-handler');
 const http = require('http');
 const fs = require('fs');
+const crypto = require('crypto');
 
 async function decktape(el) {
     el.addAsyncShortcode("decktape", async (title, page) => {
+        // const fileBuffer = fs.readFileSync(page.outputPath);
+        // const hashSum = crypto.createHash('sha256');
+        // hashSum.update(fileBuffer);
+        // const hex = hashSum.digest('hex');
+
         const url = `http://localhost:3000${page.url}`;
         queue.push({
             title,
