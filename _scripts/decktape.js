@@ -55,7 +55,7 @@ async function generate() {
     // Generate pdfs
     for (let i = 0 ; i < queue.length ; i++) {
         const item = queue[i];
-        if (!fs.existsSync(item.pdf)) {
+        if (item.pdf ? !fs.existsSync(item.pdf) : !fs.existsSync(path.join(__dirname, `../${item.slug}.pdf`))) {
             console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
             console.log(chalk.white(`\t${item.pdf}`));
             await executeDecktape(item);   
