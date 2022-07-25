@@ -3,8 +3,6 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -25,7 +23,7 @@ jobs:
           path: |
             **/_site
             _presentations.json
-          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Install fonts
         run: |
           sudo apt update
@@ -62,13 +60,13 @@ jobs:
           path: |
             **/_site
             _presentations.json
-          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Load documentation cache
         uses: actions/cache@v2
         with:
           path: |
             **/_site/docs
-          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Build documentation
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -94,14 +92,14 @@ jobs:
           path: |
             **/_site
             _presentations.json
-          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Load ontology cache
         uses: actions/cache@v2
         with:
           path: |
             **/_site/terms
             **/_ontology
-          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Build ontology
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -127,13 +125,13 @@ jobs:
           path: |
             **/_site
             _presentations.json
-          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Load presentations cache
         uses: actions/cache@v2
         with:
           path: |
             **/_site/slides
-          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('**/_presentations.json') }}
+          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('**/_presentations.json') }}-${{ github.run_number }}
       - name: Build presentations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -163,26 +161,26 @@ jobs:
           path: |
             **/_site
             _presentations.json
-          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Load documentation cache
         uses: actions/cache@v2
         with:
           path: |
             **/_site/docs
-          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Load presentations cache
         uses: actions/cache@v2
         with:
           path: |
             **/_site/slides
-          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('**/_presentations.json') }}
+          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('**/_presentations.json') }}-${{ github.run_number }}
       - name: Load ontology cache
         uses: actions/cache@v2
         with:
           path: |
             **/_site/terms
             **/_ontology
-          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Deploy site to GitHub
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -219,26 +217,26 @@ jobs:
           path: |
             **/_site
             _presentations.json
-          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Load documentation cache
         uses: actions/cache@v2
         with:
           path: |
             **/_site/docs
-          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Load presentations cache
         uses: actions/cache@v2
         with:
           path: |
             **/_site/slides
-          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('**/_presentations.json') }}
+          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('**/_presentations.json') }}-${{ github.run_number }}
       - name: Load ontology cache
         uses: actions/cache@v2
         with:
           path: |
             **/_site/terms
             **/_ontology
-          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
       - name: Deploy site
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

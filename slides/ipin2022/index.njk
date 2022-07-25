@@ -1,0 +1,110 @@
+---
+layout: presentation.njk
+title: A Solid-based Architecture for Decentralised Interoperable Location Data
+presentation_title: A Solid-based Architecture for</br>Decentralised Interoperable Location Data
+excerpt: "IPIN 2022 presentation"
+author: <u>Maxim Van de Wynckel</u>, Beat Signer
+logo: true
+width: 1280
+height: 720
+affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel
+hide_openhps_logo: true
+---
+{% decktape title, page %}
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Current positioning systems
+            - GLONASS, GPS, Galileo, ...
+        {% endmarkdown %}
+        <img width="30%" src="images/current_gps.svg"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Current positioning systems ...
+        {% endmarkdown %}
+        <img height="80%" src="images/current_ips.svg"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Current positioning systems ...
+        {% endmarkdown %}
+        <img data-id="architecture_current" height="80%" src="images/architecture_current.svg"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Current positioning systems ...
+        {% endmarkdown %}
+        <img data-id="architecture_current" height="80%" src="images/architecture_current_2.svg"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Problems
+        1. Users not in control of their data
+        2. No interoperability between positioning systems
+        3. No interoperability between (navigation) applications
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Interoperability of a positioning systems
+            ### Accessibility
+        {% endmarkdown %}
+        <aside class="notes">
+        In order for two or positioning systems to be interoperable, they first of all need a way
+        to access each others data.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Interoperability of a positioning systems
+            ### Readability
+            - Common data format and structure
+        {% endmarkdown %}
+        <aside class="notes">
+        Each positioning system needs to provide data in a common data format in order to make it readable for
+        each system.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Interoperability of a positioning systems
+            ### Understandability
+            - Units and coordinate reference frame
+            - 
+        {% endmarkdown %}
+        <aside class="notes">
+        Last but definitely not least, the readable data needs to be understandable by each system.
+        
+        </aside>
+    </section>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## What is Solid?
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
+</section>
