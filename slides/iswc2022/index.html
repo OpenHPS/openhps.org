@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>POSO: A Generic Positioning System Ontology | OpenHPS</title>
+
+<meta name="description" content="ISWC 2022 presentation">
+<meta name="robots" content="index,follow">
+<meta name="author" content="<u>Maxim Van de Wynckel</u>, Beat Signer">
+
+<link rel="canonical" href="https://openhps.org/slides/iswc2022/">
+
+<meta property="og:title" content="POSO: A Generic Positioning System Ontology | OpenHPS">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="https://openhps.org/slides/iswc2022/">
+<meta property="og:description" content="ISWC 2022 presentation">
+<meta property="og:image" content="https://openhps.org/images/social/summary-large.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@OpenHPS">
+<meta name="twitter:url" content="https://openhps.org/slides/iswc2022/">
+<meta name="twitter:title" content="POSO: A Generic Positioning System Ontology | OpenHPS">
+<meta name="twitter:description" content="ISWC 2022 presentation">
+<meta name="twitter:image" content="https://openhps.org/images/social/summary-large.png">
+
+
+    <meta name="keywords" content="hybrid positioning system typescript javascript open source" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="/css/main.css?version=8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"></link>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <meta name="theme-color" content="#9c0000">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QY7ESJZX3K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QY7ESJZX3K');
+    </script>
+</head>
+
+
+  <body>
+    <link rel="stylesheet" href="/vendor/reveal.js/reset.css">
+    <link rel="stylesheet" href="/vendor/reveal.js/reveal.css">
+    <link rel="stylesheet" href="/vendor/reveal.js/plugin/pointer/pointer.css">
+    <link rel="stylesheet" href="/css/presentation.css" id="theme">
+
+    <div id="hidden" style="display:none;">
+      <div id="header">
+        <div class="header-right"><div class="header-logo"></div></div>
+      </div>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+          <section class="title-slide center" data-timing="15">
+              
+              <div class="logos">
+                <div id="vub-logo"></div>
+                <div id="wise-logo"></div>
+                
+              </div>
+              
+              <h2 id="label-title">
+              
+                POSO: A Generic Positioning System Ontology
+              
+                <small id="label-subtitle"></small>
+              </h2>
+              <h5 class="author"><u>Maxim Van de Wynckel</u>, Beat Signer</h5>
+              <h5 class="affiliation">Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel</h5>
+          </section>
+          
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="test" tabindex="-1">Test</h2>
+
+        <img width="30%" src="images/current_gps.svg"/>
+        <aside class="notes">
+        
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="future-work" tabindex="-1">Future Work</h2>
+
+        
+        <aside class="notes">
+        
+        </aside>
+    </section>
+</section>
+
+        </div>
+    </div>
+
+    <script src="/scripts/twoslash.js"></script>
+    <script type="module">
+      import Reveal from '/vendor/reveal.js/reveal.esm.js';
+      import Notes from '/vendor/reveal.js/plugin/notes/notes.esm.js';
+      import Pointer from '/vendor/reveal.js/plugin/pointer/pointer.esm.js';
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const options = {
+        hash: true,
+        margin: .08,
+        width: urlParams.get("width") ?? 1280 ,
+        height: urlParams.get("height") ?? 720,
+        plugins: [ Notes, Pointer ],
+        controlsTutorial: true,
+        pdfMaxPagesPerSlide: 1,
+        slideNumber: true,
+        center: false,
+        pointer: {
+          key: "q",
+          color: "red",
+          pointerSize: 25,
+          alwaysVisible: false,
+          tailLength: 10,
+        },
+        totalTime: 15 * 60,
+        showSlideNumber: 'all'
+      };
+
+      
+
+      window.Reveal = Reveal;
+      if (window.location.search.indexOf("presenter") > -1) {
+        console.log("Starting in presenter mode");
+        Reveal.initialize({
+          ...options,
+          navigationMode: 'linear',
+          slideNumber: 'c',
+          controls: false,
+        });
+        Reveal.on('pdf-ready', () => {
+          document.querySelectorAll(`.pdf-page section[data-visibility="uncounted"]`).forEach(e => e.closest('.pdf-page').remove());
+        });
+        Reveal.on('slidechanged', (event) => {
+          if (event.currentSlide.hasAttribute("data-visibility") && !Reveal.isOverview()) {
+            const prevIndices = Reveal.getIndices(event.previousSlide);
+            const currentIndices = Reveal.getIndices(event.currentSlide);
+            if (prevIndices.h < currentIndices.h || (prevIndices.h === currentIndices.h && prevIndices.v < currentIndices.v)) {
+              Reveal.next();
+            } else if (prevIndices.h > currentIndices.h || (prevIndices.h === currentIndices.h && prevIndices.v > currentIndices.v)) {
+              Reveal.prev();
+            }
+          }
+        });
+        let lastMovement = 0;
+        let idle = false;
+        document.addEventListener('mousemove', (event) => {
+          lastMovement = Date.now();
+          if (idle) {
+            document.querySelector('.cursor-dot').classList.remove("inactive");
+            idle = false;
+          }
+        }, false);
+        setInterval(() => {
+          if (!idle && lastMovement < Date.now() - 3000) {
+            idle = true;
+            document.querySelector('.cursor-dot').classList.add("inactive");
+          }
+        }, 2000);
+      } else {
+        Reveal.initialize(options);
+      }
+    </script>
+  </body>
+</html>

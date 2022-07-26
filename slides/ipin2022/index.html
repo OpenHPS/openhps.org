@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>A Solid-based Architecture for Decentralised Interoperable Location Data | OpenHPS</title>
+
+<meta name="description" content="IPIN 2022 presentation">
+<meta name="robots" content="index,follow">
+<meta name="author" content="<u>Maxim Van de Wynckel</u>, Beat Signer">
+
+<link rel="canonical" href="https://openhps.org/slides/ipin2022/">
+
+<meta property="og:title" content="A Solid-based Architecture for Decentralised Interoperable Location Data | OpenHPS">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="https://openhps.org/slides/ipin2022/">
+<meta property="og:description" content="IPIN 2022 presentation">
+<meta property="og:image" content="https://openhps.org/images/social/summary-large.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@OpenHPS">
+<meta name="twitter:url" content="https://openhps.org/slides/ipin2022/">
+<meta name="twitter:title" content="A Solid-based Architecture for Decentralised Interoperable Location Data | OpenHPS">
+<meta name="twitter:description" content="IPIN 2022 presentation">
+<meta name="twitter:image" content="https://openhps.org/images/social/summary-large.png">
+
+
+    <meta name="keywords" content="hybrid positioning system typescript javascript open source" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="/css/main.css?version=8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"></link>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <meta name="theme-color" content="#9c0000">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QY7ESJZX3K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QY7ESJZX3K');
+    </script>
+</head>
+
+
+  <body>
+    <link rel="stylesheet" href="/vendor/reveal.js/reset.css">
+    <link rel="stylesheet" href="/vendor/reveal.js/reveal.css">
+    <link rel="stylesheet" href="/vendor/reveal.js/plugin/pointer/pointer.css">
+    <link rel="stylesheet" href="/css/presentation.css" id="theme">
+
+    <div id="hidden" style="display:none;">
+      <div id="header">
+        <div class="header-right"><div class="header-logo"></div></div>
+      </div>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+          <section class="title-slide center" data-timing="15">
+              
+              <div class="logos">
+                <div id="vub-logo"></div>
+                <div id="wise-logo"></div>
+                
+              </div>
+              
+              <h2 id="label-title">
+              
+                A Solid-based Architecture for</br>Decentralised Interoperable Location Data
+              
+                <small id="label-subtitle"></small>
+              </h2>
+              <h5 class="author"><u>Maxim Van de Wynckel</u>, Beat Signer</h5>
+              <h5 class="affiliation">Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel</h5>
+          </section>
+          
+
+<section data-markdown data-auto-animate data-timing="40">
+    <h2 id="current-indoor-positioning-systems-(ips)" tabindex="-1">Current indoor positioning systems (IPS)</h2>
+
+    <img height="80%" src="images/architecture_current.svg"/>
+    <aside class="notes">
+    The common architecture of current indoor positioning systems is a separate
+    positioning system for each building or building site. Some positioning systems might
+    use a common framework, which might allow the use of a single application for both buildings. 
+    But for the majority of indoor positioning systems each system is an individual deployment with 
+    its own proprietary application and without the ability to share information across systems.
+
+    Each positioning system has a database containing the information about users or objects tracked 
+    by that system. 
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    <h2 id="problems-with-current-ips'" tabindex="-1">Problems with current IPS'</h2>
+<ol>
+<li>Users not in <strong>control</strong> of their <strong>data</strong></li>
+<li>No <strong>interoperability</strong> between positioning <strong>systems</strong></li>
+<li>No <strong>interoperability</strong> between (navigation) <strong>applications</strong></li>
+</ol>
+
+    <aside class="notes">
+        There are three main problems with this common architecture. Users are not always in control of their data,
+        they do not know what positioning systems or applications are tracking them, what exactly they are storing and
+        in the case of external tracking do not know how to stop them from being tracked. In addition there is no interoperability
+        between systems and applications that would allow the sharing of data or even allow users to use a single application for
+        every indoor positioning systems that is available.
+    </aside>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="interoperability-of-positioning-systems" tabindex="-1">Interoperability of positioning systems</h2>
+
+        <img height="80%" src="images/interoperability.svg"/>
+        <aside class="notes">
+        In order for two or positioning systems to be interoperable. The data needs to be accessible by other systems.
+        This means that the data pertaining to a certain user should be available for all positioning systems tracking
+        this user. The data can range from raw sensor data to processed information such as their location within a building.
+
+        Next, this data needs to be readable by each system that can access this data. In essence this means that there should
+        be a common data format to store the information.
+
+        Last but definitely not least, the readable data needs to be understandable by each system. Positioning systems must be
+        able to know if the data they are reading is sensor data or something else. In what units the data is in and how they should interpret the data.
+        </aside>
+    </section>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    <h2 id="what-is-solid%3F" tabindex="-1">What is Solid?</h2>
+
+    <aside class="notes">
+        The issue of interoperable data beloning to users is a common proble
+    </aside>
+</section>
+        </div>
+    </div>
+
+    <script src="/scripts/twoslash.js"></script>
+    <script type="module">
+      import Reveal from '/vendor/reveal.js/reveal.esm.js';
+      import Notes from '/vendor/reveal.js/plugin/notes/notes.esm.js';
+      import Pointer from '/vendor/reveal.js/plugin/pointer/pointer.esm.js';
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const options = {
+        hash: true,
+        margin: .08,
+        width: urlParams.get("width") ?? 1280 ,
+        height: urlParams.get("height") ?? 720,
+        plugins: [ Notes, Pointer ],
+        controlsTutorial: true,
+        pdfMaxPagesPerSlide: 1,
+        slideNumber: true,
+        center: false,
+        pointer: {
+          key: "q",
+          color: "red",
+          pointerSize: 25,
+          alwaysVisible: false,
+          tailLength: 10,
+        },
+        totalTime: 15 * 60,
+        showSlideNumber: 'all'
+      };
+
+      
+
+      window.Reveal = Reveal;
+      if (window.location.search.indexOf("presenter") > -1) {
+        console.log("Starting in presenter mode");
+        Reveal.initialize({
+          ...options,
+          navigationMode: 'linear',
+          slideNumber: 'c',
+          controls: false,
+        });
+        Reveal.on('pdf-ready', () => {
+          document.querySelectorAll(`.pdf-page section[data-visibility="uncounted"]`).forEach(e => e.closest('.pdf-page').remove());
+        });
+        Reveal.on('slidechanged', (event) => {
+          if (event.currentSlide.hasAttribute("data-visibility") && !Reveal.isOverview()) {
+            const prevIndices = Reveal.getIndices(event.previousSlide);
+            const currentIndices = Reveal.getIndices(event.currentSlide);
+            if (prevIndices.h < currentIndices.h || (prevIndices.h === currentIndices.h && prevIndices.v < currentIndices.v)) {
+              Reveal.next();
+            } else if (prevIndices.h > currentIndices.h || (prevIndices.h === currentIndices.h && prevIndices.v > currentIndices.v)) {
+              Reveal.prev();
+            }
+          }
+        });
+        let lastMovement = 0;
+        let idle = false;
+        document.addEventListener('mousemove', (event) => {
+          lastMovement = Date.now();
+          if (idle) {
+            document.querySelector('.cursor-dot').classList.remove("inactive");
+            idle = false;
+          }
+        }, false);
+        setInterval(() => {
+          if (!idle && lastMovement < Date.now() - 3000) {
+            idle = true;
+            document.querySelector('.cursor-dot').classList.add("inactive");
+          }
+        }, 2000);
+      } else {
+        Reveal.initialize(options);
+      }
+    </script>
+  </body>
+</html>
