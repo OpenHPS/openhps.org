@@ -168,12 +168,12 @@ h1, h2, h3, h4, h5 {
     list-style-type: none;
 }
 
-.reveal li li:before {
+.reveal ul li li:before {
     content: "\2B1B";
     font-size: 30%;
 }
 
-.reveal li:before {
+.reveal ul li:before {
     content: "\25BA";
     font-size: 60%;
     line-height: 100%;

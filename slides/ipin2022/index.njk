@@ -12,90 +12,55 @@ hide_openhps_logo: true
 ---
 {% decktape title, page %}
 
-<section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Current positioning systems
-            - GLONASS, GPS, Galileo, ...
-        {% endmarkdown %}
-        <img width="30%" src="images/current_gps.svg"/>
-        <aside class="notes">
-        
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Current positioning systems ...
-        {% endmarkdown %}
-        <img height="80%" src="images/current_ips.svg"/>
-        <aside class="notes">
-        
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Current positioning systems ...
-        {% endmarkdown %}
-        <img data-id="architecture_current" height="80%" src="images/architecture_current.svg"/>
-        <aside class="notes">
-        
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Current positioning systems ...
-        {% endmarkdown %}
-        <img data-id="architecture_current" height="80%" src="images/architecture_current_2.svg"/>
-        <aside class="notes">
-        
-        </aside>
-    </section>
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Current indoor positioning systems (IPS)
+    {% endmarkdown %}
+    <img height="80%" src="images/architecture_current.svg"/>
+    <aside class="notes">
+    The common architecture of current indoor positioning systems is a separate
+    positioning system for each building or building site. Some positioning systems might
+    use a common framework, which might allow the use of a single application for both buildings. 
+    But for the majority of indoor positioning systems each system is an individual deployment with 
+    its own proprietary application and without the ability to share information across systems.
+
+    Each positioning system has a database containing the information about users or objects tracked 
+    by that system. 
+    </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Problems
-        1. Users not in control of their data
-        2. No interoperability between positioning systems
-        3. No interoperability between (navigation) applications
+        ## Problems with current IPS'
+        1. Users not in **control** of their **data**
+        2. No **interoperability** between positioning **systems**
+        3. No **interoperability** between (navigation) **applications**
     {% endmarkdown %}
     <aside class="notes">
-    
+        There are three main problems with this common architecture. Users are not always in control of their data,
+        they do not know what positioning systems or applications are tracking them, what exactly they are storing and
+        in the case of external tracking do not know how to stop them from being tracked. In addition there is no interoperability
+        between systems and applications that would allow the sharing of data or even allow users to use a single application for
+        every indoor positioning systems that is available.
     </aside>
 </section>
 
 <section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## Interoperability of a positioning systems
-            ### Accessibility
+            ## Interoperability of positioning systems
         {% endmarkdown %}
+        <img height="80%" src="images/interoperability.svg"/>
         <aside class="notes">
-        In order for two or positioning systems to be interoperable, they first of all need a way
-        to access each others data.
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Interoperability of a positioning systems
-            ### Readability
-            - Common data format and structure
-        {% endmarkdown %}
-        <aside class="notes">
-        Each positioning system needs to provide data in a common data format in order to make it readable for
-        each system.
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Interoperability of a positioning systems
-            ### Understandability
-            - Units and coordinate reference frame
-            - 
-        {% endmarkdown %}
-        <aside class="notes">
-        Last but definitely not least, the readable data needs to be understandable by each system.
-        
+        In order for two or positioning systems to be interoperable. The data needs to be accessible by other systems.
+        This means that the data pertaining to a certain user should be available for all positioning systems tracking
+        this user. The data can range from raw sensor data to processed information such as their location within a building.
+
+        Next, this data needs to be readable by each system that can access this data. In essence this means that there should
+        be a common data format to store the information.
+
+        Last but definitely not least, the readable data needs to be understandable by each system. Positioning systems must be
+        able to know if the data they are reading is sensor data or something else. In what units the data is in and how they should interpret the data.
         </aside>
     </section>
 </section>
@@ -105,6 +70,6 @@ hide_openhps_logo: true
         ## What is Solid?
     {% endmarkdown %}
     <aside class="notes">
-    
+        The issue of interoperable data beloning to users is a common proble
     </aside>
 </section>
