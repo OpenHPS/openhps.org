@@ -20,12 +20,13 @@ hide_openhps_logo: true
     <aside class="notes">
     The common architecture of current indoor positioning systems is a separate
     positioning system for each building or building site. Some positioning systems might
-    use a common framework, which might allow the use of a single application for both buildings. 
+    use a common framework, which could allow the use of a single application for both buildings. 
     But for the majority of indoor positioning systems each system is an individual deployment with 
     its own proprietary application and without the ability to share information across systems.
 
     Each positioning system has a database containing the information about users or objects tracked 
-    by that system. 
+    by that system, but users often do not know what information is kept in those databases - or even
+    how many databases with their information exist.
     </aside>
 </section>
 
@@ -39,8 +40,10 @@ hide_openhps_logo: true
     <aside class="notes">
         There are three main problems with this common architecture. Users are not always in control of their data,
         they do not know what positioning systems or applications are tracking them, what exactly they are storing and
-        in the case of external tracking do not know how to stop them from being tracked. In addition there is no interoperability
-        between systems and applications that would allow the sharing of data or even allow users to use a single application for
+        in the case of external tracking do not know how to stop them from being tracked. With users becoming more privacy concious,
+        this lack of transparancy could result in users not using a certain positioning system application.
+        
+        In addition there is no interoperability between systems and applications that would allow the sharing of data or even allow users to use a single application for
         every indoor positioning systems that is available.
     </aside>
 </section>
@@ -70,6 +73,32 @@ hide_openhps_logo: true
         ## What is Solid?
     {% endmarkdown %}
     <aside class="notes">
-        The issue of interoperable data beloning to users is a common proble
+        The idea of interoperability is not something that is only relevant for a positioning system.
+        In 2006, the founder of the web Sir. Tim Berners-Lee co founded the Social Linked Data platform.
+        The idea of solid was mainly to decentralise all the users data in so called data vaults or Pods.
+        Originally, the types of data that were demonstrated was things like social media pictures, posts or
+        private data such as medical information so it can be shared, read and understood by other hospitals 
+        that you would visit.
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## What is Solid?
+    {% endmarkdown %}
+    <aside class="notes">
+        In this paper we comprised an architecture that leverages solid to store location and sensor data. We make use of
+        W3C standards for 
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## PoC Demonstrator
+    {% endmarkdown %}
+    <img height="80%" src="images/poc.svg"/>
+    <aside class="notes">
+        We created an open source proof of concept demonstrator with three applications. Two non trivial positioning systems,
+        one with GPS and a simple indoor positioning system using QR code scanning.
     </aside>
 </section>
