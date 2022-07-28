@@ -111,6 +111,7 @@
 <li>No <strong>interoperability</strong> between (navigation) <strong>applications</strong></li>
 </ol>
 
+    <img height="70%" src="images/interoperability.svg"/>
     <aside class="notes">
         There are three main problems with this common architecture. Users are not always in control of their data,
         they do not know what positioning systems or applications are tracking them, what exactly they are storing and
@@ -119,15 +120,7 @@
         
         In addition there is no interoperability between systems and applications that would allow the sharing of data or even allow users to use a single application for
         every indoor positioning systems that is available.
-    </aside>
-</section>
 
-<section>
-    <section data-markdown data-auto-animate data-timing="40">
-        <h2 id="interoperability-of-positioning-systems" tabindex="-1">Interoperability of positioning systems</h2>
-
-        <img height="80%" src="images/interoperability.svg"/>
-        <aside class="notes">
         In order for two or positioning systems to be interoperable. The data needs to be accessible by other systems.
         This means that the data pertaining to a certain user should be available for all positioning systems tracking
         this user. The data can range from raw sensor data to processed information such as their location within a building.
@@ -137,8 +130,7 @@
 
         Last but definitely not least, the readable data needs to be understandable by each system. Positioning systems must be
         able to know if the data they are reading is sensor data or something else. In what units the data is in and how they should interpret the data.
-        </aside>
-    </section>
+    </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
@@ -146,7 +138,7 @@
 
     <aside class="notes">
         The idea of interoperability is not something that is only relevant for a positioning system.
-        In 2006, the founder of the web Sir. Tim Berners-Lee co founded the Social Linked Data platform.
+        In 2016, the founder of the web Sir. Tim Berners-Lee co founded the Social Linked Data platform.
         The idea of solid was mainly to decentralise all the users data in so called data vaults or Pods.
         Originally, the types of data that were demonstrated was things like social media pictures, posts or
         private data such as medical information so it can be shared, read and understood by other hospitals 
@@ -157,20 +149,50 @@
 <section data-markdown data-auto-animate data-timing="40">
     <h2 id="what-is-solid%3F" tabindex="-1">What is Solid?</h2>
 
+    <img height="100%" src="images/architecture.svg"/>
     <aside class="notes">
         In this paper we comprised an architecture that leverages solid to store location and sensor data. We make use of
         W3C standards for 
     </aside>
 </section>
 
-<section data-markdown data-auto-animate data-timing="40">
-    <h2 id="poc-demonstrator" tabindex="-1">PoC Demonstrator</h2>
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="rdf%3A-properties-and-observations" tabindex="-1">RDF: Properties and Observations</h2>
+<pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">turtle</div><div class='code-container'><code><div class='line'></div></code></div></pre>
 
-    <img height="80%" src="images/poc.svg"/>
-    <aside class="notes">
-        We created an open source proof of concept demonstrator with three applications. Two non trivial positioning systems,
-        one with GPS and a simple indoor positioning system using QR code scanning.
-    </aside>
+        <aside class="notes">
+            
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="poc-demonstrator" tabindex="-1">PoC Demonstrator</h2>
+
+        <img height="80%" src="images/poc.svg"/>
+        <aside class="notes">
+            We created an open source proof of concept demonstrator with three applications. Two non trivial positioning systems,
+            one with GPS and a simple indoor positioning system using QR code scanning.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="poc-demonstrator-..." tabindex="-1">PoC Demonstrator ...</h2>
+
+        <img height="80%" src="images/phones_wip.png"/>
+        <aside class="notes">
+            
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="poc-demonstrator-..." tabindex="-1">PoC Demonstrator ...</h2>
+<pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">sparql</div><div class='code-container'><code><div class='line'><span style="color: #C586C0">SELECT</span><span style="color: #D4D4D4"> ?posGeoJSON ?datetime ?accuracy {</span></div><div class='line'><span style="color: #D4D4D4">    ?profile </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">FeatureOfInterest</span><span style="color: #D4D4D4"> ;</span></div><div class='line'><span style="color: #D4D4D4">            </span><span style="color: #569CD6">ssn:</span><span style="color: #9CDCFE">hasProperty</span><span style="color: #D4D4D4"> ?property .</span></div><div class='line'><span style="color: #D4D4D4">    ?observation </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">hasResult</span><span style="color: #D4D4D4"> ?result ;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">observedProperty</span><span style="color: #D4D4D4"> ?property ;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">resultTime</span><span style="color: #D4D4D4"> ?datetime .</span></div><div class='line'><span style="color: #D4D4D4">    ?result </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">hasSpatialAccuracy</span><span style="color: #D4D4D4"> ?spatialAccuracy ;</span></div><div class='line'><span style="color: #D4D4D4">            </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">asWKT</span><span style="color: #D4D4D4"> ?posWKT .</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">BIND</span><span style="color: #D4D4D4">(</span><span style="color: #569CD6">geof:</span><span style="color: #9CDCFE">asGeoJSON</span><span style="color: #D4D4D4">(?posWKT) </span><span style="color: #C586C0">AS</span><span style="color: #D4D4D4"> ?posGeoJSON)</span></div><div class='line'><span style="color: #D4D4D4">    ?spatialAccuracy </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">numericValue</span><span style="color: #D4D4D4"> ?value ;</span></div><div class='line'><span style="color: #D4D4D4">                    </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">unit</span><span style="color: #D4D4D4"> ?unit .</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">OPTIONAL</span><span style="color: #D4D4D4"> { ?unit </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">conversionMultiplier</span><span style="color: #D4D4D4"> ?multiplier }</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">OPTIONAL</span><span style="color: #D4D4D4"> { ?unit </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">conversionOffset</span><span style="color: #D4D4D4"> ?offset }</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">BIND</span><span style="color: #D4D4D4">(</span><span style="color: #DCDCAA">COALESCE</span><span style="color: #D4D4D4">(?multiplier, </span><span style="color: #B5CEA8">1</span><span style="color: #D4D4D4">) </span><span style="color: #C586C0">as</span><span style="color: #D4D4D4"> ?multiplier) </span><span style="color: #6A9955"># Default 1</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">BIND</span><span style="color: #D4D4D4">(</span><span style="color: #DCDCAA">COALESCE</span><span style="color: #D4D4D4">(?offset, </span><span style="color: #B5CEA8">0</span><span style="color: #D4D4D4">) </span><span style="color: #C586C0">as</span><span style="color: #D4D4D4"> ?offset) </span><span style="color: #6A9955"># Default 0</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">BIND</span><span style="color: #D4D4D4">(((?value </span><span style="color: #4EC9B0">*</span><span style="color: #D4D4D4"> ?multiplier) </span><span style="color: #4EC9B0">+</span><span style="color: #D4D4D4"> ?offset) </span><span style="color: #C586C0">AS</span><span style="color: #D4D4D4"> ?accuracy)</span></div><div class='line'><span style="color: #D4D4D4">} </span><span style="color: #C586C0">ORDER</span><span style="color: #D4D4D4"> </span><span style="color: #C586C0">BY</span><span style="color: #D4D4D4"> </span><span style="color: #DCDCAA">DESC</span><span style="color: #D4D4D4">(?datetime) </span><span style="color: #C586C0">LIMIT</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">20</span></div></code></div></pre>
+
+        <aside class="notes">
+            
+        </aside>
+    </section>
 </section>
         </div>
     </div>
