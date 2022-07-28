@@ -27,11 +27,15 @@ const modules = [
     "mqtt",
     "video",
     "rf",
-    "rdf"
+    "rdf",
+    "solid",
+    "openvslam",
+    "orb-slam3"
 ];
 
 async function buildDocs() {
     if (!isGitHubAvailable()) {
+        console.log(chalk.redBright(`Github API is not available!`));
         return;
     }
     

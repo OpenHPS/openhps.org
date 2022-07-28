@@ -37,6 +37,7 @@ hide_openhps_logo: true
         2. No **interoperability** between positioning **systems**
         3. No **interoperability** between (navigation) **applications**
     {% endmarkdown %}
+    <img height="70%" src="images/interoperability.svg"/>
     <aside class="notes">
         There are three main problems with this common architecture. Users are not always in control of their data,
         they do not know what positioning systems or applications are tracking them, what exactly they are storing and
@@ -45,16 +46,7 @@ hide_openhps_logo: true
         
         In addition there is no interoperability between systems and applications that would allow the sharing of data or even allow users to use a single application for
         every indoor positioning systems that is available.
-    </aside>
-</section>
 
-<section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Interoperability of positioning systems
-        {% endmarkdown %}
-        <img height="80%" src="images/interoperability.svg"/>
-        <aside class="notes">
         In order for two or positioning systems to be interoperable. The data needs to be accessible by other systems.
         This means that the data pertaining to a certain user should be available for all positioning systems tracking
         this user. The data can range from raw sensor data to processed information such as their location within a building.
@@ -64,8 +56,7 @@ hide_openhps_logo: true
 
         Last but definitely not least, the readable data needs to be understandable by each system. Positioning systems must be
         able to know if the data they are reading is sensor data or something else. In what units the data is in and how they should interpret the data.
-        </aside>
-    </section>
+    </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
@@ -74,7 +65,7 @@ hide_openhps_logo: true
     {% endmarkdown %}
     <aside class="notes">
         The idea of interoperability is not something that is only relevant for a positioning system.
-        In 2006, the founder of the web Sir. Tim Berners-Lee co founded the Social Linked Data platform.
+        In 2016, the founder of the web Sir. Tim Berners-Lee co founded the Social Linked Data platform.
         The idea of solid was mainly to decentralise all the users data in so called data vaults or Pods.
         Originally, the types of data that were demonstrated was things like social media pictures, posts or
         private data such as medical information so it can be shared, read and understood by other hospitals 
@@ -86,19 +77,71 @@ hide_openhps_logo: true
     {% markdown %}
         ## What is Solid?
     {% endmarkdown %}
+    <img height="100%" src="images/architecture.svg"/>
     <aside class="notes">
         In this paper we comprised an architecture that leverages solid to store location and sensor data. We make use of
         W3C standards for 
     </aside>
 </section>
 
-<section data-markdown data-auto-animate data-timing="40">
-    {% markdown %}
-        ## PoC Demonstrator
-    {% endmarkdown %}
-    <img height="80%" src="images/poc.svg"/>
-    <aside class="notes">
-        We created an open source proof of concept demonstrator with three applications. Two non trivial positioning systems,
-        one with GPS and a simple indoor positioning system using QR code scanning.
-    </aside>
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## RDF: Properties and Observations
+            ```turtle
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+            
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## PoC Demonstrator
+        {% endmarkdown %}
+        <img height="80%" src="images/poc.svg"/>
+        <aside class="notes">
+            We created an open source proof of concept demonstrator with three applications. Two non trivial positioning systems,
+            one with GPS and a simple indoor positioning system using QR code scanning.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## PoC Demonstrator ...
+        {% endmarkdown %}
+        <img height="80%" src="images/phones_wip.png"/>
+        <aside class="notes">
+            
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## PoC Demonstrator ...
+            ```sparql
+            SELECT ?posGeoJSON ?datetime ?accuracy {
+                ?profile a sosa:FeatureOfInterest ;
+                        ssn:hasProperty ?property .
+                ?observation sosa:hasResult ?result ;
+                            sosa:observedProperty ?property ;
+                            sosa:resultTime ?datetime .
+                ?result geosparql:hasSpatialAccuracy ?spatialAccuracy ;
+                        geosparql:asWKT ?posWKT .
+                BIND(geof:asGeoJSON(?posWKT) AS ?posGeoJSON)
+                ?spatialAccuracy qudt:numericValue ?value ;
+                                qudt:unit ?unit .
+                OPTIONAL { ?unit qudt:conversionMultiplier ?multiplier }
+                OPTIONAL { ?unit qudt:conversionOffset ?offset }
+                BIND(COALESCE(?multiplier, 1) as ?multiplier) # Default 1
+                BIND(COALESCE(?offset, 0) as ?offset) # Default 0
+                BIND(((?value * ?multiplier) + ?offset) AS ?accuracy)
+            } ORDER BY DESC(?datetime) LIMIT 20
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+            
+        </aside>
+    </section>
 </section>

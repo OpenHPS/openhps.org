@@ -72,39 +72,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm run build:docs
-
-  build_ontology:
-    needs: build
-    name: 'Build Ontology'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-      - name: Load dependency cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('**/package-lock.json') }}
-      - name: Load site cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/_site
-            _presentations.json
-          key: ${{ runner.os }}-site-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
-      - name: Load ontology cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/_site/terms
-            **/_ontology
-          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('**/package-lock.json') }}-${{ github.run_number }}
-      - name: Build ontology
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm run build:ontology
       
   build_presentations:
     needs: build
@@ -143,7 +110,6 @@ jobs:
       - build
       - build_documentation
       - build_presentations
-      - build_ontology
     name: 'Deploy to Github Pages'
     runs-on: ubuntu-latest
     steps:
@@ -199,7 +165,6 @@ jobs:
       - build
       - build_documentation
       - build_presentations
-      - build_ontology
     name: 'Deploy to Netlify'
     runs-on: ubuntu-latest
     steps:

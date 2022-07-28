@@ -1,6 +1,7 @@
 const axios = require('axios');
 const unzip = require('unzip-stream');
 const rimraf = require('rimraf');
+require('dotenv').config();
 
 const token = process.env.GITHUB_TOKEN;
 
