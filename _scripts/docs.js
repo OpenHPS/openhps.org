@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const { moveSync, copySync } = require('fs-extra');
 const { 
     isGitHubAvailable, 
     fetchLatestBuild, 
@@ -47,8 +48,11 @@ async function buildDocs() {
             await rmdir(module);
             console.log(chalk.white(`\tExtracting API documentation for '${module}'`));
             await extractZip(`_site/docs/${module}`, stream);
+            copySync(`_site/docs/${module}/openhps-${module}-gh-pages`, `_site/docs/${module}`, { overwrite: true });
+            await rmdir(`_site/docs/${module}/openhps-${module}-gh-pages`);
         } catch(ex) {
             console.error(chalk.red(`\tUnable to get documentation for ${modules[i]}`));
+            // console.error(ex);
         }
     }
 }
