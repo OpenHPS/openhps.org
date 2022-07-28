@@ -5,7 +5,6 @@ const path = require('path');
 const handler = require('serve-handler');
 const http = require('http');
 const fs = require('fs');
-const crypto = require('crypto');
 
 async function decktape(el) {
     el.addAsyncShortcode("decktape", async (title, page) => {
@@ -93,16 +92,20 @@ function executeDecktape(item) {
 
         if (item.images) {
             const screenshotDir = path.join(item.images, "screenshots");
-            fs.mkdirSync(screenshotDir);
-            process = spawn(
-                path.join(__dirname, '../node_modules/.bin/decktape'), 
-                [
-                    `--screenshots`,
-                    `--screenshots-directory ${screenshotDir}`,
-                    `--size=1280x720`, item.url, `${item.slug}.pdf`,
-                ], {
-                    shell: true
-                });
+            if (!fs.existsSync(screenshotDir)) {
+                fs.mkdirSync(screenshotDir);
+                process = spawn(
+                    path.join(__dirname, '../node_modules/.bin/decktape'), 
+                    [
+                        `--screenshots`,
+                        `--screenshots-directory ${screenshotDir}`,
+                        `--size=1280x720`, item.url, `${item.slug}.pdf`,
+                    ], {
+                        shell: true
+                    });
+            } else {
+                console.log(chalk.yellow(`Skipping PDF for '${item.title}'!`));
+            }
         } else {
             process = spawn(
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
