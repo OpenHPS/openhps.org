@@ -12,6 +12,7 @@ const { DateTime } = require("luxon");
 const fs = require('fs');
 const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
+const pluginPDFEmbed = require('eleventy-plugin-pdfembed');
 const faviconPlugin = require("eleventy-favicon");
 require('dotenv').config();
 const { decktape } = require("./_scripts/decktape");
@@ -41,6 +42,11 @@ module.exports = function (el) {
     },
   });
   el.addPlugin(faviconPlugin);
+
+  /* PDF Embedding */
+  el.addPlugin(pluginPDFEmbed, {
+    key: '1618c524151e4cc08d37a63aca2ea51d'
+	});
 
   /* Markdown */
   const md = markdownIt({ html: true });

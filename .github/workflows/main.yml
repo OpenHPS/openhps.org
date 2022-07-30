@@ -3,6 +3,8 @@ name: CI
 on:
   push:
     branches: [ master ]
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build:
@@ -98,7 +100,7 @@ jobs:
         with:
           path: |
             **/_site/slides
-          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}-${{ github.run_number }}
+          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}
       - name: Build presentations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -139,7 +141,7 @@ jobs:
         with:
           path: |
             **/_site/slides
-          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}-${{ github.run_number }}
+          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}
       - name: Load ontology cache
         uses: actions/cache@v2
         with:
@@ -194,7 +196,7 @@ jobs:
         with:
           path: |
             **/_site/slides
-          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}-${{ github.run_number }}
+          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}
       - name: Load ontology cache
         uses: actions/cache@v2
         with:

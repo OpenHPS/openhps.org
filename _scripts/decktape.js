@@ -3,28 +3,31 @@ const { spawn } = require('child_process');
 let queue = [];
 const path = require('path');
 const handler = require('serve-handler');
+const crypto = require('crypto');
 const http = require('http');
 const fs = require('fs');
 
 async function decktape(el) {
     el.addAsyncShortcode("decktape", async (title, page) => {
-        // const fileBuffer = fs.readFileSync(page.outputPath);
-        // const hashSum = crypto.createHash('sha256');
-        // hashSum.update(fileBuffer);
-        // const hex = hashSum.digest('hex');
+        const fileBuffer = fs.readFileSync(page.inputPath);
+        const hashSum = crypto.createHash('sha256');
+        hashSum.update(fileBuffer);
+        const hex = hashSum.digest('hex');
 
         const url = `http://localhost:3000${page.url}`;
         queue.push({
             title,
             url: url + "?presenter",
             pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation.pdf`),
-            widescreen: false
+            widescreen: false,
+            hash: hex
         });
         queue.push({
             title: title + " | Author Version",
             url,
             pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation.pdf`),
             widescreen: false,
+            hash: hex
         });
         queue.push({
             title,
@@ -32,12 +35,14 @@ async function decktape(el) {
             slug: page.fileSlug,
             widescreen: true,
             images: path.join(page.outputPath, `../`),
+            hash: hex
         });
         queue.push({
             title: title + " | Author Version",
             url,
             pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation-16x9.pdf`),
-            widescreen: true
+            widescreen: true,
+            hash: hex
         });
         // Save queue
         fs.writeFileSync('_presentations.json', JSON.stringify(queue), {
