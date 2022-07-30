@@ -4,6 +4,7 @@ title: "OpenHPS: An Open Source Hybrid Positioning System"
 author: Maxim Van de Wynckel, Beat Signer
 date: 2020-12-29
 pdf: https://beatsigner.com/publications/openhps-an-open-source-hybrid-positioning-system.pdf
+excerpt: 'Van de Wynckel, M. and Signer, B.: "OpenHPS: An Open Source Hybrid Positioning System", Technical Report WISE Lab, WISE-2020-01, December 2020'
 abstract: "Positioning systems and frameworks use various techniques to determine the position of an object. Some of the existing solutions
 combine different sensory data at the time of positioning in order
 to compute more accurate positions by reducing the error introduced by the used individual positioning techniques. We present
@@ -19,5 +20,5 @@ While OpenHPS offers a number of positioning techniques, future
 extensions might integrate new positioning methods or algorithms
 and support additional levels of abstraction including symbolic
 locations."
-thumbnail: techreport.png
+thumbnail: "/publications/2020/techreport.png"
 ---

@@ -1,0 +1,18 @@
+---
+layout: default.njk
+permalink: /publications/
+eleventyNavigation:
+  key: Publications
+  order: 2
+title: 'Publications'
+---
+
+<div class="container main">
+  <div class="row">
+    <div class="col-sm-7 typography">
+        <h1>Publications</h1>
+        {% set postslist = collections.publications %}
+        {% include "postslist.njk" %}
+    </div>
+  </div>
+</div>
