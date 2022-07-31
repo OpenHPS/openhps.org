@@ -16,6 +16,11 @@
     .btn i {
         margin-right: 8px;
     }
+
+    .btn-icon i {
+        margin-left: 4px;
+        margin-right: 4px; 
+    }
     
     .btn-red {
         background-color: #9c0000;
@@ -31,5 +36,21 @@
     }
     .btn-green:hover {
         background-color: #04c20e;
+    }
+
+    .btn-blue {
+        background-color: #00569c;
+        color: white;
+    }
+    .btn-blue:hover {
+        background-color: #044dc2;
+    }
+
+    .btn-yellow {
+        background-color: #c5da08;
+        color: black;
+    }
+    .btn-yellow:hover {
+        background-color: #c2bf04;
     }
 }

@@ -16,6 +16,7 @@ const pluginPDFEmbed = require('eleventy-plugin-pdfembed');
 const faviconPlugin = require("eleventy-favicon");
 require('dotenv').config();
 const { decktape } = require("./_scripts/decktape");
+const _ = require("lodash");
 
 module.exports = function (el) {
   /* Passthrough Copy */
@@ -92,10 +93,25 @@ module.exports = function (el) {
   });
   el.setLibrary("njk", njkEnv);
 
-  el.addCollection("sorted_docs", function (collection) {
+  /* Collections */
+  el.addCollection("sorted_docs", (collection) => {
     const items = collection.getFilteredByTag("docs");
     items.sort((a, b) => a.data.menuOrder - b.data.menuOrder);
     return items;
+  });
+  el.addCollection("posts_year", (collection) => {
+    return _.chain(collection.getFilteredByTag("posts").sort((a, b) => a.date - b.date))
+      .groupBy((post) => post.date.getFullYear())
+      .toPairs()
+      .reverse()
+      .value();
+  });
+  el.addCollection("publications_year", (collection) => {
+    return _.chain(collection.getFilteredByTag("publications").sort((a, b) => a.date - b.date))
+      .groupBy((post) => post.date.getFullYear())
+      .toPairs()
+      .reverse()
+      .value();
   });
 
   el.addFilter("readableDate", dateObj => {
