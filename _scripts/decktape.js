@@ -65,9 +65,13 @@ async function generate() {
     // Generate pdfs
     for (let i = 0 ; i < queue.length ; i++) {
         const item = queue[i];
-        if (item.pdf ? !fs.existsSync(item.pdf) : !fs.existsSync(path.join(__dirname, `../${item.slug}.pdf`))) {
+        const file = item.pdf ? item.pdf : path.join(__dirname, `../${item.slug}.pdf`)
+        if (!fs.existsSync(file)) {
             console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
-            console.log(chalk.white(`\t${item.pdf}`));
+            console.log(chalk.white(`\t${file}`));
+            if (file === undefined){
+                console.log(item);
+            }
             await executeDecktape(item);   
         } else {
             console.log(chalk.yellow(`Skipping PDF for '${item.title}'!`));
@@ -97,6 +101,7 @@ function executeDecktape(item) {
 
         if (item.images) {
             const screenshotDir = path.join(item.images, "screenshots");
+            console.log(chalk.white(`\t${screenshotDir}`));
             if (!fs.existsSync(screenshotDir)) {
                 fs.mkdirSync(screenshotDir);
                 process = spawn(
@@ -110,8 +115,9 @@ function executeDecktape(item) {
                     });
             } else {
                 console.log(chalk.yellow(`Skipping PDF for '${item.title}'!`));
+                return resolve();
             }
-        } else {
+        } else if (item.pdf) {
             process = spawn(
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
                 [

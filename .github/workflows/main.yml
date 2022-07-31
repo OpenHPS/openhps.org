@@ -100,6 +100,7 @@ jobs:
         with:
           path: |
             **/_site/slides
+            *.pdf
           key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}
       - name: Build presentations
         env:
@@ -141,6 +142,7 @@ jobs:
         with:
           path: |
             **/_site/slides
+            *.pdf
           key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}
       - name: Load ontology cache
         uses: actions/cache@v2
@@ -196,6 +198,7 @@ jobs:
         with:
           path: |
             **/_site/slides
+            *.pdf
           key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}
       - name: Load ontology cache
         uses: actions/cache@v2
