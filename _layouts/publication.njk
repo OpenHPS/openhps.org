@@ -28,7 +28,9 @@ layout: default.njk
             <h2>Citation</h2>
             <p class="cite">{{ excerpt }}</p>
 
-            {% pdfembed pdf, 'FULL_WINDOW', 'pdf-viewer' %}
+            <object data="{{ pdf }}" class="pdf-viewer" type="application/pdf">
+                <iframe src="https://docs.google.com/viewer?url={{ pdf }}&embedded=true"></iframe>
+            </object>
         </div>
     </div>
 </div>
