@@ -56,7 +56,12 @@ async function generate() {
     queue = JSON.parse(fs.readFileSync('_presentations.json', {
         encoding: 'utf-8'
     }));
+    queue_old = fs.existsSync('_presentations_generated.json') ? JSON.parse(fs.readFileSync('_presentations_generated.json', {
+        encoding: 'utf-8'
+    })) : [];
+
     console.log(`There are ${queue.length} presentations to be generated ...`);
+    console.log(`There are ${queue_old.length} presentations previously generated ...`);
     if (queue.length === 0) {
         return;
     }
@@ -66,7 +71,8 @@ async function generate() {
     for (let i = 0 ; i < queue.length ; i++) {
         const item = queue[i];
         const file = item.pdf ? item.pdf : path.join(__dirname, `../${item.slug}.pdf`)
-        if (!fs.existsSync(file)) {
+        const oldItems = queue_old.filter(i => i.pdf === item.pdf);
+        if (!fs.existsSync(file) && (oldItems.length > 0 ? oldItems[0].hash !== item.hash : true)) {
             console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
             console.log(chalk.white(`\t${file}`));
             if (file === undefined){
@@ -79,6 +85,7 @@ async function generate() {
     }
     console.log(chalk.blue(`Stopping web server for generating PDFs!`));
     server.close();
+    fs.copyFileSync('_presentations.json', '_presentations_generated.json');
 }
 
 function createServer(port = 3000) {

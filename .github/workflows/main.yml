@@ -101,7 +101,8 @@ jobs:
           path: |
             **/_site/slides
             *.pdf
-          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}
+            _presentations_generated.json
+          key: ${{ runner.os }}-site-presentations-v1
       - name: Build presentations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -143,7 +144,8 @@ jobs:
           path: |
             **/_site/slides
             *.pdf
-          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}
+            _presentations_generated.json
+          key: ${{ runner.os }}-site-presentations-v1
       - name: Load ontology cache
         uses: actions/cache@v2
         with:
@@ -199,7 +201,8 @@ jobs:
           path: |
             **/_site/slides
             *.pdf
-          key: ${{ runner.os }}-site-presentations-v1-${{ hashFiles('_presentations.json') }}
+            _presentations_generated.json
+          key: ${{ runner.os }}-site-presentations-v1
       - name: Load ontology cache
         uses: actions/cache@v2
         with:
