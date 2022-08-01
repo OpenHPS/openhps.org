@@ -136,10 +136,14 @@
 
 <section data-markdown data-auto-animate data-timing="40">
     <h2 id="what-is-solid%3F" tabindex="-1">What is Solid?</h2>
+<ul>
+<li>Decentralised data vaults called <em>Pods</em>*</li>
+<li>Semantic linked data</li>
+</ul>
 
     <aside class="notes">
         The idea of interoperability is not something that is only relevant for a positioning system.
-        In 2016, the founder of the web Sir. Tim Berners-Lee co founded the Social Linked Data platform.
+        In 2016, the founder of the web Sir Tim Berners-Lee co founded the Social Linked Data platform.
         The idea of solid was mainly to decentralise all the users data in so called data vaults or Pods.
         Originally, the types of data that were demonstrated was things like social media pictures, posts or
         private data such as medical information so it can be shared, read and understood by other hospitals 
@@ -152,8 +156,9 @@
 
     <img height="100%" src="images/architecture.svg"/>
     <aside class="notes">
-        In this paper we comprised an architecture that leverages solid to store location and sensor data. We make use of
-        W3C standards for 
+        In this paper we comprised an architecture that leverages solid to store location and sensor data. In this architecure,
+        all tracking data beloning to a person is stored in a data vault managed by this person. A user can give access to positioning
+        systems by logging in or even revoke access to positioning systems.
     </aside>
 </section>
 
@@ -169,8 +174,12 @@
 </section>
 
 <section>
+    <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
+        <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+    </div>
     <section data-markdown data-auto-animate data-timing="40">
         <h2 id="poc-demonstrator" tabindex="-1">PoC Demonstrator</h2>
+
 
         <img height="70%" src="images/poc.svg"/>
         <img style="margin-top: -2em" width="30%" src="../../images/developed_using_openhps.svg"/>
