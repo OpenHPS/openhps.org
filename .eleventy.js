@@ -46,7 +46,7 @@ module.exports = function (el) {
 
   /* PDF Embedding */
   el.addPlugin(pluginPDFEmbed, {
-    key: '1618c524151e4cc08d37a63aca2ea51d'
+    key: '318cab7aec1f433aa29bb7cb609f2fb9'//'1618c524151e4cc08d37a63aca2ea51d'
 	});
 
   /* Markdown */
