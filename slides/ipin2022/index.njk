@@ -18,15 +18,16 @@ hide_openhps_logo: true
     {% endmarkdown %}
     <img height="80%" src="images/architecture_current.svg"/>
     <aside class="notes">
-    The common architecture of current indoor positioning systems is a separate
-    positioning system for each building or building site. Some positioning systems might
-    use a common framework, which could allow the use of a single application for both buildings. 
-    But for the majority of indoor positioning systems each system is an individual deployment with 
-    its own proprietary application and without the ability to share information across systems.
+        To start with some context; 
+        The common architecture of current indoor positioning systems is a separate
+        positioning system for each building or building site. Some positioning systems might
+        use a common framework, which could allow the use of a single application for both buildings. 
+        But for the majority of indoor positioning systems each system is an individual deployment with 
+        its own proprietary application and without the ability to share information across systems.
 
-    Each positioning system has a database containing the information about users or objects tracked 
-    by that system, but users often do not know what information is kept in those databases - or even
-    how many databases with their information exist.
+        Most positioning system have a database containing the information about users or objects tracked 
+        by that system, but users often do not know what information is kept in those databases - or even
+        how many databases with their information exist.
     </aside>
 </section>
 
@@ -61,10 +62,9 @@ hide_openhps_logo: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## What is Solid?
-        - Decentralised data vaults called *Pods**
-        - Semantic linked data
+        ## Decentralised interoperable architecture
     {% endmarkdown %}
+    <img height="100%" src="images/overview.svg"/>
     <aside class="notes">
         The idea of interoperability is not something that is only relevant for a positioning system.
         In 2016, the founder of the web Sir Tim Berners-Lee co founded the Social Linked Data platform.
@@ -72,33 +72,26 @@ hide_openhps_logo: true
         Originally, the types of data that were demonstrated was things like social media pictures, posts or
         private data such as medical information so it can be shared, read and understood by other hospitals 
         that you would visit.
-    </aside>
-</section>
 
-<section data-markdown data-auto-animate data-timing="40">
-    {% markdown %}
-        ## What is Solid?
-    {% endmarkdown %}
-    <img height="100%" src="images/architecture.svg"/>
-    <aside class="notes">
-        In this paper we comprised an architecture that leverages solid to store location and sensor data. In this architecure,
+        In this paper we comprised an architecture that leverages Solid to store location and sensor data. In this architecure,
         all tracking data beloning to a person is stored in a data vault managed by this person. A user can give access to positioning
         systems by logging in or even revoke access to positioning systems.
     </aside>
 </section>
 
-<section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## RDF: Properties and Observations
-            ```turtle
-            
-            ```
-        {% endmarkdown %}
-        <aside class="notes">
-            
-        </aside>
-    </section>
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Decentralised interoperable architecture
+        **Core vocabularies:** SOSA, SSN (W3C&reg;)\
+        **Allignment vocabularies:** GeoSPARQL (Open Geospatial Consortium&reg;), QUDT
+    {% endmarkdown %}
+    <img height="100%" style="margin-top: -2em;" src="images/architecture.svg"/>
+    <aside class="notes">
+        The architecture seperates the properties obtained by a positioning system in seperated resource files in the Pod;
+        in the Figure on this slide we have a property for position, orientation and velocity of a user. Each resource file
+        contains multiple observations of that property using a combination of standardised vocabularies created by Open
+        Geospatial community and W3c
+    </aside>
 </section>
 
 <section>
@@ -107,7 +100,7 @@ hide_openhps_logo: true
     </div>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC Demonstrator
+            ## PoC demonstrator
         {% endmarkdown %}
 
         <img height="70%" src="images/poc.svg"/>
@@ -119,7 +112,7 @@ hide_openhps_logo: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC Demonstrator ...
+            ## PoC demonstrator ...
         {% endmarkdown %}
         <img height="80%" src="images/phones_wip.png"/>
         <aside class="notes">
@@ -128,7 +121,101 @@ hide_openhps_logo: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC Demonstrator ...
+            ## PoC demonstrator ...
+            **https://ipin2022.solidweb.org/profile/card**
+            ```turtle
+            :me
+                a schema:Person, sos:FeatureOfInterest, foaf:Person;
+                vcard:bday "2010-09-15"^^xsd:date;
+                vcard:fn "John Doe";
+                vcard:role "Test Account";
+                acl:trustedApp
+                        [
+                            acl:mode acl:Append, acl:Read, acl:Write;
+                            acl:origin <https://openhps.github.io>
+                        ];
+                ldp:inbox inbox:;
+                space:preferencesFile </settings/prefs.ttl>;
+                solid:oidcIssuer <https://solidweb.org>;
+                ssn:hasProperty
+                    </properties/orientation.ttl>, </properties/position.ttl>,
+                    </properties/velocity.ttl>;
+                foaf:name "John Doe".
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+            
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## PoC demonstrator ...
+            **https://ipin2022.solidweb.org/profile/card**
+            ```turtle
+            :me
+                a schema:Person, sos:FeatureOfInterest, foaf:Person;
+                vcard:bday "2010-09-15"^^xsd:date;
+                vcard:fn "John Doe";
+                vcard:role "Test Account";
+                acl:trustedApp
+                        [
+                            acl:mode acl:Append, acl:Read, acl:Write;
+                            acl:origin <https://openhps.github.io>
+                        ];
+                ldp:inbox inbox:;
+                space:preferencesFile </settings/prefs.ttl>;
+                solid:oidcIssuer <https://solidweb.org>;
+                ssn:hasProperty
+                    </properties/orientation.ttl>, </properties/position.ttl>,
+                    </properties/velocity.ttl>;
+                foaf:name "John Doe".
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+            
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## PoC demonstrator ...
+            **https://ipin2022.solidweb.org/properties/position.ttl**
+            ```turtle
+            <>
+                a sos:ObservableProperty;
+                rdfs:comment "Geographical position of John Doe"@en;
+                rdfs:label "Geographical Position"@en;
+                ssn:isPropertyOf c:me.
+            :1651064675234
+                a sos:Observation;
+                sos:hasFeatureOfInterest c:me;
+                sos:hasResult
+                        [
+                            a geosp:Geometry;
+                            ipi:inDeployment ipi:deployment_pl9_3_32;
+                            geosp:asWKT
+                                "POINT Z(4.392020345921735 50.820629700445664 82.99999999813735)"^^geosp:wktLiteral;
+                            geosp:coordinateDimension 3;
+                            geosp:dimension 3;
+                            geosp:hasSpatialAccuracy
+                                    [
+                                        a qudt:QuantityValue;
+                                        qudt:numericValue 3.752762315948078;
+                                        qudt:unit unit:M
+                                    ];
+                            geosp:spatialDimension 3
+                        ];
+                sos:observedProperty <>;
+                sos:resultTime "2022-04-27T13:04:35.234Z"^^xsd:dateTime;
+                sos:usedProcedure ipi:qrscanner_checkin.
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+            
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## PoC demonstrator ...
             ```sparql
             SELECT ?posGeoJSON ?datetime ?accuracy {
                 ?profile a sosa:FeatureOfInterest ;
@@ -153,4 +240,13 @@ hide_openhps_logo: true
             
         </aside>
     </section>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Conclusion and future work
+    {% endmarkdown %}
+    <aside class="notes">
+        Future work on this architecture includes a more detailed vocabulary to include.
+    </aside>
 </section>

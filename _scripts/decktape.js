@@ -115,13 +115,14 @@ function executeDecktape(item) {
                     path.join(__dirname, '../node_modules/.bin/decktape'), 
                     [
                         `--screenshots`,
+                        `--load-pause 100`,
                         `--screenshots-directory ${screenshotDir}`,
-                        `--size=1280x720`, item.url, `${item.slug}.pdf`,
+                        `--size=2048x1152`, item.url, `${item.slug}.pdf`,
                     ], {
                         shell: true
                     });
             } else {
-                console.log(chalk.yellow(`Skipping PDF for '${item.title}'!`));
+                console.log(chalk.yellow(`Skipping screenshots for '${item.title}'!`));
                 return resolve();
             }
         } else if (item.pdf) {
