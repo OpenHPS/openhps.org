@@ -715,7 +715,8 @@ documentation, source code and more!</em></p>
 
       const urlParams = new URLSearchParams(window.location.search);
       const plugins = [ Notes ];
-      if (urlParams.get("disablepointer") === undefined) {
+
+      if (!urlParams.has("disablepointer")) {
         plugins.push(Pointer);
       }
 
@@ -778,7 +779,7 @@ documentation, source code and more!</em></p>
         });
         let lastMovement = 0;
         let idle = false;
-        if (urlParams.get("disablepointer") !== undefined) {
+        if (!urlParams.has("disablepointer")) {
           document.addEventListener('mousemove', (event) => {
             lastMovement = Date.now();
             if (idle) {

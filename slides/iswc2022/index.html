@@ -138,7 +138,8 @@
 
       const urlParams = new URLSearchParams(window.location.search);
       const plugins = [ Notes ];
-      if (urlParams.get("disablepointer") === undefined) {
+
+      if (!urlParams.has("disablepointer")) {
         plugins.push(Pointer);
       }
 
@@ -191,7 +192,7 @@
         });
         let lastMovement = 0;
         let idle = false;
-        if (urlParams.get("disablepointer") !== undefined) {
+        if (!urlParams.has("disablepointer")) {
           document.addEventListener('mousemove', (event) => {
             lastMovement = Date.now();
             if (idle) {

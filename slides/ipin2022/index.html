@@ -283,6 +283,7 @@
 </ul>
 </li>
 <li><strong>Scalable</strong> to raw sensor data</li>
+<li><strong>Vocabulary extensible</strong> with additional semantics</li>
 </ul>
 
     <div class="row" style="position: absolute; right: 50px; top: 130px; width: 30%;">
@@ -307,7 +308,8 @@
 
       const urlParams = new URLSearchParams(window.location.search);
       const plugins = [ Notes ];
-      if (urlParams.get("disablepointer") === undefined) {
+
+      if (!urlParams.has("disablepointer")) {
         plugins.push(Pointer);
       }
 
@@ -360,7 +362,7 @@
         });
         let lastMovement = 0;
         let idle = false;
-        if (urlParams.get("disablepointer") !== undefined) {
+        if (!urlParams.has("disablepointer")) {
           document.addEventListener('mousemove', (event) => {
             lastMovement = Date.now();
             if (idle) {
