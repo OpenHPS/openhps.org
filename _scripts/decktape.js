@@ -14,10 +14,10 @@ async function decktape(el) {
         hashSum.update(fileBuffer);
         const hex = hashSum.digest('hex');
 
-        const url = `http://localhost:3000${page.url}`;
+        const url = `http://localhost:3000${page.url}?disablepointer`;
         queue.push({
             title,
-            url: url + "?presenter",
+            url: url + "&presenter",
             pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation.pdf`),
             widescreen: false,
             hash: hex
@@ -31,7 +31,7 @@ async function decktape(el) {
         });
         queue.push({
             title,
-            url: url + "?presenter",
+            url: url + "&presenter",
             slug: page.fileSlug,
             widescreen: true,
             images: path.join(page.outputPath, `../screenshots`),
@@ -121,10 +121,10 @@ function executeDecktape(item) {
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
                 [
                     `generic`,
+                    `--key=ArrowRight`,
                     `--screenshots`,
                     `--screenshots-directory ${item.images}`,
-                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, `${item.slug}.pdf`,
-                    `--key=ArrowRight`
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, `"${item.url}"`, `${item.slug}.pdf`,
                 ], {
                     shell: true
                 });
@@ -132,12 +132,13 @@ function executeDecktape(item) {
             if (fs.existsSync(item.pdf)) {
                 fs.rmSync(item.pdf);
             }
+
             process = spawn(
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
                 [
                     `generic`,
-                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, item.pdf,
-                    `--key=ArrowRight`
+                    `--key=ArrowRight`,
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, `"${item.url}"`, item.pdf,
                 ], {
                     shell: true
                 });
