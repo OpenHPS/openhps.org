@@ -100,8 +100,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            **/_site/slides/*.pdf
-            **/_site/slides/screenshots
+            **/_site/slides/**/*.pdf
+            **/_site/slides/**/screenshots
             *.pdf
             _presentations_generated.json
           key: ${{ runner.os }}-site-presentations-v1
@@ -144,8 +144,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            **/_site/slides/*.pdf
-            **/_site/slides/screenshots
+            **/_site/slides/**/*.pdf
+            **/_site/slides/**/screenshots
             *.pdf
             _presentations_generated.json
           key: ${{ runner.os }}-site-presentations-v1
@@ -202,8 +202,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            **/_site/slides/*.pdf
-            **/_site/slides/screenshots
+            **/_site/slides/**/*.pdf
+            **/_site/slides/**/screenshots
             *.pdf
             _presentations_generated.json
           key: ${{ runner.os }}-site-presentations-v1
