@@ -118,9 +118,11 @@ function executeDecktape(item) {
                 process = spawn(
                     path.join(__dirname, '../node_modules/.bin/decktape'), 
                     [
+                        `generic`,
                         `--screenshots`,
                         `--screenshots-directory ${item.images}`,
                         `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, `${item.slug}.pdf`,
+                        `--key=ArrowRight`
                     ], {
                         shell: true
                     });
@@ -132,7 +134,9 @@ function executeDecktape(item) {
             process = spawn(
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
                 [
-                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, item.pdf
+                    `generic`,
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, item.pdf,
+                    `--key=ArrowRight`
                 ], {
                     shell: true
                 });
