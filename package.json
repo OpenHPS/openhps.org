@@ -14,7 +14,7 @@
   "scripts": {
     "clean": "rimraf ./_site",
     "start": "eleventy --serve",
-    "build": "npm run clean && eleventy",
+    "build": "eleventy",
     "build:docs": "node ./bin/build_docs.js",
     "build:presentations": "node ./bin/build_presentations.js",
     "deploy": "netlify deploy --prod --dir=_site"

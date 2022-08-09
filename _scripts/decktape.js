@@ -34,7 +34,7 @@ async function decktape(el) {
             url: url + "?presenter",
             slug: page.fileSlug,
             widescreen: true,
-            images: path.join(page.outputPath, `../`),
+            images: path.join(page.outputPath, `../screenshots`),
             hash: hex
         });
         queue.push({
@@ -45,7 +45,7 @@ async function decktape(el) {
             hash: hex
         });
         // Save queue
-        fs.writeFileSync('_presentations.json', JSON.stringify(queue), {
+        fs.writeFileSync('_presentations.json', JSON.stringify(queue, null, 4), {
             encoding: 'utf-8'
         });
         return "";
@@ -62,6 +62,9 @@ async function generate() {
 
     console.log(`There are ${queue.length} presentations to be generated ...`);
     console.log(`There are ${queue_old.length} presentations previously generated ...`);
+    // console.debug("New presentations", queue);
+    // console.debug("Old presentations", queue_old);
+
     if (queue.length === 0) {
         return;
     }
@@ -70,17 +73,19 @@ async function generate() {
     // Generate pdfs
     for (let i = 0 ; i < queue.length ; i++) {
         const item = queue[i];
-        const file = item.pdf ? item.pdf : path.join(__dirname, `../${item.slug}.pdf`)
+        const file = item.pdf ? item.pdf : item.images;
         const oldItems = queue_old.filter(i => i.pdf === item.pdf);
-        if (!fs.existsSync(file) && (oldItems.length > 0 ? oldItems[0].hash !== item.hash : true)) {
-            console.log(chalk.blue(`Generating PDF for '${item.title}' ...`));
+        if (!fs.existsSync(file) || (oldItems.length > 0 ? oldItems[0].hash !== item.hash : false)) {
+            console.log(chalk.blue(`Generating ${item.pdf ? "PDF" : "screenshots"} for '${item.title}' ...`));
+            console.log(chalk.yellow(`\tExists: ${fs.existsSync(file)}`));
+            console.log(chalk.yellow(`\tHash mismatch: ${(oldItems.length > 0 ? oldItems[0].hash !== item.hash : false)}`));
             console.log(chalk.white(`\t${file}`));
             if (file === undefined){
                 console.log(item);
             }
             await executeDecktape(item);   
         } else {
-            console.log(chalk.yellow(`Skipping PDF for '${item.title}'!`));
+            console.log(chalk.yellow(`Skipping ${item.pdf ? "PDF" : "screenshots"} for '${item.title}'!`));
         }
     }
     console.log(chalk.blue(`Stopping web server for generating PDFs!`));
@@ -107,17 +112,15 @@ function executeDecktape(item) {
         let process = undefined;
 
         if (item.images) {
-            const screenshotDir = path.join(item.images, "screenshots");
-            console.log(chalk.white(`\t${screenshotDir}`));
-            if (!fs.existsSync(screenshotDir)) {
-                fs.mkdirSync(screenshotDir);
+            console.log(chalk.white(`\t${item.images}`));
+            if (!fs.existsSync(item.images)) {
+                fs.mkdirSync(item.images);
                 process = spawn(
                     path.join(__dirname, '../node_modules/.bin/decktape'), 
                     [
                         `--screenshots`,
-                        `--load-pause 100`,
-                        `--screenshots-directory ${screenshotDir}`,
-                        `--size=2048x1152`, item.url, `${item.slug}.pdf`,
+                        `--screenshots-directory ${item.images}`,
+                        `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, `${item.slug}.pdf`,
                     ], {
                         shell: true
                     });
