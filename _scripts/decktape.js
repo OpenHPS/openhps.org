@@ -116,7 +116,7 @@ function executeDecktape(item) {
             if (!fs.existsSync(item.images)) {
                 fs.mkdirSync(item.images);
             } else {
-                fs.rmdirSync(item.images);
+                fs.rmSync(item.images, { recursive: true });
             }
             process = spawn(
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
