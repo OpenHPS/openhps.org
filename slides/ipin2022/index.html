@@ -294,7 +294,6 @@
         and even applications and gives users control on their data.
 
         Future work on this architecture includes a more detailed vocabulary to include.
-        test
     </aside>
 </section>
         </div>
@@ -307,12 +306,17 @@
       import Pointer from '/vendor/reveal.js/plugin/pointer/pointer.esm.js';
 
       const urlParams = new URLSearchParams(window.location.search);
+      const plugins = [ Notes ];
+      if (urlParams.get("disablepointer") === undefined) {
+        plugins.push(Pointer);
+      }
+
       const options = {
         hash: true,
         margin: .08,
         width: urlParams.get("width") ?? 1280 ,
         height: urlParams.get("height") ?? 720,
-        plugins: [ Notes, Pointer ],
+        plugins,
         controlsTutorial: true,
         pdfMaxPagesPerSlide: 1,
         slideNumber: true,
@@ -356,19 +360,21 @@
         });
         let lastMovement = 0;
         let idle = false;
-        document.addEventListener('mousemove', (event) => {
-          lastMovement = Date.now();
-          if (idle) {
-            document.querySelector('.cursor-dot').classList.remove("inactive");
-            idle = false;
-          }
-        }, false);
-        setInterval(() => {
-          if (!idle && lastMovement < Date.now() - 3000) {
-            idle = true;
-            document.querySelector('.cursor-dot').classList.add("inactive");
-          }
-        }, 2000);
+        if (urlParams.get("disablepointer") !== undefined) {
+          document.addEventListener('mousemove', (event) => {
+            lastMovement = Date.now();
+            if (idle) {
+              document.querySelector('.cursor-dot').classList.remove("inactive");
+              idle = false;
+            }
+          }, false);
+          setInterval(() => {
+            if (!idle && lastMovement < Date.now() - 3000) {
+              idle = true;
+              document.querySelector('.cursor-dot').classList.add("inactive");
+            }
+          }, 2000);
+        }
       } else {
         Reveal.initialize(options);
       }

@@ -714,12 +714,17 @@ documentation, source code and more!</em></p>
       import Pointer from '/vendor/reveal.js/plugin/pointer/pointer.esm.js';
 
       const urlParams = new URLSearchParams(window.location.search);
+      const plugins = [ Notes ];
+      if (urlParams.get("disablepointer") === undefined) {
+        plugins.push(Pointer);
+      }
+
       const options = {
         hash: true,
         margin: .08,
         width: urlParams.get("width") ?? 960 ,
         height: urlParams.get("height") ?? 700,
-        plugins: [ Notes, Pointer ],
+        plugins,
         controlsTutorial: true,
         pdfMaxPagesPerSlide: 1,
         slideNumber: true,
@@ -773,19 +778,21 @@ documentation, source code and more!</em></p>
         });
         let lastMovement = 0;
         let idle = false;
-        document.addEventListener('mousemove', (event) => {
-          lastMovement = Date.now();
-          if (idle) {
-            document.querySelector('.cursor-dot').classList.remove("inactive");
-            idle = false;
-          }
-        }, false);
-        setInterval(() => {
-          if (!idle && lastMovement < Date.now() - 3000) {
-            idle = true;
-            document.querySelector('.cursor-dot').classList.add("inactive");
-          }
-        }, 2000);
+        if (urlParams.get("disablepointer") !== undefined) {
+          document.addEventListener('mousemove', (event) => {
+            lastMovement = Date.now();
+            if (idle) {
+              document.querySelector('.cursor-dot').classList.remove("inactive");
+              idle = false;
+            }
+          }, false);
+          setInterval(() => {
+            if (!idle && lastMovement < Date.now() - 3000) {
+              idle = true;
+              document.querySelector('.cursor-dot').classList.add("inactive");
+            }
+          }, 2000);
+        }
       } else {
         Reveal.initialize(options);
       }
