@@ -115,22 +115,24 @@ function executeDecktape(item) {
             console.log(chalk.white(`\t${item.images}`));
             if (!fs.existsSync(item.images)) {
                 fs.mkdirSync(item.images);
-                process = spawn(
-                    path.join(__dirname, '../node_modules/.bin/decktape'), 
-                    [
-                        `generic`,
-                        `--screenshots`,
-                        `--screenshots-directory ${item.images}`,
-                        `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, `${item.slug}.pdf`,
-                        `--key=ArrowRight`
-                    ], {
-                        shell: true
-                    });
             } else {
-                console.log(chalk.yellow(`Skipping screenshots for '${item.title}'!`));
-                return resolve();
+                fs.rmdirSync(item.images);
             }
+            process = spawn(
+                path.join(__dirname, '../node_modules/.bin/decktape'), 
+                [
+                    `generic`,
+                    `--screenshots`,
+                    `--screenshots-directory ${item.images}`,
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, `${item.slug}.pdf`,
+                    `--key=ArrowRight`
+                ], {
+                    shell: true
+                });
         } else if (item.pdf) {
+            if (fs.existsSync(item.pdf)) {
+                fs.rmSync(item.pdf);
+            }
             process = spawn(
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
                 [
