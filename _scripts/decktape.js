@@ -74,7 +74,7 @@ async function generate() {
     for (let i = 0 ; i < queue.length ; i++) {
         const item = queue[i];
         const file = item.pdf ? item.pdf : item.images;
-        const oldItems = queue_old.filter(i => i.pdf === item.pdf);
+        const oldItems = queue_old.filter(i => i.title === item.title);
         if (!fs.existsSync(file) || (oldItems.length > 0 ? oldItems[0].hash !== item.hash : false)) {
             console.log(chalk.blue(`Generating ${item.pdf ? "PDF" : "screenshots"} for '${item.title}' ...`));
             console.log(chalk.yellow(`\tExists: ${fs.existsSync(file)}`));
@@ -113,11 +113,10 @@ function executeDecktape(item) {
 
         if (item.images) {
             console.log(chalk.white(`\t${item.images}`));
-            if (!fs.existsSync(item.images)) {
-                fs.mkdirSync(item.images);
-            } else {
+            if (fs.existsSync(item.images)) {
                 fs.rmSync(item.images, { recursive: true });
             }
+            fs.mkdirSync(item.images);
             process = spawn(
                 path.join(__dirname, '../node_modules/.bin/decktape'), 
                 [

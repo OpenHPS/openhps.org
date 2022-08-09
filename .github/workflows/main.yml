@@ -104,7 +104,7 @@ jobs:
             **/_site/slides/**/screenshots
             *.pdf
             _presentations_generated.json
-          key: ${{ runner.os }}-site-presentations-v1
+          key: ${{ runner.os }}-site-presentations-v2
       - name: Build presentations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -148,14 +148,7 @@ jobs:
             **/_site/slides/**/screenshots
             *.pdf
             _presentations_generated.json
-          key: ${{ runner.os }}-site-presentations-v1
-      - name: Load ontology cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/_site/terms
-            **/_ontology
-          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
+          key: ${{ runner.os }}-site-presentations-v2
       - name: Deploy site to GitHub
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -206,14 +199,7 @@ jobs:
             **/_site/slides/**/screenshots
             *.pdf
             _presentations_generated.json
-          key: ${{ runner.os }}-site-presentations-v1
-      - name: Load ontology cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/_site/terms
-            **/_ontology
-          key: ${{ runner.os }}-site-ontology-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
+          key: ${{ runner.os }}-site-presentations-v2
       - name: Deploy site
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
