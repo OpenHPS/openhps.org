@@ -109,8 +109,7 @@
     <h2 id="problems-with-current-ips'" tabindex="-1">Problems with current IPS'</h2>
 <ol>
 <li>Users not in <strong>control</strong> of their <strong>data</strong></li>
-<li>No <strong>interoperability</strong> between positioning <strong>systems</strong></li>
-<li>No <strong>interoperability</strong> between (navigation) <strong>applications</strong></li>
+<li>No <strong>interoperability</strong> between positioning <strong>systems</strong> and <strong>applications</strong></li>
 </ol>
 
     <img height="70%" src="images/interoperability.svg"/>
@@ -138,92 +137,153 @@
 <section data-markdown data-auto-animate data-timing="40">
     <h2 id="decentralised-interoperable-architecture" tabindex="-1">Decentralised interoperable architecture</h2>
 
-    <img height="100%" src="images/overview.svg"/>
+    <img style="margin-top: 1em;" width="100%" src="images/pod_ipin2022.svg"/>
     <aside class="notes">
-        The idea of interoperability is not something that is only relevant for a positioning system.
-        In 2016, the founder of the web Sir Tim Berners-Lee co founded the Social Linked Data platform.
-        The idea of solid was mainly to decentralise all the users data in so called data vaults or Pods.
-        Originally, the types of data that were demonstrated was things like social media pictures, posts or
-        private data such as medical information so it can be shared, read and understood by other hospitals 
-        that you would visit.
-
-        In this paper we comprised an architecture that leverages Solid to store location and sensor data. In this architecure,
-        all tracking data beloning to a person is stored in a data vault managed by this person. A user can give access to positioning
-        systems by logging in or even revoke access to positioning systems.
     </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
     <h2 id="decentralised-interoperable-architecture" tabindex="-1">Decentralised interoperable architecture</h2>
-<p><strong>Core vocabularies:</strong> SOSA, SSN (W3C®)<br>
-<strong>Allignment vocabularies:</strong> GeoSPARQL (Open Geospatial Consortium®), QUDT</p>
 
-    <img height="100%" style="margin-top: -2em;" src="images/architecture.svg"/>
+    <img height="85%" style="float: left;" src="images/overview_1.svg"/>
     <aside class="notes">
-        The architecture seperates the properties obtained by a positioning system in seperated resource files in the Pod;
-        in the Figure on this slide we have a property for position, orientation and velocity of a user. Each resource file
-        contains multiple observations of that property using a combination of standardised vocabularies created by Open
-        Geospatial community and W3c
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    <h2 id="decentralised-interoperable-architecture" tabindex="-1">Decentralised interoperable architecture</h2>
+
+    <img height="85%" style="float: left;" src="images/overview_2.svg"/>
+    <aside class="notes">
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    <h2 id="vocabularies" tabindex="-1">Vocabularies</h2>
+<p><strong>Core vocabularies:</strong></p>
+<ul>
+<li>SOSA</li>
+<li>SSN</li>
+</ul>
+<p><strong>Allignment vocabularies:</strong></p>
+<ul>
+<li>GeoSPARQL</li>
+<li>QUDT</li>
+<li>SSN-Systems</li>
+</ul>
+
+    <div class="row" style="position: absolute; top: 50px; left: 450px; width: 80%;">
+        <div class="col-3">
+            <img src="images/w3c.svg" style="height: 250px;" />
+        </div>
+        <div class="col-3">
+            <img src="images/ogc.jpg" style="height: 250px;"/>
+        </div>
+        <div class="col-3">
+            <img src="images/qudt.png" style="height: 250px;"/>
+        </div>
+    </div>
+    <aside class="notes">
+        
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    <h2 id="properties-and-observations" tabindex="-1">Properties and observations</h2>
+
+    <img height="100%" style="margin-top: -2em;" src="images/pod.svg"/>
+    <aside class="notes">
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    <h2 id="properties-and-observations" tabindex="-1">Properties and observations</h2>
+<p><strong>http://ipin2022.solidweb.org/properties/orientation.ttl</strong></p>
+<pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">turtle</div><div class='code-container'><code><div class='line'><span style="color: #4EC9B0">&lt;&gt;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">ObservableProperty</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">rdfs:</span><span style="color: #9CDCFE">comment</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"Orientation of John Doe"</span><span style="color: #D4D4D4">@</span><span style="color: #4EC9B0">en</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">rdfs:</span><span style="color: #9CDCFE">label</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"Orientation"</span><span style="color: #D4D4D4">@</span><span style="color: #4EC9B0">en</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">ssn:</span><span style="color: #9CDCFE">isPropertyOf</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">profile:</span><span style="color: #9CDCFE">me</span><span style="color: #D4D4D4">.</span></div><div class='line'><span style="color: #569CD6">:</span><span style="color: #9CDCFE">1651065740981</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">Observation</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">hasFeatureOfInterest</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">c:</span><span style="color: #9CDCFE">me</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">hasResult</span></div><div class='line'><span style="color: #D4D4D4">            [</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">QuantityValue</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">numericValue</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">108.11512756347656</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">unit</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">unit:</span><span style="color: #9CDCFE">DEG</span></div><div class='line'><span style="color: #D4D4D4">            ];</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">observedProperty</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">resultTime</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"2022-04-27T13:22:20.981Z"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">xsd:</span><span style="color: #9CDCFE">dateTime</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">usedProcedure</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">ipin:</span><span style="color: #9CDCFE">geolocationapi</span><span style="color: #D4D4D4">.</span></div></code></div></pre>
+
+    <aside class="notes">
     </aside>
 </section>
 
 <section>
-    <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
-        <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
-    </div>
     <section data-markdown data-auto-animate data-timing="40">
         <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
 
 
-        <img data-id="poc" style="margin-top: 1em;" height="70%" src="images/poc.svg"/>
-
+        <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
+            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        </div>
         <aside class="notes">
             We created an open source proof of concept demonstrator with three applications. Two non trivial positioning systems,
             one with GPS and a simple indoor positioning system using QR code scanning.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
-        <h2 id="poc-demonstrator-..." tabindex="-1">PoC demonstrator ...</h2>
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
 
 
-        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="45%" src="images/poc_geolocation.svg"/>
+        <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc_2.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
+            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        </div>
+        <aside class="notes">
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
+
+
+        <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc_3.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
+            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        </div>
+        <aside class="notes">
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
+
+
+        <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc_4.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
+            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        </div>
+        <aside class="notes">
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
+
+
+        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="60%" src="images/poc_geolocation.svg"/>
 
         <aside class="notes">
 
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
-        <h2 id="poc-demonstrator-..." tabindex="-1">PoC demonstrator ...</h2>
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
 
 
-        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="45%" src="images/poc_qrcode.svg"/>
-
-        <aside class="notes">
-
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        <h2 id="poc-demonstrator-..." tabindex="-1">PoC demonstrator ...</h2>
-
-
-        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="45%" src="images/poc_consumer.svg"/>
+        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="60%" src="images/poc_qrcode.svg"/>
 
         <aside class="notes">
 
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
-        <h2 id="poc-demonstrator-..." tabindex="-1">PoC demonstrator ...</h2>
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
 
 
-        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="45%" src="images/poc_consumer_2.svg"/>
+        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="60%" src="images/poc_consumer.svg"/>
 
         <aside class="notes">
 
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
-        <h2 id="poc-demonstrator-..." tabindex="-1">PoC demonstrator ...</h2>
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
 
         <img height="80%" src="images/phones_wip.png"/>
         <aside class="notes">
@@ -231,28 +291,43 @@
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
-        <h2 id="poc-demonstrator-..." tabindex="-1">PoC demonstrator ...</h2>
-<p><strong>https://ipin2022.solidweb.org/profile/card</strong></p>
-<pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">turtle</div><div class='code-container'><code><div class='line'><span style="color: #569CD6">:</span><span style="color: #9CDCFE">me</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">schema:</span><span style="color: #9CDCFE">Person</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">sos:</span><span style="color: #9CDCFE">FeatureOfInterest</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">foaf:</span><span style="color: #9CDCFE">Person</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">vcard:</span><span style="color: #9CDCFE">bday</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"2010-09-15"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">xsd:</span><span style="color: #9CDCFE">date</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">vcard:</span><span style="color: #9CDCFE">fn</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"John Doe"</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">vcard:</span><span style="color: #9CDCFE">role</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"Test Account"</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">trustedApp</span></div><div class='line'><span style="color: #D4D4D4">            [</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">mode</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">Append</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">Read</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">Write</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">origin</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;https://openhps.github.io&gt;</span></div><div class='line'><span style="color: #D4D4D4">            ];</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">ldp:</span><span style="color: #9CDCFE">inbox</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">inbox:</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">space:</span><span style="color: #9CDCFE">preferencesFile</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;/settings/prefs.ttl&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">solid:</span><span style="color: #9CDCFE">oidcIssuer</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;https://solidweb.org&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">ssn:</span><span style="color: #9CDCFE">hasProperty</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #4EC9B0">&lt;/properties/orientation.ttl&gt;</span><span style="color: #D4D4D4">, </span><span style="color: #4EC9B0">&lt;/properties/position.ttl&gt;</span><span style="color: #D4D4D4">,</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #4EC9B0">&lt;/properties/velocity.ttl&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">foaf:</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"John Doe"</span><span style="color: #D4D4D4">.</span></div></code></div></pre>
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
+<p><strong>http://.../properties/position.ttl</strong></p>
 
+        <div class="row">
+            <div class="col-8">
+                <pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">turtle</div><div class='code-container'><code><div class='line'><span style="color: #569CD6">:</span><span style="color: #9CDCFE">1660049553011</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">Observation</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">hasFeatureOfInterest</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">profile:</span><span style="color: #9CDCFE">me</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">hasResult</span></div><div class='line'><span style="color: #D4D4D4">              [</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">Geometry</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">asWKT</span></div><div class='line'><span style="color: #D4D4D4">                      </span><span style="color: #CE9178">"POINT Z(4.3922073 50.8206522 143.29)"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">wktLiteral</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">coordinateDimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">dimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">hasSpatialAccuracy</span></div><div class='line'><span style="color: #D4D4D4">                          [</span></div><div class='line'><span style="color: #D4D4D4">                              </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">QuantityValue</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                              </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">numericValue</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">29.363000869750977</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                              </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">unit</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">unit:</span><span style="color: #9CDCFE">M</span></div><div class='line'><span style="color: #D4D4D4">                          ];</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">spatialDimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span></div><div class='line'><span style="color: #D4D4D4">              ];</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">observedProperty</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">resultTime</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"2022-08-09T12:52:33.011Z"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">xsd:</span><span style="color: #9CDCFE">dateTime</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">usedProcedure</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">ipin:</span><span style="color: #9CDCFE">geolocationapi</span><span style="color: #D4D4D4">.</span></div></code></div></pre>
+
+            </div>
+        </div>
         <aside class="notes">
             
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
-        <h2 id="poc-demonstrator-..." tabindex="-1">PoC demonstrator ...</h2>
-<p><strong>https://ipin2022.solidweb.org/profile/card</strong></p>
-<pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">turtle</div><div class='code-container'><code><div class='line'><span style="color: #569CD6">:</span><span style="color: #9CDCFE">me</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">schema:</span><span style="color: #9CDCFE">Person</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">sos:</span><span style="color: #9CDCFE">FeatureOfInterest</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">foaf:</span><span style="color: #9CDCFE">Person</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">vcard:</span><span style="color: #9CDCFE">bday</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"2010-09-15"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">xsd:</span><span style="color: #9CDCFE">date</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">vcard:</span><span style="color: #9CDCFE">fn</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"John Doe"</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">vcard:</span><span style="color: #9CDCFE">role</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"Test Account"</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">trustedApp</span></div><div class='line'><span style="color: #D4D4D4">            [</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">mode</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">Append</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">Read</span><span style="color: #D4D4D4">, </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">Write</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">acl:</span><span style="color: #9CDCFE">origin</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;https://openhps.github.io&gt;</span></div><div class='line'><span style="color: #D4D4D4">            ];</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">ldp:</span><span style="color: #9CDCFE">inbox</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">inbox:</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">space:</span><span style="color: #9CDCFE">preferencesFile</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;/settings/prefs.ttl&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">solid:</span><span style="color: #9CDCFE">oidcIssuer</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;https://solidweb.org&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">ssn:</span><span style="color: #9CDCFE">hasProperty</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #4EC9B0">&lt;/properties/orientation.ttl&gt;</span><span style="color: #D4D4D4">, </span><span style="color: #4EC9B0">&lt;/properties/position.ttl&gt;</span><span style="color: #D4D4D4">,</span></div><div class='line'><span style="color: #D4D4D4">        </span><span style="color: #4EC9B0">&lt;/properties/velocity.ttl&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">foaf:</span><span style="color: #9CDCFE">name</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"John Doe"</span><span style="color: #D4D4D4">.</span></div></code></div></pre>
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
+<p><strong>http://.../properties/position.ttl</strong></p>
 
+        <div class="row">
+            <div class="col-8">
+                <pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">turtle</div><div class='code-container'><code><div class='line'><span style="color: #569CD6">:</span><span style="color: #9CDCFE">1660049449839</span></div><div class='line'><span style="color: #D4D4D4">  </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">Observation</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">  </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">hasFeatureOfInterest</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">profile:</span><span style="color: #9CDCFE">me</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">  </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">hasResult</span></div><div class='line'><span style="color: #D4D4D4">          [</span></div><div class='line'><span style="color: #D4D4D4">              </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">Geometry</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">              </span><span style="color: #569CD6">ipin:</span><span style="color: #9CDCFE">inDeployment</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">ipin:</span><span style="color: #9CDCFE">deployment_pl9_3_58</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">              </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">asWKT</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #CE9178">"POINT Z(4.3922260 50.8204372 84.49)"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">wktLiteral</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">              </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">coordinateDimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">              </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">dimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">              </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">hasSpatialAccuracy</span></div><div class='line'><span style="color: #D4D4D4">                      [</span></div><div class='line'><span style="color: #D4D4D4">                          </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">QuantityValue</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                          </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">numericValue</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3.716614723104883</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                          </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">unit</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">unit:</span><span style="color: #9CDCFE">M</span></div><div class='line'><span style="color: #D4D4D4">                      ];</span></div><div class='line'><span style="color: #D4D4D4">              </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">spatialDimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span></div><div class='line'><span style="color: #D4D4D4">          ];</span></div><div class='line'><span style="color: #D4D4D4">  </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">observedProperty</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">  </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">resultTime</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"2022-08-09T12:50:49.839Z"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">xsd:</span><span style="color: #9CDCFE">dateTime</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">  </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">usedProcedure</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">ipin:</span><span style="color: #9CDCFE">qrscanner_checkin</span><span style="color: #D4D4D4">.</span></div></code></div></pre>
+
+            </div>
+        </div>
         <aside class="notes">
             
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
-        <h2 id="poc-demonstrator-..." tabindex="-1">PoC demonstrator ...</h2>
-<p><strong>https://ipin2022.solidweb.org/properties/position.ttl</strong></p>
-<pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">turtle</div><div class='code-container'><code><div class='line'><span style="color: #4EC9B0">&lt;&gt;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">sos:</span><span style="color: #9CDCFE">ObservableProperty</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">rdfs:</span><span style="color: #9CDCFE">comment</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"Geographical position of John Doe"</span><span style="color: #D4D4D4">@</span><span style="color: #4EC9B0">en</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">rdfs:</span><span style="color: #9CDCFE">label</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"Geographical Position"</span><span style="color: #D4D4D4">@</span><span style="color: #4EC9B0">en</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">ssn:</span><span style="color: #9CDCFE">isPropertyOf</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">c:</span><span style="color: #9CDCFE">me</span><span style="color: #D4D4D4">.</span></div><div class='line'><span style="color: #569CD6">:</span><span style="color: #9CDCFE">1651064675234</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">sos:</span><span style="color: #9CDCFE">Observation</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sos:</span><span style="color: #9CDCFE">hasFeatureOfInterest</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">c:</span><span style="color: #9CDCFE">me</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sos:</span><span style="color: #9CDCFE">hasResult</span></div><div class='line'><span style="color: #D4D4D4">            [</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">geosp:</span><span style="color: #9CDCFE">Geometry</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">ipi:</span><span style="color: #9CDCFE">inDeployment</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">ipi:</span><span style="color: #9CDCFE">deployment_pl9_3_32</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">geosp:</span><span style="color: #9CDCFE">asWKT</span></div><div class='line'><span style="color: #D4D4D4">                    </span><span style="color: #CE9178">"POINT Z(4.392020345921735 50.820629700445664 82.99999999813735)"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">geosp:</span><span style="color: #9CDCFE">wktLiteral</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">geosp:</span><span style="color: #9CDCFE">coordinateDimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">geosp:</span><span style="color: #9CDCFE">dimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">geosp:</span><span style="color: #9CDCFE">hasSpatialAccuracy</span></div><div class='line'><span style="color: #D4D4D4">                        [</span></div><div class='line'><span style="color: #D4D4D4">                            </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">QuantityValue</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                            </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">numericValue</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3.752762315948078</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                            </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">unit</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">unit:</span><span style="color: #9CDCFE">M</span></div><div class='line'><span style="color: #D4D4D4">                        ];</span></div><div class='line'><span style="color: #D4D4D4">                </span><span style="color: #569CD6">geosp:</span><span style="color: #9CDCFE">spatialDimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span></div><div class='line'><span style="color: #D4D4D4">            ];</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sos:</span><span style="color: #9CDCFE">observedProperty</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sos:</span><span style="color: #9CDCFE">resultTime</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"2022-04-27T13:04:35.234Z"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">xsd:</span><span style="color: #9CDCFE">dateTime</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">    </span><span style="color: #569CD6">sos:</span><span style="color: #9CDCFE">usedProcedure</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">ipi:</span><span style="color: #9CDCFE">qrscanner_checkin</span><span style="color: #D4D4D4">.</span></div></code></div></pre>
+        <h2 id="poc-demonstrator" tabindex="-1">PoC demonstrator</h2>
+<p><strong>http://.../properties/position.ttl</strong></p>
 
+        <div class="row">
+            <div class="col-8">
+                <pre class="shiki dark-plus" style="background-color: #1E1E1E; color: #D4D4D4"><div class="language-id">turtle</div><div class='code-container'><code><div class='line'><span style="color: #569CD6">:</span><span style="color: #9CDCFE">1660049553011</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">Observation</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">hasFeatureOfInterest</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">profile:</span><span style="color: #9CDCFE">me</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">hasResult</span></div><div class='line'><span style="color: #D4D4D4">              [</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">Geometry</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">asWKT</span></div><div class='line'><span style="color: #D4D4D4">                      </span><span style="color: #CE9178">"POINT Z(4.3922073 50.8206522 143.29)"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">wktLiteral</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">coordinateDimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">dimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">hasSpatialAccuracy</span></div><div class='line'><span style="color: #D4D4D4">                          [</span></div><div class='line'><span style="color: #D4D4D4">                              </span><span style="color: #C586C0">a</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">QuantityValue</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                              </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">numericValue</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">29.363000869750977</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">                              </span><span style="color: #569CD6">qudt:</span><span style="color: #9CDCFE">unit</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">unit:</span><span style="color: #9CDCFE">M</span></div><div class='line'><span style="color: #D4D4D4">                          ];</span></div><div class='line'><span style="color: #D4D4D4">                  </span><span style="color: #569CD6">geosparql:</span><span style="color: #9CDCFE">spatialDimension</span><span style="color: #D4D4D4"> </span><span style="color: #B5CEA8">3</span></div><div class='line'><span style="color: #D4D4D4">              ];</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">observedProperty</span><span style="color: #D4D4D4"> </span><span style="color: #4EC9B0">&lt;&gt;</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">resultTime</span><span style="color: #D4D4D4"> </span><span style="color: #CE9178">"2022-08-09T12:52:33.011Z"</span><span style="color: #D4D4D4">^^</span><span style="color: #569CD6">xsd:</span><span style="color: #9CDCFE">dateTime</span><span style="color: #D4D4D4">;</span></div><div class='line'><span style="color: #D4D4D4">      </span><span style="color: #569CD6">sosa:</span><span style="color: #9CDCFE">usedProcedure</span><span style="color: #D4D4D4"> </span><span style="color: #569CD6">ipin:</span><span style="color: #9CDCFE">geolocationapi</span><span style="color: #D4D4D4">.</span></div></code></div></pre>
+
+            </div>
+        </div>
         <aside class="notes">
             
         </aside>
@@ -277,12 +352,11 @@
 </li>
 <li><strong>Interoperability</strong> between systems and applications
 <ul>
-<li>High level decision fusion</li>
-<li>Single <strong>navigation</strong> application</li>
 <li><strong>Handover</strong> of tracking between systems</li>
+<li>Single <strong>navigation</strong> application</li>
+<li>High level decision fusion</li>
 </ul>
 </li>
-<li><strong>Scalable</strong> to raw sensor data</li>
 <li><strong>Vocabulary extensible</strong> with additional semantics</li>
 </ul>
 
@@ -295,6 +369,30 @@
         and even applications and gives users control on their data.
 
         Future work on this architecture includes a more detailed vocabulary to include.
+    </aside>
+</section>
+
+
+<section data-markdown data-auto-animate data-timing="40">
+    <h2 id="a-solid-based-architecture-for-decentralised-interoperable-location-data" tabindex="-1">A Solid-based Architecture for Decentralised Interoperable Location Data</h2>
+
+    <h5 style="color: gray;">Maxim Van de Wynckel, Beat Signer</h5>
+    <div class="row">
+        <div class="col-7">
+            <img data-id="poc" style="margin-top: 1em;" width="100%" src="images/phones_wip.png"/>
+        </div>
+        <div class="col-5">
+            <img class="qr-image" src="images/IPIN2022Publication.svg"/>
+        </div>
+    </div>
+    <style>
+    .qr-image {
+        width: 300px;
+        padding-top: 1.5em;
+        float: right;
+    }
+    </style>
+    <aside class="notes">
     </aside>
 </section>
         </div>
