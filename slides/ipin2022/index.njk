@@ -37,8 +37,7 @@ hide_progress: true
     {% markdown %}
         ## Problems with current IPS'
         1. Users not in **control** of their **data**
-        2. No **interoperability** between positioning **systems**
-        3. No **interoperability** between (navigation) **applications**
+        2. No **interoperability** between positioning **systems** and **applications**
     {% endmarkdown %}
     <img height="70%" src="images/interoperability.svg"/>
     <aside class="notes">
@@ -66,47 +65,104 @@ hide_progress: true
     {% markdown %}
         ## Decentralised interoperable architecture
     {% endmarkdown %}
-    <img height="100%" src="images/overview.svg"/>
+    <img style="margin-top: 1em;" width="100%" src="images/pod_ipin2022.svg"/>
     <aside class="notes">
-        The idea of interoperability is not something that is only relevant for a positioning system.
-        In 2016, the founder of the web Sir Tim Berners-Lee co founded the Social Linked Data platform.
-        The idea of solid was mainly to decentralise all the users data in so called data vaults or Pods.
-        Originally, the types of data that were demonstrated was things like social media pictures, posts or
-        private data such as medical information so it can be shared, read and understood by other hospitals 
-        that you would visit.
-
-        In this paper we comprised an architecture that leverages Solid to store location and sensor data. In this architecure,
-        all tracking data beloning to a person is stored in a data vault managed by this person. A user can give access to positioning
-        systems by logging in or even revoke access to positioning systems.
     </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
         ## Decentralised interoperable architecture
-        **Core vocabularies:** SOSA, SSN (W3C&reg;)\
-        **Allignment vocabularies:** GeoSPARQL (Open Geospatial Consortium&reg;), QUDT
     {% endmarkdown %}
-    <img height="100%" style="margin-top: -2em;" src="images/architecture.svg"/>
+    <img height="85%" style="float: left;" src="images/overview_1.svg"/>
     <aside class="notes">
-        The architecture seperates the properties obtained by a positioning system in seperated resource files in the Pod;
-        in the Figure on this slide we have a property for position, orientation and velocity of a user. Each resource file
-        contains multiple observations of that property using a combination of standardised vocabularies created by Open
-        Geospatial community and W3c
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Decentralised interoperable architecture
+    {% endmarkdown %}
+    <img height="85%" style="float: left;" src="images/overview_2.svg"/>
+    <aside class="notes">
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Vocabularies
+        **Core vocabularies:**
+        - SOSA
+        - SSN
+
+        **Allignment vocabularies:**
+        - GeoSPARQL
+        - QUDT
+        - SSN-Systems
+    {% endmarkdown %}
+    <div class="row" style="position: absolute; top: 50px; left: 450px; width: 80%;">
+        <div class="col-3">
+            <img src="images/w3c.svg" style="height: 250px;" />
+        </div>
+        <div class="col-3">
+            <img src="images/ogc.jpg" style="height: 250px;"/>
+        </div>
+        <div class="col-3">
+            <img src="images/qudt.png" style="height: 250px;"/>
+        </div>
+    </div>
+    <aside class="notes">
+        
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Properties and observations
+    {% endmarkdown %}
+    <img height="100%" style="margin-top: -2em;" src="images/pod.svg"/>
+    <aside class="notes">
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Properties and observations
+        **http://ipin2022.solidweb.org/properties/orientation.ttl**
+        ```turtle
+        <>
+            a sosa:ObservableProperty;
+            rdfs:comment "Orientation of John Doe"@en;
+            rdfs:label "Orientation"@en;
+            ssn:isPropertyOf profile:me.
+        :1651065740981
+            a sosa:Observation;
+            sosa:hasFeatureOfInterest c:me;
+            sosa:hasResult
+                    [
+                        a qudt:QuantityValue;
+                        qudt:numericValue 108.11512756347656;
+                        qudt:unit unit:DEG
+                    ];
+            sosa:observedProperty <>;
+            sosa:resultTime "2022-04-27T13:22:20.981Z"^^xsd:dateTime;
+            sosa:usedProcedure ipin:geolocationapi.
+        ```
+    {% endmarkdown %}
+    <aside class="notes">
     </aside>
 </section>
 
 <section>
-    <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
-        <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
-    </div>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## PoC demonstrator
         {% endmarkdown %}
 
-        <img data-id="poc" style="margin-top: 1em;" height="70%" src="images/poc.svg"/>
-
+        <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
+            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        </div>
         <aside class="notes">
             We created an open source proof of concept demonstrator with three applications. Two non trivial positioning systems,
             one with GPS and a simple indoor positioning system using QR code scanning.
@@ -114,10 +170,46 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator ...
+            ## PoC demonstrator
         {% endmarkdown %}
 
-        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="45%" src="images/poc_geolocation.svg"/>
+        <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc_2.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
+            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        </div>
+        <aside class="notes">
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## PoC demonstrator
+        {% endmarkdown %}
+
+        <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc_3.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
+            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        </div>
+        <aside class="notes">
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## PoC demonstrator
+        {% endmarkdown %}
+
+        <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc_4.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
+            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        </div>
+        <aside class="notes">
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## PoC demonstrator
+        {% endmarkdown %}
+
+        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="60%" src="images/poc_geolocation.svg"/>
 
         <aside class="notes">
 
@@ -125,10 +217,10 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator ...
+            ## PoC demonstrator
         {% endmarkdown %}
 
-        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="45%" src="images/poc_qrcode.svg"/>
+        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="60%" src="images/poc_qrcode.svg"/>
 
         <aside class="notes">
 
@@ -136,10 +228,10 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator ...
+            ## PoC demonstrator
         {% endmarkdown %}
 
-        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="45%" src="images/poc_consumer.svg"/>
+        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="60%" src="images/poc_consumer.svg"/>
 
         <aside class="notes">
 
@@ -147,18 +239,7 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator ...
-        {% endmarkdown %}
-
-        <img data-id="poc" style="float: left; margin-top: 2.5em;" height="45%" src="images/poc_consumer_2.svg"/>
-
-        <aside class="notes">
-
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## PoC demonstrator ...
+            ## PoC demonstrator
         {% endmarkdown %}
         <img height="80%" src="images/phones_wip.png"/>
         <aside class="notes">
@@ -167,94 +248,115 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator ...
-            **https://ipin2022.solidweb.org/profile/card**
-            ```turtle
-            :me
-                a schema:Person, sos:FeatureOfInterest, foaf:Person;
-                vcard:bday "2010-09-15"^^xsd:date;
-                vcard:fn "John Doe";
-                vcard:role "Test Account";
-                acl:trustedApp
-                        [
-                            acl:mode acl:Append, acl:Read, acl:Write;
-                            acl:origin <https://openhps.github.io>
-                        ];
-                ldp:inbox inbox:;
-                space:preferencesFile </settings/prefs.ttl>;
-                solid:oidcIssuer <https://solidweb.org>;
-                ssn:hasProperty
-                    </properties/orientation.ttl>, </properties/position.ttl>,
-                    </properties/velocity.ttl>;
-                foaf:name "John Doe".
-            ```
+            ## PoC demonstrator
+            **http://.../properties/position.ttl**
         {% endmarkdown %}
+        <div class="row">
+            <div class="col-8">
+                {% markdown %}
+                ```turtle
+                :1660049553011
+                        a sosa:Observation;
+                        sosa:hasFeatureOfInterest profile:me;
+                        sosa:hasResult
+                                [
+                                    a geosparql:Geometry;
+                                    geosparql:asWKT
+                                        "POINT Z(4.3922073 50.8206522 143.29)"^^geosparql:wktLiteral;
+                                    geosparql:coordinateDimension 3;
+                                    geosparql:dimension 3;
+                                    geosparql:hasSpatialAccuracy
+                                            [
+                                                a qudt:QuantityValue;
+                                                qudt:numericValue 29.363000869750977;
+                                                qudt:unit unit:M
+                                            ];
+                                    geosparql:spatialDimension 3
+                                ];
+                        sosa:observedProperty <>;
+                        sosa:resultTime "2022-08-09T12:52:33.011Z"^^xsd:dateTime;
+                        sosa:usedProcedure ipin:geolocationapi.
+                ```
+                {% endmarkdown %}
+            </div>
+        </div>
         <aside class="notes">
             
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator ...
-            **https://ipin2022.solidweb.org/profile/card**
-            ```turtle
-            :me
-                a schema:Person, sos:FeatureOfInterest, foaf:Person;
-                vcard:bday "2010-09-15"^^xsd:date;
-                vcard:fn "John Doe";
-                vcard:role "Test Account";
-                acl:trustedApp
-                        [
-                            acl:mode acl:Append, acl:Read, acl:Write;
-                            acl:origin <https://openhps.github.io>
-                        ];
-                ldp:inbox inbox:;
-                space:preferencesFile </settings/prefs.ttl>;
-                solid:oidcIssuer <https://solidweb.org>;
-                ssn:hasProperty
-                    </properties/orientation.ttl>, </properties/position.ttl>,
-                    </properties/velocity.ttl>;
-                foaf:name "John Doe".
-            ```
+            ## PoC demonstrator
+            **http://.../properties/position.ttl**
         {% endmarkdown %}
+        <div class="row">
+            <div class="col-8">
+                {% markdown %}
+                ```turtle
+                :1660049449839
+                    a sosa:Observation;
+                    sosa:hasFeatureOfInterest profile:me;
+                    sosa:hasResult
+                            [
+                                a geosparql:Geometry;
+                                ipin:inDeployment ipin:deployment_pl9_3_58;
+                                geosparql:asWKT
+                                    "POINT Z(4.3922260 50.8204372 84.49)"^^geosparql:wktLiteral;
+                                geosparql:coordinateDimension 3;
+                                geosparql:dimension 3;
+                                geosparql:hasSpatialAccuracy
+                                        [
+                                            a qudt:QuantityValue;
+                                            qudt:numericValue 3.716614723104883;
+                                            qudt:unit unit:M
+                                        ];
+                                geosparql:spatialDimension 3
+                            ];
+                    sosa:observedProperty <>;
+                    sosa:resultTime "2022-08-09T12:50:49.839Z"^^xsd:dateTime;
+                    sosa:usedProcedure ipin:qrscanner_checkin.
+                ```
+                {% endmarkdown %}
+            </div>
+        </div>
         <aside class="notes">
             
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator ...
-            **https://ipin2022.solidweb.org/properties/position.ttl**
-            ```turtle
-            <>
-                a sos:ObservableProperty;
-                rdfs:comment "Geographical position of John Doe"@en;
-                rdfs:label "Geographical Position"@en;
-                ssn:isPropertyOf c:me.
-            :1651064675234
-                a sos:Observation;
-                sos:hasFeatureOfInterest c:me;
-                sos:hasResult
-                        [
-                            a geosp:Geometry;
-                            ipi:inDeployment ipi:deployment_pl9_3_32;
-                            geosp:asWKT
-                                "POINT Z(4.392020345921735 50.820629700445664 82.99999999813735)"^^geosp:wktLiteral;
-                            geosp:coordinateDimension 3;
-                            geosp:dimension 3;
-                            geosp:hasSpatialAccuracy
-                                    [
-                                        a qudt:QuantityValue;
-                                        qudt:numericValue 3.752762315948078;
-                                        qudt:unit unit:M
-                                    ];
-                            geosp:spatialDimension 3
-                        ];
-                sos:observedProperty <>;
-                sos:resultTime "2022-04-27T13:04:35.234Z"^^xsd:dateTime;
-                sos:usedProcedure ipi:qrscanner_checkin.
-            ```
+            ## PoC demonstrator
+            **http://.../properties/position.ttl**
         {% endmarkdown %}
+        <div class="row">
+            <div class="col-8">
+                {% markdown %}
+                ```turtle
+                :1660049553011
+                        a sosa:Observation;
+                        sosa:hasFeatureOfInterest profile:me;
+                        sosa:hasResult
+                                [
+                                    a geosparql:Geometry;
+                                    geosparql:asWKT
+                                        "POINT Z(4.3922073 50.8206522 143.29)"^^geosparql:wktLiteral;
+                                    geosparql:coordinateDimension 3;
+                                    geosparql:dimension 3;
+                                    geosparql:hasSpatialAccuracy
+                                            [
+                                                a qudt:QuantityValue;
+                                                qudt:numericValue 29.363000869750977;
+                                                qudt:unit unit:M
+                                            ];
+                                    geosparql:spatialDimension 3
+                                ];
+                        sosa:observedProperty <>;
+                        sosa:resultTime "2022-08-09T12:52:33.011Z"^^xsd:dateTime;
+                        sosa:usedProcedure ipin:geolocationapi.
+                ```
+                {% endmarkdown %}
+            </div>
+        </div>
         <aside class="notes">
             
         </aside>
@@ -294,10 +396,9 @@ hide_progress: true
         - Novel architecture for **decentralising** location **data**
             - **User** remains **in control** of their data
         - **Interoperability** between systems and applications
-            - High level decision fusion
-            - Single **navigation** application
             - **Handover** of tracking between systems
-        - **Scalable** to raw sensor data
+            - Single **navigation** application
+            - High level decision fusion
         - **Vocabulary extensible** with additional semantics
     {% endmarkdown %}
     <div class="row" style="position: absolute; right: 50px; top: 130px; width: 30%;">
@@ -309,5 +410,30 @@ hide_progress: true
         and even applications and gives users control on their data.
 
         Future work on this architecture includes a more detailed vocabulary to include.
+    </aside>
+</section>
+
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## A Solid-based Architecture for Decentralised Interoperable Location Data
+    {% endmarkdown %}
+    <h5 style="color: gray;">Maxim Van de Wynckel, Beat Signer</h5>
+    <div class="row">
+        <div class="col-7">
+            <img data-id="poc" style="margin-top: 1em;" width="100%" src="images/phones_wip.png"/>
+        </div>
+        <div class="col-5">
+            <img class="qr-image" src="images/IPIN2022Publication.svg"/>
+        </div>
+    </div>
+    <style>
+    .qr-image {
+        width: 300px;
+        padding-top: 1.5em;
+        float: right;
+    }
+    </style>
+    <aside class="notes">
     </aside>
 </section>

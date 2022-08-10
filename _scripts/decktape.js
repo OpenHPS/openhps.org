@@ -114,7 +114,8 @@ function executeDecktape(item) {
         if (item.images) {
             console.log(chalk.white(`\t${item.images}`));
             if (fs.existsSync(item.images)) {
-                fs.rmSync(item.images, { recursive: true });
+                console.warn(chalk.yellow(`\tRemoving directory with screenshots ...`));
+                fs.rmSync(item.images, { recursive: true, force: true });
             }
             fs.mkdirSync(item.images);
             process = spawn(
