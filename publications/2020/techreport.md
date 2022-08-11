@@ -6,6 +6,7 @@ date: 2020-12-29
 pdf: https://beatsigner.com/publications/openhps-an-open-source-hybrid-positioning-system.pdf
 link: https://arxiv.org/abs/2101.05198
 type: arxiv
+github: https://github.com/OpenHPS
 video: /media/2020-12_sphero-demo.mp4
 excerpt: 'Van de Wynckel, M. and Signer, B.: "OpenHPS: An Open Source Hybrid Positioning System", Technical Report WISE Lab, WISE-2020-01, December 2020'
 abstract: "Positioning systems and frameworks use various techniques to determine the position of an object. Some of the existing solutions

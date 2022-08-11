@@ -20,6 +20,9 @@ layout: default.njk
             {% if link %}
             <a href="{{ link }}" class="btn btn-yellow btn-icon"><i class="ai ai-{{ type }}"></i></a>
             {% endif %}
+            {% if github %}
+            <a href="{{ github }}" class="btn btn-grey btn-icon"><i class="fa fa-brands fa-github"></i></a>
+            {% endif %}
 
             <h2>Abstract</h2>
 
