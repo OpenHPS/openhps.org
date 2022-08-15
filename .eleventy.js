@@ -16,6 +16,7 @@ const pluginPDFEmbed = require('eleventy-plugin-pdfembed');
 const faviconPlugin = require("eleventy-favicon");
 require('dotenv').config();
 const { decktape } = require("./_scripts/decktape");
+const { qr } = require("./_scripts/qr");
 const _ = require("lodash");
 
 module.exports = function (el) {
@@ -151,6 +152,8 @@ module.exports = function (el) {
   });
 
   el.addPlugin(decktape);
+
+  el.addPlugin(qr);
 
   return {
     templateFormats: [

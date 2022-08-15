@@ -3,7 +3,7 @@ layout: presentation.njk
 title: A Solid-based Architecture for Decentralised Interoperable Location Data
 presentation_title: A Solid-based Architecture for</br>Decentralised Interoperable Location Data
 excerpt: "IPIN 2022 presentation"
-author: <u>Maxim Van de Wynckel</u>, Beat Signer
+author: <u>Maxim Van de Wynckel</u> and Beat Signer
 logo: true
 width: 1280
 height: 720
@@ -16,7 +16,7 @@ hide_progress: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Current indoor positioning systems (IPS)
+        ## Current Indoor Positioning Systems (IPS)
     {% endmarkdown %}
     <img height="80%" src="images/architecture_current.svg"/>
     <aside class="notes">
@@ -35,7 +35,7 @@ hide_progress: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Problems with current IPS'
+        ## Problems With Current IPS'
         1. Users not in **control** of their **data**
         2. No **interoperability** between positioning **systems** and **applications**
     {% endmarkdown %}
@@ -63,7 +63,7 @@ hide_progress: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Decentralised interoperable architecture
+        ## Decentralised Interoperable Architecture
     {% endmarkdown %}
     <img height="80%" src="images/pod_ipin2022.svg"/>
     <aside class="notes">
@@ -72,7 +72,7 @@ hide_progress: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Decentralised interoperable architecture
+        ## Decentralised Interoperable Architecture
     {% endmarkdown %}
     <img height="85%" style="float: left;" src="images/overview_1.svg"/>
     <aside class="notes">
@@ -81,7 +81,7 @@ hide_progress: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Decentralised interoperable architecture
+        ## Decentralised Interoperable Architecture
     {% endmarkdown %}
     <img height="85%" style="float: left;" src="images/overview_2.svg"/>
     <aside class="notes">
@@ -102,7 +102,7 @@ hide_progress: true
 
         *See paper for more details ...*
     {% endmarkdown %}
-    <div class="row" style="position: absolute; top: 50px; left: 450px; width: 80%;">
+    <div class="row" style="position: absolute; top: -50px; left: 550px; width: 80%;">
         <div class="col-3">
             <img src="images/w3c.svg" style="height: 250px;" />
         </div>
@@ -120,7 +120,7 @@ hide_progress: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Properties and observations
+        ## Properties and Observations
     {% endmarkdown %}
     <img height="100%" style="margin-top: -2em;" src="images/pod.svg"/>
     <aside class="notes">
@@ -129,7 +129,7 @@ hide_progress: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Properties and observations
+        ## Properties and Observations
         **http://ipin2022.solidweb.org/properties/orientation.ttl**
         ```turtle
         <>
@@ -137,15 +137,20 @@ hide_progress: true
             rdfs:comment "Orientation of John Doe"@en;
             rdfs:label "Orientation"@en;
             ssn:isPropertyOf profile:me.
+        
         :1651065740981
             a sosa:Observation;
-            sosa:hasFeatureOfInterest c:me;
-            sosa:hasResult
-                    [
-                        a qudt:QuantityValue;
-                        qudt:numericValue 108.11512756347656;
-                        qudt:unit unit:DEG
-                    ];
+            sosa:hasFeatureOfInterest profile:me;
+            sosa:hasResult [
+                    a qudt:QuantityValue;
+                    qudt:numericValue 108.11512756347656;
+                    qudt:unit unit:DEG;
+                ];
+            ssns:qualityOfObservation [
+                    a qudt:QuantityValue;
+                    qudt:numericValue 12;
+                    qudt:unit unit:DEG;
+                ];
             sosa:observedProperty <>;
             sosa:resultTime "2022-04-27T13:22:20.981Z"^^xsd:dateTime;
             sosa:usedProcedure ipin:geolocationapi.
@@ -158,13 +163,18 @@ hide_progress: true
 <section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
         {% endmarkdown %}
 
         <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc.svg"/>
-        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
-            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 160px" >
+            {% qr "https://openhps.github.io/ipin2022-solid/", "poc-qr-image" %}
         </div>
+        <style>
+        .poc-qr-image {
+            width: 100%;
+        }
+        </style>
         <aside class="notes">
             We created an open source proof of concept demonstrator with three applications. Two non trivial positioning systems,
             one with GPS and a simple indoor positioning system using QR code scanning.
@@ -172,76 +182,82 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
         {% endmarkdown %}
 
         <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc_2.svg"/>
-        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
-            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 160px" >
+            {% qr "https://openhps.github.io/ipin2022-solid/", "poc-qr-image" %}
         </div>
         <aside class="notes">
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
         {% endmarkdown %}
 
         <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc_3.svg"/>
-        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
-            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 160px" >
+            {% qr "https://openhps.github.io/ipin2022-solid/", "poc-qr-image" %}
         </div>
         <aside class="notes">
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
         {% endmarkdown %}
 
         <img data-id="poc" style="margin-top: 1.5em;" height="70%" src="images/poc_4.svg"/>
-        <div style="position: absolute; top: -.5em; right: 0em; height: 140px" >
-            <img style="margin: 0" height="100%" src="images/IPIN2022.svg"/>
+        <div style="position: absolute; top: -.5em; right: 0em; height: 160px" >
+            {% qr "https://openhps.github.io/ipin2022-solid/", "poc-qr-image" %}
         </div>
         <aside class="notes">
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
         {% endmarkdown %}
 
         <img data-id="poc" style="float: left; margin-top: 1.5em;" height="65%" src="images/poc_geolocation.svg"/>
-
+        <div style="position: absolute; top: -.5em; right: 0em; height: 160px" >
+            {% qr "https://openhps.github.io/ipin2022-solid/", "poc-qr-image" %}
+        </div>
         <aside class="notes">
 
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
         {% endmarkdown %}
 
         <img data-id="poc" style="float: left; margin-top: 1.5em;" height="65%" src="images/poc_qrcode.svg"/>
-
+        <div style="position: absolute; top: -.5em; right: 0em; height: 160px" >
+            {% qr "https://openhps.github.io/ipin2022-solid/", "poc-qr-image" %}
+        </div>
         <aside class="notes">
 
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
         {% endmarkdown %}
 
         <img data-id="poc" style="float: left; margin-top: 2em;" height="60%" src="images/poc_consumer.svg"/>
-
+        <div style="position: absolute; top: -.5em; right: 0em; height: 160px" >
+            {% qr "https://openhps.github.io/ipin2022-solid/", "poc-qr-image" %}
+        </div>
         <aside class="notes">
 
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
         {% endmarkdown %}
         <img height="80%" src="images/phones_wip.png"/>
         <aside class="notes">
@@ -250,7 +266,7 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
             **http://.../properties/position.ttl**
         {% endmarkdown %}
         <div class="row">
@@ -261,20 +277,20 @@ hide_progress: true
                         a sosa:Observation;
                         sosa:hasFeatureOfInterest profile:me;
                         sosa:hasResult
-                                [
-                                    a geosparql:Geometry;
-                                    geosparql:asWKT
-                                        "POINT Z(4.3922073 50.8206522 143.29)"^^geosparql:wktLiteral;
-                                    geosparql:coordinateDimension 3;
-                                    geosparql:dimension 3;
-                                    geosparql:hasSpatialAccuracy
-                                            [
-                                                a qudt:QuantityValue;
-                                                qudt:numericValue 29.363000869750977;
-                                                qudt:unit unit:M
-                                            ];
-                                    geosparql:spatialDimension 3
-                                ];
+                            [
+                                a geosparql:Geometry;
+                                geosparql:asWKT
+                                    "POINT Z(4.3922073 50.8206522 143.29)"^^geosparql:wktLiteral;
+                                geosparql:coordinateDimension 3;
+                                geosparql:dimension 3;
+                                geosparql:hasSpatialAccuracy
+                                    [
+                                        a qudt:QuantityValue;
+                                        qudt:numericValue 29.363000869750977;
+                                        qudt:unit unit:M
+                                    ];
+                                geosparql:spatialDimension 3
+                            ];
                         sosa:observedProperty <>;
                         sosa:resultTime "2022-08-09T12:52:33.011Z"^^xsd:dateTime;
                         sosa:usedProcedure ipin:geolocationapi.
@@ -288,7 +304,7 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
             **http://.../properties/position.ttl**
         {% endmarkdown %}
         <div class="row">
@@ -327,7 +343,7 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator
+            ## PoC Demonstrator
             **http://.../properties/position.ttl**
         {% endmarkdown %}
         <div class="row">
@@ -365,7 +381,7 @@ hide_progress: true
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## PoC demonstrator ...
+            ## PoC Demonstrator
             ```sparql
             SELECT ?posGeoJSON ?datetime ?accuracy {
                 ?profile a sosa:FeatureOfInterest ;
@@ -394,7 +410,7 @@ hide_progress: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Conclusion and future work
+        ## Conclusion and Future Work
         - Novel architecture for **decentralising** location **data**
             - **User** remains **in control** of their data
         - **Interoperability** between systems and applications
@@ -420,13 +436,13 @@ hide_progress: true
     {% markdown %}
         ## A Solid-based Architecture for Decentralised Interoperable Location Data
     {% endmarkdown %}
-    <h5 style="color: gray;">Maxim Van de Wynckel, Beat Signer</h5>
+    <h5 style="color: gray;">Maxim Van de Wynckel and Beat Signer</h5>
     <div class="row">
         <div class="col-7">
             <img data-id="poc" style="margin-top: 1em;" width="100%" src="images/phones_wip.png"/>
         </div>
         <div class="col-5">
-            <img class="qr-image" src="images/IPIN2022Publication.svg"/>
+            {% qr "https://openhps.org/publications/2022/ipin2022", "qr-image" %}
         </div>
     </div>
     <style>
