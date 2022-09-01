@@ -6,7 +6,7 @@ const shikiTwoslash = require("eleventy-plugin-shiki-twoslash");
 const { html5Media } = require('markdown-it-html5-media');
 const pluginTOC = require('eleventy-plugin-toc');
 const pluginSEO = require("eleventy-plugin-seo");
-const pluginSASS = require("eleventy-plugin-sass");
+const pluginSASS = require("eleventy-sass");
 const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
 const { DateTime } = require("luxon");
 const fs = require('fs');
@@ -79,11 +79,31 @@ module.exports = function (el) {
   });
 
   /* Stylesheets */
-  el.addPlugin(pluginSASS, {
-    watch: ["_scss/**/*.{scss,sass}"],
-    outputDir: "_site/css",
-    cleanCSS: true
-  });
+  el.addPlugin(pluginSASS, [
+    {
+      compileOptions: {
+        permalink: function(permalinkString, inputPath) {
+          return (data) => {
+            return data.page.filePathStem.replace(/^\/_scss\//, "/css/") + ".css";
+          };
+        }
+      },
+      sass: {
+        style: "expanded",
+        sourceMap: true
+      }
+    }, {
+      rev: true,
+      when: { ELEVENTY_ENV: "stage" }
+    }, {
+      sass: {
+        style: "compressed",
+        sourceMap: false
+      },
+      rev: true,
+      when: [ { ELEVENTY_ENV: "production" }, { ELEVENTY_ENV: false } ]
+    }
+  ]);
 
   /* Nunjucks */
   let njkEnv = new nunjucks.Environment(
