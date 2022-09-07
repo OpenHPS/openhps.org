@@ -31,6 +31,16 @@ layout: default.njk
             <h2>Citation</h2>
             <p class="cite">{{ excerpt }}</p>
 
+            {% if video and show_video %}
+            <h2>Video presentation</h2>
+            <video width="100%" controls preload="auto">
+                <source src="{{ video }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <h2>Paper</h2>
+            {% endif %}
+
             {% pdfembed pdf, 'FULL_WINDOW', 'pdf-viewer' %}
         </div>
     </div>
