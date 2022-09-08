@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+        with:
+          lfs: true
       - name: Load dependency cache
         uses: actions/cache@v2
         with:
@@ -84,7 +86,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
           lfs: true
       - name: Load dependency cache
         uses: actions/cache@v2
@@ -125,7 +126,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
           lfs: true
       - name: Load dependency cache
         uses: actions/cache@v2
