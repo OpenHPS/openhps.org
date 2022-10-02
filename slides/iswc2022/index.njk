@@ -45,19 +45,55 @@ hide_openhps_logo: true
     </section>
 </section>
 
-<section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Test
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Tracked Entity
 
-            ```turtle
+        ```turtle
+        <me> a poso:TrackedFeature, foaf:Person ;
+            foaf:name "John Doe"@en ;
+            poso:hasPosition <me/position>, <me/approxposition> ;
+            poso:hasOrientation <me/orientation> .
+        <me/position> a poso:AbsolutePosition ;
+            rdfs:comment "Absolute position of John Doe"@en ;
+            poso:hasAccuracy <me/position/accuracy> .
+        <me/position/accuracy> a ssns:Accuracy ;
+            schema:maxValue "25.0"^^xsd:float ; schema:unitCode unit:CentiM .
+        ```
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
+</section>
 
-            ```
-        {% endmarkdown %}
-        <aside class="notes">
-        
-        </aside>
-    </section>
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Positioning System
+
+        ```turtle
+        dbr:Some_Unversity a ssn:Deployment .
+        <deployment/building_a> a poso:IndoorDeployment, geosparql:Feature ;
+            rdfs:label "Building A"@en ;
+            geosparql:hasGeometry [ 
+                a geosparql:Geometry ;
+                geosparql:asWKT "..."^^geosparql:wktLiteral ] .
+        <system/OPS> a poso:LocationBasedService ;
+            rdfs:label "Outdoor campus positioning"@en ;
+            ssn:hasSubSystem poso-common:GPS ;
+            ssn:hasDeployment dbr:Some_University .
+        <system/IPS> a poso:IndoorPositioningSystem ;
+            rdfs:label "Indoor campus positioning"@en ;
+            ssn:hasDeployment <deployment/building_a> ;
+            ssn:implements poso-common:KNNFingerprinting .
+        <system/CampusPositioning> a poso:IntegratedPositioningSystem ;
+            rdfs:label "Hybrid campus positioning system"@en ;
+            ssn:hasSubSystem  <system/OPS>, <system/IPS> ;
+            ssn:implements poso-common:WeightedAccuracyFusion .
+        ```
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
 </section>
 
 <section>

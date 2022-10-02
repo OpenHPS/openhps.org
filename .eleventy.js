@@ -8,6 +8,8 @@ const pluginTOC = require('eleventy-plugin-toc');
 const pluginSEO = require("eleventy-plugin-seo");
 const pluginSASS = require("eleventy-sass");
 const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
+const pluginValidator = require('eleventy-plugin-html-validate');
+
 const { DateTime } = require("luxon");
 const fs = require('fs');
 const nunjucks = require("nunjucks");
@@ -44,6 +46,7 @@ module.exports = function (el) {
     },
   });
   el.addPlugin(faviconPlugin);
+  //el.addPlugin(pluginValidator);
 
   /* PDF Embedding */
   el.addPlugin(pluginPDFEmbed, {

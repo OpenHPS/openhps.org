@@ -5,6 +5,7 @@
     "author": "Maxim Van de Wynckel",
     "twitter": "OpenHPS",
     "image": "/images/social/summary-large.png",
+    "reply_to": "info@openhps.org",
     "options": {
       "titleDivider": "|",
       "imageWithBaseUrl": true,
