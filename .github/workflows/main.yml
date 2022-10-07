@@ -113,56 +113,56 @@ jobs:
         run: |
           npm run build:presentations
 
-  deploy_github:
-    needs:
-      - build
-      - build_documentation
-      - build_presentations
-    name: 'Deploy to Github Pages'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-      - name: Load dependency cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('package.json') }}
-      - name: Load site cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/_site
-            _presentations.json
-          key: ${{ runner.os }}-site-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
-      - name: Load documentation cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/_site/docs
-          key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
-      - name: Load presentations cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/_site/slides/**/*.pdf
-            **/_site/slides/**/screenshots
-            *.pdf
-            _presentations_generated.json
-          key: ${{ runner.os }}-site-presentations-v2
-      - name: Deploy site to GitHub
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-      - name: Status check
-        uses: Sibz/github-status-action@v1
-        with:
-          authToken: ${{ secrets.GITHUB_TOKEN }}
-          context: Github Pages preview
-          state: success
-          target_url: https://openhps.github.io/openhps.org/
+  # deploy_github:
+  #   needs:
+  #     - build
+  #     - build_documentation
+  #     - build_presentations
+  #   name: 'Deploy to Github Pages'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out repository
+  #       uses: actions/checkout@v3
+  #     - name: Load dependency cache
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: |
+  #           **/node_modules
+  #         key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('package.json') }}
+  #     - name: Load site cache
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: |
+  #           **/_site
+  #           _presentations.json
+  #         key: ${{ runner.os }}-site-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
+  #     - name: Load documentation cache
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: |
+  #           **/_site/docs
+  #         key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
+  #     - name: Load presentations cache
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: |
+  #           **/_site/slides/**/*.pdf
+  #           **/_site/slides/**/screenshots
+  #           *.pdf
+  #           _presentations_generated.json
+  #         key: ${{ runner.os }}-site-presentations-v2
+  #     - name: Deploy site to GitHub
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./_site
+  #     - name: Status check
+  #       uses: Sibz/github-status-action@v1
+  #       with:
+  #         authToken: ${{ secrets.GITHUB_TOKEN }}
+  #         context: Github Pages preview
+  #         state: success
+  #         target_url: https://openhps.github.io/openhps.org/
 
   deploy_netlify:
     needs:

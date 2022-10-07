@@ -15,7 +15,20 @@ hide_openhps_logo: true
 <section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## Beyond Spatial Representation
+            ## Spatial Representation
+            - **Terminology**: "location", "place", "position", "pose", "place"
+        {% endmarkdown %}
+
+        <aside class="notes">
+            
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Position
         {% endmarkdown %}
 
         <aside class="notes">
@@ -31,7 +44,11 @@ hide_openhps_logo: true
         {% endmarkdown %}
         <img width="70%" src="images/architecture.svg"/>
         <aside class="notes">
-        
+        A positioning system is a system that aims to track entities in a certain area.
+        The system uses various different algorithms and technnologies that are used to
+        track an entity. Each entity on itself has different properties, such their position,
+        their orientation or velocity that are important for the algorithms to determine their
+        position.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
@@ -43,27 +60,94 @@ hide_openhps_logo: true
         
         </aside>
     </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Positioning System ...
+            - Satellite positioning system
+            - Indoor positioning system
+            - Inertial positioning system
+            - Integrated positioning system
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
 </section>
 
-<section data-markdown data-auto-animate data-timing="40">
-    {% markdown %}
-        ## Tracked Entity
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Tracked Entities (`poso:TrackedFeature`)
+            #### Subclass of `sosa:FeatureOfInterest` and `geosparql:SpatialObject`
 
-        ```turtle
-        <me> a poso:TrackedFeature, foaf:Person ;
-            foaf:name "John Doe"@en ;
-            poso:hasPosition <me/position>, <me/approxposition> ;
-            poso:hasOrientation <me/orientation> .
-        <me/position> a poso:AbsolutePosition ;
-            rdfs:comment "Absolute position of John Doe"@en ;
-            poso:hasAccuracy <me/position/accuracy> .
-        <me/position/accuracy> a ssns:Accuracy ;
-            schema:maxValue "25.0"^^xsd:float ; schema:unitCode unit:CentiM .
-        ```
-    {% endmarkdown %}
-    <aside class="notes">
-    
-    </aside>
+            *A feature of interest that is being tracked by a positioning system. This is the feature for which a position is observed.*
+            
+            **Example:**
+            ```turtle
+            <me> a poso:TrackedFeature, foaf:Person ;
+                foaf:name "Maxim Van de Wynckel"@en ;
+                poso:hasPosition <me/position> ;
+                poso:hasOrientation <me/orientation> .
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Entity Properties (`sosa:Property`)
+
+            *A feature of interest that is being tracked by a positioning system. This is the feature for which a position is observed.*
+            
+            **Example:**
+            ```turtle
+            <me/position> a poso:AbsolutePosition ;
+                rdfs:comment "Absolute position of Maxim Van de Wynckel"@en ;
+                poso:hasAccuracy <me/position/accuracy> .
+            <me/position/accuracy> a ssns:Accuracy ;
+                schema:maxValue "25.0"^^xsd:float ; schema:unitCode unit:CentiM .
+            
+            <me/orientation> a poso:Orientation ;
+                rdfs:comment: "" .
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Entity Properties (`sosa:Property`)
+
+            *A feature of interest that is being tracked by a positioning system. This is the feature for which a position is observed.*
+            
+            **Example:**
+            ```turtle
+            <me> a poso:TrackedFeature, foaf:Person ;
+                foaf:name "Maxim Van de Wynckel"@en ;
+                poso:hasPosition <me/position>, <me/location> ;
+
+            <me/position> a poso:AbsolutePosition ;
+                rdfs:comment "Absolute position of Maxim Van de Wynckel"@en ;
+                poso:hasAccuracy <me/position/accuracy> .
+            <me/position/accuracy> a ssns:Accuracy ;
+                schema:maxValue "25.0"^^xsd:float ; schema:unitCode unit:CentiM .
+            
+            <me/location> a poso:AbsolutePosition ;
+                rdfs:comment "Approximate Location of Maxim Van de Wynckel"@en ;
+                poso:hasAccuracy <me/position/accuracy> .
+            <me/location/accuracy> a ssns:Accuracy ;
+                schema:minValue "10.0"^^xsd:float ; schema:unitCode unit:M .
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+        
+        </aside>
+    </section>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
