@@ -1,10 +1,11 @@
 const QRCode = require('qrcode');
 
 async function qr(el) {
-    el.addAsyncShortcode("qr", (data, classes) => {
+    el.addAsyncShortcode("qr", (data, classes, errorCorrectionLevel = 'H') => {
         return new Promise((resolve, reject) => {
             return QRCode.toString(data, {
-                type: 'svg'
+                type: 'svg',
+                errorCorrectionLevel,
             })
                 .then(url => {
                     const encoded = encodeURIComponent(url)

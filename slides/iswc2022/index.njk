@@ -23,9 +23,10 @@ hide_openhps_logo: true
         {% endmarkdown %}
 
         <aside class="notes">
-            So to quickly introduce you to POSO, it is a new ontology that provides you with the terminologies
-            needed to describe the different types of positioning systems, the algorithms, tecnologies and
-            techniques that they implement. And finally terminologies to describe the data they produce.
+            To quickly introduce you to POSO, in this paper we introduce a new ontology that provides the terminologies
+            needed to describe the different types of positioning systems and the algorithms, technologies and
+            techniques that they implement. It also helps to describe the data these systems produce without loosing
+            any information.
         </aside>
     </section>
 </section>
@@ -33,10 +34,10 @@ hide_openhps_logo: true
 <section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## Beyond Location-based Services
+            ## Location-based Services
 
         {% endmarkdown %}
-
+        <img style="width: 100%" src="./images/lbs1.svg">
         <aside class="notes">
             If we look at existing semantic descriptions, spatial data is an important aspect to describe
             various spaces and the objects inside them and a lot of ontologies already exist that do exactly this.
@@ -45,18 +46,24 @@ hide_openhps_logo: true
             positioning system or a location-based service that accesses a positioning system behind the scenes. 
             
             While a location-based service aims to provide you with a nice clean geographical location, maybe even with some
-            additional context such as the accuracy. The system behind the scenes has a lot more information. In addition we do not
+            additional context such as the accuracy. The system working behind the scenes has a lot more information. In addition we do not
             know how the output of a location-based service was computed.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## The Problem of Missing Context
+            ## Location-based Services ...
         {% endmarkdown %}
-
+        <img style="width: 100%" src="./images/lbs1.svg">
+        <img style="width: 100%" src="./images/lbs2.svg">
         <aside class="notes">
+            On the slide you see two similar output positions from two location based services. 
             For consumers of this data, the output has enough context to use it. However, for other positioning systems
-            that want to use the data there is a lack of information.
+            that want to use further compute or reason about the data there is a lack of information. 
+            
+            With POSO we aim to describe the process that led to a certain output, which in our case means the description of the system
+            that works behind the scenes. Using this additional information another positioning system knows how to reason on
+            the output or know how to perform high level sensor fusion.
         </aside>
     </section>
 </section>
@@ -65,19 +72,21 @@ hide_openhps_logo: true
     {% markdown %}
         ## Methodology
         1. Design constraints 
-        2. First prototype <small>(IPIN 2022)</small>
-        3. Object Relational Mapping for RDF with the POSO ontology
-        4. Positioning systems with automatic data output to RDF using POSO
+        2. First basic prototype (IPIN 2022)
+        3. Mapping of POSO to our framework
     {% endmarkdown %}
 
     <aside class="notes">
         Our methodology of the ontology design was based on our own generic positioning system named OpenHPS
-        as well as existing datasets for positioning systems such as UJIndoorLoc or the EvAAL competition. 
-        Our design constraints for the framework were very similar to the ontology.
+        as well as existing datasets for positioning systems such as UJIndoorLoc or the ambient assisted living evaluation competition. 
+        Our design constraints for the ontology that we designed were very similar to the design constraints of our framework.
 
-        We created a first prototype for IPIN 2022 where we only used some of the core ontologies.
-        We quickly realised that more work on the ontology aspect was needed which resulted us in creating
-        a dedicated module for our own positioning framework where we use the POSO ontology.
+        We created a first prototype for the Indoor Positioning and Indoor Navigation conference where we only used some of the core 
+        ontologies. With the prototype we realised that there currently were no ontologies available to correctly describe a complete positioning
+        system, which led us to create POSO.
+
+        In order to test if the POSO ontology could represent all data that makes up a positioning system we mapped all the data types
+        that we use in our positioning systems to RDF using POSO.
     </aside>
 </section>
 
@@ -86,45 +95,68 @@ hide_openhps_logo: true
         {% markdown %}
             ## Positioning System
         {% endmarkdown %}
-        <img width="70%" src="images/architecture.svg"/>
-        <aside class="notes">
-        A positioning system is a system that aims to track entities in a certain area. These entities can be objects, persons
-        or basically any spatial object. We usually deploy this positioning system at the area where this tracking
-        should be done. Weither it is in space, a building, an underground metro or something more abstract like a physical game board.
+        <img class="fragment" width="70%" src="images/architecture.svg"/>
 
-        The system uses various different algorithms and technnologies that are used to
-        track an entity. Each entity on itself has different properties, such their position,
-        their orientation or velocity that are important for the algorithms to determine their
-        position.
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Positioning System ...
-        {% endmarkdown %}
-        <img width="100%" src="images/architecture_overview.svg"/>
         <aside class="notes">
-            If we take a look at a positioning system implemented on a mobile phone we see that the smartphone
-            itself is the 'Sampler' with different sensors inside. The sensor data is processed by different
-            positioning techniques until it outputs a property. 
+            When creating the design for our ontology we first identified what actually defines a positioning system.
+
+            A positioning system is a system that aims to track entities in a certain area. These entities can be objects, persons
+            or basically any spatial thing. We usually deploy this positioning system at the area where this tracking
+            should be done. Weither it is on another planet, a building, an underground metro track or something more 
+            abstract like tracking pawns on a physical game board.
+
+            The system uses various different algorithms and technnologies that are used to
+            track an entity. Each entity on itself has different properties, such their position,
+            their orientation or velocity that are important for the algorithms to determine their
+            position.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## Positioning System ...
             - Satellite positioning system
+            ![](./images/gps.jpg){ .positioning-system-image }
             - Optical positioning system
+            ![](./images/camera.jpg){ .positioning-system-image }
             - Inertial positioning system
-            - Indoor positioning system
+            ![](./images/openshoe.png){ .positioning-system-image }
             - Integrated positioning system
+            - Indoor positioning system
+            ![](./images/indooratlas.png){ .positioning-system-image }
         {% endmarkdown %}
+        <div class="row">
+            <div class="col-sm-6">
+                {% markdown %}
+                    - Satellite positioning system
+                    ![](./images/gps.jpg){ .positioning-system-image }
+                    - Optical positioning system
+                    ![](./images/camera.jpg){ .positioning-system-image }
+                    - Inertial positioning system
+                    ![](./images/openshoe.png){ .positioning-system-image }
+                {% endmarkdown %}
+            </div>
+            <div class="col-sm-6">
+                {% markdown %}
+                    - Integrated positioning system
+                    - Indoor positioning system
+                    ![](./images/indooratlas.png){ .positioning-system-image }
+                {% endmarkdown %}
+            </div>
+        </div>
+        <style>
+            .reveal img.positioning-system-image {
+                object-fit: cover;
+                object-position: center center;
+                height: 3em;
+                width: 500px;
+            }
+        </style>    
         <aside class="notes">
         There are five main types of positioning systems. We identified these based on existing ISO standards. 
         A satellite positioning system such as GPS, Baidu or Galileo; an optical positioning system
-        that makes use of optical imagery to determine a position, inertial positining systems that detect the movement , indoor positioning systems
-        that were added to specifically identify a system that is used indoors as opposed as outdoors where satellite systems
-        are often standard. And finally an integrated or also called hybrid positioning system that combines other systems
-        or various technnologies to obtain a result.
+        that makes use of optical imagery to determine a position, inertial positining systems that detect the movement,
+        integrated or also called hybrid positioning system that combines other systems or various technnologies to obtain a result.
+        Finally, indoor positioning systems that could be a 
         </aside>
     </section>
 </section>
@@ -255,20 +287,43 @@ hide_openhps_logo: true
     </aside>
 </section>
 
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Example
+    {% endmarkdown %}
+    <img style="height: 80%" src="./images/example.svg"/>
+    <aside class="notes">
+        
+    </aside>
+</section>
+
 <section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## Conclusion and Future Work
             - We presented the new **POSO** ontology
             - Allignment modules for specific types of algorithms
-            - Interoperability be 
+            - Interoperability between positioning systems
         {% endmarkdown %}
-        
+        {% qr "https://github.org/OpenHPS/POSO", "qr-image", "H" %}
+        <style>
+        .qr-image {
+            position: absolute;
+            left: 0em;
+            bottom: 1em;
+            width: 300px;
+            height: 300px;
+            float: right;
+        }
+        </style>
         <aside class="notes">
         In this paper we presented our Positioning System Ontology named POSO. This is a new
         ontology that we have slowly started to use
 
-        We hope that POSO will help in creating interoperable positioning and navigation applications.
+        We hope that POSO will help in creating interoperable positioning and navigation applications. Which could
+        allow us to transition to a single interoperable application to navigate both outdoors, indoor or underground.
+
+        Thank you for your attention.
         </aside>
     </section>
 </section>

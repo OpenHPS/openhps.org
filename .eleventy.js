@@ -14,6 +14,7 @@ const { DateTime } = require("luxon");
 const fs = require('fs');
 const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
+const markdownItAttrs = require('markdown-it-attrs');
 const pluginPDFEmbed = require('eleventy-plugin-pdfembed');
 const faviconPlugin = require("eleventy-favicon");
 require('dotenv').config();
@@ -57,6 +58,11 @@ module.exports = function (el) {
   const md = markdownIt({ html: true });
   md.use(markdownItAnchor);
   md.use(markdownItLatex);
+  md.use(markdownItAttrs, {
+    leftDelimiter: '{',
+    rightDelimiter: '}',
+    allowedAttributes: []
+  });
   el.addPlugin(shikiTwoslash, { 
     theme: "dark-plus",
     defaultCompilerOptions: {
