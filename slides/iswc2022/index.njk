@@ -95,7 +95,7 @@ hide_openhps_logo: true
         {% markdown %}
             ## Positioning System
         {% endmarkdown %}
-        <img class="fragment" width="70%" src="images/architecture.svg"/>
+        <img width="70%" src="images/architecture.svg"/>
 
         <aside class="notes">
             When creating the design for our ontology we first identified what actually defines a positioning system.
@@ -114,31 +114,28 @@ hide_openhps_logo: true
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## Positioning System ...
-            - Satellite positioning system
-            ![](./images/gps.jpg){ .positioning-system-image }
-            - Optical positioning system
-            ![](./images/camera.jpg){ .positioning-system-image }
-            - Inertial positioning system
-            ![](./images/openshoe.png){ .positioning-system-image }
-            - Integrated positioning system
-            - Indoor positioning system
-            ![](./images/indooratlas.png){ .positioning-system-image }
         {% endmarkdown %}
-        <div class="row">
+        <div class="row systems">
             <div class="col-sm-6">
                 {% markdown %}
-                    - Satellite positioning system
+                    - Satellite positioning systems
+
                     ![](./images/gps.jpg){ .positioning-system-image }
-                    - Optical positioning system
-                    ![](./images/camera.jpg){ .positioning-system-image }
-                    - Inertial positioning system
-                    ![](./images/openshoe.png){ .positioning-system-image }
+                    - Optical positioning systems
+
+                    ![](./images/camera.jpg){ .positioning-system-image }![](./images/stereocamera.jpg){ .positioning-system-image }
                 {% endmarkdown %}
             </div>
             <div class="col-sm-6">
                 {% markdown %}
-                    - Integrated positioning system
-                    - Indoor positioning system
+                    - Inertial positioning systems
+
+                    ![](./images/imu.jpg){ .positioning-system-image }
+                    - Integrated positioning systems
+
+                    ![](/images/logo.svg){ .positioning-system-image }
+                    - Indoor positioning systems
+
                     ![](./images/indooratlas.png){ .positioning-system-image }
                 {% endmarkdown %}
             </div>
@@ -147,8 +144,9 @@ hide_openhps_logo: true
             .reveal img.positioning-system-image {
                 object-fit: cover;
                 object-position: center center;
-                height: 3em;
+                height: 4em;
                 width: 500px;
+                margin: 0;
             }
         </style>    
         <aside class="notes">
@@ -164,31 +162,53 @@ hide_openhps_logo: true
 <section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## Properties and Granularity
+            ## Tracked Entities and Their Properties
         {% endmarkdown %}
         <img src="./images/properties.svg" style="width: 100%"/>
         <aside class="notes">
-        
+            Aside from being able to describe a positioning system, we also wanted to describe the data they produce
+            in a way that would be interoperable by other systems.
+
+            Historical data is important for many positioning systems, so one design criteria was definitely to have
+            all the date in a time series. The most important data of a positioning system was a position,
+            orientation and velocity. But the ontology should still allow for extensions of other sensor data if needed.
+
+            Finally, a positioning system may provide a position with different granularities. For example, an indoor positioning
+            system might be able to track your location in an office with 1 meter accuracy. But that would not mean that you want
+            other systems to know this accurate position.
         </aside>
     </section>
+</section>
+
+<section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## Tracked Entities (`poso:TrackedFeature`)
-
-            *A feature of interest that is being tracked by a positioning system. This is the feature for which a position is observed.*
-            
-            **Example:**
-            ```turtle
-            <me> a poso:TrackedFeature, foaf:Person ;
-                foaf:name "Maxim Van de Wynckel"@en ;
-                poso:hasPosition <me/position> ;
-                poso:hasOrientation <me/orientation> .
-            ```
+            ## Ontology Design
         {% endmarkdown %}
         <aside class="notes">
-        
+            We decided to use the Semantic Sensor Network Ontology together with the Sensor, Observation, Sample and Actuator
+            ontology - or SOSA for short.
         </aside>
     </section>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Tracked Entities (`poso:TrackedFeature`)
+
+        *A feature of interest that is being tracked by a positioning system. This is the feature for which a position is observed.*
+        
+        **Example:**
+        ```turtle
+        <me> a poso:TrackedFeature, foaf:Person ;
+            foaf:name "Maxim Van de Wynckel"@en ;
+            poso:hasPosition <me/position> ;
+            poso:hasOrientation <me/orientation> .
+        ```
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
 </section>
 
 <section>
@@ -246,37 +266,7 @@ hide_openhps_logo: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Positioning System
-
-        ```turtle
-        dbr:Some_Unversity a ssn:Deployment .
-        <deployment/building_a> a poso:IndoorDeployment, geosparql:Feature ;
-            rdfs:label "Building A"@en ;
-            geosparql:hasGeometry [ 
-                a geosparql:Geometry ;
-                geosparql:asWKT "..."^^geosparql:wktLiteral ] .
-        <system/OPS> a poso:LocationBasedService ;
-            rdfs:label "Outdoor campus positioning"@en ;
-            ssn:hasSubSystem poso-common:GPS ;
-            ssn:hasDeployment dbr:Some_University .
-        <system/IPS> a poso:IndoorPositioningSystem ;
-            rdfs:label "Indoor campus positioning"@en ;
-            ssn:hasDeployment <deployment/building_a> ;
-            ssn:implements poso-common:KNNFingerprinting .
-        <system/CampusPositioning> a poso:IntegratedPositioningSystem ;
-            rdfs:label "Hybrid campus positioning system"@en ;
-            ssn:hasSubSystem  <system/OPS>, <system/IPS> ;
-            ssn:implements poso-common:WeightedAccuracyFusion .
-        ```
-    {% endmarkdown %}
-    <aside class="notes">
-    
-    </aside>
-</section>
-
-<section data-markdown data-auto-animate data-timing="40">
-    {% markdown %}
-        ## `poso-common` module
+        ## POSO Common module (`posoc`)
         ### `http://purl.org/poso/common/`
 
         - Adds common positioning systems, algorithms and types.
@@ -294,6 +284,126 @@ hide_openhps_logo: true
     <img style="height: 80%" src="./images/example.svg"/>
     <aside class="notes">
         
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Example
+        ### Positioning System
+
+        ```turtle
+        dbr:Some_Unversity a ssn:Deployment .
+        <deployment/building_a> a poso:IndoorDeployment, geosparql:Feature ;
+            rdfs:label "Building A"@en ;
+            geosparql:hasGeometry [ 
+                a geosparql:Geometry ;
+                geosparql:asWKT "..."^^geosparql:wktLiteral ] .
+        <system/OPS> a poso:LocationBasedService ;
+            rdfs:label "Outdoor campus positioning"@en ;
+            ssn:hasSubSystem posoc:GPS ;
+            ssn:hasDeployment dbr:Some_University .
+        <system/IPS> a poso:IndoorPositioningSystem ;
+            rdfs:label "Indoor campus positioning"@en ;
+            ssn:hasDeployment <deployment/building_a> ;
+            ssn:implements posoc:KNNFingerprinting .
+        <system/CampusPositioning> a poso:IntegratedPositioningSystem ;
+            rdfs:label "Hybrid campus positioning system"@en ;
+            ssn:hasSubSystem  <system/OPS>, <system/IPS> ;
+            ssn:implements posoc:WeightedAccuracyFusion .
+        ```
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Example
+        ### Observation
+
+        ```turtle
+        <position/1654350300000> a sosa:Observation ;
+            sosa:hasFeatureOfInterest <me> ;
+            sosa:observedProperty  <me/position> ;
+            sosa:resultTime "2022-06-04T15:55:00+02:00"^^xsd:dateTimeStamp ;
+            poso:usedSystem <system/OPS> ;
+            sosa:hasResult [ a geosparql:Geometry ;
+                geosparql:hasSpatialAccuracy [ a qudt:QuantityValue ;
+                    qudt:unit unit:CentiM ; qudt:numericValue "28"^^xsd:float ] ;
+                geosparql:asWKT """
+                    <http://www.opengis.net/def/crs/OGC/1.3/CRS84>
+                    Point(4.888028 50.31397)"""^^geosparql:wktLiteral ;
+                geosparql:dimension 2 ] .
+        ```
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Example
+        ### Observation
+
+        ```turtle
+        <position/1647513000000> a sosa:Observation ;
+            sosa:hasFeatureOfInterest <me> ;
+            sosa:observedProperty  <me/position> ;
+            sosa:resultTime "2022-03-17T11:30:00+01:00"^^xsd:dateTimeStamp ;
+            sosa:usedProcedure posoc:KNNFingerprinting ;
+            poso:usedSystem <system/IPS> ;
+            sosa:hasResult [ a poso:AbsolutePosition ;
+                poso:inDeployment <deployment/building_a> ;
+                poso:hasAccuracy [ a ssns:Accuracy ;
+                    schema:maxValue "25.0"^^xsd:float ; 
+                    schema:unitCode unit:CentiM ] ;
+                poso:xAxisValue [ a qudt:QuantityValue ;
+                    qudt:unit unit:M ; qudt:numericValue "5"^^xsd:double ] ;
+                poso:yAxisValue [ a qudt:QuantityValue ;
+                    qudt:unit unit:M ; qudt:numericValue "6"^^xsd:double ] ;
+                poso:zAxisValue [ a qudt:QuantityValue ;
+                    qudt:unit unit:M ; qudt:numericValue "3.5"^^xsd:double ] ] .
+        ```
+    {% endmarkdown %}
+    <aside class="notes">
+    
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Example
+        ### Configuration
+
+        ```turtle
+        <landmark/wap_1> a poso:Landmark ;
+        rdfs:label "Wireless Access Point 1"@en ;
+        poso:hasPosition [ a poso:AbsolutePosition ;
+            poso:hasAccuracy [ ... ] ;
+            poso:xAxisValue [ ... ] ;
+            poso:yAxisValue [ ... ] ;
+            poso:zAxisValue [ ... ] ] .
+        <me/position/relative/wap_1> a poso:RelativeDistance ;
+        ssn:isPropertyOf <me> ; # Relative distance from <me> ...
+        poso:isRelativeTo <landmark/wap_1> ; # to <landmark/wap_1>
+        rdfs:comment "Relative position of John Doe to WAP_1"@en .
+        <position/relative/wap_1/1646891100000> a sosa:Observation ;
+        sosa:hasFeatureOfInterest <me>, <landmark/wap_1> ;
+        sosa:observedProperty  <me/position/relative/wap_1> ;
+        sosa:resultTime "2022-03-10T06:45:00+01:00"^^xsd:dateTimeStamp ;
+        poso:madeBySystem <system/IPS> ;
+        sosa:usedProcedure poso-common:LDPL ; # Log-distance path loss
+        sosa:hasResult [ a qudt:QuantityValue ;
+            qudt:unit unit:Meter ; qudt:value "3.7"^^xsd:double ] ;
+        sosa:hasResult [ a qudt:QuantityValue ;
+            qudt:unit unit:DeciB_M ; qudt:value "-82"^^xsd:integer ] .
+        ```
+    {% endmarkdown %}
+    <aside class="notes">
+    
     </aside>
 </section>
 
