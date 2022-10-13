@@ -9,6 +9,7 @@ const pluginSEO = require("eleventy-plugin-seo");
 const pluginSASS = require("eleventy-sass");
 const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
 const pluginValidator = require('eleventy-plugin-html-validate');
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 const { DateTime } = require("luxon");
 const fs = require('fs');
@@ -16,7 +17,7 @@ const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
 const markdownItAttrs = require('markdown-it-attrs');
 const pluginPDFEmbed = require('eleventy-plugin-pdfembed');
-const faviconPlugin = require("eleventy-favicon");
+const faviconPlugin = require("./_scripts/favicon");
 require('dotenv').config();
 const { decktape } = require("./_scripts/decktape");
 const { qr } = require("./_scripts/qr");
@@ -47,6 +48,7 @@ module.exports = function (el) {
     },
   });
   el.addPlugin(faviconPlugin);
+  el.addPlugin(pluginRss);
   //el.addPlugin(pluginValidator);
 
   /* PDF Embedding */

@@ -38,6 +38,7 @@ hide_openhps_logo: true
 
         {% endmarkdown %}
         <img style="width: 100%" src="./images/lbs1.svg">
+        <img style="width: 100%" src="./images/lbs2.svg">
         <aside class="notes">
             If we look at existing semantic descriptions, spatial data is an important aspect to describe
             various spaces and the objects inside them and a lot of ontologies already exist that do exactly this.
@@ -46,48 +47,34 @@ hide_openhps_logo: true
             positioning system or a location-based service that accesses a positioning system behind the scenes. 
             
             While a location-based service aims to provide you with a nice clean geographical location, maybe even with some
-            additional context such as the accuracy. The system working behind the scenes has a lot more information. In addition we do not
-            know how the output of a location-based service was computed.
+            additional context such as the accuracy. The system working behind the scenes has a lot more data available. In addition we do not
+            know how the output of a location-based service was processed.
+
+            On the slide you see two similar output positions from two real location based services. 
+            For consumers of this data, the output has enough context to use it. However, for other positioning systems
+            that want to use further compute or reason about the data there is a lack of information. 
+
+            In this example it would show that the second location based service with a higher self-reported accuracy is the indoor positioning
+            system, while the first location based service was the output of the geolocation api service with a wrong location and in this
+            case also a wrong accuracy.
+
+            A system or consumer that sees these two positions now has to decide the relevancy of each location - which without context
+            would not always provide predictable results.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## Location-based Services ...
         {% endmarkdown %}
-        <img style="width: 100%" src="./images/lbs1.svg">
-        <img style="width: 100%" src="./images/lbs2.svg">
+        <img style="height: 80%" src="./images/data-algo-tech.svg">
         <aside class="notes">
-            On the slide you see two similar output positions from two location based services. 
-            For consumers of this data, the output has enough context to use it. However, for other positioning systems
-            that want to use further compute or reason about the data there is a lack of information. 
-            
             With POSO we aim to describe the process that led to a certain output, which in our case means the description of the system
-            that works behind the scenes. Using this additional information another positioning system knows how to reason on
-            the output or know how to perform high level sensor fusion.
+            that works behind the scenes and the complete set of data that is can produce. 
+            Using this additional information another positioning system knows how to reason on
+            the output or know how to perform high level sensor fusion. It may even be able to use additional
+            data that is not important for the output - but can benefit another system.
         </aside>
     </section>
-</section>
-
-<section data-markdown data-auto-animate data-timing="40">
-    {% markdown %}
-        ## Methodology
-        1. Design constraints 
-        2. First basic prototype (IPIN 2022)
-        3. Mapping of POSO to our framework
-    {% endmarkdown %}
-
-    <aside class="notes">
-        Our methodology of the ontology design was based on our own generic positioning system named OpenHPS
-        as well as existing datasets for positioning systems such as UJIndoorLoc or the ambient assisted living evaluation competition. 
-        Our design constraints for the ontology that we designed were very similar to the design constraints of our framework.
-
-        We created a first prototype for the Indoor Positioning and Indoor Navigation conference where we only used some of the core 
-        ontologies. With the prototype we realised that there currently were no ontologies available to correctly describe a complete positioning
-        system, which led us to create POSO.
-
-        In order to test if the POSO ontology could represent all data that makes up a positioning system we mapped all the data types
-        that we use in our positioning systems to RDF using POSO.
-    </aside>
 </section>
 
 <section>
@@ -109,6 +96,33 @@ hide_openhps_logo: true
             track an entity. Each entity on itself has different properties, such their position,
             their orientation or velocity that are important for the algorithms to determine their
             position.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Positioning System
+        {% endmarkdown %}
+        <img width="70%" src="images/architecture1.svg"/>
+
+        <aside class="notes">
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Positioning System
+        {% endmarkdown %}
+        <img width="70%" src="images/architecture3.svg"/>
+
+        <aside class="notes">
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Positioning System
+        {% endmarkdown %}
+        <img width="70%" src="images/architecture2.svg"/>
+
+        <aside class="notes">
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
@@ -150,11 +164,14 @@ hide_openhps_logo: true
             }
         </style>    
         <aside class="notes">
-        There are five main types of positioning systems. We identified these based on existing ISO standards. 
-        A satellite positioning system such as GPS, Baidu or Galileo; an optical positioning system
-        that makes use of optical imagery to determine a position, inertial positining systems that detect the movement,
+        We identified five main types of positioning systems based on existing ISO standards and in use systems. 
+        A satellite positioning system such as GPS, Baidu or Galileo which is commonly used outdoors; 
+        an optical positioning system that makes use of optical imagery to determine a position, 
+        inertial positining systems that detect the movement,
         integrated or also called hybrid positioning system that combines other systems or various technnologies to obtain a result.
-        Finally, indoor positioning systems that could be a 
+        Finally, we also define indoor positioning systems as a seperate category. While there is no ISO standard that
+        distinguishes between an indoor positioning system and an integrated positioning system that is commonly used for these
+        types of system. We added it as a type to more precicely identify this common type of system. 
         </aside>
     </section>
 </section>
@@ -167,15 +184,18 @@ hide_openhps_logo: true
         <img src="./images/properties.svg" style="width: 100%"/>
         <aside class="notes">
             Aside from being able to describe a positioning system, we also wanted to describe the data they produce
-            in a way that would be interoperable by other systems.
+            in a way that would be usable by other systems.
 
-            Historical data is important for many positioning systems, so one design criteria was definitely to have
-            all the date in a time series. The most important data of a positioning system was a position,
+            Historical data is important for many positioning systems, so one design criteria was definitely to allow 
+            individual observations of a value. The most important types of data for positioning system is a position,
             orientation and velocity. But the ontology should still allow for extensions of other sensor data if needed.
 
-            Finally, a positioning system may provide a position with different granularities. For example, an indoor positioning
+            Finally, a system may provide a position with different granularities. For example, an indoor positioning
             system might be able to track your location in an office with 1 meter accuracy. But that would not mean that you want
-            other systems to know this accurate position.
+            other systems or applications to know this accurate position. Or to give a more realistic example, you might have
+            a simple system that knows your room based on a QR-code check-in system. The system can report that you are 'In'
+            a certain room until you check out - but at the same time your system also knows that at the second you scan the QR-code
+            you are standing right in front of it. 
         </aside>
     </section>
 </section>
@@ -185,9 +205,74 @@ hide_openhps_logo: true
         {% markdown %}
             ## Ontology Design
         {% endmarkdown %}
+        <img src="./images/systems_and_procedures.svg" style="height: 80%">
         <aside class="notes">
             We decided to use the Semantic Sensor Network Ontology together with the Sensor, Observation, Sample and Actuator
-            ontology - or SOSA for short.
+            ontology - or SOSA for short. Both act as the core ontologies for POSO and already offer the ability to describe 
+            systems and their implemented 'procedures'. SOSA extends this with observable properties and observations of these properties.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Ontology Design ...
+        {% endmarkdown %}
+        <img src="./images/systems_and_procedures_1.svg" style="height: 80%">
+        <aside class="notes">
+            Our first contribution with POSO is the ability to classify what type of system we are dealing with.
+            We have the five positioning systems that we discussed earlier and in addition we also have a location
+            based service in case the underlying system can not be described in more detail - which could be the case
+            in some systems that have a blackbox implementation.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Ontology Design ...
+        {% endmarkdown %}
+        <img src="./images/systems_and_procedures_2.svg" style="width: 100%">
+        <aside class="notes">
+            Next, currently at this point in time we have three main categories of procedures or algorithms 
+            that a positioning system may use. Radio propagation algorithms that convert a signal strength
+            to a distance, sensor fusion algorithms that describe how multiple sensor sources are combined
+            and finally a larger category for every positioning technique that a positioning system may use.
+
+            The full list of positioning technique types that are available in POSO can be found in the paper
+            and the supplemental material, but in short it includes types such as different RF-based algorithms, 
+            fingerprinting techniques, dead reckoning, odometry and simultaneous localisation and mapping 
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Ontology Design ...
+        {% endmarkdown %}
+        <img src="./images/systems_and_procedures_3.svg" style="height: 80%">
+        <aside class="notes">
+            POSO also expands the observable properties and observation results with
+            position, velocity, acceleration and orientation.
+
+            The position can be either an absolute or relative position similar to how many 
+            existing work classifies the two different types.
+            Both velocity and acceleration have two subclasses for linear and angular velocity or acceleration.
+
+            Our decision to make these types of properties a subclass of both an observable property and a result
+            was to allow static values.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Ontology Design ...
+        {% endmarkdown %}
+        <img src="./images/systems_and_procedures_4.svg" style="height: 80%">
+        <aside class="notes">
+            Finally, the SOSA core ontology offers the class 'Feature of Interest' which is defined as 
+            'the thing whose property is being estimated or calculated in the course of an observation
+            to arrive at a result.' We expanded on this by adding a tracked feature and landmark.
+            Landmarks are an important aspect in positioning as they are the anchors in many different positioning
+            techniques. We added a few basic types of landmarks to make it clear how we expect this type of
+            class to be used. Mainly, auditory, visual and RF landmarks with a BluetoothBeacon being a subclass of RF landmarks.
+
+            POSO on itself offers many other useful classes and predicates that can be used to describe
+            a positioning system and its data such as additional stimulus classes for different types of movement
+            that could trigger the update of a position. For more information, please check the supplemental material.
         </aside>
     </section>
 </section>
@@ -214,7 +299,7 @@ hide_openhps_logo: true
 <section>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
-            ## Entity Properties (`sosa:Property`)
+            ## Entity Properties (`poso:AbsolutePosition` and `poso:Orientation`)
 
             *A feature of interest that is being tracked by a positioning system. This is the feature for which a position is observed.*
             
@@ -225,9 +310,12 @@ hide_openhps_logo: true
                 poso:hasAccuracy <me/position/accuracy> .
             <me/position/accuracy> a ssns:Accuracy ;
                 schema:maxValue "25.0"^^xsd:float ; schema:unitCode unit:CentiM .
-            
+             
             <me/orientation> a poso:Orientation ;
-                rdfs:comment: "" .
+                rdfs:comment: "Orientation of Maxim Van de Wynckel"@en ;
+                poso:hasAccuracy <me/orientation/accuracy> .
+            <me/orientation/accuracy> a ssns:Accuracy ;
+                schema:maxValue "2.0"^^xsd:float ; schema:unitCode unit:Deg .
             ```
         {% endmarkdown %}
         <aside class="notes">
@@ -244,13 +332,13 @@ hide_openhps_logo: true
             <me> a poso:TrackedFeature, foaf:Person ;
                 foaf:name "Maxim Van de Wynckel"@en ;
                 poso:hasPosition <me/position>, <me/location> ;
-
+             
             <me/position> a poso:AbsolutePosition ;
                 rdfs:comment "Absolute position of Maxim Van de Wynckel"@en ;
                 poso:hasAccuracy <me/position/accuracy> .
             <me/position/accuracy> a ssns:Accuracy ;
                 schema:maxValue "25.0"^^xsd:float ; schema:unitCode unit:CentiM .
-            
+             
             <me/location> a poso:AbsolutePosition ;
                 rdfs:comment "Approximate Location of Maxim Van de Wynckel"@en ;
                 poso:hasAccuracy <me/position/accuracy> .
@@ -266,24 +354,46 @@ hide_openhps_logo: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## POSO Common module (`posoc`)
-        ### `http://purl.org/poso/common/`
-
-        - Adds common positioning systems, algorithms and types.
+        ## Design Methodology
+        1. Design constraints 
+        2. First basic prototype (IPIN 2022)
+        3. Mapping of POSO to our framework
     {% endmarkdown %}
 
     <aside class="notes">
-        
+        Our ontology design methodology was based on our own generic hybrid positioning system framework named OpenHPS
+        as well as existing datasets for positioning systems such as indoor positioning dataset or the ambient assisted living 
+        evaluation competition. Our design constraints for the ontology that we designed were very similar to the design constraints 
+        of our framework - mainly allowing a large range of use cases both in 2D or 3d positioning, indoor, outdoor
+        or something smaller like a table.
+
+        After some initial experiments where we tried to describe a positioning system with existing ontologies
+        We created a first prototype for the Indoor Positioning and Indoor Navigation conference where we only used some of the core 
+        ontologies. With the prototype we realised that there currently were no ontologies available to correctly describe a complete positioning
+        system, which led us to create POSO.
+
+        In order to test if the POSO ontology could represent all data that makes up a positioning system we mapped all the data types
+        that we use in our positioning systems to RDF using POSO.
     </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Example
+        ## POSO Common Module (`posoc`)
+        ### `http://purl.org/poso/common/`
+
+        - Adds common positioning systems, algorithms and types.
+        - Adds common types of landmarks (e.g. iBeacon, AltBeacon, ...)
     {% endmarkdown %}
-    <img style="height: 80%" src="./images/example.svg"/>
+
     <aside class="notes">
-        
+        We envision POSO as the main ontology that describes different categories of systems, algorithms and techniques.
+        But with the large amount of IoT, geospatial and domain specific ontologies available we want
+        to add multiple allignment modules for POSO. One of the modules that we included in the paper is the poso-common module
+        that includes individuals for different algorithms, existing satellite positioning systems, technologies, protocols and frameworks.
+
+        This module can be used to describe the base of a positioning system, which is often comprised of multiple existing technologies
+        and algorithms that are tweaked to solve a particular tracking goal.
     </aside>
 </section>
 
@@ -299,6 +409,7 @@ hide_openhps_logo: true
             geosparql:hasGeometry [ 
                 a geosparql:Geometry ;
                 geosparql:asWKT "..."^^geosparql:wktLiteral ] .
+         
         <system/OPS> a poso:LocationBasedService ;
             rdfs:label "Outdoor campus positioning"@en ;
             ssn:hasSubSystem posoc:GPS ;
@@ -314,7 +425,16 @@ hide_openhps_logo: true
         ```
     {% endmarkdown %}
     <aside class="notes">
-    
+    So let's give a simple example on how POSO would be used to describe positioning systems and their data. 
+    Here you see three positioning systems.
+    An outdoor positioning system that is actually a location based service using GPS behind the scenes.
+    We use it outdoor throughout a univerity deployment.
+
+    An indoor positioning system that implements a specific fingerprinting algorithm in a specified building.
+    The building then contains information about its geometry which could be used to map it to geographical coordinates.
+
+    And finally a single positioning system that is a hybrid system using both the outdoor and indoor
+    systems. We describe this as two subsystems and we implement a simple weighted accuracy fusion of the output for both systems.
     </aside>
 </section>
 
@@ -339,14 +459,14 @@ hide_openhps_logo: true
         ```
     {% endmarkdown %}
     <aside class="notes">
-    
+    This is an example observation of the outdoor positioning system for the property 'position'.
     </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
         ## Example
-        ### Observation
+        ### Observation ...
 
         ```turtle
         <position/1647513000000> a sosa:Observation ;
@@ -369,37 +489,41 @@ hide_openhps_logo: true
         ```
     {% endmarkdown %}
     <aside class="notes">
-    
+    Next, we have an observation of the indoor positioning system. Here we clearly mention which
+    technique was used to obtain this observation. Other than the outdoor positioning system our result is
+    an absolute position within a deployment. We assume in this example that the deployment has a coordinate
+    reference system that can be used to map this cartesian coordinate to a geographical location if needed.
     </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
         ## Example
-        ### Configuration
+        ### Relative Positions
 
         ```turtle
         <landmark/wap_1> a poso:Landmark ;
-        rdfs:label "Wireless Access Point 1"@en ;
-        poso:hasPosition [ a poso:AbsolutePosition ;
-            poso:hasAccuracy [ ... ] ;
-            poso:xAxisValue [ ... ] ;
-            poso:yAxisValue [ ... ] ;
-            poso:zAxisValue [ ... ] ] .
+            rdfs:label "Wireless Access Point 1"@en ;
+            poso:hasPosition [ a poso:AbsolutePosition ;
+                poso:hasAccuracy [ ... ] ;
+                poso:xAxisValue [ ... ] ;
+                poso:yAxisValue [ ... ] ;
+                poso:zAxisValue [ ... ] ] .
+         
         <me/position/relative/wap_1> a poso:RelativeDistance ;
-        ssn:isPropertyOf <me> ; # Relative distance from <me> ...
-        poso:isRelativeTo <landmark/wap_1> ; # to <landmark/wap_1>
-        rdfs:comment "Relative position of John Doe to WAP_1"@en .
+            ssn:isPropertyOf <me> ; # Relative distance from <me> ...
+            poso:isRelativeTo <landmark/wap_1> ; # to <landmark/wap_1>
+            rdfs:comment "Relative position of John Doe to WAP_1"@en .
         <position/relative/wap_1/1646891100000> a sosa:Observation ;
-        sosa:hasFeatureOfInterest <me>, <landmark/wap_1> ;
-        sosa:observedProperty  <me/position/relative/wap_1> ;
-        sosa:resultTime "2022-03-10T06:45:00+01:00"^^xsd:dateTimeStamp ;
-        poso:madeBySystem <system/IPS> ;
-        sosa:usedProcedure poso-common:LDPL ; # Log-distance path loss
-        sosa:hasResult [ a qudt:QuantityValue ;
-            qudt:unit unit:Meter ; qudt:value "3.7"^^xsd:double ] ;
-        sosa:hasResult [ a qudt:QuantityValue ;
-            qudt:unit unit:DeciB_M ; qudt:value "-82"^^xsd:integer ] .
+            sosa:hasFeatureOfInterest <me>, <landmark/wap_1> ;
+            sosa:observedProperty  <me/position/relative/wap_1> ;
+            sosa:resultTime "2022-03-10T06:45:00+01:00"^^xsd:dateTimeStamp ;
+            poso:madeBySystem <system/IPS> ;
+            sosa:usedProcedure poso-common:LDPL ; # Log-distance path loss
+            sosa:hasResult [ a qudt:QuantityValue ;
+                qudt:unit unit:Meter ; qudt:value "3.7"^^xsd:double ] ;
+            sosa:hasResult [ a qudt:QuantityValue ;
+                qudt:unit unit:DeciB_M ; qudt:value "-82"^^xsd:integer ] .
         ```
     {% endmarkdown %}
     <aside class="notes">
@@ -412,8 +536,11 @@ hide_openhps_logo: true
         {% markdown %}
             ## Conclusion and Future Work
             - We presented the new **POSO** ontology
-            - Allignment modules for specific types of algorithms
+                - Describe positioning systems, their algorithms and technologies
+                - Describe observations and the type of observation
+            - Additional `poso-common` module for common algorithms and systems
             - Interoperability between positioning systems
+            - Future allignment modules for sensors and specific algorithms
         {% endmarkdown %}
         {% qr "https://github.org/OpenHPS/POSO", "qr-image", "H" %}
         <style>
@@ -428,10 +555,17 @@ hide_openhps_logo: true
         </style>
         <aside class="notes">
         In this paper we presented our Positioning System Ontology named POSO. This is a new
-        ontology that we have slowly started to use
+        ontology that allows you to describe positioning systems and their implemented algorithms as well as the
+        data they produce.
+
+        We included the poso common module that adds common algorithms and systems and will also be expanded in the future
+        with more algorithms, frameworks and in use systems.
 
         We hope that POSO will help in creating interoperable positioning and navigation applications. Which could
         allow us to transition to a single interoperable application to navigate both outdoors, indoor or underground.
+
+        Future work will definitely be done on additional allignment modules where we link POSO to other ontologies that already
+        describe different types of sensors that are commonly used in these types of systems.
 
         Thank you for your attention.
         </aside>
