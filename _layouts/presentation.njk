@@ -16,6 +16,7 @@
 
     <div class="reveal">
         <div class="slides">
+          {% if not hide_title_slide %}
           <section class="title-slide center" data-timing="15">
               {% if logo %}
               <div class="logos">
@@ -37,6 +38,7 @@
               <h5 class="author">{{ author | safe }}</h5>
               <h5 class="affiliation">{{ affiliation | safe }}</h5>
           </section>
+          {% endif %}
           {{ content | safe }}
         </div>
     </div>

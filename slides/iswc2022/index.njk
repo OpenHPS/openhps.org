@@ -9,8 +9,32 @@ width: 1280
 height: 720
 affiliation: Web & Information Systems Engineering Lab</br>Vrije Universiteit Brussel
 hide_openhps_logo: true
+hide_title_slide: true
 ---
 {% decktape title, page %}  <!-- 15 seconds -->
+
+<section class="title-slide center" data-timing="15">
+    {% if logo %}
+    <div class="logos">
+    <div id="vub-logo"></div>
+    <div id="wise-logo"></div>
+    {% if not hide_openhps_logo %}
+    <div id="openhps-logo"></div>
+    {% endif %}
+    </div>
+    {% endif %}
+    <h2 id="label-title">
+    {% if presentation_title %}
+    {{ presentation_title | safe }}
+    {% else %}
+    {{ title }}
+    {% endif %}
+    <small id="label-subtitle">{{ subtitle }}</small>
+    </h2>
+    <h5 class="author">{{ author | safe }}</h5>
+    <h5 class="affiliation">{{ affiliation | safe }}</h5>
+    <img src="./images/example.svg" style="opacity: 0.40; position: absolute; right: 0; top: 250px; width: 500px; height: 1000px;">
+</section>
 
 <section>
     <section data-markdown data-auto-animate data-timing="20">
@@ -82,7 +106,7 @@ hide_openhps_logo: true
         {% markdown %}
             ## Positioning System
         {% endmarkdown %}
-        <img width="70%" src="images/architecture.svg"/>
+        <img width="70%" src="./images/architecture.svg"/>
 
         <aside class="notes">
             When creating the design for our ontology we first identified what actually defines a positioning system.
@@ -201,11 +225,20 @@ hide_openhps_logo: true
 </section>
 
 <section>
+    <style>
+        img.legend {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 400px;
+        }
+    </style>
     <section data-markdown data-auto-animate data-timing="40">
         {% markdown %}
             ## Ontology Design
         {% endmarkdown %}
-        <img src="./images/systems_and_procedures.svg" style="height: 80%">
+        <img src="./images/systems_and_procedures_nolegend.svg" style="height: 85%">
+        <img src="./images/systems_and_procedures_legend.svg" class="legend">
         <aside class="notes">
             We decided to use the Semantic Sensor Network Ontology together with the Sensor, Observation, Sample and Actuator
             ontology - or SOSA for short. Both act as the core ontologies for POSO and already offer the ability to describe 
@@ -216,7 +249,8 @@ hide_openhps_logo: true
         {% markdown %}
             ## Ontology Design ...
         {% endmarkdown %}
-        <img src="./images/systems_and_procedures_1.svg" style="height: 80%">
+        <img src="./images/systems_and_procedures_1_nolegend.svg" style="height: 85%">
+        <img src="./images/systems_and_procedures_legend.svg" class="legend">
         <aside class="notes">
             Our first contribution with POSO is the ability to classify what type of system we are dealing with.
             We have the five positioning systems that we discussed earlier and in addition we also have a location
@@ -228,7 +262,8 @@ hide_openhps_logo: true
         {% markdown %}
             ## Ontology Design ...
         {% endmarkdown %}
-        <img src="./images/systems_and_procedures_2.svg" style="width: 100%">
+        <img src="./images/systems_and_procedures_2_nolegend.svg" style="height: 70%">
+        <img src="./images/systems_and_procedures_legend.svg" class="legend">
         <aside class="notes">
             Next, currently at this point in time we have three main categories of procedures or algorithms 
             that a positioning system may use. Radio propagation algorithms that convert a signal strength
@@ -244,7 +279,8 @@ hide_openhps_logo: true
         {% markdown %}
             ## Ontology Design ...
         {% endmarkdown %}
-        <img src="./images/systems_and_procedures_3.svg" style="height: 80%">
+        <img src="./images/systems_and_procedures_3_nolegend.svg" style="height: 80%">
+        <img src="./images/systems_and_procedures_legend.svg" class="legend">
         <aside class="notes">
             POSO also expands the observable properties and observation results with
             position, velocity, acceleration and orientation.
@@ -261,7 +297,8 @@ hide_openhps_logo: true
         {% markdown %}
             ## Ontology Design ...
         {% endmarkdown %}
-        <img src="./images/systems_and_procedures_4.svg" style="height: 80%">
+        <img src="./images/systems_and_procedures_4_nolegend.svg" style="height: 80%">
+        <img src="./images/systems_and_procedures_legend.svg" class="legend">
         <aside class="notes">
             Finally, the SOSA core ontology offers the class 'Feature of Interest' which is defined as 
             'the thing whose property is being estimated or calculated in the course of an observation
@@ -275,106 +312,6 @@ hide_openhps_logo: true
             that could trigger the update of a position. For more information, please check the supplemental material.
         </aside>
     </section>
-</section>
-
-<section data-markdown data-auto-animate data-timing="40">
-    {% markdown %}
-        ## Tracked Entities (`poso:TrackedFeature`)
-
-        *A feature of interest that is being tracked by a positioning system. This is the feature for which a position is observed.*
-        
-        **Example:**
-        ```turtle
-        <me> a poso:TrackedFeature, foaf:Person ;
-            foaf:name "Maxim Van de Wynckel"@en ;
-            poso:hasPosition <me/position> ;
-            poso:hasOrientation <me/orientation> .
-        ```
-    {% endmarkdown %}
-    <aside class="notes">
-    
-    </aside>
-</section>
-
-<section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Entity Properties (`poso:AbsolutePosition` and `poso:Orientation`)
-
-            *A feature of interest that is being tracked by a positioning system. This is the feature for which a position is observed.*
-            
-            **Example:**
-            ```turtle
-            <me/position> a poso:AbsolutePosition ;
-                rdfs:comment "Absolute position of Maxim Van de Wynckel"@en ;
-                poso:hasAccuracy <me/position/accuracy> .
-            <me/position/accuracy> a ssns:Accuracy ;
-                schema:maxValue "25.0"^^xsd:float ; schema:unitCode unit:CentiM .
-             
-            <me/orientation> a poso:Orientation ;
-                rdfs:comment: "Orientation of Maxim Van de Wynckel"@en ;
-                poso:hasAccuracy <me/orientation/accuracy> .
-            <me/orientation/accuracy> a ssns:Accuracy ;
-                schema:maxValue "2.0"^^xsd:float ; schema:unitCode unit:Deg .
-            ```
-        {% endmarkdown %}
-        <aside class="notes">
-        
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Entity Properties ...
-            ### Granularity
-
-            **Example:**
-            ```turtle
-            <me> a poso:TrackedFeature, foaf:Person ;
-                foaf:name "Maxim Van de Wynckel"@en ;
-                poso:hasPosition <me/position>, <me/location> ;
-             
-            <me/position> a poso:AbsolutePosition ;
-                rdfs:comment "Absolute position of Maxim Van de Wynckel"@en ;
-                poso:hasAccuracy <me/position/accuracy> .
-            <me/position/accuracy> a ssns:Accuracy ;
-                schema:maxValue "25.0"^^xsd:float ; schema:unitCode unit:CentiM .
-             
-            <me/location> a poso:AbsolutePosition ;
-                rdfs:comment "Approximate Location of Maxim Van de Wynckel"@en ;
-                poso:hasAccuracy <me/position/accuracy> .
-            <me/location/accuracy> a ssns:Accuracy ;
-                schema:minValue "10.0"^^xsd:float ; schema:unitCode unit:M .
-            ```
-        {% endmarkdown %}
-        <aside class="notes">
-        
-        </aside>
-    </section>
-</section>
-
-<section data-markdown data-auto-animate data-timing="40">
-    {% markdown %}
-        ## Design Methodology
-        1. Design constraints 
-        2. First basic prototype (IPIN 2022)
-        3. Mapping of POSO to our framework
-    {% endmarkdown %}
-
-    <aside class="notes">
-        Our ontology design methodology was based on our own generic hybrid positioning system framework named OpenHPS
-        as well as existing datasets for positioning systems such as indoor positioning dataset or the ambient assisted living 
-        evaluation competition. Our design constraints for the ontology that we designed were very similar to the design constraints 
-        of our framework - mainly allowing a large range of use cases both in 2D or 3d positioning, indoor, outdoor
-        or something smaller like a table.
-
-        After some initial experiments where we tried to describe a positioning system with existing ontologies
-        We created a first prototype for the Indoor Positioning and Indoor Navigation conference where we only used some of the core 
-        ontologies. With the prototype we realised that there currently were no ontologies available to correctly describe a complete positioning
-        system, which led us to create POSO.
-
-        In order to test if the POSO ontology could represent all data that makes up a positioning system we mapped all the data types
-        that we use in our positioning systems to RDF using POSO.
-    </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
@@ -399,7 +336,7 @@ hide_openhps_logo: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Example
+        ## Usage
         ### Positioning System
 
         ```turtle
@@ -440,7 +377,38 @@ hide_openhps_logo: true
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Example
+        ## Usage
+        ### Tracked Feature and Properties
+
+        ```turtle
+        <me> a poso:TrackedFeature, foaf:Person ;
+            foaf:name "Maxim Van de Wynckel"@en ;
+            poso:hasPosition <me/position> ;
+            poso:hasOrientation <me/orientation> .
+         
+        <me/position> a poso:AbsolutePosition ;
+            rdfs:comment "Absolute position of Maxim Van de Wynckel"@en ;
+            poso:hasAccuracy <me/position/accuracy> .
+        <me/position/accuracy> a ssns:Accuracy ;
+            schema:maxValue "2.0"^^xsd:float ; schema:unitCode unit:M .
+            
+        <me/orientation> a poso:Orientation ;
+            rdfs:comment: "Orientation of Maxim Van de Wynckel"@en ;
+            poso:hasAccuracy <me/orientation/accuracy> .
+        <me/orientation/accuracy> a ssns:Accuracy ;
+            schema:maxValue "15.0"^^xsd:float ; schema:unitCode unit:Deg .
+        ```
+    {% endmarkdown %}
+    <aside class="notes">
+        Once we have a positioning system we identify the properties of something that we are tracking, in this example me.
+        I as a tracked feature and person have a position and orientation, each with an expected maximum accuracy.
+        We will refer to these properties in the next examples.
+    </aside>
+</section>
+
+<section data-markdown data-auto-animate data-timing="40">
+    {% markdown %}
+        ## Usage
         ### Observation
 
         ```turtle
@@ -459,13 +427,17 @@ hide_openhps_logo: true
         ```
     {% endmarkdown %}
     <aside class="notes">
-    This is an example observation of the outdoor positioning system for the property 'position'.
+    This is an example observation of the outdoor positioning system for the property 'position'. We use GeoSPARQL as the 
+    method to represent the position. This example could be seen as a wrapper around expressing a static geometric description. 
+    Instead of simply setting the geometry of an object or person - we use an observation
+    so we know the system that obtained the geometry together with its internal workings , the time of the result and
+    the expected granularity of the property.
     </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Example
+        ## Usage
         ### Observation ...
 
         ```turtle
@@ -489,17 +461,20 @@ hide_openhps_logo: true
         ```
     {% endmarkdown %}
     <aside class="notes">
-    Next, we have an observation of the indoor positioning system. Here we clearly mention which
+    Next, we have an observation of the indoor positioning system. Here we mention which
     technique was used to obtain this observation. Other than the outdoor positioning system our result is
-    an absolute position within a deployment. We assume in this example that the deployment has a coordinate
-    reference system that can be used to map this cartesian coordinate to a geographical location if needed.
+    an absolute position result defined in POSO. We assume in this example that the deployment where the absolute
+    position is located has a coordinate
+    reference system that can be used to map this cartesian coordinate to a geographical location if needed. POSO
+    also provides the ability to indicate a coordinate reference system of an absolute position. However,
+    the actual implementation of the reference system is not handled by POSO.
     </aside>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
     {% markdown %}
-        ## Example
-        ### Relative Positions
+        ## Usage
+        ### Relative Position
 
         ```turtle
         <landmark/wap_1> a poso:Landmark ;
@@ -527,7 +502,22 @@ hide_openhps_logo: true
         ```
     {% endmarkdown %}
     <aside class="notes">
-    
+    Relative positioning from one feature of interest to another is also an important part of a positioning system. 
+    POSO by default includes a relative distance, angle or velocity as types of relative positions.
+
+    In this example we have a relative position to a wireless access point. In indoor positioning systems you would have multiple
+    of these relative positions in order to either perform multilateration or - in the case of this example
+    perform fingerprinting.
+
+    We have a landmark for our access point with a static absolute position. Next we have a property for 
+    this relative position. With POSO we can define that this relative position is for the relative distance from 
+    me to the landmark. While for distance the direction does not really matter that indicates from which feature to which
+    the property is relative to - for things like relative angle it does matter.
+
+    Finally, we show an observation created by our indoor positioning system where we have the raw relative signal
+    strength to the landmark and the relative distance converted using a log distance path loss model that we specified
+    using sosa:usedProcedure.
+
     </aside>
 </section>
 
