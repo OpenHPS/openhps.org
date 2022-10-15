@@ -103,7 +103,18 @@ h1, h2, h3, h4, h5 {
 }
 
 .reveal .slides section.title-slide {
-    height: auto;
+    height: 100%;
+}
+
+.reveal .slides section.title-slide .slide-wrapper {
+    height: 550px;
+    margin-top: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-bottom: auto;
 }
 
 .title-slide {
@@ -143,8 +154,8 @@ h1, h2, h3, h4, h5 {
     width: 100%;
     height: 100px;
     position: absolute;
-    bottom: -250px;
-    left: -15px;
+    bottom: 0;
+    left: 0;
     overflow: hidden;
 }
 

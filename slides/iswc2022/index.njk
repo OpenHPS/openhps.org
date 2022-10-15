@@ -14,26 +14,39 @@ hide_title_slide: true
 {% decktape title, page %}  <!-- 15 seconds -->
 
 <section class="title-slide center" data-timing="15">
-    {% if logo %}
-    <div class="logos">
-    <div id="vub-logo"></div>
-    <div id="wise-logo"></div>
-    {% if not hide_openhps_logo %}
-    <div id="openhps-logo"></div>
-    {% endif %}
+    <div class="slide-wrapper">
+        {% if logo %}
+        <div class="logos">
+        <div id="vub-logo"></div>
+        <div id="wise-logo"></div>
+        {% if not hide_openhps_logo %}
+        <div id="openhps-logo"></div>
+        {% endif %}
+        </div>
+        {% endif %}
+        <h2 id="label-title">
+        {% if presentation_title %}
+        {{ presentation_title | safe }}
+        {% else %}
+        {{ title }}
+        {% endif %}
+        <small id="label-subtitle">{{ subtitle }}</small>
+        </h2>
+        <h5 class="author">{{ author | safe }}</h5>
+        <h5 class="affiliation">{{ affiliation | safe }}</h5>
     </div>
-    {% endif %}
-    <h2 id="label-title">
-    {% if presentation_title %}
-    {{ presentation_title | safe }}
-    {% else %}
-    {{ title }}
-    {% endif %}
-    <small id="label-subtitle">{{ subtitle }}</small>
-    </h2>
-    <h5 class="author">{{ author | safe }}</h5>
-    <h5 class="affiliation">{{ affiliation | safe }}</h5>
-    <img src="./images/example.svg" style="opacity: 0.40; position: absolute; right: 0; top: 250px; width: 500px; height: 1000px;">
+    <img src="./images/example.svg" class="poso-example">
+    <style>
+        img.poso-example {
+            object-fit: contain;
+            opacity: 0.35; 
+            position: absolute; 
+            right: -100px; 
+            bottom: -100px; 
+            width: 50%; 
+            height: 100%;
+        }
+    </style>
 </section>
 
 <section>
@@ -334,45 +347,78 @@ hide_title_slide: true
     </aside>
 </section>
 
-<section data-markdown data-auto-animate data-timing="40">
-    {% markdown %}
-        ## Usage
-        ### Positioning System
+<section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Usage
+            ### Positioning System
 
-        ```turtle
-        dbr:Some_Unversity a ssn:Deployment .
-        <deployment/building_a> a poso:IndoorDeployment, geosparql:Feature ;
-            rdfs:label "Building A"@en ;
-            geosparql:hasGeometry [ 
-                a geosparql:Geometry ;
-                geosparql:asWKT "..."^^geosparql:wktLiteral ] .
-         
-        <system/OPS> a poso:LocationBasedService ;
-            rdfs:label "Outdoor campus positioning"@en ;
-            ssn:hasSubSystem posoc:GPS ;
-            ssn:hasDeployment dbr:Some_University .
-        <system/IPS> a poso:IndoorPositioningSystem ;
-            rdfs:label "Indoor campus positioning"@en ;
-            ssn:hasDeployment <deployment/building_a> ;
-            ssn:implements posoc:KNNFingerprinting .
-        <system/CampusPositioning> a poso:IntegratedPositioningSystem ;
-            rdfs:label "Hybrid campus positioning system"@en ;
-            ssn:hasSubSystem  <system/OPS>, <system/IPS> ;
-            ssn:implements posoc:WeightedAccuracyFusion .
-        ```
-    {% endmarkdown %}
-    <aside class="notes">
-    So let's give a simple example on how POSO would be used to describe positioning systems and their data. 
-    Here you see three positioning systems.
-    An outdoor positioning system that is actually a location based service using GPS behind the scenes.
-    We use it outdoor throughout a univerity deployment.
+            ```turtle
+            dbr:Some_Unversity a ssn:Deployment .
+            <deployment/building_a> a poso:IndoorDeployment, geosparql:Feature ;
+                rdfs:label "Building A"@en ;
+                geosparql:hasGeometry [ 
+                    a geosparql:Geometry ;
+                    geosparql:asWKT "..."^^geosparql:wktLiteral ] .
+             
+            <system/OPS> a poso:LocationBasedService ;
+                rdfs:label "Outdoor campus positioning"@en ;
+                ssn:hasSubSystem posoc:GPS ;
+                ssn:hasDeployment dbr:Some_University .
+            <system/IPS> a poso:IndoorPositioningSystem ;
+                rdfs:label "Indoor campus positioning"@en ;
+                ssn:hasDeployment <deployment/building_a> ;
+                ssn:implements posoc:KNNFingerprinting .
+            <system/CampusPositioning> a poso:IntegratedPositioningSystem ;
+                rdfs:label "Hybrid campus positioning system"@en ;
+                ssn:hasSubSystem  <system/OPS>, <system/IPS> ;
+                ssn:implements posoc:WeightedAccuracyFusion .
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+        So let's give a simple example on how POSO would be used to describe positioning systems and their data. 
+        Here you see three positioning systems.
+        An outdoor positioning system that is actually a location based service using GPS behind the scenes.
+        We use it outdoor throughout a univerity deployment.
 
-    An indoor positioning system that implements a specific fingerprinting algorithm in a specified building.
-    The building then contains information about its geometry which could be used to map it to geographical coordinates.
+        An indoor positioning system that implements a specific fingerprinting algorithm in a specified building.
+        The building then contains information about its geometry which could be used to map it to geographical coordinates.
 
-    And finally a single positioning system that is a hybrid system using both the outdoor and indoor
-    systems. We describe this as two subsystems and we implement a simple weighted accuracy fusion of the output for both systems.
-    </aside>
+        And finally a single positioning system that is a hybrid system using both the outdoor and indoor
+        systems. We describe this as two subsystems and we implement a simple weighted accuracy fusion of the output for both systems.
+        </aside>
+    </section>
+    <section data-markdown data-auto-animate data-timing="40">
+        {% markdown %}
+            ## Usage
+            ### Positioning System
+
+            ```turtle {8-11}
+            dbr:Some_Unversity a ssn:Deployment .
+            <deployment/building_a> a poso:IndoorDeployment, geosparql:Feature ;
+                rdfs:label "Building A"@en ;
+                geosparql:hasGeometry [ 
+                    a geosparql:Geometry ;
+                    geosparql:asWKT "..."^^geosparql:wktLiteral ] .
+             
+            <system/OPS> a poso:LocationBasedService ;
+                rdfs:label "Outdoor campus positioning"@en ;
+                ssn:hasSubSystem posoc:GPS ;
+                ssn:hasDeployment dbr:Some_University .
+            <system/IPS> a poso:IndoorPositioningSystem ;
+                rdfs:label "Indoor campus positioning"@en ;
+                ssn:hasDeployment <deployment/building_a> ;
+                ssn:implements posoc:KNNFingerprinting .
+            <system/CampusPositioning> a poso:IntegratedPositioningSystem ;
+                rdfs:label "Hybrid campus positioning system"@en ;
+                ssn:hasSubSystem  <system/OPS>, <system/IPS> ;
+                ssn:implements posoc:WeightedAccuracyFusion .
+            ```
+        {% endmarkdown %}
+        <aside class="notes">
+
+        </aside>
+    </section>
 </section>
 
 <section data-markdown data-auto-animate data-timing="40">
@@ -481,9 +527,7 @@ hide_title_slide: true
             rdfs:label "Wireless Access Point 1"@en ;
             poso:hasPosition [ a poso:AbsolutePosition ;
                 poso:hasAccuracy [ ... ] ;
-                poso:xAxisValue [ ... ] ;
-                poso:yAxisValue [ ... ] ;
-                poso:zAxisValue [ ... ] ] .
+                poso:xAxisValue [ ... ] ; poso:yAxisValue [ ... ] ; poso:zAxisValue [ ... ] ] .
          
         <me/position/relative/wap_1> a poso:RelativeDistance ;
             ssn:isPropertyOf <me> ; # Relative distance from <me> ...
@@ -494,7 +538,7 @@ hide_title_slide: true
             sosa:observedProperty  <me/position/relative/wap_1> ;
             sosa:resultTime "2022-03-10T06:45:00+01:00"^^xsd:dateTimeStamp ;
             poso:madeBySystem <system/IPS> ;
-            sosa:usedProcedure poso-common:LDPL ; # Log-distance path loss
+            sosa:usedProcedure posoc:LDPL ; # Log-distance path loss
             sosa:hasResult [ a qudt:QuantityValue ;
                 qudt:unit unit:Meter ; qudt:value "3.7"^^xsd:double ] ;
             sosa:hasResult [ a qudt:QuantityValue ;

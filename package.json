@@ -20,7 +20,7 @@
     "deploy": "netlify deploy --prod --dir=_site"
   },
   "dependencies": {
-    "@11ty/eleventy": "2.0.0-canary.16",
+    "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-img": "^2.0.1",
     "@11ty/eleventy-navigation": "^0.3.5",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
@@ -63,6 +63,6 @@
     "unzip-stream": "^0.3.1"
   },
   "devDependencies": {
-    "netlify-cli": "^10.13.0"
+    "netlify-cli": "^12.0.9"
   }
 }
