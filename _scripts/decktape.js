@@ -23,8 +23,15 @@ async function decktape(el) {
             hash: hex
         });
         queue.push({
+            title,
+            url: url + "&presenter",
+            pdf: path.join(page.outputPath, `../${page.fileSlug}_presentation-16x9.pdf`),
+            widescreen: true,
+            hash: hex
+        });
+        queue.push({
             title: title + " | Author Version",
-            url,
+            url: url + "&presenter",
             pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation.pdf`),
             widescreen: false,
             hash: hex
@@ -39,7 +46,7 @@ async function decktape(el) {
         });
         queue.push({
             title: title + " | Author Version",
-            url,
+            url: url + "&presenter",
             pdf: path.join(page.outputPath, `../${page.fileSlug}_author_presentation-16x9.pdf`),
             widescreen: true,
             hash: hex

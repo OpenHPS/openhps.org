@@ -61,8 +61,8 @@ module.exports = function (el) {
   md.use(markdownItAnchor);
   md.use(markdownItLatex);
   md.use(markdownItAttrs, {
-    leftDelimiter: '{',
-    rightDelimiter: '}',
+    leftDelimiter: '{$',
+    rightDelimiter: '$}',
     allowedAttributes: []
   });
   el.addPlugin(shikiTwoslash, { 
