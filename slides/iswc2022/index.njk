@@ -84,8 +84,7 @@ hide_title_slide: true
 
             On the slide you see two similar output positions from two real location based services. 
             For consumers of this data, the output has enough context to use it. However, for other positioning systems
-            that want to use further compute or reason about the data there is a lack of information. Both
-            outputs were obtained while inside in a building.
+            that want to use further compute or reason about the data there is a lack of information.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
@@ -104,13 +103,16 @@ hide_title_slide: true
             }
         </style>
         <aside class="notes">
+            Both outputs were obtained while inside in a building.
             In the first example the output is from an outdoor positioning system that shows
             an incorrect location due to the lack of GPS signals inside.
             In the second example the output is from an indoor positioning system. Despite having a higher
             self-reported accuracy, this second output is more reliable inside our building than GPS signals.
+            With the current amount of information that only includes the accuracy - the incorrect outdoor location
+            would most likely be used.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="45">
         {% markdown %}
             ## Location-based Services ...
         {% endmarkdown %}
@@ -131,12 +133,28 @@ hide_title_slide: true
 </section>
 
 <section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="45">
         {% markdown %}
             ## Positioning System
         {% endmarkdown %}
-        <img width="70%" src="./images/architecture.svg"/>
-
+        <div class="architecture-wrapper">
+            <img class="system-image" src="images/architecture.svg"/>
+            <img data-fragment-index="3" class="system-image fragment fade-in-then-out" src="images/architecture2.svg"/>
+            <img data-fragment-index="2" class="system-image fragment fade-in-then-out" src="images/architecture3.svg"/>
+            <img data-fragment-index="1" class="system-image fragment fade-in-then-out" src="images/architecture1.svg"/>
+        </div>
+        <style>
+            img.system-image {
+                position: absolute;
+                width: 70%;
+                background-color: white;
+            }
+            div.architecture-wrapper {
+                margin-left: auto;
+                margin-right: auto;
+                width: 70%;  
+            }
+        </style>
         <aside class="notes">
             When creating the design for our ontology we first identified what actually defines a positioning system.
 
@@ -151,34 +169,7 @@ hide_title_slide: true
             position.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Positioning System
-        {% endmarkdown %}
-        <img width="70%" src="images/architecture1.svg"/>
-
-        <aside class="notes">
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Positioning System
-        {% endmarkdown %}
-        <img width="70%" src="images/architecture3.svg"/>
-
-        <aside class="notes">
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
-        {% markdown %}
-            ## Positioning System
-        {% endmarkdown %}
-        <img width="70%" src="images/architecture2.svg"/>
-
-        <aside class="notes">
-        </aside>
-    </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="55">
         {% markdown %}
             ## Positioning System ...
         {% endmarkdown %}
@@ -223,14 +214,13 @@ hide_title_slide: true
         inertial positining systems that detect the movement,
         integrated or also called hybrid positioning system that combines other systems or various technnologies to obtain a result.
         Finally, we also define indoor positioning systems as a seperate category. While there is no ISO standard that
-        distinguishes between an indoor positioning system and an integrated positioning system that is commonly used for these
-        types of system. We added it as a type to more precicely identify this common type of system. 
+        distinguishes an indoor positioning system. We added it as a type to more precicely identify this common type of positioning system. 
         </aside>
     </section>
 </section>
 
 <section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="50">
         {% markdown %}
             ## Tracked Entities and Their Properties
         {% endmarkdown %}
@@ -243,9 +233,7 @@ hide_title_slide: true
             individual observations of a value. The most important types of data for positioning system is a position,
             orientation and velocity. But the ontology should still allow for extensions of other sensor data if needed.
 
-            Finally, a system may provide a position with different granularities. For example, an indoor positioning
-            system might be able to track your location in an office with 1 meter accuracy. But that would not mean that you want
-            other systems or applications to know this accurate position. Or to give a more realistic example, you might have
+            Finally, a system may provide a position with different granularities. For example, you might have
             a simple system that knows your room based on a QR-code check-in system. The system can report that you are 'In'
             a certain room until you check out - but at the same time your system also knows that at the second you scan the QR-code
             you are standing right in front of it. 
@@ -262,7 +250,7 @@ hide_title_slide: true
             width: 400px;
         }
     </style>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="25">
         {% markdown %}
             ## Ontology Design
         {% endmarkdown %}
@@ -274,7 +262,7 @@ hide_title_slide: true
             systems and their implemented 'procedures'. SOSA extends this with observable properties and observations of these properties.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Ontology Design ...
         {% endmarkdown %}
@@ -304,7 +292,7 @@ hide_title_slide: true
             fingerprinting techniques, dead reckoning, odometry and simultaneous localisation and mapping 
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Ontology Design ...
         {% endmarkdown %}
@@ -316,10 +304,10 @@ hide_title_slide: true
 
             The position can be either an absolute or relative position similar to how many 
             existing work classifies the two different types.
-            Both velocity and acceleration have two subclasses for linear and angular velocity or acceleration.
 
             Our decision to make these types of properties a subclass of both an observable property and a result
-            was to allow static values.
+            was to allow static values. In our ontology we have more specfic properties such as linear and angular
+            velocity and acceleration.
         </aside>
     </section>
     <section data-markdown data-auto-animate data-timing="40">
@@ -334,11 +322,10 @@ hide_title_slide: true
             to arrive at a result.' We expanded on this by adding a tracked feature and landmark.
             Landmarks are an important aspect in positioning as they are the anchors in many different positioning
             techniques. We added a few basic types of landmarks to make it clear how we expect this type of
-            class to be used. Mainly, auditory, visual and RF landmarks with a BluetoothBeacon being a subclass of RF landmarks.
+            class to be used.
 
             POSO on itself offers many other useful classes and predicates that can be used to describe
-            a positioning system and its data such as additional stimulus classes for different types of movement
-            that could trigger the update of a position. For more information, please check the supplemental material.
+            a positioning system and its data. For more information, please check the supplemental material.
         </aside>
     </section>
 </section>
@@ -362,7 +349,7 @@ hide_title_slide: true
     <aside class="notes">
         We envision POSO as the main ontology that describes different categories of systems, algorithms and techniques.
         But with the large amount of IoT, geospatial and domain specific ontologies available we want
-        to add multiple allignment modules for POSO. One of the modules that we included in the paper is the poso-common module
+        to add multiple allignment modules for POSO. The additional module that we included in the paper is the poso-common module
         that includes individuals for different algorithms, existing satellite positioning systems, technologies, protocols and frameworks.
 
         This module can be used to describe the base of a positioning system, which is often comprised of multiple existing technologies
@@ -371,7 +358,7 @@ hide_title_slide: true
 </section>
 
 <section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="10">
         {% markdown %}
             ## Usage
             ### Positioning System
@@ -401,17 +388,9 @@ hide_title_slide: true
         <aside class="notes">
         So let's give a simple example on how POSO would be used to describe positioning systems and their data. 
         Here you see three positioning systems.
-        An outdoor positioning system that is actually a location based service using GPS behind the scenes.
-        We use it outdoor throughout a univerity deployment.
-
-        An indoor positioning system that implements a specific fingerprinting algorithm in a specified building.
-        The building then contains information about its geometry which could be used to map it to geographical coordinates.
-
-        And finally a single positioning system that is a hybrid system using both the outdoor and indoor
-        systems. We describe this as two subsystems and we implement a simple weighted accuracy fusion of the output for both systems.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="10">
         {% markdown %}
             ## Usage
             ### Positioning System
@@ -439,10 +418,10 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
-
+            An outdoor positioning system that is actually a location based service using GPS behind the scenes.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="15">
         {% markdown %}
             ## Usage
             ### Positioning System
@@ -470,10 +449,12 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
+        An indoor positioning system that implements a specific fingerprinting algorithm in a specified building.
+        The building then contains information about its geometry (which could be used to map it to geographical coordinates).
 
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="15">
         {% markdown %}
             ## Usage
             ### Positioning System
@@ -501,13 +482,15 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
-
+            And finally a hybrid system using both the outdoor and indoor
+            systems. We describe this as two subsystems and we implement a high level sensor fusion algorithm
+            that describes how both systems contribute to the output.
         </aside>
     </section>
 </section>
 
 <section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Usage
             ### Tracked Feature and Properties
@@ -540,7 +523,7 @@ hide_title_slide: true
 </section>
 
 <section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Usage
             ### Observation
@@ -561,17 +544,17 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
-        This is an example observation of the outdoor positioning system for the property 'position'. We use GeoSPARQL as the 
-        method to represent the position. This example could be seen as a wrapper around expressing a static geometric description. 
+        This is an example observation of the outdoor positioning system for the property 'position'. We use GeoSPARQL
+        to define the well known text represetation of the position. This example could be seen as a wrapper around expressing a static geometric description. 
         Instead of simply setting the geometry of an object or person - we use an observation
-        so we know the system that obtained the geometry together with its internal workings , the time of the result and
-        the expected granularity of the property.
+        so we know the system that obtained the geometry together with its internal workings , the time of the result,
+        the expected granularity of the property and historical observations.
         </aside>
     </section>
 </section>
 
 <section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="5">
         {% markdown %}
             ## Usage
             ### Observation ...
@@ -597,16 +580,10 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
-        Next, we have an observation of the indoor positioning system. Here we mention which
-        technique was used to obtain this observation. Other than the outdoor positioning system our result is
-        an absolute position result defined in POSO. We assume in this example that the deployment where the absolute
-        position is located has a coordinate
-        reference system that can be used to map this cartesian coordinate to a geographical location if needed. POSO
-        also provides the ability to indicate a coordinate reference system of an absolute position. However,
-        the actual implementation of the reference system is not handled by POSO.
+        Next, we have an observation of the indoor positioning system.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="5">
         {% markdown %}
             ## Usage
             ### Observation ...
@@ -632,9 +609,10 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
+            Here we mention which technique was used to obtain this observation using sosa:usedProcedure
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="30">
         {% markdown %}
             ## Usage
             ### Observation ...
@@ -660,12 +638,18 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
+            Other than the outdoor positioning system our result is
+            an absolute position result defined in POSO. We assume in this example that the deployment where the absolute
+            position is located has a coordinate
+            reference system that can be used to map this cartesian coordinate to a geographical location if needed. POSO
+            also provides the ability to indicate a coordinate reference system of an absolute position. However,
+            the actual implementation of the reference system is not handled by POSO.
         </aside>
     </section>
 </section>
 
 <section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="15">
         {% markdown %}
             ## Usage
             ### Relative Position
@@ -696,23 +680,9 @@ hide_title_slide: true
         <aside class="notes">
         Relative positioning from one feature of interest to another is also an important part of a positioning system. 
         POSO by default includes a relative distance, angle or velocity as types of relative positions.
-
-        In this example we have a relative position to a wireless access point. In indoor positioning systems you would have multiple
-        of these relative positions in order to either perform multilateration or - in the case of this example
-        perform fingerprinting.
-
-        We have a landmark for our access point with a static absolute position. Next we have a property for 
-        this relative position. With POSO we can define that this relative position is for the relative distance from 
-        me to the landmark. While for distance the direction does not really matter that indicates from which feature to which
-        the property is relative to - for things like relative angle it does matter.
-
-        Finally, we show an observation created by our indoor positioning system where we have the raw relative signal
-        strength to the landmark and the relative distance converted using a log distance path loss model that we specified
-        using sosa:usedProcedure.
-
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Usage
             ### Relative Position
@@ -741,9 +711,12 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
+            In this example we have a relative position to a wireless access point. In indoor positioning systems you would have multiple
+            of these relative positions in order to either perform multilateration or - in the case of this example
+            perform fingerprinting. We describe the landmark for our access point with a static absolute position. 
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="20">
         {% markdown %}
             ## Usage
             ### Relative Position
@@ -772,9 +745,13 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
+        Next we have a property for 
+        this relative position. With POSO we can define that this relative position is for the relative distance from 
+        me to the landmark. While for distance the direction does not really matter that indicates from which feature to which
+        the property is relative to - for things like relative angle it does matter.
         </aside>
     </section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="15">
         {% markdown %}
             ## Usage
             ### Relative Position
@@ -803,12 +780,15 @@ hide_title_slide: true
             ```
         {% endmarkdown %}
         <aside class="notes">
+            Finally, we show an observation created by our indoor positioning system where we have the raw relative signal
+            strength to the landmark and the relative distance converted using a log distance path loss model that we specified
+            using sosa:usedProcedure.
         </aside>
     </section>
 </section>
 
 <section>
-    <section data-markdown data-auto-animate data-timing="40">
+    <section data-markdown data-auto-animate data-timing="45">
         {% markdown %}
             ## Conclusion and Future Work
             - We presented the new **POSO** ontology
@@ -853,7 +833,7 @@ hide_title_slide: true
         ontology that allows you to describe positioning systems and their implemented algorithms as well as the
         data they produce.
 
-        We included the poso common module that adds common algorithms and systems and will also be expanded in the future
+        We included the poso common module that will also be expanded in the future
         with more algorithms, frameworks and in use systems.
 
         We hope that POSO will help in creating interoperable positioning and navigation applications. Which could
