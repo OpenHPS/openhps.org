@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { moveSync, copySync } = require('fs-extra');
+const { copySync } = require('fs-extra');
 const { 
     isGitHubAvailable, 
     fetchLatestBuild, 
@@ -8,6 +8,7 @@ const {
     rmdir, 
     downloadBranch 
 } = require("./utils");
+const rimraf = require('rimraf');
 
 /**
  * Documentations to download from github.com/OpenHPS/openhps-*
@@ -31,7 +32,8 @@ const modules = [
     "rdf",
     "solid",
     "openvslam",
-    "orb-slam3"
+    "orb-slam3",
+    "web"
 ];
 
 async function buildDocs() {
@@ -45,14 +47,15 @@ async function buildDocs() {
             const module = modules[i];
             const stream = await download(module);
             console.log(chalk.white(`\tRemoving API documentation for '${module}'`));
-            await rmdir(module);
+            await rimraf(module);
             console.log(chalk.white(`\tExtracting API documentation for '${module}'`));
             await extractZip(`_site/docs/${module}`, stream);
             copySync(`_site/docs/${module}/openhps-${module}-gh-pages`, `_site/docs/${module}`, { overwrite: true });
-            await rmdir(`_site/docs/${module}/openhps-${module}-gh-pages`);
+            console.log(chalk.white(`\tCleaning up...`));
+            await rimraf(`_site/docs/${module}/openhps-${module}-gh-pages`, { retryDelay: 100, maxRetries: 3 });
         } catch(ex) {
             console.error(chalk.red(`\tUnable to get documentation for ${modules[i]}`));
-            // console.error(ex);
+            console.error(ex);
         }
     }
 }

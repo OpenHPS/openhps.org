@@ -1,6 +1,7 @@
 const axios = require('axios');
 const unzip = require('unzip-stream');
 const rimraf = require('rimraf');
+const chalk = require('chalk');
 require('dotenv').config();
 
 const token = process.env.GITHUB_TOKEN;
@@ -68,12 +69,9 @@ async function extractZip(file, stream) {
 
 async function rmdir(dir) {
     return new Promise((resolve, reject) => {
-        rimraf(dir, (err) => {
-            if (err) {
-                console.error(chalk.red("\t" + err));
+        rimraf(dir).then(resolve).catch(err => {
+            console.error(chalk.red("\t" + err));
                 reject();
-            }
-            resolve();
         });
     });
 }
