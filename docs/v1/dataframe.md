@@ -23,6 +23,22 @@ frame.addObject(myObject);
 
 A basic data frame supports the addition of objects. Extended versions of this basic data frame also add additional sensor data.
 
+### Adding sensors
+```ts twoslash
+import { DataFrame, Accelerometer, Acceleration } from '@openhps/core';
+
+const frame = new DataFrame();
+// Add an accelerometer sensor with uid "accelerometer" a default acceleration value and a frequency of 50 Hz
+frame.addSensor(new Accelerometer("accelerometer", new Acceleration(1, 2, 3), 50));
+
+// ...
+
+// Get any sensor of a specific type
+const sensor = frame.getSensor(Accelerometer);
+console.log(`${sensor.value.x}, ${sensor.value.y}, ${sensor.value.z}`); 
+// Expected output: 1, 2, 3
+```
+
 ## Creating a custom data frame
 Similar to data objects, decorators have to be used to indicate a serializable data frame.
 

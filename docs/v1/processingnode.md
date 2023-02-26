@@ -54,8 +54,7 @@ With conditional processing we have a processing node that is capable of process
 ```ts twoslash
 // @strict: false
 import { ProcessingNode, DataFrame, PushOptions } from '@openhps/core';
-import { VideoFrame } from '@openhps/video';
-import { IMUDataFrame } from '@openhps/imu';
+import { VideoFrame, DepthVideoFrame } from '@openhps/video';
 
 export class MyProcessingNode<
     In extends DataFrame,
@@ -65,8 +64,8 @@ export class MyProcessingNode<
         return new Promise((resolve, reject) => {
             if (frame instanceof VideoFrame) {
                 // Video data frame processing
-            } else if (frame instanceof IMUDataFrame) {
-                // IMU data frame processing
+            } else if (frame instanceof DepthVideoFrame) {
+                // Depth video data frame processing
             }
             resolve(frame as unknown as Out);
         });

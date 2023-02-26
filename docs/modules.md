@@ -40,3 +40,4 @@ The core module offers the processing network model and commonly used nodes for 
 ### Misc
 - **[@openhps/sphero](/docs/sphero/)** - Example implementation for controlling and receiving sensor data from Sphero toys.
 - **[@openhps/csv](/docs/csv/)** - Read and write data frames from/to CSV files.
+- **[@openhps/web](/docs/web/)** - Provides Web components

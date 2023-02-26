@@ -43,3 +43,23 @@ export class QRCode extends DataObject {
     public imageBase64: string = "";
 }
 ```
+
+## Creating a custom sensor
+Creating a sensor is done by extending the `SensorObject`. A sensor object takes an optional type generic to indicate the value it contains.
+
+```ts twoslash
+// @experimentalDecorators: true
+import { 
+    SerializableObject, 
+    LuminanceIntensityUnit,
+    SensorObject,
+    SensorValue,
+} from '@openhps/core';
+
+@SerializableObject()
+export class AmbientLightSensor extends SensorObject<SensorValue<LuminanceIntensityUnit>> {
+    constructor(uid?: string, value?: SensorValue<LuminanceIntensityUnit>, frequency?: number, displayName?: string) {
+        super(uid, value ?? new SensorValue(), frequency, displayName);
+    }
+}
+```
