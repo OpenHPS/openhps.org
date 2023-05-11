@@ -200,7 +200,8 @@ module.exports = function (el) {
       'gif',
       "mp4",
       "webm",
-      "webp"
+      "webp", 
+	"zip" 
     ],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",
