@@ -201,7 +201,7 @@ module.exports = function (el) {
       "mp4",
       "webm",
       "webp", 
-	"zip" 
+	    "zip" 
     ],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",
