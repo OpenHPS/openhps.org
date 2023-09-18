@@ -5,10 +5,9 @@ const {
     fetchLatestBuild, 
     extractZip, 
     downloadArtifact, 
-    rmdir, 
     downloadBranch 
 } = require("./utils");
-const rimraf = require('rimraf');
+const { rimrafSync } = require('rimraf');
 
 /**
  * Documentations to download from github.com/OpenHPS/openhps-*
@@ -47,12 +46,12 @@ async function buildDocs() {
             const module = modules[i];
             const stream = await download(module);
             console.log(chalk.white(`\tRemoving API documentation for '${module}'`));
-            await rimraf(module);
+            rimrafSync(module);
             console.log(chalk.white(`\tExtracting API documentation for '${module}'`));
             await extractZip(`_site/docs/${module}`, stream);
             copySync(`_site/docs/${module}/openhps-${module}-gh-pages`, `_site/docs/${module}`, { overwrite: true });
             console.log(chalk.white(`\tCleaning up...`));
-            await rimraf(`_site/docs/${module}/openhps-${module}-gh-pages`, { retryDelay: 100, maxRetries: 3 });
+            rimrafSync(`_site/docs/${module}/openhps-${module}-gh-pages`, { retryDelay: 100, maxRetries: 3 });
         } catch(ex) {
             console.error(chalk.red(`\tUnable to get documentation for ${modules[i]}`));
             console.error(ex);
