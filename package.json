@@ -65,6 +65,7 @@
     "unzip-stream": "^0.3.1"
   },
   "devDependencies": {
+    "@openhps/capacitor-bluetooth": "^0.1.6",
     "netlify-cli": "^16.3.5"
   }
 }
