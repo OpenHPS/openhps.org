@@ -107,6 +107,9 @@ jobs:
             *.pdf
             _presentations_generated.json
           key: ${{ runner.os }}-site-presentations-v2
+      - name: Installing Dependencies
+        run: |
+          node node_modules/decktape/node_modules/puppeteer/install.js
       - name: Build presentations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
