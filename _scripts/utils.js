@@ -6,9 +6,9 @@ require('dotenv').config();
 
 const token = process.env.GITHUB_TOKEN;
 
-async function fetchLatestBuild(module) {
+async function fetchLatestBuild(module, user = "OpenHPS") {
     return new Promise((resolve, reject) => {
-        const url = `https://api.github.com/repos/OpenHPS/openhps-${module}/actions/runs`;
+        const url = `https://api.github.com/repos/${user}/${module}/actions/runs`;
         axios.get(url, {
             headers: {
                 'Authorization': `token ${token}`
@@ -24,9 +24,9 @@ async function fetchLatestBuild(module) {
     });
 }
 
-async function downloadBranch(module, branch) {
+async function downloadBranch(module, branch, user = "OpenHPS") {
     return new Promise((resolve, reject) => {
-        const url = `https://github.com/OpenHPS/openhps-${module}/archive/refs/heads/${branch}.zip`;
+        const url = `https://github.com/${user}/${module}/archive/refs/heads/${branch}.zip`;
         axios.get(url, {
             responseType: "stream"
         }).then((response) => {

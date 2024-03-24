@@ -35,23 +35,45 @@ const modules = [
     "web"
 ];
 
+const externalModules = [
+    ["SemBeacon", "openhps"]
+];
+
 async function buildDocs() {
     if (!isGitHubAvailable()) {
         console.log(chalk.redBright(`Github API is not available!`));
         return;
     }
     
+    for (let i in externalModules) {
+        try {
+            const [module, user] = externalModules[i];
+            const stream = await downloadExternal(module, user);
+            console.log(chalk.white(`\tRemoving API documentation for '${user}/${module}'`));
+            rimrafSync(module);
+            console.log(chalk.white(`\tExtracting API documentation for '${user}/${module}'`));
+            await extractZip(`_site/docs/${user}/${module}`, stream);
+            copySync(`_site/docs/${user}/${module}/${module}-gh-pages`, `_site/docs/${user}/${module}`, { overwrite: true });
+            console.log(chalk.white(`\tCleaning up...`));
+            rimrafSync(`_site/docs/${user}/${module}/${module}-gh-pages`, { retryDelay: 100, maxRetries: 3 });
+        } catch(ex) {
+            console.error(chalk.red(`\tUnable to get documentation for ${externalModules[i][0]}/${externalModules[i][1]}`));
+            console.error(ex);
+        }
+    }
+
     for (let i in modules) {
         try {
-            const module = modules[i];
+            const moduleName = modules[i];
+            const module = `openhps-${moduleName}`;
             const stream = await download(module);
-            console.log(chalk.white(`\tRemoving API documentation for '${module}'`));
+            console.log(chalk.white(`\tRemoving API documentation for '${moduleName}'`));
             rimrafSync(module);
-            console.log(chalk.white(`\tExtracting API documentation for '${module}'`));
+            console.log(chalk.white(`\tExtracting API documentation for '${moduleName}'`));
             await extractZip(`_site/docs/${module}`, stream);
-            copySync(`_site/docs/${module}/openhps-${module}-gh-pages`, `_site/docs/${module}`, { overwrite: true });
+            copySync(`_site/docs/${module}/${module}-gh-pages`, `_site/docs/${module}`, { overwrite: true });
             console.log(chalk.white(`\tCleaning up...`));
-            rimrafSync(`_site/docs/${module}/openhps-${module}-gh-pages`, { retryDelay: 100, maxRetries: 3 });
+            rimrafSync(`_site/docs/${module}/${module}-gh-pages`, { retryDelay: 100, maxRetries: 3 });
         } catch(ex) {
             console.error(chalk.red(`\tUnable to get documentation for ${modules[i]}`));
             console.error(ex);
@@ -66,6 +88,19 @@ async function download(module) {
             .catch(() => {
                 console.log(chalk.bgYellowBright.black(`\tConsider moving documentation to Github Pages for '${module}'`));
                 fetchLatestBuild(module).then(latestBuild => {
+                    return downloadArtifact(latestBuild, 'docs');
+                }).then(resolve).catch(reject);
+            });
+    });
+}
+
+async function downloadExternal(user, module) {
+    return new Promise((resolve, reject) => {
+        console.log(chalk.green(`Downloading API documentation for '${user}/${module}'`));
+        downloadBranch(module, 'gh-pages', user).then(resolve)
+            .catch(() => {
+                console.log(chalk.bgYellowBright.black(`\tConsider moving documentation to Github Pages for '${user}/${module}'`));
+                fetchLatestBuild(module, user).then(latestBuild => {
                     return downloadArtifact(latestBuild, 'docs');
                 }).then(resolve).catch(reject);
             });

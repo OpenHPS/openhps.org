@@ -114,6 +114,23 @@ header_logo: /images/misc/openhps-logo.svg
     {% endmarkdown %}
 </section>
 <section data-markdown class="left">
+    <style>
+        video.ngui-loop {
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    {% markdown %}
+        ## Visual SLAM
+        Using a camera to determine the position based on the visual features in the environment.
+    {% endmarkdown %}
+    <video class="ngui-loop" autoplay controls loop>
+        <source src="./media/e1_4.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
+<section data-markdown class="left">
     {% markdown %}
         ## Bluetooth beacons
         A small (battery powered) device that sends out a BLE advertisement in a fixed interval. The received signal
@@ -657,7 +674,7 @@ header_logo: /images/misc/openhps-logo.svg
 </section>
 <section data-markdown class="left">
     {% markdown %}
-        ## Exercise 3 - Location Awareness
+        ## Exercise 3 - Location Awareness (Optional)
         ### Question 1
         > Load the spaces/features defined in our dataset (spaces.geo.json).
         The file is already loaded as the variable GEOJSON_FEATURES.
