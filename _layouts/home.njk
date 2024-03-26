@@ -29,7 +29,15 @@ layout: default.njk
       {% include "postslist.njk" %}
     </div>
     <div class="col-sm-4">      
-      <a class="twitter-timeline" data-tweet-limit="3" data-dnt="true" href="https://twitter.com/OpenHPS?ref_src=twsrc%5Etfw">Tweets by OpenHPS</a>
+      <div class="twitter-wrapper">
+        {# <div class="twitter-timeline-footer">
+          Tweets by OpenHPS
+        </div> #}
+        <a class="twitter-timeline" 
+          data-lang="en" data-dnt="true"
+          href="https://twitter.com/OpenHPS?ref_src=twsrc%5Etfw">
+        </a>
+      </div>
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
   </div>
