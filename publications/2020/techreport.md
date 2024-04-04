@@ -3,7 +3,7 @@ layout: publication.njk
 title: "OpenHPS: An Open Source Hybrid Positioning System"
 author: Maxim Van de Wynckel, Beat Signer
 date: 2020-12-29
-pdf: https://beatsigner.com/publications/openhps-an-open-source-hybrid-positioning-system.pdf
+pdf: https://solid.maximvdw.be/publications/openhps-an-open-source-hybrid-positioning-system.pdf
 link: https://arxiv.org/abs/2101.05198
 type: arxiv
 github: https://github.com/OpenHPS
