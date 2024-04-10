@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { copySync } = require('fs-extra');
+const { copySync, mkdirsSync } = require('fs-extra');
 const { 
     isGitHubAvailable, 
     fetchLatestBuild, 
@@ -8,6 +8,7 @@ const {
     downloadBranch 
 } = require("./utils");
 const { rimrafSync } = require('rimraf');
+const { mkdir } = require('fs');
 
 /**
  * Documentations to download from github.com/OpenHPS/openhps-*
@@ -36,7 +37,7 @@ const modules = [
 ];
 
 const externalModules = [
-    ["SemBeacon", "openhps"]
+    ["sembeacon", "openhps"]
 ];
 
 async function buildDocs() {
@@ -47,10 +48,12 @@ async function buildDocs() {
     
     for (let i in externalModules) {
         try {
-            const [module, user] = externalModules[i];
-            const stream = await downloadExternal(module, user);
+            const [user, module] = externalModules[i];
+            const stream = await downloadExternal(user, module);
             console.log(chalk.white(`\tRemoving API documentation for '${user}/${module}'`));
-            rimrafSync(module);
+            rimrafSync(`_site/docs/${module}`);
+            rimrafSync(`_site/docs/${user}`);
+            mkdirsSync(`_site/docs/${user}/`);
             console.log(chalk.white(`\tExtracting API documentation for '${user}/${module}'`));
             await extractZip(`_site/docs/${user}/${module}`, stream);
             copySync(`_site/docs/${user}/${module}/${module}-gh-pages`, `_site/docs/${user}/${module}`, { overwrite: true });
@@ -68,12 +71,13 @@ async function buildDocs() {
             const module = `openhps-${moduleName}`;
             const stream = await download(module);
             console.log(chalk.white(`\tRemoving API documentation for '${moduleName}'`));
-            rimrafSync(module);
+            rimrafSync(`_site/docs/${module}`);
+            rimrafSync(`_site/docs/${moduleName}`);
             console.log(chalk.white(`\tExtracting API documentation for '${moduleName}'`));
             await extractZip(`_site/docs/${module}`, stream);
-            copySync(`_site/docs/${module}/${module}-gh-pages`, `_site/docs/${module}`, { overwrite: true });
+            copySync(`_site/docs/${module}/${module}-gh-pages`, `_site/docs/${moduleName}`, { overwrite: true });
             console.log(chalk.white(`\tCleaning up...`));
-            rimrafSync(`_site/docs/${module}/${module}-gh-pages`, { retryDelay: 100, maxRetries: 3 });
+            rimrafSync(`_site/docs/${module}`, { retryDelay: 100, maxRetries: 3 });
         } catch(ex) {
             console.error(chalk.red(`\tUnable to get documentation for ${modules[i]}`));
             console.error(ex);
