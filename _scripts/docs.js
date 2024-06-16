@@ -33,7 +33,8 @@ const modules = [
     "solid",
     "openvslam",
     "orb-slam3",
-    "web"
+    "web",
+    "protobuf"
 ];
 
 const externalModules = [
