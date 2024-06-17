@@ -121,11 +121,44 @@ jobs:
         run: |
           npm run build:presentations
 
+  build_terms:
+    needs: build
+    name: 'Build Terminologies'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Load dependency cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('package.json') }}
+      - name: Load site cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/_site
+            _presentations.json
+          key: ${{ runner.os }}-site-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
+      - name: Load terms cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/_site/terms
+          key: ${{ runner.os }}-site-terms-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
+      - name: Build terminologies
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm run build:procedures
+
   deploy_netlify:
     needs:
       - build
       - build_documentation
       - build_presentations
+      - build_terms
     name: 'Deploy to Netlify'
     runs-on: ubuntu-latest
     steps:
@@ -150,6 +183,12 @@ jobs:
           path: |
             **/_site/docs
           key: ${{ runner.os }}-site-docs-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
+      - name: Load terms cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/_site/terms
+          key: ${{ runner.os }}-site-terms-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
       - name: Load presentations cache
         uses: actions/cache@v3
         with:
