@@ -2,3 +2,4 @@
 /getting-started        /docs/introduction
 /docs/getting-started   /docs/introduction
 /docs/about             /docs/introduction
+/terms/procedure/* /terms/procedure/:splat.ttl
