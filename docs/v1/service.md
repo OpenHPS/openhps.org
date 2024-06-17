@@ -16,7 +16,7 @@ menuOrder: 210
 - ```TimeService```: A time service can be accessed by every node to retrieve the current time. It can be used to synchronize the time with multiple systems.
 - ```LocationBasedService```: A developer friendly service for pulling or watching for position changes.
 
-## Create a ```DataServiceDriver```
+## ``DataServiceDriver```
 A data service driver is a database storage interface for storing any serializable object (that is any object using the ```@SerializableObject()``` decorator) with any type of identifier.
 
 The driver should implement the following methods:
@@ -28,3 +28,6 @@ The driver should implement the following methods:
 - ```delete(id: I): Promise<void>```: Delete an item.
 - ```deleteAll(query?: FilterQuery<T>): Promise<void>```: Delete all items. 
 The methods are similar to the [Node.js MongoDB API](https://mongodb.github.io/node-mongodb-native/4.1/classes/Collection.html) but with more limited features that would still allow other drivers other than MongoDB.
+
+## ``LocationBasedService```
+A location-based service is a developer friendly service for retrieving a location of an object.

@@ -6,7 +6,7 @@ menuOrder: 207
 ---
 A source node is a node that creates or wraps data into data frames. Examples on creating an active or passive source node can be found in the interactive notebook [here](https://observablehq.com/@openhps/openhps-docs-source-nodes).
 
-## Create a passive source
+## Passive source node
 A passive source node is a source that only returns a data frame when it is requested through a pull.
 
 ```ts twoslash
@@ -32,7 +32,7 @@ export class MyPassiveSource<Out extends DataFrame> extends SourceNode<Out> {
 }
 ```
 
-## Create an active source
+## Active source node
 An active source node is a source that automatically creates new data frames (e.g. a sensor that generates information at a fixed interval).
 
 ```ts twoslash

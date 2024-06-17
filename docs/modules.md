@@ -28,14 +28,16 @@ The core module offers the processing network model and commonly used nodes for 
 - **[@openhps/solid](/docs/solid/)** - Solid Pods as data storage for data objects.
 
 ### Communication
-- **[@openhps/socket](https://github.com/OpenHPS/openhps-socket)** - Provides node communication through Socket.IO for remote models.
-- **[@openhps/rest](https://github.com/OpenHPS/openhps-rest)** - Provides node communication through restful endpoints.
-- **[@openhps/mqtt](https://github.com/OpenHPS/openhps-mqtt)** - MQTT client node communication and standalone MQTT server.
+- **[@openhps/socket](/docs/socket)** - Provides node communication through Socket.IO for remote models.
+- **[@openhps/rest](/docs/rest)** - Provides node communication through restful endpoints.
+- **[@openhps/mqtt](/docs/mqtt)** - MQTT client node communication and standalone MQTT server.
+- **[@openhps/protobuf](/docs/protobuf)** - Protocol buffer serialization and deserialization.
 
 ### Smartphone
 - **[@openhps/react-native](/docs/react-native/)** - Provides nodes for retrieving sensor data in react-native.
 - **[@openhps/nativescript](/docs/nativescript/)** - Provides nodes for retrieving sensor data in NativeScript.
 - **[@openhps/cordova](/docs/cordova/)** - Provides nodes for retrieving sensor data in Cordova/Phonegap.
+- **[@openhps/capacitor](/docs/capacitor)** - Provides nodes for retrieving sensor data in Ionic Capacitor.
 
 ### Misc
 - **[@openhps/sphero](/docs/sphero/)** - Example implementation for controlling and receiving sensor data from Sphero toys.

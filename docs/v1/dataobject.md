@@ -9,7 +9,7 @@ any other landmark or sensor that could have an absolute or relative position.
 
 A data object is considered a snapshot of a the current state and should not contain any temporary information.
 
-## Creating data objects
+## Initialization
 ```ts twoslash
 import { DataObject } from '@openhps/core';
 
@@ -19,7 +19,7 @@ const myObject = new DataObject("bsigner", "Beat Signer");
 
 A data object can be created using its constructor that takes a unique identifier and an optional display name. More information on its construction can be found in the API documentation [here](https://openhps.org/docs/core/classes/dataobject.html#constructor).
 
-## Creating a custom data object
+## Custom data object
 Depending on what type of positioning system you are creating, you may find yourself
 having to add data to data frames or data objects that do not exist yet.
 
@@ -44,7 +44,7 @@ export class QRCode extends DataObject {
 }
 ```
 
-## Creating a custom sensor
+## Custom sensor object
 Creating a sensor is done by extending the `SensorObject`. A sensor object takes an optional type generic to indicate the value it contains.
 
 ```ts twoslash

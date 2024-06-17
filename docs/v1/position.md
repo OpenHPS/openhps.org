@@ -10,7 +10,7 @@ The aforementioned position descriptions such as a place, area or XY position ar
 
 When describing a position that uses a certain landmark to describe the position, the position is *relative* to this landmark. Relative positions can be expressed in distance, angle or velocity and could potentially be used to determine a more precise absolute position. In general, a relative position can not be used if the position is contained by the landmark - in that particular case you are talking about an absolute position relative to the landmark (e.g. you are in the center of a building).
 
-## Creating a cartesian position
+## Cartesian position
 A cartesian position can be created using an ```Absolute2DPosition``` or ```Absolute3DPosition```.
 ```ts twoslash
 import { Absolute2DPosition } from '@openhps/core';
@@ -18,7 +18,7 @@ import { Absolute2DPosition } from '@openhps/core';
 const pos = new Absolute2DPosition(1, 2);
 ```
 
-## Creating a geographical position
+## Geographical position
 By default, geographical positions use the WGS-84 coordinate system with a latitude, longitude and
 elevation in meters.
 
@@ -56,7 +56,7 @@ const pos = new GeographicalPosition(50.820466, 4.392189, 9);
 pos.toVector3(GCS.ECEF);
 ```
 
-## Creating a relative position
+## Relative position
 
 - ```RelativeDistance```: Distance to another data object.
 - ```RelativeRSSI```: Received signal strength to another (transmitting) data object.
@@ -75,7 +75,7 @@ object.addRelativePosition(new RelativeDistance("WAP_2", 5));
 object.addRelativePosition(new RelativeDistance("WAP_3", 8));
 ```
 
-## Creating an orientation
+## Orientation
 Every absolute position can contain an orientation. The orientation is stored as a quaternion but can be initialized through euler angles or axis angles.
 
 ```ts twoslash

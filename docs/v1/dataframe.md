@@ -10,7 +10,7 @@ A frame should contain a single reading of a sensor (such as an image of a video
 
 ![Data frame visualization](/docs/core/media/images/dataframe.svg)
 
-## Creating data frames
+## Initializing
 OpenHPS is a framework that processes sensor information to retrieve a position for one or more data objects. These objects are contained within an envelope called a data frame.
 
 ```ts twoslash
@@ -39,7 +39,7 @@ console.log(`${sensor.value.x}, ${sensor.value.y}, ${sensor.value.z}`);
 // Expected output: 1, 2, 3
 ```
 
-## Creating a custom data frame
+## Custom data frame
 Similar to data objects, decorators have to be used to indicate a serializable data frame.
 
 ```ts twoslash
