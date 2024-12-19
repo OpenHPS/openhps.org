@@ -64,11 +64,11 @@
   "devDependencies": {
     "@openhps/capacitor-bluetooth": "^0.1.6",
     "@openhps/core": "^0.7.5",
+    "@openhps/fingerprinting": "^0.1.8",
     "@openhps/geospatial": "^0.1.30",
     "@openhps/imu": "^0.2.2",
     "@openhps/rdf": "^0.4.66",
     "@openhps/rf": "^0.1.62",
-    "@openhps/fingerprinting": "^0.1.8",
     "@openhps/video": "^0.1.14"
   }
 }
