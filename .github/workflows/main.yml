@@ -27,7 +27,6 @@ jobs:
         with:
           path: |
             **/_site
-            _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
       - name: Install fonts
         run: |
@@ -65,7 +64,6 @@ jobs:
         with:
           path: |
             **/_site
-            _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
       - name: Load documentation cache
         uses: actions/cache@v3
@@ -79,48 +77,6 @@ jobs:
         run: |
           npm run build:docs
       
-  build_presentations:
-    needs: build
-    name: 'Build Presentations'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-      - name: Load dependency cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('package.json') }}
-      - name: Load site cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/_site
-            _presentations.json
-          key: ${{ runner.os }}-site-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
-      - name: Load presentations cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/_site/slides/**/*.pdf
-            **/_site/slides/**/screenshots
-            *.pdf
-            _presentations_generated.json
-          key: ${{ runner.os }}-site-presentations-v2
-      - name: Installing Dependencies
-        run: |
-          node node_modules/decktape/node_modules/puppeteer/install.js
-      - name: Enforce cache update for a local NX cache
-        run: |
-          STATE_CACHE_KEY="${{ runner.os }}-site-presentations-v2"
-          echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
-      - name: Build presentations
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm run build:presentations
-
   build_terms:
     needs: build
     name: 'Build Terminologies'
@@ -139,7 +95,6 @@ jobs:
         with:
           path: |
             **/_site
-            _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
       - name: Load terms cache
         uses: actions/cache@v3
@@ -157,7 +112,6 @@ jobs:
     needs:
       - build
       - build_documentation
-      - build_presentations
       - build_terms
     name: 'Deploy to Netlify'
     runs-on: ubuntu-latest
@@ -175,7 +129,6 @@ jobs:
         with:
           path: |
             **/_site
-            _presentations.json
           key: ${{ runner.os }}-site-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
       - name: Load documentation cache
         uses: actions/cache@v3
@@ -189,15 +142,6 @@ jobs:
           path: |
             **/_site/terms
           key: ${{ runner.os }}-site-terms-v1-${{ hashFiles('package.json') }}-${{ github.run_number }}
-      - name: Load presentations cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/_site/slides/**/*.pdf
-            **/_site/slides/**/screenshots
-            *.pdf
-            _presentations_generated.json
-          key: ${{ runner.os }}-site-presentations-v2
       - name: Deploy site
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

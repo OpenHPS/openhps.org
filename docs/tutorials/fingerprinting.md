@@ -26,7 +26,8 @@ import {
     FingerprintingNode,         // Stores fingerprints
     KNNFingerprintingNode,      // Reverse fingerprinting
     WeightFunction,
-    DistanceFunction
+    DistanceFunction,
+    Fingerprint
 } from '@openhps/fingerprinting';
 
 ModelBuilder.create()
