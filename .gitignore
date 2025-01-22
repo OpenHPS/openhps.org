@@ -4,7 +4,7 @@ _site
 .env
 _scripts/*.jar
 tmp*/
-*.pdf
+/*.pdf
 _ontology
 _presentations.json
 _presentations_generated.json
