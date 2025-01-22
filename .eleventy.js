@@ -10,7 +10,9 @@ const pluginSASS = require("eleventy-sass");
 const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
 const pluginValidator = require('eleventy-plugin-html-validate');
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const pluginMermaid = require("@kevingimbel/eleventy-plugin-mermaid");
 
+const htmlencode = require('htmlencode');
 const { DateTime } = require("luxon");
 const fs = require('fs');
 const nunjucks = require("nunjucks");
@@ -57,6 +59,7 @@ module.exports = function (el) {
 	});
 
   /* Markdown */
+  el.addPlugin(pluginMermaid);
   const md = markdownIt({ html: true });
   md.use(markdownItAnchor);
   md.use(markdownItLatex);
@@ -71,11 +74,17 @@ module.exports = function (el) {
       strict: false
     }
   });
-  const highlighter = el.markdownHighlighter;
-  el.markdownHighlighter = (code, lang, fence) => {
-    const result = highlighter(code, lang, fence);
-    return result === "" ? "<pre style='display: none'></pre>" : result;
-  };
+  el.addPlugin((el) => {
+    const highlighter = el.markdownHighlighter;
+    el.markdownHighlighter = (code, lang, fence) => {
+      if (lang && lang.startsWith("mermaid")) {
+        return `<pre class="mermaid">${htmlencode.htmlEncode(code)}</pre>`;
+      }
+      const result = highlighter(code, lang, fence);
+      return result === "" ? "<pre style='display: none'></pre>" : result;
+    };
+  });
+
   md.use(markdownItVideo, {
     youtube: { width: 640, height: 390 },
     vimeo: { width: 500, height: 281 },

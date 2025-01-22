@@ -10,6 +10,133 @@ The aforementioned position descriptions such as a place, area or XY position ar
 
 When describing a position that uses a certain landmark to describe the position, the position is *relative* to this landmark. Relative positions can be expressed in distance, angle or velocity and could potentially be used to determine a more precise absolute position. In general, a relative position can not be used if the position is contained by the landmark - in that particular case you are talking about an absolute position relative to the landmark (e.g. you are in the center of a building).
 
+```mermaid
+classDiagram
+
+
+class Absolute2DPosition{
+            #vector
+            +angleTo()
++fromVector()
++toVector3()
++clone()
+        }
+AbsolutePosition<|--Absolute2DPosition
+class Absolute3DPosition{
+            
+            +fromVector()
++toVector3()
++clone()
+        }
+Absolute2DPosition<|--Absolute3DPosition
+class AbsolutePosition{
+            +timestamp
++velocity
++orientation
++unit
++referenceSpaceUID
+-_accuracy
+-_probability
+            +setOrientation()
++setAccuracy()
++fromVector()*
++toVector3()*
++angleTo()*
++distanceTo()
++equals()
++clone()
+        }
+Position~U~<|..AbsolutePosition
+AbsolutePosition  --  Orientation
+class GeographicalPosition{
+            
+            +distanceTo()
++bearing()
++angleTo()
++destination()
++fromVector()
++toVector3()
++clone()
+        }
+Absolute3DPosition<|--GeographicalPosition
+class Orientation{
+            +timestamp
++accuracy
+            +fromBearing()$
++fromQuaternion()$
++clone()
+        }
+Quaternion<|--Orientation
+class Pose{
+            +timestamp
++unit
+-_accuracy
+-_probability
+            +fromMatrix4()$
++fromPosition()$
+        }
+Matrix4<|--Pose
+Position~U~<|..Pose
+class Position~U~ {
+            <<interface>>
+            +timestamp
++accuracy
++probability
+            +clone()
++equals()
+        }
+class Relative2DPosition{
+            
+            +fromVector()
++toVector3()
++clone()
+        }
+RelativePosition~T,U~<|--Relative2DPosition
+class Relative3DPosition{
+            
+            +fromVector()
++toVector3()
++clone()
+        }
+Relative2DPosition<|--Relative3DPosition
+class RelativeAngle{
+            +orientation
++unit
++referenceValue
+            
+        }
+RelativePosition~T,U~<|--RelativeAngle
+RelativeAngle  --  Orientation
+class RelativeDistance{
+            +unit
++referenceValue
+            
+        }
+RelativePosition~T,U~<|--RelativeDistance
+class RelativePosition~T,U~{
+            +timestamp
++referenceObjectUID
++referenceObjectType
++referenceValue
+-_accuracy
+-_probability
+-_defaultUnit
++unit
+            +setAccuracy()
++equals()
++clone()
+        }
+Position~U~<|..RelativePosition~T,U~
+class Trajectory{
+            +uid
++objectUID
++positions
++createdTimestamp
+            
+        }
+Trajectory  -- "0..*" AbsolutePosition
+```
+
 ## Cartesian position
 A cartesian position can be created using an ```Absolute2DPosition``` or ```Absolute3DPosition```.
 ```ts twoslash

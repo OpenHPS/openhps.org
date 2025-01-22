@@ -131,21 +131,9 @@ span.katex-html {
 }
 
 .twitter-wrapper {
-  max-height: 1000px;
+  max-height: 100%;
   overflow: hidden;
   width: 100%;
+  overflow: hidden;
   position: absolute;
-}
-
-.twitter-timeline-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  height: 56px;
-  background-color: rgb(242, 242, 242);
-  border-top: #dedede 1px solid;
-  border-radius: 0 0 5px 5px;
-  padding: 10px;
-  font-size: 1em;
-  z-index: 1000;
 }

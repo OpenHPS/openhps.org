@@ -26,6 +26,7 @@
     "@11ty/eleventy-img": "^3.1.0",
     "@11ty/eleventy-navigation": "^0.3.5",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@kevingimbel/eleventy-plugin-mermaid": "^2.2.1",
     "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
     "@types/node": "^20.6.2",
     "axios": "^1.5.0",
@@ -63,8 +64,8 @@
   },
   "devDependencies": {
     "@openhps/capacitor-bluetooth": "^0.1.6",
-    "@openhps/core": "^0.7.5",
-    "@openhps/fingerprinting": "^0.1.8",
+    "@openhps/core": "^0.7.16",
+    "@openhps/fingerprinting": "^0.1.9",
     "@openhps/geospatial": "^0.1.30",
     "@openhps/imu": "^0.2.2",
     "@openhps/rdf": "^0.4.66",

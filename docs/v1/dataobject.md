@@ -9,6 +9,87 @@ any other landmark or sensor that could have an absolute or relative position.
 
 A data object is considered a snapshot of a the current state and should not contain any temporary information.
 
+```mermaid
+classDiagram
+
+
+class ActuatorProperty{
+            +name
++callback
+            
+        }
+class ActuatorObject{
+            #properties
+            +invoke()
+        }
+DataObject<|--ActuatorObject
+class DataObject{
+            +displayName
++createdTimestamp
++uid
+-_position
+-_relativePositions
++parentUID
+            +getPosition()
++setPosition()
++setUID()
++setParent()
++removeRelativePositions()
++addRelativePosition()
++getRelativePositions()
++getRelativePosition()
++hasRelativePosition()
++bind()
++clone()
+        }
+class SensorCalibrationData~T~{
+            +unit
++offset
++multiplier
+            
+        }
+class SensorObject~T~{
+            +value
++frequency
++calibrationData
+            
+        }
+DataObject<|--SensorObject~T~
+class ReferenceSpace{
+            -_translationMatrix
+-_transformationMatrix
+-_scaleMatrix
+-_rotation
+-_unit
+-_parent
+            +fromDataObject()$
++update()
++orthographic()
++perspective()
++reset()
++referenceUnit()
++translation()
++scale()
++rotation()
++transform()
+        }
+DataObject<|--ReferenceSpace
+TransformationSpace<|..ReferenceSpace
+class TransformationSpace {
+            <<interface>>
+            +uid
++parent
+            +update()
++transform()
+        }
+class SpaceTransformationOptions {
+            <<interface>>
+            +inverse
+            
+        }
+TransformationSpace  --  TransformationSpace
+```
+
 ## Initialization
 ```ts twoslash
 import { DataObject } from '@openhps/core';
@@ -62,4 +143,58 @@ export class AmbientLightSensor extends SensorObject<SensorValue<LuminanceIntens
         super(uid, value ?? new SensorValue(), frequency, displayName);
     }
 }
+```
+
+```mermaid
+classDiagram
+
+
+class SensorCalibrationData~T~{
+            +unit
++offset
++multiplier
+            
+        }
+class SensorObject~T~{
+            +value
++frequency
++calibrationData
+            
+        }
+DataObject<|--SensorObject~T~
+class SensorValue~U~{
+            +timestamp
++accuracy
+-_defaultUnit
++unit
+            +setAccuracy()
++toTuple()
++clone()
+        }
+Vector3<|--SensorValue~U~
+class AbsoluteOrientationSensor{
+            
+            
+        }
+SensorObject~T~<|--AbsoluteOrientationSensor
+class GravitySensor{
+            
+            
+        }
+SensorObject~T~<|--GravitySensor
+class LinearAccelerationSensor{
+            
+            
+        }
+SensorObject~T~<|--LinearAccelerationSensor
+class LinearVelocitySensor{
+            
+            
+        }
+SensorObject~T~<|--LinearVelocitySensor
+class RelativeOrientationSensor{
+            
+            
+        }
+SensorObject~T~<|--RelativeOrientationSensor
 ```

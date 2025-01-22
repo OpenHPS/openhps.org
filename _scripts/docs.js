@@ -32,13 +32,13 @@ const modules = [
     "rdf",
     "solid",
     "openvslam",
-    "orb-slam3",
     "web",
-    "protobuf"
+    "protobuf",
+    "capacitor"
 ];
 
 const externalModules = [
-    ["sembeacon", "openhps"]
+    ["sembeacon", "openhps"],
 ];
 
 async function buildDocs() {
