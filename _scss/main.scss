@@ -6,7 +6,7 @@ $on-laptop:        800px !default;
 $on-medium:        $on-palm !default;
 $on-large:         $on-laptop !default;
 
-@import '../node_modules/markdown-it-latex/dist/index.css';
+@import 'markdown-it-latex/dist/index.css';
 @import "includes/normalize";
 @import "includes/constants";
 @import "includes/grid";
