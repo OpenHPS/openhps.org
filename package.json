@@ -15,10 +15,11 @@
     "update": "ncu -u -x chalk",
     "clean": "rimraf ./_site",
     "start": "eleventy --serve",
-    "build": "eleventy",
+    "build": "eleventy && npm run copy:js:openhps",
     "build:docs": "node ./bin/build_docs.js",
     "build:presentations": "node ./bin/build_presentations.js",
     "build:procedures": "openhps-rdf -g -d ./_site/terms/procedure -v",
+    "copy:js:openhps": "shx cp -rf node_modules/@openhps/*/dist/web/*.* ./_site/scripts/vendor/openhps/",
     "deploy": "netlify deploy --prod --dir=_site"
   },
   "dependencies": {
@@ -63,13 +64,15 @@
     "unzip-stream": "^0.3.1"
   },
   "devDependencies": {
-    "@openhps/capacitor-bluetooth": "^0.1.6",
-    "@openhps/core": "^0.7.16",
+    "@openhps/capacitor-bluetooth": "^0.1.18",
+    "@openhps/core": "^1.0.1",
     "@openhps/fingerprinting": "^0.1.9",
     "@openhps/geospatial": "^0.1.30",
     "@openhps/imu": "^0.2.2",
-    "@openhps/rdf": "^0.4.66",
-    "@openhps/rf": "^0.1.62",
-    "@openhps/video": "^0.1.14"
+    "@openhps/rdf": "^1.1.0-alpha.4",
+    "@openhps/solid": "^1.0.1",
+    "@openhps/rf": "^1.0.1",
+    "@openhps/video": "^0.1.14",
+    "@openhps/web-geolocation": "^0.1.20"
   }
 }
