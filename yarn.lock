@@ -5530,10 +5530,10 @@
   resolved "https://registry.npmjs.org/@openhps/imu/-/imu-0.2.2.tgz"
   integrity sha512-kkVuDM78ncfYpYc/g0zhsZl2n2Fx7r++l/n605Kzy5P2C+AJEMdkWKT90ZUNlSDL1MelLKYfFlDXZwa+zzT7sQ==
 
-"@openhps/rdf@^1.1.5", "@openhps/rdf@>=1.1.0":
-  version "1.1.5"
-  resolved "https://registry.npmjs.org/@openhps/rdf/-/rdf-1.1.5.tgz"
-  integrity sha512-QxHsQykfIk7Y54fhN4Igx7Q/qZBtxRMoBd1nx3MiYLCvaspjpFSBDwPfPhLcCoxU4xBX4hIoaCkb24AuR8pzkw==
+"@openhps/rdf@^1.1.6", "@openhps/rdf@>=1.1.0":
+  version "1.1.6"
+  resolved "https://registry.npmjs.org/@openhps/rdf/-/rdf-1.1.6.tgz"
+  integrity sha512-HJhQMjCYu4KnED+895FDhDqi3kWU0FjuBdcxELbgpLm8QPeWZfz3qLykoJleZm+bfIGHbb10kS+2gkrfcrF0IA==
   dependencies:
     "@comunica/query-sparql" "^4.0.2"
     "@inquirer/prompts" "^5.1.0"
