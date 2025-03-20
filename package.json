@@ -69,7 +69,7 @@
     "@openhps/fingerprinting": "^0.1.9",
     "@openhps/geospatial": "^0.1.30",
     "@openhps/imu": "^0.2.2",
-    "@openhps/rdf": "^1.1.4",
+    "@openhps/rdf": "^1.1.5",
     "@openhps/solid": "^1.0.2",
     "@openhps/rf": "^1.0.4",
     "@openhps/video": "^0.1.14",
