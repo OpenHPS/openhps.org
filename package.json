@@ -65,13 +65,13 @@
   },
   "devDependencies": {
     "@openhps/capacitor-bluetooth": "^0.1.18",
-    "@openhps/core": "^1.0.1",
+    "@openhps/core": "^1.0.2",
     "@openhps/fingerprinting": "^0.1.9",
     "@openhps/geospatial": "^0.1.30",
     "@openhps/imu": "^0.2.2",
-    "@openhps/rdf": "^1.1.0-alpha.4",
-    "@openhps/solid": "^1.0.1",
-    "@openhps/rf": "^1.0.1",
+    "@openhps/rdf": "^1.1.4",
+    "@openhps/solid": "^1.0.2",
+    "@openhps/rf": "^1.0.4",
     "@openhps/video": "^0.1.14",
     "@openhps/web-geolocation": "^0.1.20"
   }
