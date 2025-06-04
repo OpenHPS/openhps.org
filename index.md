@@ -428,6 +428,10 @@ class ChartSinkNode extends SinkNode {
 }
 
 function createModal() {
+    if (model !== undefined) {
+        return;
+    }
+
     const mouseReferenceSpace = new ReferenceSpace()
         .translation(0, 200)
         .rotation(new Euler(180, 0, 0, 'ZXY', AngleUnit.DEGREE));
