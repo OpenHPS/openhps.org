@@ -193,7 +193,7 @@ ModelBuilder.create()
     .from(new MouseSourceNode("trackArea"))
     // Step 2. Flip the axis
     .convertFromSpace(mouseReferenceSpace)
-    // Step 3. Simple moving average of the X,Y position (average of 100 readings)
+    // Step 3. Simple moving average of the X,Y position (average of 40 readings)
     .via(new SMAFilterNode((obj: DataObject) => ([
             { key: "x", value: (obj.position as Absolute2DPosition).x },
             { key: "y", value: (obj.position as Absolute2DPosition).y }
