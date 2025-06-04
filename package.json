@@ -19,8 +19,7 @@
     "build:docs": "node ./bin/build_docs.js",
     "build:presentations": "node ./bin/build_presentations.js",
     "build:procedures": "openhps-rdf -g -d ./_site/terms/procedure -v",
-    "copy:js:openhps": "shx cp -rf node_modules/@openhps/*/dist/web/*.* ./_site/scripts/vendor/openhps/",
-    "deploy": "netlify deploy --prod --dir=_site"
+    "copy:js:openhps": "shx cp -rf node_modules/@openhps/*/dist/web/*.* ./_site/scripts/vendor/openhps/"
   },
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
@@ -50,7 +49,6 @@
     "markdown-it-html5-media": "^0.7.1",
     "markdown-it-latex": "^0.2.0",
     "markdown-it-video": "^0.6.3",
-    "netlify-cli": "^16.3.5",
     "npm-run-all": "^4.1.5",
     "nunjucks": "^3.2.4",
     "nunjucks-markdown": "^2.0.1",
@@ -65,7 +63,7 @@
   },
   "devDependencies": {
     "@openhps/capacitor-bluetooth": "^0.1.18",
-    "@openhps/core": "^1.0.2",
+    "@openhps/core": "^1.0.11",
     "@openhps/fingerprinting": "^0.1.9",
     "@openhps/geospatial": "^0.1.30",
     "@openhps/imu": "^0.2.2",
