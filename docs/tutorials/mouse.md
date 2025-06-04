@@ -159,15 +159,11 @@ export class ChartSinkNode extends SinkNode<DataFrame> {
 
 # `MouseSourceNode`
 ```ts twoslash
-// @showEmit
-// @showEmittedFile: MouseSourceNode.js
 // @include: MouseSourceNode
 ```
 
 # `ChartSinkNode`
 ```ts twoslash
-// @showEmit
-// @showEmittedFile: ChartSinkNode.js
 // @include: ChartSinkNode
 ```
 
@@ -177,8 +173,6 @@ export class ChartSinkNode extends SinkNode<DataFrame> {
 // @include: MouseSourceNode
 // @include: ChartSinkNode
 // ---cut---
-// @showEmit
-// @showEmittedFile: mouse.js
 // @filename: mouse.ts
 import { ModelBuilder, DataObject, Absolute2DPosition, SMAFilterNode, ReferenceSpace, Euler, AngleUnit } from '@openhps/core';
 import { MouseSourceNode } from './MouseSourceNode';

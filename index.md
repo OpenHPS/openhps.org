@@ -176,8 +176,6 @@ Then you can start by importing the model builder to create your first positioni
 // @include: MouseSourceNode
 // @include: ChartSinkNode
 // ---cut---
-// @showEmit
-// @showEmittedFile: mouse.js
 // @filename: mouse.ts
 import { ModelBuilder, DataObject, Absolute2DPosition, SMAFilterNode, ReferenceSpace, Euler, AngleUnit } from '@openhps/core';
 import { MouseSourceNode } from './MouseSourceNode';
