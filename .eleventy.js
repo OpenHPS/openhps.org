@@ -14,7 +14,6 @@ const pluginMermaid = require("@kevingimbel/eleventy-plugin-mermaid");
 
 const htmlencode = require('htmlencode');
 const { DateTime } = require("luxon");
-const fs = require('fs');
 const nunjucks = require("nunjucks");
 const markdown = require('nunjucks-markdown');
 const markdownItAttrs = require('markdown-it-attrs');
@@ -176,19 +175,9 @@ module.exports = function (el) {
     return Math.min.apply(null, numbers);
   });
 
-  el.setBrowserSyncConfig({
-    callbacks: {
-      ready: function(_, browserSync) {
-        const content_404 = fs.readFileSync('_site/404.html');
-        browserSync.addMiddleware("*", (req, res) => {
-          // Provides the 404 content without redirect.
-          res.write(content_404);
-          res.end();
-        });
-      },
-    },
-    ui: false,
-    ghostMode: false
+  el.setServerOptions({
+    port: 8080,
+    showAllHosts: true,
   });
 
   el.addPlugin(decktape);
