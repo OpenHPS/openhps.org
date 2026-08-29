@@ -2,7 +2,7 @@
 layout: docs.njk
 tags: docs
 title: 'Data Frame'
-menuOrder: 202
+menuOrder: 203
 ---
 Data frames are envelopes that are transmitted and processed through a positioning model. These frames are created by source nodes (e.g. sensors) and contain one or more data objects needed to process the frame.
 

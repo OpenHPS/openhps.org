@@ -2,7 +2,7 @@
 layout: docs.njk
 tags: docs
 title: 'Building and Floor Detection'
-menuOrder: 401
+menuOrder: 403
 ---
 Building and floor detection is required whenever you are working with an indoor positiong system that covers multiple buildings and floors. 
 

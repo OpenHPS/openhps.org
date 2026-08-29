@@ -2,15 +2,15 @@
   <ul>
     {% for doc in collections.sorted_docs %}
       {% if doc.data.menuOrder == 101 %}
-      <li class="title">Documentation</li>
+      <li class="title">Getting Started</li>
       {% elif doc.data.menuOrder == 201 %}
-      <li class="title">Basic Concepts</li>
+      <li class="title">Core Concepts</li>
       {% elif doc.data.menuOrder == 301 %}
       <li class="title">Advanced Concepts</li>
       {% elif doc.data.menuOrder == 401 %}
       <li class="title">Tutorials</li>
       {% elif doc.data.menuOrder == 901 %}
-      <li class="title">Miscellaneous</li>
+      <li class="title">Reference</li>
       {% endif %}
       
       <li {% if page.url == doc.url %}class="selected"{% endif %}>

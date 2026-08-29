@@ -2,7 +2,7 @@
 layout: docs.njk
 tags: docs
 title: 'Data Object'
-menuOrder: 201
+menuOrder: 202
 ---
 Data objects represent the object or person that you are trying to determine a position for. It can also represent
 any other landmark or sensor that could have an absolute or relative position.

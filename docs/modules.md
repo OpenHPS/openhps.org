@@ -2,7 +2,7 @@
 layout: docs.njk
 tags: docs
 title: 'Modules'
-menuOrder: 103
+menuOrder: 901
 ---
 This page gives an overview of the official OpenHPS modules that are available. This list does not contain third party modules that provide nodes or data services.
 

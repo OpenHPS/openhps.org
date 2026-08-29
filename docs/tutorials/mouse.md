@@ -2,8 +2,23 @@
 layout: docs.njk
 tags: docs
 title: 'Mouse example'
-menuOrder: 403
+menuOrder: 401
 ---
+In this tutorial you will build your first positioning model with OpenHPS. You will create a source node that turns your mouse movements into positions, process them with a filter, and visualize the result on a chart. It requires nothing more than a browser and is a great way to learn the core concepts.
+
+> **New to OpenHPS?** Make sure you have [installed @openhps/core](/docs/installation/) first, and read the [introduction](/docs/introduction/) for a quick overview of the key concepts.
+
+The model you will build looks like this:
+
+```mermaid
+graph LR
+    A[MouseSourceNode] -->|positions| B[Convert from space]
+    B -->|positions| C[SMAFilterNode]
+    C -->|smoothed positions| D[ChartSinkNode]
+```
+
+## 1. Creating the source node
+A source node generates data frames. Our `MouseSourceNode` listens for mouse or touch movement inside a HTML element and pushes a data frame containing the position of a `DataObject` called `mouse`.
 
 ```twoslash include MouseSourceNode
 // @filename: MouseSourceNode.ts
@@ -162,10 +177,20 @@ export class ChartSinkNode extends SinkNode<DataFrame> {
 // @include: MouseSourceNode
 ```
 
+The source node pushes frames that contain the `mouse` data object with its `position` set to the current X,Y coordinates.
+
+## 2. Creating the sink node
+A sink node is the final node in the model. Our `ChartSinkNode` keeps a history of all positions that passed through the node and draws them on a chart using Chart.js.
+
 # `ChartSinkNode`
 ```ts twoslash
 // @include: ChartSinkNode
 ```
+
+The sink node stores previous positions in a `NodeDataService` so it can draw the full movement trail.
+
+## 3. Building the model
+Now we can combine everything into a positioning model using the `ModelBuilder`.
 
 # Positioning Model
 
@@ -199,3 +224,11 @@ ModelBuilder.create()
     .to(new ChartSinkNode("mouseChart"))
     .build();
 ```
+
+## Summary
+- A **source node** produces data frames containing positions.
+- A **reference space** transforms positions between coordinate systems.
+- A **processing node** (like `SMAFilterNode`) transforms the data.
+- A **sink node** consumes the final result.
+
+You now know how to build a positioning model. Ready to take it further? Learn about [positions](/docs/position/) and [reference spaces](/docs/referencespace/) in the core concepts, or jump to the [RF fingerprinting tutorial](/docs/tutorials/fingerprinting/) to build a real indoor positioning system.

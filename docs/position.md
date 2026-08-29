@@ -2,7 +2,7 @@
 layout: docs.njk
 tags: docs
 title: 'Position and Orientation'
-menuOrder: 204
+menuOrder: 205
 ---
 A location is often used to describe a place or area where an object is located (e.g. your location is in a certain room). A position is a more precise indicator of where an object is located (e.g. your position is at X=3 and Y=4). Similar to other positioning systems, OpenHPS uses the concepts of *relative* and *absolute* positions. 
 

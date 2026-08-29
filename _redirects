@@ -2,4 +2,19 @@
 /getting-started        /docs/introduction
 /docs/getting-started   /docs/introduction
 /docs/about             /docs/introduction
+
+# v1 docs moved to docs root
+/docs/v1/dataobject/    /docs/dataobject/      301
+/docs/v1/dataframe/     /docs/dataframe/       301
+/docs/v1/model/         /docs/model/           301
+/docs/v1/position/      /docs/position/        301
+/docs/v1/referencespace/ /docs/referencespace/ 301
+/docs/v1/unit/          /docs/unit/            301
+/docs/v1/sourcenode/    /docs/sourcenode/      301
+/docs/v1/processingnode/ /docs/processingnode/ 301
+/docs/v1/sinknode/      /docs/sinknode/        301
+/docs/v1/service/       /docs/service/         301
+/docs/v1/remoteservice/ /docs/remoteservice/   301
+/docs/v1/workernode/    /docs/workernode/      301
+
 /terms/procedure/* /terms/procedure/:splat.ttl

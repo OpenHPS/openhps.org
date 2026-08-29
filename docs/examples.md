@@ -2,20 +2,19 @@
 layout: docs.njk
 tags: docs
 title: 'Examples'
-menuOrder: 901
+menuOrder: 902
 ---
-This documentation page provides several examples to get started. 
+This page collects examples to help you get started with OpenHPS. For step-by-step guides, see the [tutorials](/docs/tutorials/mouse/).
 
-## [Orientation](https://observablehq.com/d/c58a3f29b5c3d343)
-In this documentation we investigate the possibilities of setting the orientation of an object through its position. [Click here](https://observablehq.com/d/c58a3f29b5c3d343).
+## Getting Started
+- **[Mouse example](/docs/tutorials/mouse/)** - Track your mouse and plot its position. A great first model that needs no extra hardware.
 
-## [Source Nodes](https://observablehq.com/@openhps/openhps-docs-source-nodes)
-This documentation explains the use and creation of source nodes. [Click here](https://observablehq.com/@openhps/openhps-docs-source-nodes).
+## Source Nodes
+- **[Source Nodes](https://observablehq.com/@openhps/openhps-docs-source-nodes)** - Explains the use and creation of source nodes.
 
-## [Reference Spaces](https://observablehq.com/@openhps/openhps-docs-reference-space)
-In this tutorial we will explain the use of reference spaces when retrieving or storing the position of an object.
-[Click here](https://observablehq.com/@openhps/openhps-docs-reference-space).
+## Positions & Orientation
+- **[Orientation](https://observablehq.com/d/c58a3f29b5c3d343)** - Setting the orientation of an object through its position.
+- **[Reference Spaces](https://observablehq.com/@openhps/openhps-docs-reference-space)** - Using reference spaces when retrieving or storing the position of an object.
 
-## [Motor Movement Tracking](https://observablehq.com/d/1673bf0f04655577)
-This is a basic example of robot movement tracking using @openhps/core linear and angular velocity. In this example, we will manually set the velocity based on the motor control. This example is available as an ObservableHQ notebook.
-[Click here](https://observablehq.com/d/1673bf0f04655577).
+## Motion Tracking
+- **[Motor Movement Tracking](https://observablehq.com/d/1673bf0f04655577)** - A basic example of robot movement tracking using linear and angular velocity. In this example, velocity is set manually based on motor control.
