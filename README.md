@@ -21,6 +21,8 @@ the following information:
 - Publications and resources
 - Ontologies documentation
 
+Maintained by [MVdW-Software](https://mvdw-software.com).
+
 ## Installation
 Start by installing all dependencies.
 ```bash
