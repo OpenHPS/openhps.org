@@ -52,14 +52,15 @@ module.exports = function (config, options = defaultOptions) {
     if (mtimeMs > lastGeneration.mtime) {
       const metadata = await sharp(faviconFile).metadata();
       cache[faviconFile] = { mtime: mtimeMs, svg: metadata.format === "svg" };
-      faviconTypes.forEach(([name, generator]) =>
+      const jobs = faviconTypes.map(([name, generator]) =>
         generator(metadata, faviconFile).then(
           saveFile(`${destination}/${name}`)
         )
       );
       if (cache[faviconFile].svg) {
-        fs.copyFile(faviconFile, `${destination}/favicon.svg`);
+        jobs.push(fs.copyFile(faviconFile, `${destination}/favicon.svg`));
       }
+      await Promise.all(jobs);
     }
 
     const svgEntry = cache[faviconFile].svg

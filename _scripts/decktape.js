@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { spawn } = require('child_process');
+const { execFile } = require('child_process');
 let queue = [];
 const path = require('path');
 const handler = require('serve-handler');
@@ -125,27 +125,24 @@ function executeDecktape(item) {
                 fs.rmSync(item.images, { recursive: true, force: true });
             }
             fs.mkdirSync(item.images);
-            process = spawn(
-                path.join(__dirname, '../node_modules/.bin/decktape'), 
+            process = execFile(
+                path.join(__dirname, '../node_modules/.bin/decktape'),
                 [
                     `--screenshots`,
-                    `--screenshots-directory ${item.images}`,
-                    `--size=2048x${item.widescreen ? 1152 : 1536}`, `"${item.url}"`, `${item.slug}.pdf`,
-                ], {
-                    shell: true
-                });
+                    `--screenshots-directory`,
+                    item.images,
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, `${item.slug}.pdf`,
+                ]);
         } else if (item.pdf) {
             if (fs.existsSync(item.pdf)) {
                 fs.rmSync(item.pdf);
             }
 
-            process = spawn(
-                path.join(__dirname, '../node_modules/.bin/decktape'), 
+            process = execFile(
+                path.join(__dirname, '../node_modules/.bin/decktape'),
                 [
-                    `--size=2048x${item.widescreen ? 1152 : 1536}`, `"${item.url}"`, item.pdf,
-                ], {
-                    shell: true
-                });
+                    `--size=2048x${item.widescreen ? 1152 : 1536}`, item.url, item.pdf,
+                ]);
         } 
 
         process.on('error', (err) => {

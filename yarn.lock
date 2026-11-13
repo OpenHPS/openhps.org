@@ -14149,7 +14149,7 @@ serialize-javascript@^4.0.0:
   dependencies:
     randombytes "^2.1.0"
 
-serve-handler@6.1.7:
+serve-handler@^6.1.7, serve-handler@6.1.7:
   version "6.1.7"
   resolved "https://registry.npmjs.org/serve-handler/-/serve-handler-6.1.7.tgz"
   integrity sha512-CinAq1xWb0vR3twAv9evEU8cNWkXCb9kd5ePAHUKJBkOsUpR1wt/CvGdeca7vqumL1U5cSaeVQ6zZMxiJ3yWsg==

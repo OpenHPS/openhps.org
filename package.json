@@ -73,6 +73,10 @@
     "@openhps/solid": "^1.0.3",
     "@openhps/rf": "^1.0.4",
     "@openhps/video": "^1.0.3",
-    "@openhps/web-geolocation": "^1.0.4"
+    "@openhps/web-geolocation": "^1.0.4",
+    "htmlencode": "^0.0.4",
+    "serve-handler": "^6.1.7",
+    "sharp": "^0.35.5",
+    "to-ico": "^1.1.5"
   }
 }
